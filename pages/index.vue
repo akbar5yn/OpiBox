@@ -1,9 +1,8 @@
-<template>
-  <Tutorial />
-</template>
+<template />
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  layout: 'LandingPage'
 }
 </script>
