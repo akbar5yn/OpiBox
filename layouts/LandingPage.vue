@@ -1,6 +1,9 @@
 <template>
   <div>
+    <!-- navbar -->
     <landing-page-nav-bar />
+
+    <!-- hero section -->
     <section class="brand mt-[45px]">
       <div class="items-center flex flex-col">
         <div class="w-[65%] text-center">
@@ -75,10 +78,53 @@
         </div>
       </div>
     </section>
+
+    <!-- service section -->
     <section
-      class="layanan bg-[#B0B0B5] h-[50vh] rounded-t-[104px] mt-[-100px] z-10 relative"
+      class="layanan bg-[#B0B0B5] h-auto rounded-t-[104px] mt-[-100px] z-10 relative p-[120px]"
     >
-      <div />
+      <div class="flex flex-col gap-y-20">
+        <div class="flex justify-center items-center gap-[73px]">
+          <!-- <img src="" alt=""> -->
+          <div class="w-[500px] h-[500px] bg-white" />
+          <div class="w-[720px]">
+            <h1 class="text-[48px] font-bold">
+              Atur Prioritas Opini yang Anda Dapatkan
+            </h1>
+            <p class="text-[30px] font-normal">
+              Opini yang telah diberikan dapat dibuat menjadi list tugas dan
+              dapat diatur prioritasnya.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex justify-center items-center gap-[73px]">
+          <!-- <img src="" alt=""> -->
+          <div class="w-[720px]">
+            <h1 class="text-[48px] font-bold">
+              Modifikasikan Ide Anda dengan Mudah
+            </h1>
+            <p class="text-[30px] font-normal">
+              Modifikasikan desain tersebut berdasarkan list tugas yang tertera.
+            </p>
+          </div>
+          <div class="w-[500px] h-[500px] bg-white" />
+        </div>
+
+        <div class="flex justify-center items-center gap-[73px]">
+          <!-- <img src="" alt=""> -->
+          <div class="w-[500px] h-[500px] bg-white" />
+          <div class="w-[720px]">
+            <h1 class="text-[48px] font-bold">
+              Kolaborasi Bersama Tim untuk Hasil yang Lebih Baik
+            </h1>
+            <p class="text-[30px] font-normal">
+              Undang anggota tim sebanyak-banyaknya dan dapatkan hasil desain
+              terbaik.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
     <Nuxt />
   </div>
