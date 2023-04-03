@@ -146,9 +146,71 @@
     </section>
 
     <!-- Help Section -->
-    <section>
-      <div />
+    <section class="bg-white rounded-t-[104px] mt-[-80px]">
+      <div class="flex justify-center pt-[81px] px-[120px] gap-[152px]">
+        <h1 class="text-[48px] font-bold pt-0">
+          Pertanyaan Umum
+        </h1>
+        <div>
+          <ul class="flex flex-col gap-y-10">
+            <li class="list-help">
+              <p class="break-words">
+                Siapa target Opibox?
+              </p>
+              <button class="arrow self-center" />
+            </li>
+
+            <li class="list-help">
+              <p>Bagaimana cara membuat tim?</p>
+              <button class="arrow self-center" />
+            </li>
+
+            <li class="list-help">
+              <p>Siapa saja yang dapat mengakses file?</p>
+              <button class="arrow self-center" />
+            </li>
+
+            <li class="list-help">
+              <p>Bagaimana jika saya memiliki gambar lebih dari satu?</p>
+              <button class="arrow self-center" />
+            </li>
+
+            <li class="list-help">
+              <p>
+                Jika saya diundang ke dalam tim, apa saja yang bisa saya
+                lakukan?
+              </p>
+              <button class="arrow self-center" />
+            </li>
+          </ul>
+        </div>
+      </div>
     </section>
     <Nuxt />
   </div>
 </template>
+
+text-[30px] font-bold border-b-2 py-5 flex justify-between w-[553px]
+<style scoped>
+.list-help {
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(25, 25, 27, 0.15);
+  display: flex;
+  justify-content: space-between;
+  width: 692px;
+  padding: 20px 0 20px 0;
+}
+
+.list-help > p {
+  width: 553px;
+}
+
+.arrow {
+  width: 10px;
+  height: 10px;
+  border-bottom: 0.25rem solid #000;
+  border-right: 0.25rem solid #000;
+  transform: rotate(45deg);
+}
+</style>
