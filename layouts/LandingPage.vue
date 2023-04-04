@@ -126,6 +126,29 @@
         </div>
       </div>
     </section>
+
+    <!-- loyalty programme -->
+    <section class="bg-[#95959D] px-[120px] pt-[95px] pb-[173px]">
+      <div class="flex justify-center items-center gap-[73px]">
+        <div class="w-[720px]">
+          <h1 class="text-[48px] font-bold">
+            Program Loyalti Opibox
+          </h1>
+          <p class="text-[20px]">
+            Program loyalti ini merupakan program loyalti yang diberikan oleh
+            Opibox sebagai tanda terima kasih dan penghargaan untuk kamu yang
+            ikut berkolaborasi di Opibox.
+          </p>
+        </div>
+        <!-- <img src="" alt=""> -->
+        <div class="w-[500px] h-[300px] bg-white" />
+      </div>
+    </section>
+
+    <!-- Help Section -->
+    <section>
+      <div />
+    </section>
     <Nuxt />
   </div>
 </template>
