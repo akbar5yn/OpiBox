@@ -36,7 +36,7 @@
           Masuk
         </button>
         <button
-          class="bg-[#4A4A4F] border-[#4A4A4F] border-[1px] px-7 py-2 rounded-[6px] text-white"
+          class="bg-[#6C61E1] border-[#6C61E1] border-[1px] px-7 py-2 rounded-[6px] text-white"
         >
           Daftar
         </button>
