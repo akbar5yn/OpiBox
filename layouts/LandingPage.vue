@@ -38,7 +38,7 @@
       </div>
 
       <div
-        class="playstore-section grid grid-cols-2 justify-between bg-[#D9D9D9] px-[200px] relative h-[65vh]"
+        class="playstore-section grid grid-cols-2 justify-between bg-[#D7D4F7] px-[200px] relative h-[65vh]"
       >
         <div class="w-[75%] relative left-10 flex flex-col gap-y-8 mt-10">
           <h1 class="text-[64px]">
