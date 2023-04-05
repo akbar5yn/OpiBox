@@ -26,7 +26,7 @@
         <div
           class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-[50px] items-end relative"
         >
-          <img src="../assets/img/unsplash_rd7RBGvs_-4.svg" alt="img-1">
+          <img src="../assets/img/image1.svg" alt="img-1">
           <img
             src="../assets/img/original-a3cd49e2b9322ee2eb0803c2f00de25d 1.svg"
             alt="img-2"
