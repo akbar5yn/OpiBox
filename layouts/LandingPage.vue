@@ -186,6 +186,95 @@
         </div>
       </div>
     </section>
+
+    <!-- footer -->
+    <footer
+      class="bg-[#313135] flex flex-col justify-center items-center px-40 text-white mt-28"
+    >
+      <div class="flex gap-40 justify-center border-b-2 py-14">
+        <div class="flex gap-4">
+          <img
+            src="../assets/img/logo.svg"
+            class="w-11 self-start mt-2"
+            alt="logo"
+          >
+          <h1 class="text-[36px] font-bold self-start">
+            Opibox
+          </h1>
+        </div>
+        <div>
+          <h3 class="text-[24px] font-medium mb-3">
+            Menu
+          </h3>
+          <ul class="flex flex-col gap-y-3">
+            <li>
+              <NuxtLink to="">
+                Beranda
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="">
+                Layanan
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="">
+                Program Loyalti
+              </NuxtLink>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-[24px] font-medium mb-3">
+            Tentang Kami
+          </h3>
+          <ul class="flex flex-col gap-y-3">
+            <li>
+              <NuxtLink to="">
+                Tim Opibox
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="">
+                Bantuan
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="">
+                Syarat dan Ketentuan
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="">
+                Pengaturan Cookie
+              </NuxtLink>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-[24px] font-medium mb-3">
+            Unduh Aplikasi
+          </h3>
+          <button
+            class="flex gap-2 items-center bg-black border-white border-[2px] rounded-xl max-w-fit px-[17px] py-2"
+          >
+            <img
+              src="../assets/img/google-changes-play-store-png-logo-0 1.svg"
+              class=""
+              alt="google-play"
+            >
+            <p class="text-white text-start">
+              TEMUKAN DI <br>
+              <span class="font-bold text-[28px]">Google Play</span>
+            </p>
+          </button>
+        </div>
+      </div>
+      <p class="py-10">
+        © 2023 Opibox | Opibox adalah produk milik PT Qatros Teknologi
+        Nusantara.
+      </p>
+    </footer>
     <Nuxt />
   </div>
 </template>
