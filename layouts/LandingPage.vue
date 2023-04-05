@@ -18,7 +18,7 @@
         </div>
 
         <button
-          class="py-3 px-10 bg-[#4A4A4F] text-white w-auto my-10 text-[24px] rounded-md"
+          class="py-3 px-10 bg-[#6C61E1] text-white w-auto my-10 text-[24px] rounded-md"
         >
           Mulai Berkolaborasi
         </button>
