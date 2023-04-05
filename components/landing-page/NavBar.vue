@@ -32,7 +32,7 @@
         </li>
       </ul>
       <div class="gap-1">
-        <button class="border-black border-[1px] px-7 py-2 rounded-[6px]">
+        <button class="border-[#6C61E1] border-[1px] px-7 py-2 rounded-[6px] text-[#6C61E1]">
           Masuk
         </button>
         <button
