@@ -31,7 +31,7 @@
             src="../assets/img/original-a3cd49e2b9322ee2eb0803c2f00de25d 1.svg"
             alt="img-2"
           >
-          <img src="../assets/img/hero-foto.svg" alt="img-3">
+          <img src="../assets/img/image3.svg" alt="img-3">
 
           <landing-page-chat-box />
         </div>
