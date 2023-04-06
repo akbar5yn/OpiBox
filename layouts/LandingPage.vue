@@ -64,24 +64,15 @@
           </button>
         </div>
 
-        <div class="relative flex justify-center">
-          <img
-            src="../assets/img/unsplash_52H5Nfi5WiE.svg"
-            class="absolute top-5 right-0"
-            alt="handphone"
-          >
-          <img
-            src="../assets/img/unsplash_5Nf-bWJdWcE.svg"
-            class="absolute top-5 left-14"
-            alt="phone"
-          >
+        <div>
+          <img src="../assets/img/image_homePage.svg" alt="handphone" class="w-[600px] h-[758px]">
         </div>
       </div>
     </section>
 
     <!-- service section -->
     <section
-      class="layanan bg-[#B0B0B5] h-auto rounded-t-[104px] mt-[-100px] z-10 relative p-[120px]"
+      class="layanan bg-[#B0B0B5] h-auto rounded-t-[104px] mt-[-100px] z-10 p-[120px]"
     >
       <div class="flex flex-col gap-y-20">
         <div class="flex justify-center items-center gap-[73px]">
