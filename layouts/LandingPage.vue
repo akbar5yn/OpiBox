@@ -28,7 +28,7 @@
         >
           <img src="../assets/img/image1.svg" alt="img-1">
           <img
-            src="../assets/img/original-a3cd49e2b9322ee2eb0803c2f00de25d 1.svg"
+            src="../assets/img/image2.svg"
             alt="img-2"
           >
           <img src="../assets/img/image3.svg" alt="img-3">
