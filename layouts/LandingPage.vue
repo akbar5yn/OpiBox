@@ -128,7 +128,7 @@
     </section>
 
     <!-- loyalty programme -->
-    <section class="bg-[#95959D] px-[120px] pt-[95px] pb-[173px]">
+    <section class="bg-[#6C61E1] px-[120px] pb-[75px]">
       <div class="flex justify-center items-center gap-[73px]">
         <div class="w-[720px]">
           <h1 class="text-[48px] font-bold">
@@ -140,13 +140,14 @@
             ikut berkolaborasi di Opibox.
           </p>
         </div>
-        <!-- <img src="" alt=""> -->
-        <div class="w-[500px] h-[300px] bg-white" />
+        <div class="-z-0 relative">
+          <img src="../assets/img/image1_loyaltyProgram.svg" alt="img">
       </div>
+    </div>
     </section>
 
     <!-- Help Section -->
-    <section class="bg-white rounded-t-[104px] mt-[-80px]">
+    <section class="bg-white rounded-t-[104px] mt-[-80px] relative z-0">
       <div class="flex justify-center pt-[81px] px-[120px] gap-[152px]">
         <h1 class="text-[48px] font-bold pt-0">
           Pertanyaan Umum
