@@ -41,7 +41,7 @@
   height: 0;
   border-top: 20px solid transparent;
   border-bottom: 20px solid transparent;
-  border-right: 20px solid #ccc;
+  border-right: 20px solid #D7D4F7;
 }
 .chat-box-right::before {
   content: '';
