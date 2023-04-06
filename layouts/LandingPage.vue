@@ -65,7 +65,7 @@
         </div>
 
         <div>
-          <img src="../assets/img/image_homePage.svg" alt="handphone" class="w-[600px] h-[758px]">
+          <img src="../assets/img/image_homePage1.svg" alt="handphone" class="w-[600px] h-[758px]">
         </div>
       </div>
     </section>
