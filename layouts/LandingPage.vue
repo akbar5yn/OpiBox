@@ -93,6 +93,9 @@
 
         <div class="flex justify-center items-center gap-[73px]">
           <!-- <img src="" alt=""> -->
+          <div class="absolute w-[450px] h-[450px] right-[89.06px] top-45px">
+            <img src="../assets/img/image_service2.svg" alt="image_2">
+          </div>
           <div class="w-[720px]">
             <h1 class="text-[48px] font-bold">
               Modifikasikan Ide Anda dengan Mudah
