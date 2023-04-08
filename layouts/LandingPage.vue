@@ -77,7 +77,7 @@
       <div class="flex flex-col gap-y-20">
         <div class="flex justify-center items-center gap-[73px]">
           <!-- <img src="" alt=""> -->
-          <div class="absolute w-[450xpx] h-[450px] left-[19.43px] top-0">
+          <div class="absolute w-[500xpx] h-[500px] left-[60px] top-0">
             <img src="../assets/img/image_service1.svg" alt="image_1">
           </div>
           <div class="w-[720px]">
@@ -93,7 +93,7 @@
 
         <div class="flex justify-center items-center gap-[73px]">
           <!-- <img src="" alt=""> -->
-          <div class="absolute w-[450px] h-[450px] right-[89.06px] top-45px">
+          <div class="absolute w-[500px] h-[500px] right-[89.06px] top-45px">
             <img src="../assets/img/image_service2.svg" alt="image_2">
           </div>
           <div class="w-[720px]">
