@@ -72,12 +72,14 @@
 
     <!-- service section -->
     <section
-      class="layanan bg-[#B0B0B5] h-auto rounded-t-[104px] mt-[-100px] z-10 p-[120px]"
+      class="layanan bg-[#FFFFFF] h-auto rounded-t-[104px] mt-[-100px] z-10 relative p-[120px]"
     >
       <div class="flex flex-col gap-y-20">
         <div class="flex justify-center items-center gap-[73px]">
           <!-- <img src="" alt=""> -->
-          <div class="w-[500px] h-[500px] bg-white" />
+          <div class="absolute w-[450xpx] h-[450px] left-[19.43px] top-0">
+            <img src="../assets/img/image_service1.svg" alt="image_1">
+          </div>
           <div class="w-[720px]">
             <h1 class="text-[48px] font-bold">
               Atur Prioritas Opini yang Anda Dapatkan
