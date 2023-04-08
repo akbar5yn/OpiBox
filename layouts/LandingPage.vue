@@ -65,7 +65,7 @@
         </div>
 
         <div>
-          <img src="../assets/img/image_homePage1.svg" alt="handphone" class="w-[600px] h-[758px]">
+          <img src="../assets/img/image_homePage1.svg" alt="handphone" class="w-[800px] h-[610px]">
         </div>
       </div>
     </section>
@@ -127,13 +127,13 @@
     </section>
 
     <!-- loyalty programme -->
-    <section class="bg-[#6C61E1] px-[120px] pb-[75px]">
+    <section class="bg-[#6C61E1] px-[120px] pb-[75px] text-white">
       <div class="flex justify-center items-center gap-[73px]">
         <div class="w-[720px]">
           <h1 class="text-[48px] font-bold">
             Program Loyalti Opibox
           </h1>
-          <p class="text-[20px]">
+          <p class="text-[20px] font-sans font-normal leading-[39px]">
             Program loyalti ini merupakan program loyalti yang diberikan oleh
             Opibox sebagai tanda terima kasih dan penghargaan untuk kamu yang
             ikut berkolaborasi di Opibox.
