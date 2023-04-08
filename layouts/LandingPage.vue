@@ -109,6 +109,9 @@
 
         <div class="flex justify-center items-center gap-[73px]">
           <!-- <img src="" alt=""> -->
+          <div class="absolute w-[613px] h-[362px] left-[50px] top-250">
+            <img src="../assets/img/image_service3.svg" alt="image_3">
+          </div>
           <div class="w-[500px] h-[500px] bg-white" />
           <div class="w-[720px]">
             <h1 class="text-[48px] font-bold">
