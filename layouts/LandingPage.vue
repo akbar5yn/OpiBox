@@ -115,7 +115,7 @@
           <div class="w-[500px] h-[500px] bg-white" />
           <div class="w-[720px]">
             <h1 class="text-[48px] font-bold">
-              Kolaborasi Bersama Tim untuk Hasil yang Lebih Baik
+              <span class="text-[#6C61E1]">Kolaborasi Bersama Tim</span> <span class="text-black">Untuk Hasil yang Lebih Baik</span>
             </h1>
             <p class="text-[30px] font-normal">
               Undang anggota tim sebanyak-banyaknya dan dapatkan hasil desain
