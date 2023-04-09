@@ -5,7 +5,7 @@
     >
       <div class="flex gap-4 items-center">
         <img src="../../assets/img/logo.svg" alt="logo" class="w-[70px]">
-        <h1 class="text-4xl font-medium">
+        <h1 class="text-4xl font-medium text-[#6C61E1]">
           Opibox
         </h1>
       </div>
