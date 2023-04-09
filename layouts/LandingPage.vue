@@ -98,7 +98,7 @@
           </div>
           <div class="w-[720px]">
             <h1 class="text-[48px] font-bold">
-              Modifikasikan Ide Anda dengan Mudah
+              <span class="text-[#6C61E1]">Modifikasikan Ide</span> <span class="text-black">Anda dengan Mudah</span>
             </h1>
             <p class="text-[30px] font-normal">
               Modifikasikan desain tersebut berdasarkan list tugas yang tertera.
