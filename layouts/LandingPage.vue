@@ -82,7 +82,7 @@
           </div>
           <div class="w-[720px]">
             <h1 class="text-[48px] font-bold">
-              Atur Prioritas Opini yang Anda Dapatkan
+              <span class="text-[#6C61E1]">Atur Prioritas Opini</span> <span class="text-black">yang Anda Dapatkan</span>
             </h1>
             <p class="text-[30px] font-normal">
               Opini yang telah diberikan dapat dibuat menjadi list tugas dan
@@ -141,6 +141,11 @@
         </div>
         <div class="-z-0 relative">
           <img src="../assets/img/image1_loyaltyProgram.svg" alt="img">
+      </div>
+      <div class="flex justify-center items-center">
+        <div class="relative">
+          <img src="../assets/img/ellips1_service.svg" alt="ellips1">
+        </div>
       </div>
     </div>
     </section>
