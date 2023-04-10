@@ -6,11 +6,11 @@
     <!-- hero section -->
     <section class="brand mt-[45px]">
       <div class="items-center flex flex-col">
-        <div class="w-[65%] text-center">
-          <h1 class="text-[64px]">
+        <div class="w-[90%] xl:w-[65%] text-center">
+          <h1 class="text-[32px] font-medium xl:text-[64px]">
             Salurkan Opinimu untuk Berkolaborasi!
           </h1>
-          <p class="text-[24px]">
+          <p class="text-[16px] mt-4 xl:text-[24px]">
             Opibox adalah tempat dimana Anda bebas untuk beropini mengenai
             gambar yang terunggah dan memodifikasinya berdasarkan hasil dari
             kolaborasi.
@@ -18,13 +18,13 @@
         </div>
 
         <button
-          class="py-3 px-10 bg-[#4A4A4F] text-white w-auto my-10 text-[24px] rounded-md"
+          class="bg-[#4A4A4F] text-white py-3 px-10 w-auto my-10 font-medium xl:text-[24px] rounded-md"
         >
           Mulai Berkolaborasi
         </button>
 
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-[50px] items-end relative"
+          class="hidden xl:grid xl:grid-cols-3 gap-[50px] items-end relative"
         >
           <img src="../assets/img/unsplash_rd7RBGvs_-4.svg" alt="img-1">
           <img
@@ -38,14 +38,19 @@
       </div>
 
       <div
-        class="playstore-section grid grid-cols-2 justify-between bg-[#D9D9D9] px-[200px] relative h-[65vh]"
+        class="relative playstore-section w-full p-5 bg-[#D9D9D9] xl:px-[200px] xl:h-[65vh] xl:grid xl:grid-cols-2"
       >
-        <div class="w-[75%] relative left-10 flex flex-col gap-y-8 mt-10">
-          <h1 class="text-[64px]">
+        <div
+          class="relative text-center flex flex-col xl:text-start xl:w-[75%] xl:left-10 xl:flex xl:flex-col xl:gap-y-8 xl:mt-10"
+        >
+          <h1 class="hidden xl:block text-[64px]">
             Bawa Opibox <br>
             Bersamamu.
           </h1>
-          <p class="text-[32px]">
+          <h1 class="xl:hidden text-[32px]">
+            Bawa Opibox Bersamamu
+          </h1>
+          <p class="xl:text-[32px]">
             Unduh aplikasinya dan berkolaborasi di mana pun Anda berada
           </p>
 
@@ -64,7 +69,7 @@
           </button>
         </div>
 
-        <div class="relative flex justify-center">
+        <div class="relative hidden xl:flex justify-center">
           <img
             src="../assets/img/unsplash_52H5Nfi5WiE.svg"
             class="absolute top-5 right-0"
@@ -81,11 +86,11 @@
 
     <!-- service section -->
     <section
-      class="layanan bg-[#B0B0B5] h-auto rounded-t-[104px] mt-[-100px] z-10 relative p-[120px]"
+      class="relative layanan bg-[#EEEEEE] xl:bg-[#B0B0B5] h-auto z-10 mt-[20px] rounded-t-[50px] xl:rounded-t-[104px] xl:p-[120px] xl:mt-[-100px]"
     >
-      <div class="flex flex-col gap-y-20">
+      <!-- Desktop view  -->
+      <div class="hidden lg:flex flex-col gap-y-20">
         <div class="flex justify-center items-center gap-[73px]">
-          <!-- <img src="" alt=""> -->
           <div class="w-[500px] h-[500px] bg-white" />
           <div class="w-[720px]">
             <h1 class="text-[48px] font-bold">
@@ -99,7 +104,6 @@
         </div>
 
         <div class="flex justify-center items-center gap-[73px]">
-          <!-- <img src="" alt=""> -->
           <div class="w-[720px]">
             <h1 class="text-[48px] font-bold">
               Modifikasikan Ide Anda dengan Mudah
@@ -112,7 +116,6 @@
         </div>
 
         <div class="flex justify-center items-center gap-[73px]">
-          <!-- <img src="" alt=""> -->
           <div class="w-[500px] h-[500px] bg-white" />
           <div class="w-[720px]">
             <h1 class="text-[48px] font-bold">
@@ -122,6 +125,83 @@
               Undang anggota tim sebanyak-banyaknya dan dapatkan hasil desain
               terbaik.
             </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- mobile view -->
+      <!-- <div class="p-5 flex flex-col gap-y-5 xl:hidden">
+        <img
+          src="../assets/img/icon3d.svg"
+          alt="icon-3d"
+          class="w-[240px] self-center"
+        >
+        <div class="text-center">
+          <h1 class="text-2xl font-medium">
+            <span class="text-[#6C61E1]">Atur Prioritas Opini</span> yang Anda
+            Dapatkan
+          </h1>
+          <p class="mt-6 text-[#95959D]">
+            Opini yang telah diberikan dapat dibuat menjadi list tugas dan dapat
+            diatur prioritasnya.
+          </p>
+        </div>
+      </div> -->
+
+      <div class="swiper-container">
+        <div class="swipper-wrapper">
+          <div class="p-5 flex flex-col gap-y-5 xl:hidden">
+            <img
+              src="../assets/img/icon3d.svg"
+              alt="icon-3d"
+              class="w-[240px] self-center"
+            >
+            <div class="text-center">
+              <h1 class="text-2xl font-medium">
+                <span class="text-[#6C61E1]">Atur Prioritas Opini</span>
+                yang Anda Dapatkan
+              </h1>
+              <p class="mt-6 text-[#95959D]">
+                Opini yang telah diberikan dapat dibuat menjadi list tugas dan
+                dapat diatur prioritasnya.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-5 flex flex-col gap-y-5 xl:hidden">
+            <img
+              src="../assets/img/icon-3d-2.svg"
+              alt="icon-3d"
+              class="w-[240px] self-center"
+            >
+            <div class="text-center">
+              <h1 class="text-2xl font-medium">
+                <span class="text-[#6C61E1]">Modifikasi Ide</span>
+                Anda Dengan Mudah
+              </h1>
+              <p class="mt-6 text-[#95959D]">
+                Modifikasikan desain tersebut berdasarkan list tugas yang
+                tertera.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-5 flex flex-col gap-y-5 xl:hidden">
+            <img
+              src="../assets/img/icon-3d-3.svg"
+              alt="icon-3d"
+              class="w-[240px] self-center"
+            >
+            <div class="text-center">
+              <h1 class="text-2xl font-medium">
+                <span class="text-[#6C61E1]">Kolaborasi Bersama</span>
+                Tim Untuk Hasil Yang Lebih Baik
+              </h1>
+              <p class="mt-6 text-[#95959D]">
+                Undang anggota tim sebanyak-banyaknya dan dapatkan hasil desain
+                yang lebih kreatif dan bervariasi.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -146,7 +226,7 @@
     </section>
 
     <!-- Help Section -->
-    <section class="bg-white rounded-t-[104px] mt-[-80px]">
+    <section class="hidden xl:block bg-white rounded-t-[104px] mt-[-80px]">
       <div class="flex justify-center pt-[81px] px-[120px] gap-[152px]">
         <h1 class="text-[48px] font-bold pt-0">
           Pertanyaan Umum
@@ -189,7 +269,7 @@
 
     <!-- footer -->
     <footer
-      class="bg-[#313135] flex flex-col justify-center items-center px-40 text-white mt-28"
+      class="hidden bg-[#313135] xl:flex flex-col justify-center items-center px-40 text-white mt-28"
     >
       <div class="flex gap-40 justify-center border-b-2 py-14">
         <div class="flex gap-4">
@@ -278,6 +358,8 @@
     <Nuxt />
   </div>
 </template>
+
+<script></script>
 
 text-[30px] font-bold border-b-2 py-5 flex justify-between w-[553px]
 <style scoped>
