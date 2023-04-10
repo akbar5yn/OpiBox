@@ -27,10 +27,7 @@
           class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-[50px] items-end relative"
         >
           <img src="../assets/img/image1.svg" alt="img-1">
-          <img
-            src="../assets/img/image2.svg"
-            alt="img-2"
-          >
+          <img src="../assets/img/image2.svg" alt="img-2">
           <img src="../assets/img/image3.svg" alt="img-3">
 
           <landing-page-chat-box />
@@ -65,7 +62,11 @@
         </div>
 
         <div>
-          <img src="../assets/img/image_homePage1.svg" alt="handphone" class="w-[800px] h-[610px]">
+          <img
+            src="../assets/img/image_homePage1.svg"
+            alt="handphone"
+            class="w-[800px] h-[610px]"
+          >
         </div>
       </div>
     </section>
@@ -77,12 +78,19 @@
       <div class="flex flex-col gap-y-20">
         <div class="flex justify-center items-center gap-[73px]">
           <!-- <img src="" alt=""> -->
-          <div class="absolute w-[500xpx] h-[500px] left-[60px] top-0">
+          <div class="absolute w-[400xpx] h-[400px] left-[60px] top-0">
             <img src="../assets/img/image_service1.svg" alt="image_1">
+            <img
+              src="../assets/img/ellips1_service.svg"
+              alt="elipse"
+              class="absolute bottom-0 -z-10 top-[311px]"
+            >
           </div>
+          <div class="w-[350px] h-[350px]" />
           <div class="w-[720px]">
             <h1 class="text-[48px] font-bold">
-              <span class="text-[#6C61E1]">Atur Prioritas Opini</span> <span class="text-black">yang Anda Dapatkan</span>
+              <span class="text-[#6C61E1]">Atur Prioritas Opini</span>
+              <span class="text-black">yang Anda Dapatkan</span>
             </h1>
             <p class="text-[30px] font-normal">
               Opini yang telah diberikan dapat dibuat menjadi list tugas dan
@@ -93,29 +101,40 @@
 
         <div class="flex justify-center items-center gap-[73px]">
           <!-- <img src="" alt=""> -->
-          <div class="absolute w-[500px] h-[500px] right-[89.06px] top-45px">
+          <div class="absolute w-[480px] h-[480px] right-[89.06px] top-45px">
             <img src="../assets/img/image_service2.svg" alt="image_2">
+            <img
+              src="../assets/img/ellips2_service.svg"
+              alt="ellips2"
+              class="absolute bottom-0 -z-10"
+            >
           </div>
           <div class="w-[720px]">
             <h1 class="text-[48px] font-bold">
-              <span class="text-[#6C61E1]">Modifikasikan Ide</span> <span class="text-black">Anda dengan Mudah</span>
+              <span class="text-[#6C61E1]">Modifikasikan Ide</span>
+              <span class="text-black">Anda dengan Mudah</span>
             </h1>
             <p class="text-[30px] font-normal">
               Modifikasikan desain tersebut berdasarkan list tugas yang tertera.
             </p>
           </div>
-          <div class="w-[500px] h-[500px] bg-white" />
         </div>
 
         <div class="flex justify-center items-center gap-[73px]">
           <!-- <img src="" alt=""> -->
-          <div class="absolute w-[613px] h-[362px] left-[50px] top-250">
+          <div class="absolute w-[500px] h-[350px] left-[50px] top-250">
             <img src="../assets/img/image_service3.svg" alt="image_3">
+            <img
+              src="../assets/img/ellips3_service.svg"
+              alt="ellips3"
+              class="absolute buttom-0 -z-10 w-[700px] h-[700px]"
+            >
           </div>
-          <div class="w-[500px] h-[500px] bg-white" />
+          <di class="w-[350px] h-[350px]" />
           <div class="w-[720px]">
             <h1 class="text-[48px] font-bold">
-              <span class="text-[#6C61E1]">Kolaborasi Bersama Tim</span> <span class="text-black">Untuk Hasil yang Lebih Baik</span>
+              <span class="text-[#6C61E1]">Kolaborasi Bersama Tim</span>
+              <span class="text-black">Untuk Hasil yang Lebih Baik</span>
             </h1>
             <p class="text-[30px] font-normal">
               Undang anggota tim sebanyak-banyaknya dan dapatkan hasil desain
@@ -141,13 +160,8 @@
         </div>
         <div class="-z-0 relative">
           <img src="../assets/img/image1_loyaltyProgram.svg" alt="img">
-      </div>
-      <div class="flex justify-center items-center">
-        <div class="relative">
-          <img src="../assets/img/ellips1_service.svg" alt="ellips1">
         </div>
       </div>
-    </div>
     </section>
 
     <!-- Help Section -->
@@ -261,7 +275,7 @@
             Unduh Aplikasi
           </h3>
           <button
-            class="flex gap-2 items-center bg-black border-white border-[2px] rounded-xl max-w-fit px-[17px] py-2"
+            class="flex gap-2 items-center bg-[#313135] border-white border-[2px] rounded-xl max-w-fit px-[17px] py-2"
           >
             <img
               src="../assets/img/google-changes-play-store-png-logo-0 1.svg"
