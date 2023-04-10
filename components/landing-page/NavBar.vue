@@ -5,12 +5,8 @@
     >
       <!-- nav-logo -->
       <div class="flex gap-4 items-center">
-        <img
-          src="../../assets/img/logo.svg"
-          alt="logo"
-          class="w-10 sm:w-[70px]"
-        >
-        <h1 class="text-4xl font-medium hidden">
+        <img src="../../assets/img/logo.svg" alt="logo" class="w-[70px]">
+        <h1 class="text-4xl font-medium text-[#6C61E1]">
           Opibox
         </h1>
       </div>
@@ -38,24 +34,17 @@
           </nuxt-link>
         </li>
       </ul>
-
-      <!-- login-register -->
-      <div class="flex gap-1">
-        <!-- btn-login -->
-        <nuxt-link
-          to="/login"
-          class="hidden md:block border-black border-[1px] px-7 py-2 rounded-[6px]"
+      <div class="gap-1">
+        <button
+          class="border-[#6C61E1] border-[1px] px-7 py-2 rounded-[6px] text-[#6C61E1]"
         >
           Masuk
-        </nuxt-link>
-
-        <!-- btn-register -->
-        <nuxt-link
-          to="/register"
-          class="hidden md:block bg-[#4A4A4F] border-[#4A4A4F] border-[1px] px-7 py-2 rounded-[6px] text-white"
+        </button>
+        <button
+          class="bg-[#6C61E1] border-[#6C61E1] border-[1px] px-7 py-2 rounded-[6px] text-white"
         >
           Daftar
-        </nuxt-link>
+        </button>
       </div>
 
       <!-- humberger menu -->
