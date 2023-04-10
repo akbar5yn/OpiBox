@@ -23,7 +23,7 @@
           Mulai Berkolaborasi
         </button>
 
-        <div
+        <!-- <div
           class="hidden xl:grid xl:grid-cols-3 gap-[50px] items-end relative"
         >
           <img src="../assets/img/unsplash_rd7RBGvs_-4.svg" alt="img-1">
@@ -34,37 +34,42 @@
           <img src="../assets/img/hero-foto.svg" alt="img-3">
 
           <landing-page-chat-box />
+        </div> -->
+        <div>
+          <img
+            src="../assets/img/Ilustrasi.webp"
+            alt="Opi-nion"
+            class="hidden xl:block"
+          >
         </div>
       </div>
 
       <div
-        class="relative playstore-section w-full p-5 bg-[#D9D9D9] xl:px-[200px] xl:h-[65vh] xl:grid xl:grid-cols-2"
+        class="relative playstore-section w-full p-5 bg-[#D9D9D9] xl:px-[200px] xl:mt-12 xl:h-[65vh] xl:grid xl:grid-cols-2"
       >
         <div
-          class="relative text-center flex flex-col xl:text-start xl:w-[75%] xl:left-10 xl:flex xl:flex-col xl:gap-y-8 xl:mt-10"
+          class="relative text-center flex flex-col items-center xl:text-start xl:w-[75%] xl:left-10 xl:flex xl:flex-col xl:items-start xl:gap-y-8 xl:mt-10"
         >
-          <h1 class="hidden xl:block text-[64px]">
-            Bawa Opibox <br>
-            Bersamamu.
+          <h1 class="text-[24px] xl:text-[64px]">
+            Bawa Opibox Bersamamu.
           </h1>
-          <h1 class="xl:hidden text-[32px]">
-            Bawa Opibox Bersamamu
-          </h1>
-          <p class="xl:text-[32px]">
+          <p class="text-[16px] mt-2 xl:mt-0 xl:text-[32px]">
             Unduh aplikasinya dan berkolaborasi di mana pun Anda berada
           </p>
 
           <button
-            class="flex gap-2 items-center bg-black border-white border-[2px] rounded-xl max-w-fit px-[17px] py-2"
+            class="bg-black border-white mt-4 xl:mt-0 flex gap-2 items-center border-[2px] rounded-xl max-w-fit px-[17px] py-2"
           >
             <img
               src="../assets/img/google-changes-play-store-png-logo-0 1.svg"
-              class=""
+              class="w-[35px] xl:w-[44px]"
               alt="google-play"
             >
-            <p class="text-white text-start">
+            <p class="text-white text-start text-[14px]">
               TEMUKAN DI <br>
-              <span class="font-bold text-[28px]">Google Play</span>
+              <span
+                class="text-[18px] font-semibold xl:font-bold xl:text-[28px]"
+              >Google Play</span>
             </p>
           </button>
         </div>
