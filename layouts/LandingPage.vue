@@ -75,23 +75,23 @@
     <section
       class="relative layanan bg-white h-auto z-10 mt-[-50px] rounded-t-[50px] xl:rounded-t-[104px] xl:mt-[-80px] xl:p-[120px]"
     >
-      <!-- Desktop view  -->
-      <div class="hidden lg:flex flex-col gap-y-20">
-        <div class="flex justify-center items-center gap-[73px]">
-          <!-- <img src="" alt=""> -->
-          <div class="absolute w-[400xpx] h-[400px] left-[60px] top-0">
-            <img src="../assets/img/image_service1.svg" alt="image_1">
+      <div class="hidden xl:flex xl:flex-col xl:gap-y-20">
+        <!-- Desktop view  -->
+
+        <!-- layanan 1 -->
+        <div class="flex justify-center items-center gap-[200px] px-52">
+          <div class="relative">
+            <img src="../assets/img/image_service1.svg" alt="service1">
             <img
               src="../assets/img/ellips1_service.svg"
               alt="elipse"
-              class="absolute bottom-0 -z-10 top-[311px]"
+              class="absolute -bottom-10 -z-50"
             >
           </div>
-          <div class="w-[350px] h-[350px]" />
           <div class="w-[720px]">
             <h1 class="text-[48px] font-bold">
               <span class="text-[#6C61E1]">Atur Prioritas Opini</span>
-              <span class="text-black">yang Anda Dapatkan</span>
+              <span class="text-black">Yang Anda Dapatkan</span>
             </h1>
             <p class="text-[30px] font-normal">
               Opini yang telah diberikan dapat dibuat menjadi list tugas dan
@@ -100,46 +100,49 @@
           </div>
         </div>
 
-        <div class="flex justify-center items-center gap-[73px]">
-          <!-- <img src="" alt=""> -->
-          <div class="absolute w-[480px] h-[480px] right-[89.06px] top-45px">
-            <img src="../assets/img/image_service2.svg" alt="image_2">
-            <img
-              src="../assets/img/ellips2_service.svg"
-              alt="ellips2"
-              class="absolute bottom-0 -z-10"
-            >
-          </div>
+        <!-- layanan 2 -->
+        <div class="flex justify-center items-center gap-[200px] px-52">
           <div class="w-[720px]">
             <h1 class="text-[48px] font-bold">
-              <span class="text-[#6C61E1]">Modifikasikan Ide</span>
-              <span class="text-black">Anda dengan Mudah</span>
+              <span class="text-[#6C61E1]">Modifikasi Ide</span>
+              <span class="text-black">Anda Dengan Mudah</span>
             </h1>
             <p class="text-[30px] font-normal">
               Modifikasikan desain tersebut berdasarkan list tugas yang tertera.
             </p>
           </div>
-        </div>
-
-        <div class="flex justify-center items-center gap-[73px]">
-          <!-- <img src="" alt=""> -->
-          <div class="absolute w-[500px] h-[350px] left-[50px] top-250">
-            <img src="../assets/img/image_service3.svg" alt="image_3">
+          <div class="relative">
+            <img src="../assets/img/image_service2.svg" alt="service2">
             <img
-              src="../assets/img/ellips3_service.svg"
-              alt="ellips3"
-              class="absolute buttom-0 -z-10 w-[700px] h-[700px]"
+              src="../assets/img/ellips2_service.svg"
+              alt="elipse"
+              class="absolute -bottom-10 -z-50 -left-20"
             >
           </div>
-          <di class="w-[350px] h-[350px]" />
+        </div>
+
+        <!-- layanan 3 -->
+        <div class="flex justify-center items-center gap-[200px] px-52">
+          <div class="relative">
+            <img
+              src="../assets/img/icon-3d-3.svg"
+              alt="service3"
+              class="w-[500px]"
+            >
+            <img
+              src="../assets/img/ellips3_service.svg"
+              alt="elipse"
+              class="absolute -bottom-24 -z-50 w-full"
+            >
+          </div>
           <div class="w-[720px]">
             <h1 class="text-[48px] font-bold">
               <span class="text-[#6C61E1]">Kolaborasi Bersama Tim</span>
-              <span class="text-black">Untuk Hasil yang Lebih Baik</span>
+              <span class="text-black"> Untuk Hasil yang Lebih Baik</span>
             </h1>
             <p class="text-[30px] font-normal">
               Undang anggota tim sebanyak-banyaknya dan dapatkan hasil desain
-              terbaik.
+              yang lebih kreatif dan bervariasi.
             </p>
           </div>
         </div>
@@ -148,6 +151,7 @@
       <!-- mobile view -->
       <div class="swiper-container">
         <div class="swipper-wrapper">
+          <!-- layanan 1 -->
           <div class="p-5 flex flex-col gap-y-5 xl:hidden">
             <img
               src="../assets/img/icon3d.svg"
@@ -166,6 +170,7 @@
             </div>
           </div>
 
+          <!-- layanan 2 -->
           <div class="p-5 flex flex-col gap-y-5 xl:hidden">
             <img
               src="../assets/img/icon-3d-2.svg"
@@ -184,6 +189,7 @@
             </div>
           </div>
 
+          <!-- layanan 3 -->
           <div class="p-5 flex flex-col gap-y-5 xl:hidden">
             <img
               src="../assets/img/icon-3d-3.svg"
@@ -207,14 +213,16 @@
 
     <!-- loyalty programme -->
     <section
-      class="hidden xl:block bg-[#6C61E1] px-[120px] pb-[75px] text-white"
+      class="bg-[#6C61E1] text-white px-5 pt-7 pb-[50px] xl:px-[120px] xl:pb-[75px] xl:mt-20"
     >
-      <div class="flex justify-center items-center gap-[73px]">
-        <div class="w-[720px]">
-          <h1 class="text-[48px] font-bold">
+      <div
+        class="text-center xl:text-start xl:flex items-center justify-center xl:gap-[73px]"
+      >
+        <div class="xl:w-[720px]">
+          <h1 class="text-2xl xl:text-[48px] xl:font-bold">
             Program Loyalti Opibox
           </h1>
-          <p class="text-[20px] font-sans font-normal leading-[39px]">
+          <p class="mt-6 xl:text-[20px] xl:font-normal xl:leading-[39px]">
             Program loyalti ini merupakan program loyalti yang diberikan oleh
             Opibox sebagai tanda terima kasih dan penghargaan untuk kamu yang
             ikut berkolaborasi di Opibox.
@@ -228,38 +236,58 @@
 
     <!-- Help Section -->
     <section
-      class="hidden xl:block bg-white rounded-t-[104px] mt-[-80px] relative z-0"
+      class="relative bg-white rounded-t-[50px] mt-[-50px] xl:rounded-t-[104px] xl:mt-[-80px] xl:z-0"
     >
-      <div class="flex justify-center pt-[81px] px-[120px] gap-[152px]">
-        <h1 class="text-[48px] font-bold pt-0">
+      <div
+        class="pt-11 xl:flex justify-center xl:pt-[81px] xl:px-[120px] xl:gap-[152px]"
+      >
+        <h1
+          class="text-2xl font-semibold text-center xl:mt-5 xl:text-[48px] xl:font-bold"
+        >
           Pertanyaan Umum
         </h1>
-        <div>
-          <ul class="flex flex-col gap-y-10">
-            <li class="list-help">
-              <p class="break-words">
+        <div class="mt-5">
+          <ul class="flex flex-col gap-y-10 items-center">
+            <li
+              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
+            >
+              <p class="w-[553px] break-words">
                 Siapa target Opibox?
               </p>
               <button class="arrow self-center" />
             </li>
 
-            <li class="list-help">
-              <p>Bagaimana cara membuat tim?</p>
+            <li
+              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
+            >
+              <p class="w-[553px] break-words">
+                Bagaimana cara membuat tim?
+              </p>
               <button class="arrow self-center" />
             </li>
 
-            <li class="list-help">
-              <p>Siapa saja yang dapat mengakses file?</p>
+            <li
+              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
+            >
+              <p class="w-[553px] break-words">
+                Siapa saja yang dapat mengakses file?
+              </p>
               <button class="arrow self-center" />
             </li>
 
-            <li class="list-help">
-              <p>Bagaimana jika saya memiliki gambar lebih dari satu?</p>
+            <li
+              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
+            >
+              <p class="w-[553px] break-words">
+                Bagaimana jika saya memiliki gambar lebih dari satu?
+              </p>
               <button class="arrow self-center" />
             </li>
 
-            <li class="list-help">
-              <p>
+            <li
+              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
+            >
+              <p class="w-[553px] break-words">
                 Jika saya diundang ke dalam tim, apa saja yang bisa saya
                 lakukan?
               </p>
@@ -272,10 +300,12 @@
 
     <!-- footer -->
     <footer
-      class="hidden bg-[#313135] text-white xl:flex xl:flex-col xl:justify-center xl:items-center xl:px-40 xl:mt-28"
+      class="bg-[#313135] text-white mt-12 xl:flex xl:flex-col xl:justify-center xl:items-center xl:px-40 xl:mt-28"
     >
-      <div class="flex gap-40 justify-center border-b-2 py-14">
-        <div class="flex gap-4">
+      <div
+        class="py-10 px-10 justify-center border-b-2 xl:flex xl:py-14 xl:gap-40"
+      >
+        <div class="justify-center flex gap-4">
           <img
             src="../assets/img/logo.svg"
             class="w-11 self-start mt-2"
@@ -285,6 +315,7 @@
             Opibox
           </h1>
         </div>
+        <hr class="w-full h-1 my-4 xl:hidden">
         <div>
           <h3 class="text-[24px] font-medium mb-3">
             Menu
@@ -307,7 +338,7 @@
             </li>
           </ul>
         </div>
-        <div>
+        <div class="mt-5 xl:mt-0">
           <h3 class="text-[24px] font-medium mb-3">
             Tentang Kami
           </h3>
@@ -334,7 +365,8 @@
             </li>
           </ul>
         </div>
-        <div>
+        <hr class="w-full h-1 my-4 xl:hidden">
+        <div class="flex flex-col items-center xl:flex-col xl:items-start">
           <h3 class="text-[24px] font-medium mb-3">
             Unduh Aplikasi
           </h3>
@@ -353,7 +385,7 @@
           </button>
         </div>
       </div>
-      <p class="py-10">
+      <p class="py-10 text-center">
         © 2023 Opibox | Opibox adalah produk milik PT Qatros Teknologi
         Nusantara.
       </p>
@@ -361,23 +393,12 @@
     <Nuxt />
   </div>
 </template>
-
-text-[30px] font-bold border-b-2 py-5 flex justify-between w-[553px]
+<script>
+export default {
+  name: 'LandingPage'
+}
+</script>
 <style scoped>
-.list-help {
-  font-size: 30px;
-  font-weight: bold;
-  border-bottom: 1px solid rgba(25, 25, 27, 0.15);
-  display: flex;
-  justify-content: space-between;
-  width: 692px;
-  padding: 20px 0 20px 0;
-}
-
-.list-help > p {
-  width: 553px;
-}
-
 .arrow {
   width: 10px;
   height: 10px;
