@@ -4,7 +4,7 @@
     <landing-page-nav-bar />
 
     <!-- hero section -->
-    <section class="brand mt-[45px]">
+    <section id="#beranda" class="brand pt-[120px] relative">
       <div class="items-center flex flex-col">
         <div class="w-[90%] xl:w-[65%] text-center">
           <h1 class="text-[32px] font-medium xl:text-[64px]">
@@ -26,13 +26,13 @@
           <img
             src="../assets/img/Ilustrasi.webp"
             alt="Opi-nion"
-            class="hidden xl:block"
+            class="hidden md:block"
           >
         </div>
       </div>
 
       <div
-        class="relative playstore-section w-full p-5 bg-[#D7D4F7] justify-between xl:grid xl:grid-cols-2 xl:px-[200px] xl:h-[70vh] xl:mt-12"
+        class="relative playstore-section w-full p-5 bg-[#D7D4F7] justify-between md:grid md:grid-cols-2 md:px-[10px] md:items-center md:h-[60] md:mt-12 xl:grid xl:grid-cols-2 xl:px-[200px] xl:h-[70vh] xl:mt-12"
       >
         <div
           class="relative text-center flex flex-col items-center xl:text-start xl:w-[75%] xl:left-36 xl:flex xl:flex-col xl:items-start xl:gap-y-8 xl:mt-10"
@@ -73,13 +73,18 @@
 
     <!-- service section -->
     <section
+      id="layanan"
       class="relative layanan bg-white h-auto z-10 mt-[-50px] rounded-t-[50px] xl:rounded-t-[104px] xl:mt-[-80px] xl:p-[120px]"
     >
-      <div class="hidden xl:flex xl:flex-col xl:gap-y-20">
+      <div
+        class="hidden md:flex md:flex-col md:gap-y-20 xl:flex xl:flex-col xl:gap-y-20"
+      >
         <!-- Desktop view  -->
 
         <!-- layanan 1 -->
-        <div class="flex justify-center items-center gap-[200px] px-52">
+        <div
+          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[200px] lg:px-52"
+        >
           <div class="relative">
             <img src="../assets/img/image_service1.svg" alt="service1">
             <img
@@ -89,11 +94,11 @@
             >
           </div>
           <div class="w-[720px]">
-            <h1 class="text-[48px] font-bold">
+            <h1 class="md:text-[24px] md:fint-bold lg:text-[48px] lg:font-bold">
               <span class="text-[#6C61E1]">Atur Prioritas Opini</span>
               <span class="text-black">Yang Anda Dapatkan</span>
             </h1>
-            <p class="text-[30px] font-normal">
+            <p class="md:text-[16px] md:mt-2 lg:text-[30px] lg:font-normal">
               Opini yang telah diberikan dapat dibuat menjadi list tugas dan
               dapat diatur prioritasnya.
             </p>
@@ -101,13 +106,15 @@
         </div>
 
         <!-- layanan 2 -->
-        <div class="flex justify-center items-center gap-[200px] px-52">
+        <div
+          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[200px] lg:px-52"
+        >
           <div class="w-[720px]">
-            <h1 class="text-[48px] font-bold">
+            <h1 class="md:text-[24px] md:fint-bold lg:text-[48px] lg:font-bold">
               <span class="text-[#6C61E1]">Modifikasi Ide</span>
               <span class="text-black">Anda Dengan Mudah</span>
             </h1>
-            <p class="text-[30px] font-normal">
+            <p class="md:text-[16px] md:mt-2 lg:text-[30px] lg:font-normal">
               Modifikasikan desain tersebut berdasarkan list tugas yang tertera.
             </p>
           </div>
@@ -116,13 +123,15 @@
             <img
               src="../assets/img/ellips2_service.svg"
               alt="elipse"
-              class="absolute -bottom-10 -z-50 -left-20"
+              class="absolute md:-left-10 -bottom-10 -z-50 -left-20"
             >
           </div>
         </div>
 
         <!-- layanan 3 -->
-        <div class="flex justify-center items-center gap-[200px] px-52">
+        <div
+          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[200px] lg:px-52"
+        >
           <div class="relative">
             <img
               src="../assets/img/icon-3d-3.svg"
@@ -132,15 +141,15 @@
             <img
               src="../assets/img/ellips3_service.svg"
               alt="elipse"
-              class="absolute -bottom-24 -z-50 w-full"
+              class="absolute md:-bottom-10 -bottom-24 -z-50 w-full"
             >
           </div>
           <div class="w-[720px]">
-            <h1 class="text-[48px] font-bold">
+            <h1 class="md:text-[24px] md:fint-bold lg:text-[48px] lg:font-bold">
               <span class="text-[#6C61E1]">Kolaborasi Bersama Tim</span>
               <span class="text-black"> Untuk Hasil yang Lebih Baik</span>
             </h1>
-            <p class="text-[30px] font-normal">
+            <p class="md:text-[16px] md:mt-2 lg:text-[30px] lg:font-normal">
               Undang anggota tim sebanyak-banyaknya dan dapatkan hasil desain
               yang lebih kreatif dan bervariasi.
             </p>
@@ -152,7 +161,7 @@
       <div class="swiper-container">
         <div class="swipper-wrapper">
           <!-- layanan 1 -->
-          <div class="p-5 flex flex-col gap-y-5 xl:hidden">
+          <div class="p-5 flex flex-col gap-y-5 md:hidden">
             <img
               src="../assets/img/icon3d.svg"
               alt="icon-3d"
@@ -171,7 +180,7 @@
           </div>
 
           <!-- layanan 2 -->
-          <div class="p-5 flex flex-col gap-y-5 xl:hidden">
+          <div class="p-5 flex flex-col gap-y-5 md:hidden">
             <img
               src="../assets/img/icon-3d-2.svg"
               alt="icon-3d"
@@ -190,7 +199,7 @@
           </div>
 
           <!-- layanan 3 -->
-          <div class="p-5 flex flex-col gap-y-5 xl:hidden">
+          <div class="p-5 flex flex-col gap-y-5 md:hidden">
             <img
               src="../assets/img/icon-3d-3.svg"
               alt="icon-3d"
@@ -213,10 +222,11 @@
 
     <!-- loyalty programme -->
     <section
-      class="bg-[#6C61E1] text-white px-5 pt-7 pb-[50px] xl:px-[120px] xl:pb-[75px] xl:mt-20"
+      id="loyality"
+      class="bg-[#6C61E1] text-white px-5 pt-7 pb-[50px] md:mt-20 xl:px-[120px] xl:pb-[75px] xl:mt-20"
     >
       <div
-        class="text-center xl:text-start xl:flex items-center justify-center xl:gap-[73px]"
+        class="text-center md:flex md:flex-col md:items-center xl:text-start xl:flex items-center justify-center xl:gap-[73px]"
       >
         <div class="xl:w-[720px]">
           <h1 class="text-2xl xl:text-[48px] xl:font-bold">
@@ -236,20 +246,21 @@
 
     <!-- Help Section -->
     <section
+      id="bantuan"
       class="relative bg-white rounded-t-[50px] mt-[-50px] xl:rounded-t-[104px] xl:mt-[-80px] xl:z-0"
     >
       <div
-        class="pt-11 xl:flex justify-center xl:pt-[81px] xl:px-[120px] xl:gap-[152px]"
+        class="pt-11 xl:flex justify-center xl:pt-[100px] xl:px-[120px] xl:gap-[152px]"
       >
         <h1
-          class="text-2xl font-semibold text-center xl:mt-5 xl:text-[48px] xl:font-bold"
+          class="text-2xl font-semibold text-center xl:mt-9 xl:text-[48px] xl:font-bold"
         >
           Pertanyaan Umum
         </h1>
         <div class="mt-5">
           <ul class="flex flex-col gap-y-10 items-center">
             <li
-              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
+              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] md:w-[500px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
             >
               <p class="w-[553px] break-words">
                 Siapa target Opibox?
@@ -258,7 +269,7 @@
             </li>
 
             <li
-              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
+              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] md:w-[500px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
             >
               <p class="w-[553px] break-words">
                 Bagaimana cara membuat tim?
@@ -267,7 +278,7 @@
             </li>
 
             <li
-              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
+              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] md:w-[500px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
             >
               <p class="w-[553px] break-words">
                 Siapa saja yang dapat mengakses file?
@@ -276,7 +287,7 @@
             </li>
 
             <li
-              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
+              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] md:w-[500px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
             >
               <p class="w-[553px] break-words">
                 Bagaimana jika saya memiliki gambar lebih dari satu?
@@ -285,7 +296,7 @@
             </li>
 
             <li
-              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
+              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] md:w-[500px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
             >
               <p class="w-[553px] break-words">
                 Jika saya diundang ke dalam tim, apa saja yang bisa saya
@@ -300,7 +311,7 @@
 
     <!-- footer -->
     <footer
-      class="bg-[#313135] text-white mt-12 xl:flex xl:flex-col xl:justify-center xl:items-center xl:px-40 xl:mt-28"
+      class="bg-[#313135] text-white mt-12 md:flex md:flex-col md:justify-center xl:flex xl:flex-col xl:justify-center xl:items-center xl:px-40 xl:mt-28"
     >
       <div
         class="py-10 px-10 justify-center border-b-2 xl:flex xl:py-14 xl:gap-40"
@@ -315,57 +326,59 @@
             Opibox
           </h1>
         </div>
-        <hr class="w-full h-1 my-4 xl:hidden">
-        <div>
-          <h3 class="text-[24px] font-medium mb-3">
-            Menu
-          </h3>
-          <ul class="flex flex-col gap-y-3">
-            <li>
-              <NuxtLink to="">
-                Beranda
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="">
-                Layanan
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="">
-                Program Loyalti
-              </NuxtLink>
-            </li>
-          </ul>
+        <hr class="w-full h-1 my-4 md:hidden">
+        <div class="md:flex md:gap-40 md:py-10 lg:py-0 justify-evenly">
+          <div>
+            <h3 class="text-[24px] font-medium mb-3">
+              Menu
+            </h3>
+            <ul class="flex flex-col gap-y-3">
+              <li>
+                <NuxtLink to="">
+                  Beranda
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="">
+                  Layanan
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="">
+                  Program Loyalti
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-5 md:mt-0 xl:mt-0">
+            <h3 class="text-[24px] font-medium mb-3">
+              Tentang Kami
+            </h3>
+            <ul class="flex flex-col gap-y-3">
+              <li>
+                <NuxtLink to="">
+                  Tim Opibox
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="">
+                  Bantuan
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="">
+                  Syarat dan Ketentuan
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="">
+                  Pengaturan Cookie
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="mt-5 xl:mt-0">
-          <h3 class="text-[24px] font-medium mb-3">
-            Tentang Kami
-          </h3>
-          <ul class="flex flex-col gap-y-3">
-            <li>
-              <NuxtLink to="">
-                Tim Opibox
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="">
-                Bantuan
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="">
-                Syarat dan Ketentuan
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="">
-                Pengaturan Cookie
-              </NuxtLink>
-            </li>
-          </ul>
-        </div>
-        <hr class="w-full h-1 my-4 xl:hidden">
+        <hr class="w-full h-1 my-4 md:hidden">
         <div class="flex flex-col items-center xl:flex-col xl:items-start">
           <h3 class="text-[24px] font-medium mb-3">
             Unduh Aplikasi
