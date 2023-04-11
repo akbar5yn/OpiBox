@@ -74,12 +74,6 @@ export default {
       showPassword: false,
       isClose: false
     }
-  },
-  methods: {
-    closeModal () {
-      this.isClose = true
-      this.$emit('close', this.isClose)
-    }
   }
 }
 </script>
