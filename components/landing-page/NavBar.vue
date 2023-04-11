@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav
-      class="p-[19px] flex justify-between text-center items-center border-2"
+      class="p-[19px] flex justify-between text-center items-center border-2 fixed top-0 w-full bg-white bg-opacity-95 backdrop-blur-xl shadow-sm z-50"
     >
       <!-- nav-logo -->
       <div class="flex gap-4 items-center">
@@ -18,22 +18,22 @@
       <!-- nav-item -->
       <ul class="hidden md:flex gap-10">
         <li>
-          <nuxt-link to="#">
+          <nuxt-link to="#beranda">
             Beranda
           </nuxt-link>
         </li>
         <li>
-          <nuxt-link to="#">
+          <nuxt-link to="#layanan">
             Layanan
           </nuxt-link>
         </li>
         <li>
-          <nuxt-link to="#">
+          <nuxt-link to="#loyality">
             Program Loyaliti
           </nuxt-link>
         </li>
         <li>
-          <nuxt-link to="#">
+          <nuxt-link to="#bantuan">
             Bantuan
           </nuxt-link>
         </li>
@@ -54,9 +54,7 @@
       </div>
 
       <!-- humberger menu -->
-      <div class="sm:hidden">
-        Menu
-      </div>
+      <hamburger-menu class="sm:hidden" />
     </nav>
   </div>
 </template>
