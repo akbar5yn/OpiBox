@@ -18,20 +18,10 @@
         </div>
 
         <button
-          class="py-3 px-10 bg-[#6C61E1] text-white w-auto my-10 text-[24px] rounded-md"
+          class="bg-[#6C61E1] text-white py-3 px-10 w-auto my-10 font-medium xl:text-[24px] rounded-md"
         >
           Mulai Berkolaborasi
         </button>
-
-        <!-- <div
-          class="hidden xl:grid xl:grid-cols-3 gap-[50px] items-end relative"
-        >
-          <img src="../assets/img/image1.svg" alt="img-1">
-          <img src="../assets/img/image2.svg" alt="img-2">
-          <img src="../assets/img/image3.svg" alt="img-3">
-
-          <landing-page-chat-box />
-        </div> -->
         <div>
           <img
             src="../assets/img/Ilustrasi.webp"
@@ -42,10 +32,10 @@
       </div>
 
       <div
-        class="playstore-section grid grid-cols-2 justify-between bg-[#D7D4F7] px-[200px] relative h-[65vh]"
+        class="relative playstore-section w-full p-5 bg-[#D7D4F7] justify-between xl:grid xl:grid-cols-2 xl:px-[200px] xl:h-[70vh] xl:mt-12"
       >
         <div
-          class="relative text-center flex flex-col items-center xl:text-start xl:w-[75%] xl:left-10 xl:flex xl:flex-col xl:items-start xl:gap-y-8 xl:mt-10"
+          class="relative text-center flex flex-col items-center xl:text-start xl:w-[75%] xl:left-36 xl:flex xl:flex-col xl:items-start xl:gap-y-8 xl:mt-10"
         >
           <h1 class="text-[24px] xl:text-[64px]">
             Bawa Opibox Bersamamu.
@@ -71,11 +61,11 @@
           </button>
         </div>
 
-        <div>
+        <div class="relative">
           <img
             src="../assets/img/image_homePage1.svg"
             alt="handphone"
-            class="w-[800px] h-[610px]"
+            class="mt-7 xl:mt-0 xl:w-[800px] xl:h-[610px]"
           >
         </div>
       </div>
@@ -83,7 +73,7 @@
 
     <!-- service section -->
     <section
-      class="layanan bg-[#FFFFFF] h-auto rounded-t-[104px] mt-[-100px] z-10 relative p-[120px]"
+      class="relative layanan bg-white h-auto z-10 mt-[-50px] rounded-t-[50px] xl:rounded-t-[104px] xl:mt-[-80px] xl:p-[120px]"
     >
       <!-- Desktop view  -->
       <div class="hidden lg:flex flex-col gap-y-20">
@@ -156,31 +146,13 @@
       </div>
 
       <!-- mobile view -->
-      <!-- <div class="p-5 flex flex-col gap-y-5 xl:hidden">
-        <img
-          src="../assets/img/icon3d.svg"
-          alt="icon-3d"
-          class="w-[240px] self-center"
-        >
-        <div class="text-center">
-          <h1 class="text-2xl font-medium">
-            <span class="text-[#6C61E1]">Atur Prioritas Opini</span> yang Anda
-            Dapatkan
-          </h1>
-          <p class="mt-6 text-[#95959D]">
-            Opini yang telah diberikan dapat dibuat menjadi list tugas dan dapat
-            diatur prioritasnya.
-          </p>
-        </div>
-      </div> -->
-
       <div class="swiper-container">
         <div class="swipper-wrapper">
           <div class="p-5 flex flex-col gap-y-5 xl:hidden">
             <img
               src="../assets/img/icon3d.svg"
               alt="icon-3d"
-              class="w-[240px] self-center"
+              class="w-[240px] self-center mt-10"
             >
             <div class="text-center">
               <h1 class="text-2xl font-medium">
@@ -234,7 +206,9 @@
     </section>
 
     <!-- loyalty programme -->
-    <section class="bg-[#6C61E1] px-[120px] pb-[75px] text-white">
+    <section
+      class="hidden xl:block bg-[#6C61E1] px-[120px] pb-[75px] text-white"
+    >
       <div class="flex justify-center items-center gap-[73px]">
         <div class="w-[720px]">
           <h1 class="text-[48px] font-bold">
@@ -253,7 +227,9 @@
     </section>
 
     <!-- Help Section -->
-    <section class="bg-white rounded-t-[104px] mt-[-80px] relative z-0">
+    <section
+      class="hidden xl:block bg-white rounded-t-[104px] mt-[-80px] relative z-0"
+    >
       <div class="flex justify-center pt-[81px] px-[120px] gap-[152px]">
         <h1 class="text-[48px] font-bold pt-0">
           Pertanyaan Umum
@@ -296,7 +272,7 @@
 
     <!-- footer -->
     <footer
-      class="bg-[#313135] flex flex-col justify-center items-center px-40 text-white mt-28"
+      class="hidden bg-[#313135] text-white xl:flex xl:flex-col xl:justify-center xl:items-center xl:px-40 xl:mt-28"
     >
       <div class="flex gap-40 justify-center border-b-2 py-14">
         <div class="flex gap-4">
