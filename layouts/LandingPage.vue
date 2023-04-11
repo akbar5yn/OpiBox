@@ -6,11 +6,13 @@
     <!-- hero section -->
     <section id="#beranda" class="brand pt-[120px] relative">
       <div class="items-center flex flex-col">
-        <div class="w-[90%] xl:w-[65%] text-center">
+        <div class="w-[90%] xl:w-[65%] flex flex-col items-center text-center">
           <h1 class="text-[32px] font-medium xl:text-[64px]">
             Salurkan Opinimu untuk Berkolaborasi!
           </h1>
-          <p class="text-[16px] mt-4 xl:text-[24px]">
+          <p
+            class="text-[16px] lg:text-[18px] lg:w-[80%] self-center mt-4 xl:text-[24px]"
+          >
             Opibox adalah tempat dimana Anda bebas untuk beropini mengenai
             gambar yang terunggah dan memodifikasinya berdasarkan hasil dari
             kolaborasi.
@@ -32,7 +34,7 @@
       </div>
 
       <div
-        class="relative playstore-section w-full p-5 bg-[#D7D4F7] justify-between md:grid md:grid-cols-2 md:px-[10px] md:items-center md:h-[60] md:mt-12 xl:grid xl:grid-cols-2 xl:px-[200px] xl:h-[70vh] xl:mt-12"
+        class="relative playstore-section w-full p-5 bg-[#D7D4F7] flex flex-col items-center md:grid md:grid-cols-2 md:px-[10px] md:items-center md:h-[60] md:mt-12 xl:grid xl:grid-cols-2 xl:px-[200px] xl:h-[70vh] xl:mt-12"
       >
         <div
           class="relative text-center flex flex-col items-center xl:text-start xl:w-[75%] xl:left-36 xl:flex xl:flex-col xl:items-start xl:gap-y-8 xl:mt-10"
@@ -40,7 +42,7 @@
           <h1 class="text-[24px] xl:text-[64px]">
             Bawa Opibox Bersamamu.
           </h1>
-          <p class="text-[16px] mt-2 xl:mt-0 xl:text-[32px]">
+          <p class="text-[16px] mt-2 lg:text-[18px] xl:mt-0 xl:text-[32px]">
             Unduh aplikasinya dan berkolaborasi di mana pun Anda berada
           </p>
 
@@ -74,7 +76,7 @@
     <!-- service section -->
     <section
       id="layanan"
-      class="relative layanan bg-white h-auto z-10 mt-[-50px] rounded-t-[50px] xl:rounded-t-[104px] xl:mt-[-80px] xl:p-[120px]"
+      class="relative layanan bg-white h-auto z-10 mt-[-50px] rounded-t-[50px] lg:pt-9 xl:rounded-t-[104px] xl:mt-[-80px] xl:p-[120px]"
     >
       <div
         class="hidden md:flex md:flex-col md:gap-y-20 xl:flex xl:flex-col xl:gap-y-20"
@@ -83,7 +85,7 @@
 
         <!-- layanan 1 -->
         <div
-          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[200px] lg:px-52"
+          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[150px] lg:px-10 xl:gap-[200px] xl:px-52"
         >
           <div class="relative">
             <img src="../assets/img/image_service1.svg" alt="service1">
@@ -94,11 +96,15 @@
             >
           </div>
           <div class="w-[720px]">
-            <h1 class="md:text-[24px] md:fint-bold lg:text-[48px] lg:font-bold">
+            <h1
+              class="md:text-[24px] md:font-bold xl:text-[48px] xl::font-bold"
+            >
               <span class="text-[#6C61E1]">Atur Prioritas Opini</span>
               <span class="text-black">Yang Anda Dapatkan</span>
             </h1>
-            <p class="md:text-[16px] md:mt-2 lg:text-[30px] lg:font-normal">
+            <p
+              class="md:text-[16px] md:mt-2 lg:text-[18px] lg:font-normal xl:text-[30px]"
+            >
               Opini yang telah diberikan dapat dibuat menjadi list tugas dan
               dapat diatur prioritasnya.
             </p>
@@ -107,14 +113,18 @@
 
         <!-- layanan 2 -->
         <div
-          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[200px] lg:px-52"
+          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[150px] lg:px-10 xl:gap-[200px] xl:px-52"
         >
           <div class="w-[720px]">
-            <h1 class="md:text-[24px] md:fint-bold lg:text-[48px] lg:font-bold">
+            <h1
+              class="md:text-[24px] md:font-bold xl:text-[48px] xl::font-bold"
+            >
               <span class="text-[#6C61E1]">Modifikasi Ide</span>
               <span class="text-black">Anda Dengan Mudah</span>
             </h1>
-            <p class="md:text-[16px] md:mt-2 lg:text-[30px] lg:font-normal">
+            <p
+              class="md:text-[16px] md:mt-2 lg:text-[18px] lg:font-normal xl:text-[30px]"
+            >
               Modifikasikan desain tersebut berdasarkan list tugas yang tertera.
             </p>
           </div>
@@ -130,7 +140,7 @@
 
         <!-- layanan 3 -->
         <div
-          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[200px] lg:px-52"
+          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[150px] lg:px-10 xl:gap-[200px] xl:px-52"
         >
           <div class="relative">
             <img
@@ -145,11 +155,15 @@
             >
           </div>
           <div class="w-[720px]">
-            <h1 class="md:text-[24px] md:fint-bold lg:text-[48px] lg:font-bold">
+            <h1
+              class="md:text-[24px] md:font-bold xl:text-[48px] xl::font-bold"
+            >
               <span class="text-[#6C61E1]">Kolaborasi Bersama Tim</span>
               <span class="text-black"> Untuk Hasil yang Lebih Baik</span>
             </h1>
-            <p class="md:text-[16px] md:mt-2 lg:text-[30px] lg:font-normal">
+            <p
+              class="md:text-[16px] md:mt-2 lg:text-[18px] lg:font-normal xl:text-[30px]"
+            >
               Undang anggota tim sebanyak-banyaknya dan dapatkan hasil desain
               yang lebih kreatif dan bervariasi.
             </p>
@@ -226,9 +240,9 @@
       class="bg-[#6C61E1] text-white px-5 pt-7 pb-[50px] md:mt-20 xl:px-[120px] xl:pb-[75px] xl:mt-20"
     >
       <div
-        class="text-center md:flex md:flex-col md:items-center xl:text-start xl:flex items-center justify-center xl:gap-[73px]"
+        class="text-center flex flex-col items-center justify-center md:flex md:flex-col md:items-center xl:text-start xl:flex xl:gap-[73px]"
       >
-        <div class="xl:w-[720px]">
+        <div class="md:w-[80%] xl:w-[720px]">
           <h1 class="text-2xl xl:text-[48px] xl:font-bold">
             Program Loyalti Opibox
           </h1>
