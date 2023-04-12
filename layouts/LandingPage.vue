@@ -7,11 +7,11 @@
     <section id="#beranda" class="brand pt-[120px] relative">
       <div class="items-center flex flex-col">
         <div class="w-[90%] xl:w-[65%] flex flex-col items-center text-center">
-          <h1 class="text-[32px] font-medium xl:text-[64px]">
+          <h1 class="text-[32px] font-medium xl:text-[42px] 2xl:text-[64px]">
             Salurkan Opinimu untuk Berkolaborasi!
           </h1>
           <p
-            class="text-[16px] lg:text-[18px] lg:w-[80%] self-center mt-4 xl:text-[24px]"
+            class="text-[16px] lg:text-[18px] lg:w-[80%] self-center mt-4 xl:text-[22px] 2xl:text-[24px]"
           >
             Opibox adalah tempat dimana Anda bebas untuk beropini mengenai
             gambar yang terunggah dan memodifikasinya berdasarkan hasil dari
@@ -28,21 +28,23 @@
           <img
             src="../assets/img/Ilustrasi.webp"
             alt="Opi-nion"
-            class="hidden md:block"
+            class="hidden md:block xl:w-[1000px]"
           >
         </div>
       </div>
 
       <div
-        class="relative playstore-section w-full p-5 bg-[#D7D4F7] flex flex-col items-center md:grid md:grid-cols-2 md:px-[10px] md:items-center md:h-[60] md:mt-12 xl:grid xl:grid-cols-2 xl:px-[200px] xl:h-[70vh] xl:mt-12"
+        class="relative playstore-section w-full p-5 bg-[#D7D4F7] flex flex-col items-center md:grid md:grid-cols-2 md:px-[10px] md:items-center md:h-[60] md:mt-12 xl:grid xl:grid-cols-2 2xl:px-[200px] 2xl:h-[70vh] xl:mt-12"
       >
         <div
-          class="relative text-center flex flex-col items-center xl:text-start xl:w-[75%] xl:left-36 xl:flex xl:flex-col xl:items-start xl:gap-y-8 xl:mt-10"
+          class="relative text-center flex flex-col items-center xl:text-start xl:w-[75%] xl:left-36 xl:flex xl:flex-col xl:items-start xl:gap-y-8 2xl:mt-10"
         >
-          <h1 class="text-[24px] xl:text-[64px]">
+          <h1 class="text-[24px] xl:text-[42px] 2xl:text-[64px]">
             Bawa Opibox Bersamamu.
           </h1>
-          <p class="text-[16px] mt-2 lg:text-[18px] xl:mt-0 xl:text-[32px]">
+          <p
+            class="text-[16px] mt-2 lg:text-[18px] xl:mt-0 xl:text-[22px] 2xl:text-[32px]"
+          >
             Unduh aplikasinya dan berkolaborasi di mana pun Anda berada
           </p>
 
@@ -76,7 +78,7 @@
     <!-- service section -->
     <section
       id="layanan"
-      class="relative layanan bg-white h-auto z-10 mt-[-50px] rounded-t-[50px] lg:pt-9 xl:rounded-t-[104px] xl:mt-[-80px] xl:p-[120px]"
+      class="relative layanan bg-white h-auto z-10 mt-[-50px] rounded-t-[50px] lg:pt-9 xl:rounded-t-[104px] xl:mt-[-80px] xl:px-[50px] 2xl:p-[120px]"
     >
       <div
         class="hidden md:flex md:flex-col md:gap-y-20 xl:flex xl:flex-col xl:gap-y-20"
@@ -85,9 +87,9 @@
 
         <!-- layanan 1 -->
         <div
-          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[150px] lg:px-10 xl:gap-[200px] xl:px-52"
+          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[150px] lg:px-10 xl:gap-[100px] 2xl:gap-[200px] 2xl:px-52"
         >
-          <div class="relative">
+          <div class="relative xl:w-[350px] lg:w-auto">
             <img src="../assets/img/image_service1.svg" alt="service1">
             <img
               src="../assets/img/ellips1_service.svg"
@@ -97,13 +99,13 @@
           </div>
           <div class="w-[720px]">
             <h1
-              class="md:text-[24px] md:font-bold xl:text-[48px] xl::font-bold"
+              class="md:text-[24px] md:font-bold xl:text-[42px] 2xl:text-[48px] xl::font-bold"
             >
               <span class="text-[#6C61E1]">Atur Prioritas Opini</span>
               <span class="text-black">Yang Anda Dapatkan</span>
             </h1>
             <p
-              class="md:text-[16px] md:mt-2 lg:text-[18px] lg:font-normal xl:text-[30px]"
+              class="md:text-[16px] md:mt-2 lg:text-[18px] lg:font-normal xl:text-[30px] 2xl:text-[30px]"
             >
               Opini yang telah diberikan dapat dibuat menjadi list tugas dan
               dapat diatur prioritasnya.
@@ -113,22 +115,22 @@
 
         <!-- layanan 2 -->
         <div
-          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[150px] lg:px-10 xl:gap-[200px] xl:px-52"
+          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[150px] lg:px-10 xl:gap-[100px] 2xl:gap-[200px] 2xl:px-52"
         >
           <div class="w-[720px]">
             <h1
-              class="md:text-[24px] md:font-bold xl:text-[48px] xl::font-bold"
+              class="md:text-[24px] md:font-bold xl:text-[42px] 2xl:text-[48px] xl::font-bold"
             >
               <span class="text-[#6C61E1]">Modifikasi Ide</span>
               <span class="text-black">Anda Dengan Mudah</span>
             </h1>
             <p
-              class="md:text-[16px] md:mt-2 lg:text-[18px] lg:font-normal xl:text-[30px]"
+              class="md:text-[16px] md:mt-2 lg:text-[18px] lg:font-normal xl:text-[30px] 2xl:text-[30px]"
             >
               Modifikasikan desain tersebut berdasarkan list tugas yang tertera.
             </p>
           </div>
-          <div class="relative">
+          <div class="relative xl:w-[350px] lg:w-auto">
             <img src="../assets/img/image_service2.svg" alt="service2">
             <img
               src="../assets/img/ellips2_service.svg"
@@ -140,9 +142,9 @@
 
         <!-- layanan 3 -->
         <div
-          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[150px] lg:px-10 xl:gap-[200px] xl:px-52"
+          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[150px] lg:px-10 xl:gap-[100px] 2xl:gap-[200px] 2xl:px-52"
         >
-          <div class="relative">
+          <div class="relative xl:w-[350px] lg:w-auto">
             <img
               src="../assets/img/icon-3d-3.svg"
               alt="service3"
@@ -156,13 +158,13 @@
           </div>
           <div class="w-[720px]">
             <h1
-              class="md:text-[24px] md:font-bold xl:text-[48px] xl::font-bold"
+              class="md:text-[24px] md:font-bold xl:text-[42px] 2xl:text-[48px] xl::font-bold"
             >
               <span class="text-[#6C61E1]">Kolaborasi Bersama Tim</span>
               <span class="text-black"> Untuk Hasil yang Lebih Baik</span>
             </h1>
             <p
-              class="md:text-[16px] md:mt-2 lg:text-[18px] lg:font-normal xl:text-[30px]"
+              class="md:text-[16px] md:mt-2 lg:text-[18px] lg:font-normal xl:text-[30px] 2xl:text-[30px]"
             >
               Undang anggota tim sebanyak-banyaknya dan dapatkan hasil desain
               yang lebih kreatif dan bervariasi.
@@ -240,10 +242,10 @@
       class="bg-[#6C61E1] text-white px-5 pt-7 pb-[50px] md:mt-20 xl:px-[120px] xl:pb-[75px] xl:mt-20"
     >
       <div
-        class="text-center flex flex-col items-center justify-center md:flex md:flex-col md:items-center xl:text-start xl:flex xl:gap-[73px]"
+        class="text-center flex flex-col items-center justify-center md:flex md:flex-col md:items-center xl:text-center 2xl:text-start 2xl:flex 2xl:gap-[73px]"
       >
         <div class="md:w-[80%] xl:w-[720px]">
-          <h1 class="text-2xl xl:text-[48px] xl:font-bold">
+          <h1 class="text-2xl xl:text-[42px] 2xl:text-[48px] xl:font-bold">
             Program Loyalti Opibox
           </h1>
           <p class="mt-6 xl:text-[20px] xl:font-normal xl:leading-[39px]">
@@ -264,10 +266,10 @@
       class="relative bg-white rounded-t-[50px] mt-[-50px] xl:rounded-t-[104px] xl:mt-[-80px] xl:z-0"
     >
       <div
-        class="pt-11 xl:flex justify-center xl:pt-[100px] xl:px-[120px] xl:gap-[152px]"
+        class="pt-11 xl:flex justify-center xl:pt-[100px] xl:px-[120px] xl:gap-[100px] 2xl:gap-[152px]"
       >
         <h1
-          class="text-2xl font-semibold text-center xl:mt-9 xl:text-[48px] xl:font-bold"
+          class="text-2xl font-semibold text-center xl:mt-9 xl:text-[30px] xl:font-bold 2xl:text-[48px]"
         >
           Pertanyaan Umum
         </h1>
@@ -328,7 +330,7 @@
       class="bg-[#313135] text-white mt-12 md:flex md:flex-col md:justify-center xl:flex xl:flex-col xl:justify-center xl:items-center xl:px-40 xl:mt-28"
     >
       <div
-        class="py-10 px-10 justify-center border-b-2 xl:flex xl:py-14 xl:gap-40"
+        class="py-10 px-10 justify-center border-b-2 xl:flex xl:py-14 xl:px-0 xl:gap-20 2xl:px-10 2xl:gap-40"
       >
         <div class="justify-center flex gap-4">
           <img
@@ -341,7 +343,9 @@
           </h1>
         </div>
         <hr class="w-full h-1 my-4 md:hidden">
-        <div class="md:flex md:gap-40 md:py-10 lg:py-0 justify-evenly">
+        <div
+          class="md:flex md:gap-40 md:py-10 lg:py-0 xl:gap-20 2xl:gap-40 justify-evenly"
+        >
           <div>
             <h3 class="text-[24px] font-medium mb-3">
               Menu
