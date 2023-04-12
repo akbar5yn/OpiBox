@@ -7,7 +7,9 @@
     <section id="#beranda" class="brand pt-[120px] relative">
       <div class="items-center flex flex-col">
         <div class="w-[90%] xl:w-[65%] flex flex-col items-center text-center">
-          <h1 class="text-[32px] font-medium xl:text-[42px] 2xl:text-[64px]">
+          <h1
+            class="text-[32px] font-medium xl:text-[42px] 2xl:text-[52px] 3xl:text-[64px]"
+          >
             Salurkan Opinimu untuk Berkolaborasi!
           </h1>
           <p
@@ -34,12 +36,14 @@
       </div>
 
       <div
-        class="relative playstore-section w-full p-5 bg-[#D7D4F7] flex flex-col items-center md:grid md:grid-cols-2 md:px-[10px] md:items-center md:h-[60] md:mt-12 xl:grid xl:grid-cols-2 2xl:px-[200px] 2xl:h-[70vh] xl:mt-12"
+        class="relative playstore-section w-full p-5 bg-[#D7D4F7] flex flex-col items-center md:grid md:grid-cols-2 md:px-[10px] md:items-center md:h-[60] md:mt-12 xl:grid xl:grid-cols-2 3xl:px-[200px] 3xl:h-[70vh] xl:mt-12"
       >
         <div
-          class="relative text-center flex flex-col items-center xl:text-start xl:w-[75%] xl:left-36 xl:flex xl:flex-col xl:items-start xl:gap-y-8 2xl:mt-10"
+          class="relative text-center flex flex-col items-center xl:text-start xl:w-[75%] xl:left-36 xl:flex xl:flex-col xl:items-start xl:gap-y-8"
         >
-          <h1 class="text-[24px] xl:text-[42px] 2xl:text-[64px]">
+          <h1
+            class="text-[24px] xl:text-[42px] 2xl:text-[52px] 3xl:text-[64px]"
+          >
             Bawa Opibox Bersamamu.
           </h1>
           <p
@@ -87,7 +91,7 @@
 
         <!-- layanan 1 -->
         <div
-          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[150px] lg:px-10 xl:gap-[100px] 2xl:gap-[200px] 2xl:px-52"
+          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[150px] lg:px-10 xl:gap-[100px] 2xl:gap-[200px] 3xl:px-52"
         >
           <div class="relative xl:w-[350px] lg:w-auto">
             <img src="../assets/img/image_service1.svg" alt="service1">
@@ -115,7 +119,7 @@
 
         <!-- layanan 2 -->
         <div
-          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[150px] lg:px-10 xl:gap-[100px] 2xl:gap-[200px] 2xl:px-52"
+          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[150px] lg:px-10 xl:gap-[100px] 2xl:gap-[200px] 3xl:px-52"
         >
           <div class="w-[720px]">
             <h1
@@ -142,7 +146,7 @@
 
         <!-- layanan 3 -->
         <div
-          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[150px] lg:px-10 xl:gap-[100px] 2xl:gap-[200px] 2xl:px-52"
+          class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[150px] lg:px-10 xl:gap-[100px] 2xl:gap-[200px] 3xl:px-52"
         >
           <div class="relative xl:w-[350px] lg:w-auto">
             <img
@@ -242,7 +246,7 @@
       class="bg-[#6C61E1] text-white px-5 pt-7 pb-[50px] md:mt-20 xl:px-[120px] xl:pb-[75px] xl:mt-20"
     >
       <div
-        class="text-center flex flex-col items-center justify-center md:flex md:flex-col md:items-center xl:text-center 2xl:text-start 2xl:flex 2xl:gap-[73px]"
+        class="text-center flex-col flex items-center justify-center md:flex lg:flex xl:flex-row xl:text-start 2xl:flex 2xl:gap-[73px] 3xl:flex 3xl:text-start"
       >
         <div class="md:w-[80%] xl:w-[720px]">
           <h1 class="text-2xl xl:text-[42px] 2xl:text-[48px] xl:font-bold">
@@ -327,7 +331,7 @@
 
     <!-- footer -->
     <footer
-      class="bg-[#313135] text-white mt-12 md:flex md:flex-col md:justify-center xl:flex xl:flex-col xl:justify-center xl:items-center xl:px-40 xl:mt-28"
+      class="bg-[#313135] text-white mt-12 md:flex md:flex-col md:justify-center xl:flex xl:flex-col xl:justify-center xl:items-center xl:px-40 xl:mt-28 2xl:px-0"
     >
       <div
         class="py-10 px-10 justify-center border-b-2 xl:flex xl:py-14 xl:px-0 xl:gap-20 2xl:px-10 2xl:gap-40"
