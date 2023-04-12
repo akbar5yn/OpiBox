@@ -8,7 +8,11 @@ module.exports = {
     "./nuxt.config.{js,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        '3xl': '1920px', // tambahkan breakpoint 3xl
+      },
+    },
   },
   plugins: [],
 }
