@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav
-      class="p-[19px] flex justify-between text-center items-center border-2"
+      class="p-[19px] flex justify-between text-center items-center border-2 fixed top-0 w-full bg-white bg-opacity-95 backdrop-blur-xl shadow-sm z-50"
     >
       <!-- nav-logo -->
       <div class="flex gap-4 items-center">
@@ -16,24 +16,24 @@
       </div>
 
       <!-- nav-item -->
-      <ul class="hidden md:flex gap-10">
+      <ul class="hidden md:flex md:gap-5 xl:gap-10">
         <li>
-          <nuxt-link to="#">
+          <nuxt-link to="#beranda">
             Beranda
           </nuxt-link>
         </li>
         <li>
-          <nuxt-link to="#">
+          <nuxt-link to="#layanan">
             Layanan
           </nuxt-link>
         </li>
         <li>
-          <nuxt-link to="#">
+          <nuxt-link to="#loyality">
             Program Loyaliti
           </nuxt-link>
         </li>
         <li>
-          <nuxt-link to="#">
+          <nuxt-link to="#bantuan">
             Bantuan
           </nuxt-link>
         </li>
@@ -41,22 +41,20 @@
       <div class="flex gap-1">
         <nuxt-link
           to="/login"
-          class="hidden xl:block border-[#6C61E1] border-[1px] px-7 py-2 rounded-[6px] text-[#6C61E1]"
+          class="hidden md:block border-[#6C61E1] border-[1px] px-7 py-2 rounded-[6px] text-[#6C61E1]"
         >
           Masuk
         </nuxt-link>
         <nuxt-link
           to="/register"
-          class="hidden xl:block bg-[#6C61E1] border-[#6C61E1] border-[1px] px-7 py-2 rounded-[6px] text-white"
+          class="hidden md:block bg-[#6C61E1] border-[#6C61E1] border-[1px] px-7 py-2 rounded-[6px] text-white"
         >
           Daftar
         </nuxt-link>
       </div>
 
       <!-- humberger menu -->
-      <div class="sm:hidden">
-        Menu
-      </div>
+      <hamburger-menu class="sm:hidden" />
     </nav>
   </div>
 </template>
