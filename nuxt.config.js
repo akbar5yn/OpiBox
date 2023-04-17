@@ -69,6 +69,10 @@ export default {
     }
   },
 
+  router: {},
+
+  scrollBehavior: '~/app/router.scrollBehavior.js',
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     postcss: {
