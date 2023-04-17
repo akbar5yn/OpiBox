@@ -4,7 +4,7 @@
     <landing-page-nav-bar />
 
     <!-- hero section -->
-    <section id="#beranda" class="brand pt-[120px] relative">
+    <section id="beranda" class="brand pt-[120px] relative">
       <div class="items-center flex flex-col">
         <div class="w-[90%] xl:w-[65%] flex flex-col items-center text-center">
           <h1
@@ -433,6 +433,7 @@ export default {
   name: 'LandingPage'
 }
 </script>
+
 <style scoped>
 .arrow {
   width: 10px;
