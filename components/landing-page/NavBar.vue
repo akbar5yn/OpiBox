@@ -17,6 +17,7 @@
             Opibox
           </h1>
         </div>
+
         <div class="flex md:order-2 gap-2">
           <div class="flex gap-3">
             <nuxt-link
@@ -56,6 +57,7 @@
             </svg>
           </button>
         </div>
+
         <div
           id="navbar-sticky"
           class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
