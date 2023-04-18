@@ -6,4 +6,5 @@
 * {
   -webkit-user-drag: none; /* Safari */
   /* user-select: none; */
+  scroll-behavior: smooth;
 }
