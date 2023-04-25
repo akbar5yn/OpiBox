@@ -13,6 +13,22 @@
         akun Opibox. Kami akan mengirim pesan melalui email berisi <br>
         tautan untuk mereset kata sandi Anda.
       </p>
+      <form action="" class="flex flex-col gap-y-3 mt-4">
+        <label
+          for="email"
+          class="self-start text-[16px] font-normal text-black"
+          style="font-family: 'Open Sans', sans-serif"
+        >Email</label>
+        <input
+          id="email"
+          class="border rounded-lg px-2 py-3 text-[14px] outline-none flex w-[580px] border-inherit"
+          type="text"
+          name="email"
+          placeholder="Masukkan email"
+          required
+          style="font-family: 'Open Sans', sans-serif"
+        >
+      </form>
     </div>
   </div>
 </template>
