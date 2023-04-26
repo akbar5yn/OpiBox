@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen p-8 md:p-0">
     <div
-      class="flex gap-3 md:justify-center md:border md:border-b-2 md:py-11 fixed md:w-full md:z-50"
+      class="flex gap-3 md:justify-center md:border md:border-b-2 md:py-11 md:w-full md:z-50"
     >
       <nuxt-link to="/">
         <img src="../assets/img/logo.svg" class="w-[45px]" alt="logo">
@@ -12,7 +12,7 @@
         Opibox
       </p>
     </div>
-    <div class="flex h-[100%] justify-center items-center">
+    <div class="flex justify-center items-center mt-11">
       <nuxt />
     </div>
   </div>
