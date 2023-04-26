@@ -1,19 +1,19 @@
 <template>
   <div class="w-[500px]">
-    <h1 class="text-[40px] font-bold">
+    <h1 class="text-[40px] cabinet-grotesk">
       Masuk
     </h1>
-    <p class="text-[14px] font-normal tracking-wider text-[#8B8B8B]">
+    <p class="text-[14px] open-sans tracking-wider text-[#8B8B8B]">
       Masuk dan nikmati semua layanan di Opibox
     </p>
-    <form action="" class="flex flex-col gap-y-3 mt-4">
+    <form action="" class="flex flex-col gap-y-3 mt-4 open-sans text-[#19191B]">
       <label for="">Email</label>
       <input
         id="email"
-        class="border rounded-lg px-2 py-3 text-[14px] outline-none"
+        class="border rounded-lg px-2 py-3 text-[14px] outline-none placeholder:text-[#D9D9D9] border-gray-300"
         type="text"
         name="email"
-        placeholder="Masukan email"
+        placeholder="Masukkan email"
         required
       >
 
@@ -77,3 +77,21 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+@font-face {
+  font-family: 'Cabinet Grotesk';
+  src: url('assets/CabinetGrotesk-Medium.otf') format('truetype');
+}
+.cabinet-grotesk {
+  font-family: 'Cabinet Grotesk', sans-serif;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('assets/OpenSans-Light.ttf');
+}
+.open-sans {
+  font-family: 'Open Sans', sans-serif;
+}
+</style>
