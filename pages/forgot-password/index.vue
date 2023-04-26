@@ -35,6 +35,12 @@
         >
           Selanjutnya
         </button>
+        <p class="text-center mt-32 text-[#6C61E1] font-open-sans">
+          <span class="text-[#8B8B8B]">Sudah Memiliki Akun?</span>
+          <nuxt-link to="/login">
+            Masuk
+          </nuxt-link>
+        </p>
       </div>
     </div>
   </div>
