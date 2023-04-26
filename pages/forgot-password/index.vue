@@ -21,7 +21,7 @@
         >Email</label>
         <input
           id="email"
-          class="border rounded-lg px-2 py-3 text-[14px] outline-none flex w-[580px] border-inherit"
+          class="border rounded-lg px-2 py-3 text-[14px] outline-none flex w-[580px] placeholder:text-[#D9D9D9] border-gray-300"
           type="text"
           name="email"
           placeholder="Masukkan email"
@@ -29,6 +29,19 @@
           style="font-family: 'Open Sans', sans-serif"
         >
       </form>
+      <div class="mt-8">
+        <button
+          class="text-white bg-[#6C61E1] p-3 w-full rounded-lg text-[18px] font-normal font-cabinet-grotesk"
+        >
+          Selanjutnya
+        </button>
+        <p class="text-center mt-32 text-[#6C61E1] font-open-sans">
+          <span class="text-[#8B8B8B]">Sudah Memiliki Akun?</span>
+          <nuxt-link to="/login">
+            Masuk
+          </nuxt-link>
+        </p>
+      </div>
     </div>
   </div>
 </template>
