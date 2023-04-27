@@ -53,7 +53,7 @@
         >
           Masuk
         </button>
-        <p class="text-center mt-3">
+        <p class="text-center mt-3 mb-5">
           <span class="text-[#8B8B8B]"> Belum memiliki akun? </span>
           <nuxt-link to="/register">
             Daftar
