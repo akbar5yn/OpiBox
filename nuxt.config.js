@@ -27,6 +27,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/css/main.css',
+<<<<<<< HEAD
     // 'flowbite/dist/flowbite.css'
   ],
 
@@ -34,6 +35,12 @@ export default {
   // plugins: [
   //   { src: '~/node_modules/flowbite/dist/flowbite.js', mode: 'client' }
   // ],
+=======
+  ],
+
+  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
+  plugins: [],
+>>>>>>> 936ef73d3c5714625879eabf64afaf76af26772d
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
