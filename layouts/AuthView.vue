@@ -18,7 +18,11 @@
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  name: 'AuthView'
+}
+</script>
 
 <style scoped>
 @font-face {
