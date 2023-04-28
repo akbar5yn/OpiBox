@@ -5,6 +5,8 @@ export default {
     // false,
   },
 
+  ssr: false,
+
   head: {
     title: 'opibox',
     htmlAttrs: {

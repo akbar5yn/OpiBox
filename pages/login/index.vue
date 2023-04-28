@@ -1,19 +1,19 @@
 <template>
-  <div class="w-[500px]">
-    <h1 class="text-[40px] cabinet-grotesk">
+  <div class="w-[500px] font-open-sans">
+    <h1 class="text-[40px] font-bold font-cabinet-grotesk">
       Masuk
     </h1>
-    <p class="text-[14px] open-sans tracking-wider text-[#8B8B8B]">
+    <p class="text-[14px] font-normal tracking-wider text-[#8B8B8B]">
       Masuk dan nikmati semua layanan di Opibox
     </p>
-    <form action="" class="flex flex-col gap-y-3 mt-4 open-sans text-[#19191B]">
+    <form action="" class="flex flex-col gap-y-3 mt-4">
       <label for="">Email</label>
       <input
         id="email"
-        class="border rounded-lg px-2 py-3 text-[14px] outline-none placeholder:text-[#D9D9D9] border-gray-300"
+        class="border rounded-lg px-2 py-3 text-[14px] outline-none"
         type="text"
         name="email"
-        placeholder="Masukkan email"
+        placeholder="Masukan email"
         required
       >
 
@@ -42,20 +42,20 @@
         >
       </div>
       <div class="flex justify-end underline">
-        <nuxt-link to="" class="mt-2">
+        <nuxt-link to="" class="mt-2 text-[#6C61E1]">
           Lupa kata sandi ?
         </nuxt-link>
       </div>
       <div class="mt-3">
         <button
           type="submit"
-          class="text-white bg-[#4A4A4F] p-3 w-full rounded-lg text-[18px]"
+          class="text-white bg-[#6C61E1] p-3 w-full rounded-lg text-[18px]"
         >
           Masuk
         </button>
         <p class="text-center mt-3 mb-5">
           <span class="text-[#8B8B8B]"> Belum memiliki akun? </span>
-          <nuxt-link to="/register">
+          <nuxt-link to="/register" class="text-[#6C61E1]">
             Daftar
           </nuxt-link>
         </p>
@@ -77,21 +77,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-@font-face {
-  font-family: 'Cabinet Grotesk';
-  src: url('assets/CabinetGrotesk-Medium.otf') format('truetype');
-}
-.cabinet-grotesk {
-  font-family: 'Cabinet Grotesk', sans-serif;
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  src: url('assets/OpenSans-Light.ttf');
-}
-.open-sans {
-  font-family: 'Open Sans', sans-serif;
-}
-</style>

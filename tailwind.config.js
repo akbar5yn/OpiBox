@@ -9,6 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'open-sans': ['Open Sans', 'sans-serif'],
+      },
       screens: {
         '3xl': '1920px', // tambahkan breakpoint 3xl
       },
