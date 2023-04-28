@@ -75,18 +75,13 @@
         >
       </div>
 
-      <div class="flex justify-end underline">
-        <nuxt-link to="" class="mt-2">
-          Lupa kata sandi ?
-        </nuxt-link>
-      </div>
       <div class="mt-3">
         <button
           class="text-white bg-[#4A4A4F] p-3 w-full rounded-lg text-[18px]"
         >
           Masuk
         </button>
-        <p class="text-center mt-3">
+        <p class="text-center mt-3 mb-5">
           <span class="text-[#8B8B8B]"> Sudah memiliki akun? </span>
           <nuxt-link to="/login">
             Masuk

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex items-center min-w-max gap-3">
     <button
       id="user-menu-button"
       type="button"
@@ -10,11 +10,21 @@
     >
       <span class="sr-only">Open user menu</span>
       <img
-        class="w-8 h-8 rounded-full"
-        src="/docs/images/people/profile-picture-3.jpg"
+        class="w-10 h-10 rounded-full"
+        src="../../assets/img/Profile.svg"
         alt="user photo"
       >
     </button>
+
+    <!-- user name on mobile -->
+    <span class="text-white xl:hidden">Selamat datang, <br>
+      User1 !</span>
+
+    <!-- user name on mobile ++ -->
+    <p class="hidden xl:block">
+      Akbar Pratama Suryamin <br>
+      <span>example@gmail.com</span>
+    </p>
   </div>
 </template>
 
