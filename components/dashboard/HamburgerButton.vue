@@ -4,7 +4,7 @@
     <button
       type="button"
       class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
-      @click="$emit('toggle-menu', { showMenu: !isOpen })"
+      @click="$emit('toggle-menu', { sideBar: !isClose })"
     >
       <span class="sr-only">Open main menu</span>
       <svg
@@ -29,7 +29,7 @@ export default {
   name: 'HamburgerButton',
 
   props: {
-    isOpen: Boolean
+    isClose: Boolean
   }
 }
 </script>
