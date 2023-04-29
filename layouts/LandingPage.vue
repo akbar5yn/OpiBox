@@ -278,52 +278,8 @@
           Pertanyaan Umum
         </h1>
         <div class="mt-5">
-          <ul class="flex flex-col gap-y-10 items-center">
-            <li
-              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] md:w-[500px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
-            >
-              <p class="w-[553px] break-words">
-                Siapa target Opibox?
-              </p>
-              <button class="arrow self-center" />
-            </li>
-
-            <li
-              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] md:w-[500px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
-            >
-              <p class="w-[553px] break-words">
-                Bagaimana cara membuat tim?
-              </p>
-              <button class="arrow self-center" />
-            </li>
-
-            <li
-              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] md:w-[500px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
-            >
-              <p class="w-[553px] break-words">
-                Siapa saja yang dapat mengakses file?
-              </p>
-              <button class="arrow self-center" />
-            </li>
-
-            <li
-              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] md:w-[500px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
-            >
-              <p class="w-[553px] break-words">
-                Bagaimana jika saya memiliki gambar lebih dari satu?
-              </p>
-              <button class="arrow self-center" />
-            </li>
-
-            <li
-              class="border-b-2 border-black border-opacity-10 flex justify-between w-[300px] md:w-[500px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-5"
-            >
-              <p class="w-[553px] break-words">
-                Jika saya diundang ke dalam tim, apa saja yang bisa saya
-                lakukan?
-              </p>
-              <button class="arrow self-center" />
-            </li>
+          <ul class="flex flex-col gap-y-2 items-center">
+            <FaqItem v-for="(item, key) in faqList" :key="key" :item="item" />
           </ul>
         </div>
       </div>
@@ -429,8 +385,37 @@
   </div>
 </template>
 <script>
+import FaqItem from '../components/landing-page/FaqItem.vue'
 export default {
-  name: 'LandingPage'
+  name: 'LandingPage',
+  components: { FaqItem },
+  data () {
+    return {
+      faqList: [
+        {
+          title: 'Siapa target Opibox?',
+          description: 'lorem ipsum1'
+        },
+        {
+          title: 'Bagaimana cara membuat tim?',
+          description: 'lorem ipsum2'
+        },
+        {
+          title: 'Siapa saja yang dapat mengakses file?',
+          description: 'lorem ipsum3'
+        },
+        {
+          title: 'Bagaimana jika saya memiliki gambar lebih dari satu?',
+          description: 'lorem ipsum4'
+        },
+        {
+          title:
+            'Jika saya diundang ke dalam tim, apa saja yang bisa saya lakukan?',
+          description: 'lorem ipsum5'
+        }
+      ]
+    }
+  }
 }
 </script>
 
