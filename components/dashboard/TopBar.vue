@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="w-full sticky">
     <!-- topbar on mobile -->
     <div
       class="topbar flex items-center justify-between p-7 rounded-b-[10px] gap-7 xl:hidden"
