@@ -1,0 +1,60 @@
+<template>
+  <div class="flex gap-3">
+    <svg
+      class="w-12"
+      viewBox="0 0 112 103"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M85.5303 91.9629C91.9043 94.1517 98.5382 89.4156 98.5382 82.6763V36.7648C98.5382 32.4665 95.7425 28.6679 91.6386 27.3899L12.7382 2.82093C6.41746 0.852704 7.29212e-08 5.57575 6.32675e-08 12.1958L0 55.5822C-6.11548e-09 59.7759 2.66351 63.5067 6.62992 64.8688L85.5303 91.9629Z"
+        fill="#877EE7"
+      />
+      <path
+        d="M97.9204 0.604935C104.327 -1.7358 111.109 3.00707 111.109 9.82748V53.5188C111.109 57.5617 108.631 61.1914 104.866 62.6636L31.896 91.1929C25.4568 93.7105 18.5016 88.9619 18.5016 82.0481L18.5016 36.4897C18.5016 32.3664 21.0778 28.6823 24.9507 27.2672L97.9204 0.604935Z"
+        fill="#6C61E1"
+      />
+      <path
+        d="M18.4105 97.5675C18.4105 99.6066 20.7526 100.757 22.3661 99.5099L39.7221 86.0985C41.5746 84.6669 40.5623 81.7013 38.2211 81.7013H20.8652C19.5095 81.7013 18.4105 82.8004 18.4105 84.1561V97.5675Z"
+        fill="#6C61E1"
+      />
+      <rect
+        x="31.9916"
+        y="39.9364"
+        width="69.3526"
+        height="4.90945"
+        rx="2.45473"
+        transform="rotate(-19.6593 31.9916 39.9364)"
+        fill="white"
+      />
+      <rect
+        x="35.0037"
+        y="53.324"
+        width="69.3526"
+        height="4.90945"
+        rx="2.45473"
+        transform="rotate(-19.6593 35.0037 53.324)"
+        fill="white"
+      />
+    </svg>
+    <p class="self-center cabinet-grotesk font-bold text-[29px] text-[#6C61E1]">
+      Opibox
+    </p>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'OpiBox'
+}
+</script>
+
+<style scoped>
+@font-face {
+  font-family: 'Cabinet Grotesk';
+  src: url('assets/CabinetGrotesk-Medium.otf') format('truetype');
+}
+.cabinet-grotesk {
+  font-family: 'Cabinet Grotesk', sans-serif;
+}
+</style>

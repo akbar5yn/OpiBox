@@ -1,23 +1,23 @@
 <template>
-  <div class="">
+  <div class="w-full sticky">
     <!-- topbar on mobile -->
     <div
       class="topbar flex items-center justify-between p-7 rounded-b-[10px] gap-7 xl:hidden"
     >
       <!-- hamburger -->
-      <dashboard-hamburger-button />
+      <mainpage-hamburger-button />
 
       <!-- search column -->
-      <dashboard-search-column />
+      <mainpage-search-column />
 
       <!-- profile -->
-      <dashboard-user-image />
+      <mainpage-user-image />
     </div>
 
     <!-- top bar on desktop-->
     <div class="hidden xl:flex py-4 px-5 justify-between gap-7">
       <!-- search column -->
-      <dashboard-search-column />
+      <mainpage-search-column />
 
       <!-- icon notification -->
       <div class="hidden notification md:flex items-center">
@@ -26,7 +26,7 @@
 
       <!-- user image -->
       <div class="flex items-center">
-        <dashboard-user-image />
+        <mainpage-user-image />
       </div>
     </div>
   </div>
