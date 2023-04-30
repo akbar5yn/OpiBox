@@ -52,14 +52,17 @@
         >
       </div>
       <div class="flex justify-end underline">
-        <nuxt-link to="" class="mt-2 text-[#6C61E1]">
+        <nuxt-link to="/forgot-password" class="mt-2 text-[#6C61E1]">
           Lupa kata sandi ?
         </nuxt-link>
       </div>
       <div class="mt-3">
         <button
           type="submit"
-          class="text-white bg-[#6C61E1] p-3 w-full rounded-lg text-[18px]"
+          class="text-white p-3 w-full rounded-lg text-[18px]"
+          :disabled="disabled"
+          :class="{ 'bg-[#6C61E1]': !disabled, 'bg-gray-200': disabled }"
+          @click="submitData"
         >
           Masuk
         </button>
@@ -90,8 +93,7 @@ export default {
         message: 'Tess error',
         status: false
       },
-      showPassword: false,
-      isClose: false
+      showPassword: false
     }
   },
   watch: {
@@ -108,14 +110,6 @@ export default {
     },
     submitData (e) {
       e.preventDefault()
-      if (this.form.email === '' || this.form.password === '') {
-        this.errorsInput.status = true
-        this.errorsInput.message = 'Email dan kata sandi harus diisi!'
-      }
-
-      if (this.errorsInput.status) {
-        return false
-      }
     }
   }
 }
