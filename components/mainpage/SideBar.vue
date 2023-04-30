@@ -1,7 +1,7 @@
 <template>
   <div
     class="w-[18rem] h-full border fixed border-[#CACACE] overflow-y-auto top-0 sm:w-[20rem] xl:h-[100vh] xl:sticky xl:w-[25rem] bg-white"
-    :class="[{ hidden: sideBar }]"
+    :class="{ 'hidden xl:block': sideBar }"
   >
     <div class="section1 flex flex-col">
       <div class="mt-3 p-5 flex justify-between items-center">
@@ -84,15 +84,6 @@ export default {
 
   beforeDestroy () {
     window.removeEventListener('resize', this.checkWindowSize)
-  },
-  methods: {
-    checkWindowSize () {
-      if (window.innerWidth >= 1280) {
-        this.$store.state.sideBar = false
-      } else if (window.innerWidth <= 1280) {
-        this.$store.state.sideBar = true
-      }
-    }
   }
 }
 </script>
