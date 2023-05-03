@@ -25,7 +25,7 @@
         id="email"
         v-model="email"
         class="border rounded-lg px-2 py-3 text-[14px] outline-none"
-        type="text"
+        type="email"
         name="email"
         placeholder="Masukan email"
       >
