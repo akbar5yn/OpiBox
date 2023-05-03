@@ -15,7 +15,7 @@
     </div>
 
     <!-- top bar on desktop-->
-    <div class="hidden xl:flex py-4 px-5 justify-between gap-7">
+    <div class="hidden xl:flex py-4 px-5 justify-between gap-7 border">
       <!-- search column -->
       <mainpage-search-column />
 
