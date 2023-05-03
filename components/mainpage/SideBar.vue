@@ -4,7 +4,7 @@
     :class="{ 'hidden xl:block': sideBar }"
   >
     <div class="section1 flex flex-col">
-      <div class="mt-3 p-5 flex justify-between items-center">
+      <div class="mt-3 pl-7 pt-2 flex justify-between items-center">
         <!-- logo -->
         <icon-galery-opi-box />
 
@@ -12,7 +12,7 @@
       </div>
 
       <!-- point -->
-      <div class="p-5">
+      <div class="p-5 mt-5">
         <mainpage-point-box class="" />
       </div>
 
@@ -69,13 +69,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'SideBar',
 
   computed: {
-    sideBar () {
-      return this.$store.state.sideBar
-    }
+    ...mapState('dashboard', ['sideBar', 'nama'])
+    // sideBar () {
+    //   return this.$store.state.sideBar
+    // }
   },
 
   mounted () {
