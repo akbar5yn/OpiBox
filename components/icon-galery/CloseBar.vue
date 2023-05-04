@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   name: 'CloseBar',
 
@@ -20,9 +21,10 @@ export default {
   //   isClose: Boolean
   // }
   methods: {
-    toggleSidebar () {
-      return this.$store.commit('toggleSidebar')
-    }
+    // toggleSidebar () {
+    //   return this.$store.commit('dashboard/toggleSidebar')
+    // }
+    ...mapMutations('dashboard', { toggleSidebar: 'toggleSidebar' })
   }
 }
 </script>

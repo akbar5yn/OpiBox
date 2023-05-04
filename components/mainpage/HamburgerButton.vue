@@ -30,16 +30,22 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   name: 'HamburgerButton',
 
   // props: {
   //   isClose: Boolean
   // }
+
+  data () {
+    return {}
+  },
   methods: {
-    toggleSidebar () {
-      return this.$store.commit('toggleSidebar')
-    }
+    // toggleSidebar () {
+    //   // return this.$store.commit('dashboard/toggleSidebar')
+    // },
+    ...mapMutations('dashboard', { toggleSidebar: 'toggleSidebar' })
   }
 }
 </script>
