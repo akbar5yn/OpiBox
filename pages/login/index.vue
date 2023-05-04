@@ -20,14 +20,19 @@
       <input
         id="email"
         v-model="form.email"
-        class="border rounded-lg px-2 py-3 text-[14px] outline-none"
+        class="border rounded-lg px-2 py-3 text-[14px] outline-none flex w-full"
         type="text"
         name="email"
         placeholder="Masukan email"
       >
+      <div v-if="errors.email != ''" class="error-message text-red-500 text-sm">
+        {{ errors.email }}
+      </div>
 
       <label for="">Kata sandi</label>
-      <div class="password-input-wrapper flex relative border rounded-lg">
+      <div
+        class="password-input-wrapper flex w-full relative border rounded-lg"
+      >
         <input
           id="password"
           v-model="form.password"
@@ -51,6 +56,13 @@
           @click="showPassword = !showPassword"
         >
       </div>
+      <div
+        v-if="errors.password != ''"
+        class="error-message text-red-400 text-sm"
+      >
+        {{ errors.password }}
+      </div>
+
       <div class="flex justify-end underline">
         <nuxt-link to="/forgot-password" class="mt-2 text-[#6C61E1]">
           Lupa kata sandi ?
@@ -93,6 +105,11 @@ export default {
         message: 'Tess error',
         status: false
       },
+      errors: {
+        email: '',
+        password: ''
+      },
+      validForm: false,
       showPassword: false
     }
   },
@@ -100,13 +117,38 @@ export default {
     form: {
       deep: true,
       handler () {
-        this.checkInput()
+        if (this.validateEmail() && this.validatePassword()) {
+          this.checkInput()
+        } else {
+          this.disabled = true
+        }
+      }
+    },
+    'form.email': {
+      handler () {
+        this.errors.email = !this.validateEmail() ? 'Invalid Email' : ''
+      }
+    },
+    'form.password': {
+      handler () {
+        this.errors.password = !this.validatePassword()
+          ? 'Password is required and should contain at least 6 characters and one uppercase letter and one special character'
+          : ''
       }
     }
   },
   methods: {
     checkInput () {
       this.disabled = !Object.keys(this.form).every(e => this.form[e] !== '')
+    },
+    validateEmail () {
+      const emailRegex = /\S+@\S+\.\S+/
+      return emailRegex.test(this.form.email)
+    },
+    validatePassword () {
+      const passwordRegex =
+        /^(?=.*[A-Z])(?=.*[_\-!@#$%^&*()+=,./;'])(?=.*[0-9]).{6,}$/
+      return passwordRegex.test(this.form.password)
     },
     submitData (e) {
       e.preventDefault()
