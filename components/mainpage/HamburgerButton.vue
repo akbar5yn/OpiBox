@@ -1,10 +1,15 @@
 <template>
   <div>
     <!-- hamburger button -->
+    <!-- <button
+      type="button"
+      class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
+      @click="$emit('toggle-menu', { sideBar: !isClose })"
+    > -->
     <button
       type="button"
       class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
-      @click="$emit('toggle-menu', { showMenu: !isOpen })"
+      @click="toggleSidebar"
     >
       <span class="sr-only">Open main menu</span>
       <svg
@@ -28,8 +33,13 @@
 export default {
   name: 'HamburgerButton',
 
-  props: {
-    isOpen: Boolean
+  // props: {
+  //   isClose: Boolean
+  // }
+  methods: {
+    toggleSidebar () {
+      return this.$store.commit('toggleSidebar')
+    }
   }
 }
 </script>
