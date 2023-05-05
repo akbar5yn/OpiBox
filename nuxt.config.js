@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
 
-  server: {
+  server:{
     // false,
   },
 
@@ -20,15 +20,14 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        href: 'https://unpkg.com/swiper/swiper-bundle.min.css'
-      }
+      { rel: 'stylesheet', href: 'https://unpkg.com/swiper/swiper-bundle.min.css' }
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/assets/css/main.css'],
+  css: [
+    '@/assets/css/main.css',
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -52,8 +51,6 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-
-    // base url api
     baseURL: 'https://opibox.fly.dev/'
   },
 
@@ -72,7 +69,7 @@ export default {
         },
         endpoints: {
           login: { url: 'auth/login', method: 'post' },
-          logout: { url: 'auth/logout', method: 'delete' },
+          logout: false,
           // logout: { url: '/api/auth/logout', method: 'post' },
           user: {
             url: 'me',
@@ -83,11 +80,12 @@ export default {
       }
     },
 
+
     redirect: {
       login: '/login',
       logout: '/',
-      callback: '/login',
-      home: '/'
+      callback: '/',
+      home: '/login'
     }
   },
 
@@ -101,9 +99,9 @@ export default {
       postcssOptions: {
         plugins: {
           tailwindcss: {},
-          autoprefixer: {}
-        }
-      }
-    }
+          autoprefixer: {},
+        },
+      },
+    },
   }
 }
