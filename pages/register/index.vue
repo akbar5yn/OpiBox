@@ -114,6 +114,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'RegisterView',
   layout: 'AuthView',
@@ -157,8 +158,17 @@ export default {
   },
 
   methods: {
-    register () {
+    ...mapActions('authentication', ['registerUser']),
+    async register () {
       // handle form submission
+      const data = {
+        name: this.nama,
+        email: this.email,
+        password: this.password,
+        password_confirmation: this.konfirmasiPassword
+      }
+      const response = await this.registerUser(data)
+      console.log(response)
     },
 
     validateUsername () {

@@ -58,9 +58,29 @@ export default {
   },
 
   auth: {
-    endpoints: {
-      login: { url: 'auth/login', method: 'post' },
-      logout: false
+    strategies: {
+      local: {
+        token: {
+          property: 'data.token',
+          global: true,
+          required: true,
+          type: 'Bearer'
+        },
+        user: {
+          property: 'data'
+          // autoFetch: true
+        },
+        endpoints: {
+          login: { url: 'auth/login', method: 'post' },
+          logout: { url: 'auth/logout', method: 'delete' },
+          // logout: { url: '/api/auth/logout', method: 'post' },
+          user: {
+            url: 'me',
+            method: 'get',
+            propertyName: 'data'
+          }
+        }
+      }
     },
 
     redirect: {

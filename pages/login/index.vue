@@ -90,6 +90,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'LoginView',
   layout: 'AuthView',
@@ -138,6 +139,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions('authentication', ['loginUser']),
     checkInput () {
       this.disabled = !Object.keys(this.form).every(e => this.form[e] !== '')
     },
@@ -150,8 +152,15 @@ export default {
         /^(?=.*[A-Z])(?=.*[_\-!@#$%^&*()+=,./;'])(?=.*[0-9]).{6,}$/
       return passwordRegex.test(this.form.password)
     },
-    submitData (e) {
+    async submitData (e) {
       e.preventDefault()
+      const data = {
+        email: this.form.email,
+        password: this.form.password
+      }
+
+      const response = await this.loginUser({ data })
+      console.log(response)
     }
   }
 }
