@@ -64,12 +64,11 @@ export default {
           type: 'Bearer'
         },
         user: {
-          property: 'data'
-          // autoFetch: true
+          property: 'data',
         },
         endpoints: {
           login: { url: 'auth/login', method: 'post' },
-          logout: false,
+          logout: { url: 'auth/logout', method: 'delete' },
           // logout: { url: '/api/auth/logout', method: 'post' },
           user: {
             url: 'me',
@@ -84,8 +83,7 @@ export default {
     redirect: {
       login: '/login',
       logout: '/',
-      callback: '/',
-      home: '/login'
+      home: '/mainpage'
     }
   },
 
