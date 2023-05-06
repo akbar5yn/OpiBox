@@ -26,7 +26,7 @@
 <script>
 export default {
   name: 'Mainpage',
-  layout: 'MainPage'
-  // middleware: 'auth'
+  layout: 'MainPage',
+  middleware: 'auth'
 }
 </script>

@@ -12,6 +12,7 @@ export const actions = {
     try {
       const response = await this.$auth.loginWith('local', data)
       console.log({ response })
+      // this.$router.push('/mainpage')
       return response
     } catch (err) {
       console.log(err.response.data)
