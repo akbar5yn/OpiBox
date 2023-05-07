@@ -33,8 +33,16 @@
           required
           style="font-family: 'Open Sans', sans-serif"
         >
+        <div
+          v-if="errors.email != ''"
+          class="error-message text-red-500 text-sm maxw-[580px] text-left"
+        >
+          {{ errors.email }}
+        </div>
         <button
-          class="text-white bg-[#6C61E1] p-3 w-full rounded-lg text-[18px] font-normal font-cabinet-grotesk mt-8"
+          :disabled="disabled"
+          class="text-white p-3 w-full rounded-lg text-[18px] font-normal font-cabinet-grotesk mt-8"
+          :class="{ ['bg-[#6C61E1]']: !disabled, ['bg-gray-200']: disabled }"
         >
           Selanjutnya
         </button>
@@ -71,15 +79,43 @@ export default {
       form: {
         email: ''
       },
+      errors: {
+        email: ''
+      },
       showPassword: false,
       showPasswordConfirmed: false,
       isClose: false,
-      secondSection: false
+      secondSection: false,
+      disabled: true
+    }
+  },
+  watch: {
+    form: {
+      deep: true,
+      handler () {
+        if (this.validateEmail()) {
+          this.checkInput()
+        } else {
+          this.disabled = true
+        }
+      }
+    },
+    'form.email': {
+      handler () {
+        this.errors.email = !this.validateEmail() ? 'Invalid Email' : ''
+      }
     }
   },
   methods: {
     submitData () {
       this.secondSection = !this.secondSection
+    },
+    checkInput () {
+      this.disabled = !Object.keys(this.form).every(e => this.form[e] !== '')
+    },
+    validateEmail () {
+      const emailRegex = /\S+@\S+\.\S+/
+      return emailRegex.test(this.form.email)
     }
   }
 }
