@@ -1,6 +1,6 @@
 <template>
   <div class="h-[650px] items-center">
-    <div class="text-center">
+    <div v-if="!secondSection" class="text-center">
       <h1 class="text-[50px] font-cabinet-grotesk font-normal text-[#19191B]">
         Lupa Kata Sandi
       </h1>
@@ -13,7 +13,11 @@
         akun Opibox. Kami akan mengirim pesan melalui email berisi <br>
         tautan untuk mereset kata sandi Anda.
       </p>
-      <form action="" class="flex flex-col gap-y-3 mt-4">
+      <form
+        action=""
+        class="flex flex-col gap-y-3 mt-4"
+        @submit.prevent="submitData"
+      >
         <label
           for="email"
           class="self-start text-[16px] font-normal text-black"
@@ -21,6 +25,7 @@
         >Email</label>
         <input
           id="email"
+          v-model="form.email"
           class="border rounded-lg px-2 py-3 text-[14px] outline-none flex w-[580px] placeholder:text-[#D9D9D9] border-gray-300"
           type="text"
           name="email"
@@ -28,20 +33,30 @@
           required
           style="font-family: 'Open Sans', sans-serif"
         >
-      </form>
-      <div class="mt-8">
         <button
-          class="text-white bg-[#6C61E1] p-3 w-full rounded-lg text-[18px] font-normal font-cabinet-grotesk"
+          class="text-white bg-[#6C61E1] p-3 w-full rounded-lg text-[18px] font-normal font-cabinet-grotesk mt-8"
         >
           Selanjutnya
         </button>
-        <p class="text-center mt-32 text-[#6C61E1] font-open-sans">
-          <span class="text-[#8B8B8B]">Sudah Memiliki Akun?</span>
-          <nuxt-link to="/login">
-            Masuk
-          </nuxt-link>
-        </p>
-      </div>
+      </form>
+
+      <p class="text-center mt-32 text-[#6C61E1] font-open-sans">
+        <span class="text-[#8B8B8B]">Sudah Memiliki Akun?</span>
+        <nuxt-link to="/login">
+          Masuk
+        </nuxt-link>
+      </p>
+    </div>
+    <!-- Second Section -->
+    <div v-if="secondSection" class="text-center h-[650px] items-center">
+      <h1 class="text-[50px] font-cabinet-grotesk font normal text-[#19191B]">
+        Lupa Kata Sandi
+      </h1>
+      <p class="text-[14px] font-open-sans font-normal order-1 text-[#4A4A4F]">
+        Kami telah mengirim pesan ke email:<br>
+        <strong>{{ form.email }}</strong> <br>Cukup ikuti petunjuk untuk
+        melakukan verifikasi email.
+      </p>
     </div>
   </div>
 </template>
@@ -53,9 +68,18 @@ export default {
 
   data () {
     return {
+      form: {
+        email: ''
+      },
       showPassword: false,
       showPasswordConfirmed: false,
-      isClose: false
+      isClose: false,
+      secondSection: false
+    }
+  },
+  methods: {
+    submitData () {
+      this.secondSection = !this.secondSection
     }
   }
 }
