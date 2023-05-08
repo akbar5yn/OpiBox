@@ -23,7 +23,7 @@
         class="border rounded-lg px-2 py-3 text-[14px] outline-none flex w-full"
         type="text"
         name="email"
-        placeholder="Masukan email"
+        placeholder="Masukkan email"
       >
       <div v-if="errors.email != ''" class="error-message text-red-500 text-sm">
         {{ errors.email }}
@@ -127,14 +127,22 @@ export default {
     },
     'form.email': {
       handler () {
-        this.errors.email = !this.validateEmail() ? 'Invalid Email' : ''
+        this.errors.email =
+          this.form.email === ''
+            ? 'Email harus diisi'
+            : !this.validateEmail()
+                ? 'Email tidak valid'
+                : ''
       }
     },
     'form.password': {
       handler () {
-        this.errors.password = !this.validatePassword()
-          ? 'Password is required and should contain at least 6 characters and one uppercase letter and one special character'
-          : ''
+        this.errors.password =
+          this.form.password === ''
+            ? 'Password harus diisi'
+            : !this.validatePassword()
+                ? 'Kata sandi minimal harus 6 karakter dan berisi kombinasi angka, huruf, dan karakter khusus (!$@%)'
+                : ''
       }
     }
   },
