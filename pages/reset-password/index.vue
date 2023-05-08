@@ -161,15 +161,18 @@ export default {
     },
     'form.newPassword': {
       handler () {
-        this.errors.newPassword = !this.validatePassword()
-          ? 'Password is required and should contain at least 6 characters and one uppercase letter and one special character'
-          : ''
+        this.errors.newPassword =
+          this.form.newPassword === ''
+            ? 'Password baru harus diisi'
+            : !this.validatePassword()
+                ? 'Kata sandi minimal harus 6 karakter dan berisi kombinasi angka, huruf, dan karakter khusus (!$@%)'
+                : ''
       }
     },
     'form.confirmNewPassword': {
       handler () {
         this.errors.confirmNewPassword = !this.passwordMatches()
-          ? 'Password doest not matches!'
+          ? 'Kata sandi tidak cocok'
           : ''
       }
     }
