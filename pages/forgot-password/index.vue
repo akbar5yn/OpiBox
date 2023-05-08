@@ -102,7 +102,12 @@ export default {
     },
     'form.email': {
       handler () {
-        this.errors.email = !this.validateEmail() ? 'Invalid Email' : ''
+        this.errors.email =
+          this.form.email === ''
+            ? 'Email harus diisi'
+            : !this.validateEmail()
+                ? 'Email tidak valid'
+                : ''
       }
     }
   },
