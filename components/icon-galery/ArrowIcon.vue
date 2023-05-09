@@ -5,6 +5,7 @@
     viewBox="0 0 12 8"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    class="rotate-180"
   >
     <path
       d="M1.33341 6.16797L6.00008 1.5013L10.6667 6.16797"
@@ -18,6 +19,6 @@
 
 <script>
 export default {
-  name: 'ArrowUp'
+  name: 'ArrowIcon'
 }
 </script>
