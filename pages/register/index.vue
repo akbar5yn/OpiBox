@@ -164,8 +164,7 @@ export default {
       const data = {
         name: this.nama,
         email: this.email,
-        password: this.password,
-        password_confirmation: this.konfirmasiPassword
+        password: this.password
       }
       const response = await this.registerUser(data)
       console.log(response)
