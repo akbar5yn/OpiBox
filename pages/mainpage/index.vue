@@ -28,6 +28,7 @@
       </label>
       <input
         id="image"
+        ref="inputImg"
         type="file"
         name="image"
         accept="image/*"
@@ -66,20 +67,22 @@ export default {
   methods: {
     openModal (event) {
       const file = event.target.files[0]
-      const reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = () => {
-        this.imageUrl = reader.result
-        this.showModal = true
+      if (file) {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = () => {
+          this.imageUrl = reader.result
+          this.showModal = true
+        }
+      } else {
+        this.imageUrl = null
       }
     },
+
     closeModal () {
       this.showModal = false
-      this.imageUrl = null
+      this.$refs.inputImg.value = null
     }
-    // clickModal () {
-    //   this.showModal = true
-    // }
   }
 }
 </script>
