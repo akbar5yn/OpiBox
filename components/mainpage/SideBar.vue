@@ -68,10 +68,8 @@ export default {
 
   computed: {
     ...mapState('dashboard', ['sideBar'])
-
     // sideBar () {
     //   return this.$store.state.sideBar
-    // }
   },
 
   methods: {
