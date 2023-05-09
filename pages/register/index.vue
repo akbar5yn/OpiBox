@@ -7,40 +7,43 @@
       Lengkapi data di bawah ini untuk mendaftarkan akun
     </p>
     <form class="flex flex-col gap-y-3 mt-4" @submit.prevent="register">
-      <label for="nama">Nama</label>
+      <label for="name">Nama</label>
       <input
-        id="nama"
-        v-model="nama"
+        id="name"
+        v-model="form.name"
         class="border rounded-lg px-2 py-3 text-[14px] outline-none"
         type="text"
-        name="nama"
-        placeholder="Masukan nama"
+        name="name"
+        placeholder="Masukkan nama"
       >
-      <span v-if="!usernameValid" class="error-message">
-        Username is required
-      </span>
+      <div v-if="errors.name !== ''" class="error-message text-red-500 text-sm">
+        {{ errors.name }}
+      </div>
 
       <label for="email">Email</label>
       <input
         id="email"
-        v-model="email"
+        v-model="form.email"
         class="border rounded-lg px-2 py-3 text-[14px] outline-none"
         type="email"
         name="email"
-        placeholder="Masukan email"
+        placeholder="Masukkan email"
       >
-      <div v-if="!emailValid" class="error-message">
-        Email is not valid
+      <div
+        v-if="errors.email !== ''"
+        class="error-message text-red-500 text-sm"
+      >
+        {{ errors.email }}
       </div>
 
       <label for="password">Kata sandi</label>
       <div class="password-input-wrapper flex relative border rounded-lg">
         <input
           id="password"
-          v-model="password"
+          v-model="form.password"
           class="px-2 py-3 w-[90%] text-[14px] outline-none"
           name="password"
-          placeholder="Masukan kata sandi"
+          placeholder="Masukkan kata sandi"
           :type="showPassword ? 'text' : 'password'"
         >
         <img
@@ -58,19 +61,22 @@
           @click="showPassword = !showPassword"
         >
       </div>
-      <div v-if="!passwordValid" class="error-message">
-        Password is required and should contain at least 6 characters and one
-        uppercase letter and one special character
+
+      <div
+        v-if="errors.password !== ''"
+        class="error-message text-red-500 text-sm"
+      >
+        {{ errors.password }}
       </div>
 
       <label for="konfirmasiPassword">Konfirmasi kata sandi</label>
       <div class="password-input-wrapper flex relative border rounded-lg">
         <input
           id="konfirmasiPassword"
-          v-model="konfirmasiPassword"
+          v-model="form.confirmPassword"
           class="px-2 py-3 w-[90%] text-[14px] outline-none"
           name="password"
-          placeholder="Masukan kata sandi"
+          placeholder="Masukkan kata sandi"
           :type="showPasswordConfirmed ? 'text' : 'password'"
         >
         <img
@@ -88,16 +94,19 @@
           @click="showPasswordConfirmed = !showPasswordConfirmed"
         >
       </div>
-      <div v-if="!retypePasswordValid" class="error-message">
-        Password does not match
+      <div
+        v-if="errors.confirmPassword !== ''"
+        class="error-message text-red-500 text-sm"
+      >
+        {{ errors.confirmPassword }}
       </div>
 
       <div class="mt-3">
         <button
           type="submit"
-          :disabled="!formValid"
-          class="text-white bg-[#4A4A4F] p-3 w-full rounded-lg text-[18px]"
-          :class="{ 'btn-disabled': !formValid, 'btn-enabled': formValid }"
+          :disabled="disabled"
+          class="text-white p-3 w-full rounded-lg text-[18px]"
+          :class="{ 'bg-[#6C61E1]': !disabled, 'bg-gray-200': disabled }"
         >
           Daftar
         </button>
@@ -124,37 +133,70 @@ export default {
       showPassword: false,
       showPasswordConfirmed: false,
 
-      nama: '',
-      email: '',
-      password: '',
-      konfirmasiPassword: '',
-      usernameValid: true,
-      emailValid: true,
-      passwordValid: true,
-      retypePasswordValid: true
-    }
-  },
-
-  computed: {
-    formValid () {
-      return (
-        this.usernameValid &&
-        this.emailValid &&
-        this.passwordValid &&
-        this.retypePasswordValid &&
-        this.nama &&
-        this.email &&
-        this.password &&
-        this.konfirmasiPassword
-      )
+      form: {
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      },
+      errors: {
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      },
+      disabled: true
     }
   },
 
   watch: {
-    nama: 'validateUsername',
-    email: 'validateEmail',
-    password: 'validatePassword',
-    konfirmasiPassword: 'validateRetypePassword'
+    form: {
+      deep: true,
+      handler () {
+        if (
+          this.validateEmail() &&
+          this.validatePassword() &&
+          this.validateUsername() &&
+          this.validateRetypePassword()
+        ) {
+          this.checkInput()
+        } else {
+          this.disabled = true
+        }
+      }
+    },
+    'form.name': {
+      handler () {
+        this.errors.name = !this.validateUsername() ? 'Nama harus diisi' : ''
+      }
+    },
+    'form.email': {
+      handler () {
+        this.errors.email =
+          this.form.email === ''
+            ? 'Email harus diisi'
+            : !this.validateEmail()
+                ? 'Email tidak valid'
+                : ''
+      }
+    },
+    'form.password': {
+      handler () {
+        this.errors.password =
+          this.form.password === ''
+            ? 'Password harus diisi'
+            : !this.validatePassword()
+                ? 'Kata sandi minimal harus 6 karakter dan berisi kombinasi angka, huruf, dan karakter khusus (!$@%)'
+                : ''
+      }
+    },
+    'form.confirmPassword': {
+      handler () {
+        this.errors.confirmPassword = !this.validateRetypePassword()
+          ? 'Password tidak cocok'
+          : ''
+      }
+    }
   },
 
   methods: {
@@ -171,32 +213,24 @@ export default {
     },
 
     validateUsername () {
-      this.usernameValid = this.nama.length > 0
+      return this.form.name.length > 0
     },
 
     validateEmail () {
       const emailRegex = /\S+@\S+\.\S+/
-      this.emailValid = emailRegex.test(this.email)
+      return emailRegex.test(this.form.email)
     },
-
     validatePassword () {
       const passwordRegex =
         /^(?=.*[A-Z])(?=.*[_\-!@#$%^&*()+=,./;'])(?=.*[0-9]).{6,}$/
-
-      this.passwordValid = passwordRegex.test(this.password)
-
-      if (
-        this.konfirmasiPassword !== '' &&
-        this.password !== this.konfirmasiPassword
-      ) {
-        this.retypePasswordValid = false
-      } else {
-        this.retypePasswordValid = true
-      }
+      return passwordRegex.test(this.form.password)
     },
 
     validateRetypePassword () {
-      this.retypePasswordValid = this.konfirmasiPassword === this.password
+      return this.form.confirmPassword === this.form.password
+    },
+    checkInput () {
+      this.disabled = !Object.keys(this.form).every(e => this.form[e] !== '')
     }
   }
 }
