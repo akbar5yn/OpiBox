@@ -96,6 +96,14 @@
             {{ errors.confirmNewPassword }}
           </div>
         </div>
+
+        <div
+          v-if="errors.message != ''"
+          class="error-message text-red-500 text-sm max-w-[500px] text-left"
+        >
+          {{ errors.message }}
+        </div>
+
         <button
           :disabled="disabled"
           class="text-white bg-[#6C61E1] p-3 w-full rounded-lg text-[18px] font-normal font-cabinet-grotesk mt-8"
@@ -130,6 +138,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   layout: 'AuthView',
   data () {
@@ -161,22 +170,35 @@ export default {
     },
     'form.newPassword': {
       handler () {
-        this.errors.newPassword = !this.validatePassword()
-          ? 'Password is required and should contain at least 6 characters and one uppercase letter and one special character'
-          : ''
+        this.errors.newPassword =
+          this.form.newPassword === ''
+            ? 'Password baru harus diisi'
+            : !this.validatePassword()
+                ? 'Kata sandi minimal harus 6 karakter dan berisi kombinasi angka, huruf, dan karakter khusus (!$@%)'
+                : ''
       }
     },
     'form.confirmNewPassword': {
       handler () {
         this.errors.confirmNewPassword = !this.passwordMatches()
-          ? 'Password doest not matches!'
+          ? 'Kata sandi tidak cocok'
           : ''
       }
     }
   },
   methods: {
-    submitData () {
-      this.secondSection = !this.secondSection
+    ...mapActions('password', ['updatePassword']),
+    async submitData () {
+      const payload = {
+        password: this.form.newPassword,
+        token: this.$route.query.reset_password_token
+      }
+      const response = await this.updatePassword(payload)
+      if (response.status === 200) {
+        this.secondSection = !this.secondSection
+      } else {
+        this.errors.message = response.data.message
+      }
     },
     checkInput () {
       this.disabled = !Object.keys(this.form).every(e => this.form[e] !== '')

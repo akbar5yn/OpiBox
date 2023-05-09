@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'ForgotPasswordView',
   layout: 'AuthView',
@@ -102,13 +103,28 @@ export default {
     },
     'form.email': {
       handler () {
-        this.errors.email = !this.validateEmail() ? 'Invalid Email' : ''
+        this.errors.email =
+          this.form.email === ''
+            ? 'Email harus diisi'
+            : !this.validateEmail()
+                ? 'Email tidak valid'
+                : ''
       }
     }
   },
   methods: {
-    submitData () {
-      this.secondSection = !this.secondSection
+    ...mapActions('password', ['forgotPassword']),
+    async submitData () {
+      const data = {
+        email: this.form.email
+      }
+      const response = await this.forgotPassword(data)
+      console.log({ response })
+      if (response.status === 200) {
+        this.secondSection = !this.secondSection
+      } else {
+        this.errors.email = response.data.message
+      }
     },
     checkInput () {
       this.disabled = !Object.keys(this.form).every(e => this.form[e] !== '')
