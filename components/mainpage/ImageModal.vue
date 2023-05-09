@@ -55,7 +55,12 @@ export default {
 
   methods: {
     closeModal () {
-      this.$emit('close')
+      const confirmed = confirm(
+        'Apakah anda yakin ingin keluar ? Jika ya,  maka postingan tidak akan disimpan.'
+      )
+      if (confirmed) {
+        this.$emit('close')
+      }
     }
   }
 }
