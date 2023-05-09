@@ -86,7 +86,15 @@ export default {
     }
   },
 
-  router: {},
+  router: {
+    extendRoutes (routes, resolve) {
+      routes.push({
+        name: 'team',
+        path: '/teams/:id',
+        component: resolve(__dirname, 'pages/teams')
+      })
+    }
+  },
 
   scrollBehavior: '~/app/router.scrollBehavior.js',
 
