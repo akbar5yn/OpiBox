@@ -1,7 +1,7 @@
 <template>
   <div>
     <svg
-      class="w-7"
+      :width="width"
       viewBox="0 0 28 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -19,6 +19,12 @@
 
 <script>
 export default {
-  name: 'NotiFication'
+  name: 'NotiFication',
+  props: {
+    width: {
+      type: String,
+      default: '20'
+    }
+  }
 }
 </script>
