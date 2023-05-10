@@ -2,7 +2,7 @@
   <div>
     <div class="section2 flex flex-col gap-7 p-8">
       <div class="flex justify-between">
-        <h1 class="text-[20px] font-medium">
+        <h1 class="text-[20px] font-[590] font-cabinet-grotesk">
           Tim Saya
         </h1>
         <button
@@ -19,7 +19,7 @@
             <NuxtLink
               :to="`/teams/${team.name}`"
               active-class="bg-[#EBEAFB]"
-              class="flex items-center gap-3"
+              class="flex items-center gap-3 font-cabinet-grotesk"
             >
               <div class="bg-[#6C61E1] w-4 h-4 rounded-full" />
               {{ team.name }}
@@ -30,7 +30,7 @@
     </div>
     <NuxtLink
       to="/mainpage/createTeam"
-      class="flex items-center gap-3 py-3 px-8"
+      class="flex items-center gap-3 py-3 px-8 font-cabinet-grotesk"
       active-class="bg-[#EBEAFB]"
     >
       <icon-galery-add-team />

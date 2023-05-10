@@ -17,36 +17,55 @@
       </div>
 
       <!-- nuxt link -->
-      <ul class="flex flex-col gap-4 pb-5">
+      <ul class="flex flex-col gap-4 pb-5 font-cabinet-grotesk">
         <li class="">
           <nuxt-link
-            class="flex gap-3 pl-8 py-3"
+            class="flex gap-3 pl-8 py-3 items-center"
+            active-class="bg-[#EBEAFB]"
+            to="/mainpage/#beranda"
+          >
+            <icon-galery-beranda-icon />
+            Beranda
+          </nuxt-link>
+        </li>
+        <li class="">
+          <nuxt-link
+            class="flex gap-3 pl-8 py-3 items-center"
             active-class="bg-[#EBEAFB]"
             to="/mainpage/#myProject"
           >
-            <icon-galery-my-project />
-            Proyek Saya
+            <icon-galery-noti-fication />
+            Notifikasi
           </nuxt-link>
         </li>
         <li class="">
           <nuxt-link
-            class="flex gap-3 pl-8 py-3"
+            class="flex gap-3 pl-8 py-3 items-center"
+            active-class="bg-[#EBEAFB]"
+            to="/mainpage/#myProfile"
+          >
+            <icon-galery-my-profile />
+            Profile
+          </nuxt-link>
+        </li>
+        <li class="">
+          <nuxt-link
+            class="flex gap-3 pl-8 py-3 items-center"
             active-class="bg-[#EBEAFB]"
             to="#shared"
           >
-            <icon-galery-shared-with-me />
-            Dibagikan dengan Saya
+            <icon-galery-setting-icon />
+            Pengaturan
           </nuxt-link>
         </li>
         <li class="">
-          <nuxt-link
-            class="flex gap-3 pl-8 py-3"
-            active-class="bg-[#EBEAFB]"
-            to="#draft"
+          <button
+            class="flex gap-3 pl-8 py-3 text-[#EB0700] items-center"
+            @click="logoutUser"
           >
-            <icon-galery-draft-project />
-            Draft
-          </nuxt-link>
+            <icon-galery-exit-icon />
+            Keluar
+          </button>
         </li>
       </ul>
     </div>
@@ -54,9 +73,6 @@
 
     <!-- tim saya -->
     <mainpage-my-team />
-    <button class="absolute bottom-0" @click="logoutUser">
-      Logout
-    </button>
   </div>
 </template>
 

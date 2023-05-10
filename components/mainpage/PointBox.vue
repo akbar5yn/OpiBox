@@ -1,5 +1,7 @@
 <template>
-  <div class="topbar p-3 rounded-lg text-white flex flex-col gap-2">
+  <div
+    class="topbar px-[10px] py-[7px] rounded-lg font-cabinet-grotesk text-white font-[570] flex flex-col gap-1"
+  >
     <p>Poin Opibox</p>
     <div class="flex gap-2">
       <img src="../../assets/img/Poin.svg" alt="point">
