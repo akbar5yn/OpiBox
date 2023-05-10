@@ -15,19 +15,27 @@
     </div>
 
     <!-- top bar on desktop-->
-    <div class="hidden xl:flex py-4 px-5 justify-between gap-7 border">
+    <div class="hidden xl:flex py-4 px-5 justify-between gap-7">
       <!-- search column -->
       <mainpage-search-column />
 
       <!-- icon notification -->
-      <div class="hidden notification md:flex items-center">
+      <!-- <div class="hidden notification md:flex items-center">
         <icon-galery-noti-fication />
-      </div>
+      </div> -->
 
       <!-- user image -->
-      <div class="flex items-center">
+      <!-- <div class="flex items-center">
         <mainpage-user-image />
-      </div>
+      </div> -->
+
+      <!-- button create project -->
+      <button
+        class="bg-[#6C61E1] text-white font-cabinet grotesk flex min-w-max px-[13px] py-1 items-center justify-center gap-3 rounded-md"
+      >
+        <icon-galery-add-project width="15" />
+        Buat Proyek
+      </button>
     </div>
   </div>
 </template>
