@@ -1,0 +1,38 @@
+<template>
+  <svg
+    width="36"
+    height="36"
+    viewBox="0 0 36 36"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g clip-path="url(#clip0_3785_21578)">
+      <circle
+        cx="18"
+        cy="18"
+        r="17.25"
+        fill="#EBEAFB"
+        stroke="#AFA9EF"
+        stroke-width="1.5"
+      />
+      <circle cx="18" cy="14.25" r="6" stroke="#AFA9EF" stroke-width="1.5" />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M3.76758 29.0216C6.87641 25.0832 12.0911 22.5 17.9997 22.5C23.9083 22.5 29.123 25.0832 32.2319 29.0216C31.9169 29.4278 31.5849 29.82 31.237 30.1974C28.4668 26.5084 23.6466 24 17.9997 24C12.3529 24 7.53261 26.5084 4.7624 30.1974C4.4145 29.82 4.08254 29.4278 3.76758 29.0216Z"
+        fill="#AFA9EF"
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0_3785_21578">
+        <rect width="36" height="36" fill="white" />
+      </clipPath>
+    </defs>
+  </svg>
+</template>
+
+<script>
+export default {
+  name: 'AvatarIcon'
+}
+</script>

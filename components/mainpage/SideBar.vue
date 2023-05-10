@@ -22,7 +22,7 @@
           <nuxt-link
             class="flex gap-3 pl-8 py-3"
             active-class="bg-[#EBEAFB]"
-            to="#dash"
+            to="/mainpage/#myProject"
           >
             <icon-galery-my-project />
             Proyek Saya
@@ -51,34 +51,31 @@
       </ul>
     </div>
     <hr class="border-1 border-gray-300">
-    <div class="section2 flex flex-col gap-7 p-8">
-      <div class="flex justify-between">
-        <h1 class="text-[20px] font-medium">
-          Tim Saya
-        </h1>
-        <button>
-          <icon-galery-arrow-up />
-        </button>
-      </div>
-      <div class="flex items-center gap-3">
-        <icon-galery-add-team />
-        <p>Buat Tim Baru</p>
-      </div>
-    </div>
+
+    <!-- tim saya -->
+    <mainpage-my-team />
+    <button class="absolute bottom-0" @click="logoutUser">
+      Logout
+    </button>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'SideBar',
 
   computed: {
-    ...mapState('dashboard', ['sideBar', 'nama'])
+    ...mapState('dashboard', ['sideBar'])
+
     // sideBar () {
     //   return this.$store.state.sideBar
     // }
+  },
+
+  methods: {
+    ...mapActions('authentication', ['logoutUser'])
   },
 
   mounted () {

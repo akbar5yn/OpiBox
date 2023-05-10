@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
 
-  server:{
+  server: {
     // false,
   },
 
@@ -20,14 +20,15 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://unpkg.com/swiper/swiper-bundle.min.css' }
+      {
+        rel: 'stylesheet',
+        href: 'https://unpkg.com/swiper/swiper-bundle.min.css'
+      }
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '@/assets/css/main.css',
-  ],
+  css: ['@/assets/css/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -64,12 +65,11 @@ export default {
           type: 'Bearer'
         },
         user: {
-          property: 'data',
+          property: 'data'
         },
         endpoints: {
           login: { url: 'auth/login', method: 'post' },
           logout: { url: 'auth/logout', method: 'delete' },
-          // logout: { url: '/api/auth/logout', method: 'post' },
           user: {
             url: 'me',
             method: 'get',
@@ -79,7 +79,6 @@ export default {
       }
     },
 
-
     redirect: {
       login: '/login',
       logout: '/',
@@ -87,7 +86,15 @@ export default {
     }
   },
 
-  router: {},
+  router: {
+    extendRoutes (routes, resolve) {
+      routes.push({
+        name: 'team',
+        path: '/teams/:id',
+        component: resolve(__dirname, 'pages/teams')
+      })
+    }
+  },
 
   scrollBehavior: '~/app/router.scrollBehavior.js',
 
@@ -97,9 +104,9 @@ export default {
       postcssOptions: {
         plugins: {
           tailwindcss: {},
-          autoprefixer: {},
-        },
-      },
-    },
+          autoprefixer: {}
+        }
+      }
+    }
   }
 }
