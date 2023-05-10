@@ -204,9 +204,9 @@ export default {
     async register () {
       // handle form submission
       const data = {
-        name: this.nama,
-        email: this.email,
-        password: this.password
+        name: this.form.name,
+        email: this.form.email,
+        password: this.form.password
       }
       const response = await this.registerUser(data)
       console.log(response)
