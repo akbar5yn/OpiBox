@@ -203,13 +203,15 @@ export default {
     ...mapActions('authentication', ['registerUser']),
     async register () {
       // handle form submission
+      this.disabled = true
       const data = {
-        name: this.nama,
-        email: this.email,
-        password: this.password
+        name: this.form.name,
+        email: this.form.email,
+        password: this.form.password,
+        password_confirmation: this.form.confirmPassword
       }
-      const response = await this.registerUser(data)
-      console.log(response)
+      await this.registerUser(data)
+      this.disabled = false
     },
 
     validateUsername () {
