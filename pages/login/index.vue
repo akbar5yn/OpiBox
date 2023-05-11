@@ -38,7 +38,7 @@
           v-model="form.password"
           class="px-2 py-3 text-[14px] w-[90%] outline-none"
           name="password"
-          placeholder="Masukan kata sandi"
+          placeholder="Masukkan kata sandi"
           :type="showPassword ? 'text' : 'password'"
         >
         <img
@@ -65,7 +65,7 @@
 
       <div class="flex justify-end underline">
         <nuxt-link to="/forgot-password" class="mt-2 text-[#6C61E1]">
-          Lupa kata sandi ?
+          Lupa kata sandi?
         </nuxt-link>
       </div>
       <div class="mt-3">
@@ -86,6 +86,21 @@
         </p>
       </div>
     </form>
+
+    <modal-base class="text-center">
+      <h1 class="text-[#EB0700] text-[20px] font-bold font-cabinet-grotesk">
+        Email Belum Terverifikasi!
+      </h1>
+      <p class="mt-1 text-[#19191B]">
+        Harap cek kotak masuk emailmu terlebih dahulu<br>
+        atau kirim ulang verifikasi
+      </p>
+      <button
+        class="text-white p-3 w-full rounded-lg text-[18px] font-semibold bg-[#6C61E1] mt-5"
+      >
+        Kirim
+      </button>
+    </modal-base>
   </div>
 </template>
 
