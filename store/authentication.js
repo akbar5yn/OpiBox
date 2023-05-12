@@ -2,11 +2,9 @@ export const actions = {
   // register
   async registerUser (state, data) {
     try {
-      const response = await this.$axios.$post('auth/signup', data)
-      console.log({ data })
-      return response
+      return await this.$axios.$post('auth/signup', data)
     } catch (err) {
-      console.log(err.response.data)
+      return err.response
     }
   },
 
