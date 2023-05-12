@@ -14,11 +14,9 @@ export const actions = {
   async loginUser (state, data) {
     try {
       const response = await this.$auth.loginWith('local', data)
-      console.log({ response })
-      // this.$router.push('/mainpage')
       return response
     } catch (err) {
-      console.log(err.response.data)
+      return err.response
     }
   },
 
@@ -31,6 +29,15 @@ export const actions = {
       return response
     } catch (err) {
       console.log(err.response.data)
+    }
+  },
+
+  // resend verification
+  async resendVerification (state, data) {
+    try {
+      return await this.$axios.$post('auth/resend', data)
+    } catch (err) {
+      return err.response
     }
   }
 }
