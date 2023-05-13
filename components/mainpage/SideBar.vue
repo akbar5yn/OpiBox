@@ -22,7 +22,7 @@
           <nuxt-link
             class="flex gap-3 pl-8 py-3 items-center"
             active-class="bg-[#EBEAFB]"
-            to="/mainpage/#beranda"
+            to="/Beranda"
           >
             <icon-galery-beranda-icon />
             Beranda
@@ -32,7 +32,7 @@
           <nuxt-link
             class="flex gap-3 pl-8 py-3 items-center"
             active-class="bg-[#EBEAFB]"
-            to="/mainpage/#myProject"
+            to="/mainpage/notifikasi"
           >
             <icon-galery-noti-fication />
             Notifikasi
