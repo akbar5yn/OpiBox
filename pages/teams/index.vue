@@ -71,8 +71,6 @@
 <script>
 export default {
   name: 'Teams',
-  layout: 'MainPage',
-
   computed: {
     teamId () {
       return this.$route.params.id
