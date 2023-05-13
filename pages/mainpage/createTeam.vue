@@ -64,7 +64,6 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'CreateTeam',
-  layout: 'MainPage',
 
   data () {
     return {
@@ -100,7 +99,7 @@ export default {
         if (!response.error) {
           // Ganti 'TeamPage' dengan nama halaman tim yang sudah Anda buat
           this.$router.push({
-            name: 'team',
+            name: 'Tim',
             params: { id: response.data.name }
           })
         } else {
