@@ -15,27 +15,29 @@
     </div>
 
     <!-- top bar on desktop-->
-    <div class="hidden xl:flex py-4 px-5 justify-between gap-7">
-      <!-- search column -->
-      <mainpage-search-column />
+    <div class="px-5 justify-between">
+      <div class="hidden xl:flex gap-7">
+        <!-- search column -->
+        <mainpage-search-column />
 
-      <!-- icon notification -->
-      <!-- <div class="hidden notification md:flex items-center">
-        <icon-galery-noti-fication />
-      </div> -->
+        <!-- icon notification -->
+        <!-- <div class="hidden notification md:flex items-center">
+          <icon-galery-noti-fication />
+        </div> -->
 
-      <!-- user image -->
-      <!-- <div class="flex items-center">
-        <mainpage-user-image />
-      </div> -->
+        <!-- user image -->
+        <!-- <div class="flex items-center">
+          <mainpage-user-image />
+        </div> -->
 
-      <!-- button create project -->
-      <button
-        class="bg-[#6C61E1] text-white font-cabinet grotesk flex min-w-max px-[13px] py-1 items-center justify-center gap-3 rounded-md"
-      >
-        <icon-galery-add-project width="15" />
-        Buat Proyek
-      </button>
+        <!-- button create project -->
+        <button
+          class="bg-[#6C61E1] text-white font-cabinet grotesk flex min-w-max px-[13px] py-1 items-center justify-center gap-3 rounded-md"
+        >
+          <icon-galery-add-project width="15" />
+          Buat Proyek
+        </button>
+      </div>
     </div>
   </div>
 </template>
