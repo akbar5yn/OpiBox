@@ -48,11 +48,24 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   layout: 'AuthView',
   data () {
     return {
       verificationStatus: false
+    }
+  },
+  methods: {
+    ...mapActions('authentication', ['verifyAccount'])
+  },
+  async created () {
+    const token = this.$route.query.token_verification
+    const response = await this.verifyAccount(token)
+    if (response.status === 200) {
+      this.verificationStatus = true
+    } else {
+      this.verificationStatus = false
     }
   }
 }
