@@ -37,6 +37,15 @@ export const actions = {
     } catch (err) {
       return err.response
     }
+  },
+  async verifyAccount (state, data) {
+    try {
+      return await this.$axios.$get(
+        `verification-account?token_verification=${data}`
+      )
+    } catch (err) {
+      return err.response
+    }
   }
 }
 
