@@ -122,7 +122,7 @@
 
           <p class="text-center mt-3 mb-5">
             <span class="text-[#8B8B8B]"> Sudah memiliki akun? </span>
-            <nuxt-link to="/login">
+            <nuxt-link to="/login" class="text-[#6C61E1]">
               Masuk
             </nuxt-link>
           </p>
