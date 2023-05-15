@@ -1,6 +1,6 @@
 <template>
   <div class="justify-center w-full max-w-[427px]">
-    <div v-if="verificationStatus" class="text-center">
+    <div v-if="showSuccessVerification" class="text-center">
       <h1 class="text-[40px] font-cabinet-grotesk font normal text-[#19191B]">
         Akun Berhasil Terverifikasi
       </h1>
@@ -16,7 +16,7 @@
         </button>
       </nuxt-link>
     </div>
-    <div v-if="!verificationStatus">
+    <div v-if="showFormResendVerification">
       <h1
         class="text-[40px] font-cabinet-grotesk font normal text-[#19191B] text-center"
       >
@@ -28,10 +28,20 @@
         Maaf, link verifikasi akun telah melewati batas waktu selama 5 hari.
         Masukkan email untuk pengiriman ulang link verifikasi.
       </p>
-      <form class="flex flex-col mt-3" action="">
+
+      <p v-if="errors.default != ''" class="text-red-500 text-sm mt-6">
+        {{ errors.default }}
+      </p>
+
+      <form
+        class="flex flex-col mt-3"
+        action=""
+        @submit.prevent="resendEmailVerification"
+      >
         <label for="email">Email</label>
         <input
           id="email"
+          v-model="form.email"
           class="border rounded-lg px-2 py-3 text-[14px] outline-none flex w-full"
           type="text"
           name="email"
@@ -44,6 +54,19 @@
         </button>
       </form>
     </div>
+    <div
+      v-if="showAfterResendSuccess"
+      class="text-center h-[650px] items-center"
+    >
+      <h1 class="text-[40px] font-cabinet-grotesk font normal text-[#19191B]">
+        Verifikasi Email
+      </h1>
+      <p class="text-[14px] font-open-sans font-normal order-1 text-[#4A4A4F]">
+        Kami telah mengirim pesan ke email:<br>
+        <strong> {{ form.email }}</strong> <br>
+        Cukup ikuti petunjuk untuk melakukan verifikasi email.
+      </p>
+    </div>
   </div>
 </template>
 
@@ -53,19 +76,40 @@ export default {
   layout: 'AuthView',
   data () {
     return {
-      verificationStatus: false
+      showAfterResendSuccess: false,
+      showSuccessVerification: false,
+      showFormResendVerification: false,
+      form: {
+        email: ''
+      },
+      errors: {
+        default: ''
+      }
     }
   },
   methods: {
-    ...mapActions('authentication', ['verifyAccount'])
+    ...mapActions('authentication', ['verifyAccount', 'resendVerification']),
+    async resendEmailVerification () {
+      const data = {
+        email: this.form.email
+      }
+
+      const response = await this.resendVerification(data)
+      if (response.status === 201) {
+        this.showAfterResendSuccess = true
+        this.showFormResendVerification = false
+      } else {
+        this.errors.default = response.data.message
+      }
+    }
   },
   async created () {
     const token = this.$route.query.token_verification
     const response = await this.verifyAccount(token)
     if (response.status === 200) {
-      this.verificationStatus = true
+      this.showSuccessVerification = true
     } else {
-      this.verificationStatus = false
+      this.showFormResendVerification = true
     }
   }
 }

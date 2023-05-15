@@ -189,7 +189,11 @@ export default {
     },
     'form.name': {
       handler () {
-        this.errors.name = !this.validateUsername() ? 'Nama harus diisi' : ''
+        this.errors.name = !this.validateUsername()
+          ? 'Nama harus diisi'
+          : !this.validateFullName()
+              ? 'Nama hanya boleh berisi huruf saja'
+              : ''
       }
     },
     'form.email': {
@@ -236,6 +240,10 @@ export default {
       if (response?.status === 201) {
         this.errors = {}
         this.secondSection = true
+      } else if (Object.keys(response.data.message).length > 0) {
+        Object.keys(response.data.message).forEach((key) => {
+          this.errors[key] = response.data.message[key]
+        })
       } else {
         this.errors.default = response.data.message
       }
@@ -258,6 +266,10 @@ export default {
 
     validateRetypePassword () {
       return this.form.confirmPassword === this.form.password
+    },
+    validateFullName () {
+      const fullNameRegex = /^[a-zA-Z\s]+$/
+      return fullNameRegex.test(this.form.name)
     },
     checkInput () {
       this.disabled = !Object.keys(this.form).every(e => this.form[e] !== '')
