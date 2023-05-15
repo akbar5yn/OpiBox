@@ -71,9 +71,9 @@
 
         <div class="relative">
           <img
-            src="../assets/img/image_homePage1.svg"
+            src="../assets/img/iPhon12.svg"
             alt="handphone"
-            class="mt-7 xl:mt-0 xl:w-[800px] xl:h-[610px]"
+            class="mt-7 xl:mt-0 xl:w-[550px] xl:h-[550px]"
           >
         </div>
       </div>
