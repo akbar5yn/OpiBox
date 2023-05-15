@@ -23,7 +23,7 @@
         Link Telah Kadaluarsa
       </h1>
       <p
-        class="text-[14px] font-open-sans font-normal order-1 text-[#4A4A4F] text-center"
+        class="text-[14px] font-open-sans font-normal order-1 text-[#62626A] text-center"
       >
         Maaf, link verifikasi akun telah melewati batas waktu selama 5 hari.
         Masukkan email untuk pengiriman ulang link verifikasi.
@@ -38,7 +38,7 @@
           placeholder="Masukkan Email"
         >
         <button
-          class="bg-[#6C61E1] text-white font-semibold w-full max-w-[427px] py-4 rounded-lg font-cabinet-grotesk mx-auto mt-8"
+          class="bg-[#6C61E1] text-[#FFFFFF] font-extralight w-full max-w-[427px] py-4 rounded-lg mx-auto mt-8 font-cabinet-grotesk text-[18px]"
         >
           Kirim Ulang
         </button>
