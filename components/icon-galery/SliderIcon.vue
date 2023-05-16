@@ -1,13 +1,13 @@
 <template>
   <svg
-    :width="width"
-    viewBox="0 0 12 8"
+    width="20"
+    height="16"
+    viewBox="0 0 20 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    class="rotate-180"
   >
     <path
-      d="M1.33341 6.16797L6.00008 1.5013L10.6667 6.16797"
+      d="M12 1L19 8M19 8L12 15M19 8L1 8"
       stroke="#19191B"
       stroke-width="2"
       stroke-linecap="round"
@@ -18,12 +18,6 @@
 
 <script>
 export default {
-  name: 'ArrowIcon',
-  props: {
-    width: {
-      type: String,
-      default: '15'
-    }
-  }
+  name: 'SliderIcon'
 }
 </script>

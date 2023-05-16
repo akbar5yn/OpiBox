@@ -82,17 +82,34 @@ export default {
     redirect: {
       login: '/login',
       logout: '/',
-      home: '/mainpage'
+      home: '/beranda'
     }
   },
 
   router: {
     extendRoutes (routes, resolve) {
-      routes.push({
-        name: 'team',
-        path: '/teams/:id',
-        component: resolve(__dirname, 'pages/teams')
-      })
+      routes.push(
+        {
+          name: 'Dibagikan ke Saya',
+          path: '/beranda/my-project',
+          component: resolve(__dirname, 'pages/Beranda/MyProject')
+        },
+        // {
+        //   name: 'Notifikasi',
+        //   path: '/mainpage/notifikasi',
+        //   component: resolve(__dirname, 'pages/mainpage/')
+        // },
+        {
+          name: 'Tim',
+          path: '/teams/:id',
+          component: resolve(__dirname, 'pages/teams')
+        },
+        {
+          name: 'CreateProject',
+          path: '/create-project',
+          component: resolve(__dirname, 'pages/create-project')
+        }
+      )
     }
   },
 

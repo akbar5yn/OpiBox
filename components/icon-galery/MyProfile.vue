@@ -27,6 +27,6 @@
 
 <script>
 export default {
-  name: 'MyProject'
+  name: 'MyProfile'
 }
 </script>

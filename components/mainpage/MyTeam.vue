@@ -2,7 +2,7 @@
   <div>
     <div class="section2 flex flex-col gap-7 p-8">
       <div class="flex justify-between">
-        <h1 class="text-[20px] font-medium">
+        <h1 class="text-[20px] font-[590] font-cabinet-grotesk">
           Tim Saya
         </h1>
         <button
@@ -15,14 +15,24 @@
       </div>
       <div v-if="teamVisibility">
         <ul class="flex flex-col gap-7">
-          <li v-for="team in getTeams" :key="team.id">
+          <!-- <li v-for="team in getTeams" :key="team.id">
             <NuxtLink
               :to="`/teams/${team.name}`"
               active-class="bg-[#EBEAFB]"
-              class="flex items-center gap-3"
+              class="flex items-center gap-3 font-cabinet-grotesk"
             >
               <div class="bg-[#6C61E1] w-4 h-4 rounded-full" />
               {{ team.name }}
+            </NuxtLink>
+          </li> -->
+          <li v-for="team in getTeamsByInv" :key="team.id">
+            <NuxtLink
+              :to="`/teams/${team.team_name}`"
+              active-class="bg-[#EBEAFB]"
+              class="flex items-center gap-3 font-cabinet-grotesk"
+            >
+              <div class="bg-[#6C61E1] w-4 h-4 rounded-full" />
+              {{ team.team_name }}
             </NuxtLink>
           </li>
         </ul>
@@ -30,7 +40,7 @@
     </div>
     <NuxtLink
       to="/mainpage/createTeam"
-      class="flex items-center gap-3 py-3 px-8"
+      class="flex items-center gap-3 py-3 px-8 font-cabinet-grotesk"
       active-class="bg-[#EBEAFB]"
     >
       <icon-galery-add-team />
@@ -49,13 +59,24 @@ export default {
     }
   },
 
-  mounted () {
-    const createdBy = 7
-    this.fetchTeams(createdBy)
+  computed: {
+    ...mapGetters('teams', ['getTeams', 'getTeamsByInv'])
+    // ...mapState('teams', ['teamByInv'])
+    // teamByInv () {
+    //   return this.getTeamsByInv
+    // }
+  },
 
-    this.timer = setInterval(() => {
-      this.fetchTeams(createdBy)
-    }, 5000)
+  mounted () {
+    // const createdBy = this.$auth.user.id
+    // this.fetchTeams()
+    // const invMe = this.$auth.user
+    this.invTeams()
+    // const teamId = 98 // Set the team ID here
+    // this.fetchTeamDetails(teamId)
+    // this.timer = setInterval(() => {
+    //   this.invTeams(invMe)
+    // }, 1000)
   },
 
   beforeDestroy () {
@@ -63,17 +84,10 @@ export default {
   },
 
   methods: {
-    ...mapActions('teams', ['fetchTeams']),
+    ...mapActions('teams', ['fetchTeams', 'invTeams']),
 
     showTeam () {
       this.teamVisibility = !this.teamVisibility
-    }
-  },
-
-  computed: {
-    ...mapGetters('teams', ['getTeams']),
-    teams () {
-      return this.getTeams
     }
   }
 }

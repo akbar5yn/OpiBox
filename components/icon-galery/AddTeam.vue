@@ -1,7 +1,6 @@
 <template>
   <svg
-    width="25"
-    height="25"
+    :width="width"
     viewBox="0 0 25 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -25,6 +24,16 @@
 
 <script>
 export default {
-  name: 'AddTeam'
+  name: 'AddTeam',
+  props: {
+    strokeColor: {
+      type: String,
+      default: 'white'
+    },
+    width: {
+      type: String,
+      default: '25'
+    }
+  }
 }
 </script>
