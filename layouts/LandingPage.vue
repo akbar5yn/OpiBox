@@ -36,7 +36,7 @@
       </div>
 
       <div
-        class="relative playstore-section w-full p-5 bg-[#D7D4F7] flex flex-col items-center md:grid md:grid-cols-2 md:px-[10px] md:items-center md:h-[60] md:mt-12 xl:grid xl:grid-cols-2 3xl:px-[200px] 3xl:h-[70vh] xl:mt-12"
+        class="relative playstore-section w-full lg:pb-[200px] p-5 bg-[#D7D4F7] flex items-center justify-between md:grid md:grid-cols-2 md:px-[10px] md:items-center md:h-[60] md:mt-12 xl:grid xl:grid-cols-2 3xl:px-[200px] 3xl:h-[70vh] xl:mt-12"
       >
         <div
           class="relative text-center flex flex-col items-center xl:text-start xl:w-[75%] xl:left-36 xl:flex xl:flex-col xl:items-start xl:gap-y-8"
@@ -68,21 +68,14 @@
             </p>
           </button>
         </div>
-
-        <div class="relative">
-          <img
-            src="../assets/img/iPhon12.svg"
-            alt="handphone"
-            class="mt-7 xl:mt-0 xl:w-[550px] xl:h-[550px]"
-          >
-        </div>
+        <img class="" src="../assets/img/Illustration.png">
       </div>
     </section>
 
     <!-- service section -->
     <section
       id="layanan"
-      class="relative layanan bg-white h-auto z-10 mt-[-50px] rounded-t-[50px] lg:pt-9 xl:rounded-t-[104px] xl:mt-[-80px] xl:px-[50px] 2xl:p-[120px]"
+      class="relative layanan bg-white h-auto z-10 rounded-t-[50px] lg:pt-9 xl:rounded-t-[104px] xl:-mt-[200px] xl:px-[50px] 2xl:p-[120px]"
     >
       <div
         class="hidden md:flex md:flex-col md:gap-y-20 xl:flex xl:flex-col xl:gap-y-20"
