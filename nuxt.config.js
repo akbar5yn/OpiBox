@@ -103,6 +103,11 @@ export default {
           name: 'Tim',
           path: '/teams/:id',
           component: resolve(__dirname, 'pages/teams')
+        },
+        {
+          name: 'CreateProject',
+          path: '/create-project',
+          component: resolve(__dirname, 'pages/create-project')
         }
       )
     }
