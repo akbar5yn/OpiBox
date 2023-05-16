@@ -20,31 +20,55 @@
         <!-- search column -->
         <mainpage-search-column />
 
-        <!-- icon notification -->
-        <!-- <div class="hidden notification md:flex items-center">
-          <icon-galery-noti-fication />
-        </div> -->
-
-        <!-- user image -->
-        <!-- <div class="flex items-center">
-          <mainpage-user-image />
-        </div> -->
-
-        <!-- button create project -->
-        <button
-          class="bg-[#6C61E1] text-white font-cabinet grotesk flex min-w-max px-[13px] py-1 items-center justify-center gap-3 rounded-md"
+        <label
+          for="image"
+          class="bg-[#6C61E1] text-white font-cabinet grotesk flex min-w-max px-[13px] py-1 items-center justify-center gap-3 rounded-md cursor-pointer"
         >
           <icon-galery-add-project width="15" />
           Buat Proyek
-        </button>
+        </label>
+        <input
+          id="image"
+          ref="inputImg"
+          type="file"
+          name="image"
+          accept="image/*"
+          class="hidden"
+          multiple
+          @change="displayImage"
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
-  name: 'TopBar'
+  name: 'TopBar',
+
+  methods: {
+    ...mapMutations('project', ['setSelectedImg', 'setShowPreview']),
+    displayImage (event) {
+      const files = event.target.files
+
+      for (let i = 0; i < files.length; i++) {
+        const reader = new FileReader()
+        reader.onload = () => {
+          this.setSelectedImg(reader.result)
+          if (i === files.length - 1) {
+            this.setShowPreview(true)
+            this.$router.push({
+              name: 'CreateProject',
+              params: { selectedImg: reader.result }
+            })
+          }
+        }
+        reader.readAsDataURL(files[i])
+      }
+    }
+  }
 }
 </script>
 
