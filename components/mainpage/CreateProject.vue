@@ -97,7 +97,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .modal-overlay {
   position: fixed;
   z-index: 9999;
