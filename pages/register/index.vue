@@ -1,124 +1,144 @@
 <template>
   <div class="w-[500px]">
-    <h1 class="text-[40px] font-normal">
-      Daftar
-    </h1>
-    <p class="text-[14px] font-normal tracking-wider">
-      Lengkapi data di bawah ini untuk mendaftarkan akun
-    </p>
-    <form class="flex flex-col gap-y-3 mt-4" @submit.prevent="register">
-      <label for="name">Nama</label>
-      <input
-        id="name"
-        v-model="form.name"
-        class="border rounded-lg px-2 py-3 text-[14px] outline-none"
-        type="text"
-        name="name"
-        placeholder="Masukkan nama"
-      >
-      <div v-if="errors.name !== ''" class="error-message text-red-500 text-sm">
-        {{ errors.name }}
-      </div>
+    <div v-if="!secondSection">
+      <h1 class="text-[40px] font-normal">
+        Daftar
+      </h1>
+      <p class="text-[14px] font-normal tracking-wider">
+        Lengkapi data di bawah ini untuk mendaftarkan akun
+      </p>
 
-      <label for="email">Email</label>
-      <input
-        id="email"
-        v-model="form.email"
-        class="border rounded-lg px-2 py-3 text-[14px] outline-none"
-        type="email"
-        name="email"
-        placeholder="Masukkan email"
-      >
-      <div
-        v-if="errors.email !== ''"
-        class="error-message text-red-500 text-sm"
-      >
-        {{ errors.email }}
-      </div>
+      <p v-if="errors.default != ''" class="text-red-500 text-sm">
+        {{ errors.default }}
+      </p>
 
-      <label for="password">Kata sandi</label>
-      <div class="password-input-wrapper flex relative border rounded-lg">
+      <form class="flex flex-col gap-y-3 mt-4" @submit.prevent="register">
+        <label for="name">Nama</label>
         <input
-          id="password"
-          v-model="form.password"
-          class="px-2 py-3 w-[90%] text-[14px] outline-none"
-          name="password"
-          placeholder="Masukkan kata sandi"
-          :type="showPassword ? 'text' : 'password'"
+          id="name"
+          v-model="form.name"
+          class="border rounded-lg px-2 py-3 text-[14px] outline-none"
+          type="text"
+          name="name"
+          placeholder="Masukkan nama"
         >
-        <img
-          v-if="showPassword"
-          src="../../assets/img/eye-slash.svg"
-          alt="eye"
-          class="absolute cursor-pointer self-center flex right-4"
-          @click="showPassword = !showPassword"
+        <div
+          v-if="errors.name !== ''"
+          class="error-message text-red-500 text-sm"
         >
-        <img
-          v-if="!showPassword"
-          src="../../assets/img/eye.svg"
-          alt="eye"
-          class="absolute cursor-pointer self-center flex right-4"
-          @click="showPassword = !showPassword"
-        >
-      </div>
+          {{ errors.name }}
+        </div>
 
-      <div
-        v-if="errors.password !== ''"
-        class="error-message text-red-500 text-sm"
-      >
-        {{ errors.password }}
-      </div>
-
-      <label for="konfirmasiPassword">Konfirmasi kata sandi</label>
-      <div class="password-input-wrapper flex relative border rounded-lg">
+        <label for="email">Email</label>
         <input
-          id="konfirmasiPassword"
-          v-model="form.confirmPassword"
-          class="px-2 py-3 w-[90%] text-[14px] outline-none"
-          name="password"
-          placeholder="Masukkan kata sandi"
-          :type="showPasswordConfirmed ? 'text' : 'password'"
+          id="email"
+          v-model="form.email"
+          class="border rounded-lg px-2 py-3 text-[14px] outline-none"
+          type="email"
+          name="email"
+          placeholder="Masukkan email"
         >
-        <img
-          v-if="showPasswordConfirmed"
-          src="../../assets/img/eye-slash.svg"
-          alt="eye"
-          class="absolute cursor-pointer self-center flex right-4"
-          @click="showPasswordConfirmed = !showPasswordConfirmed"
+        <div
+          v-if="errors.email !== ''"
+          class="error-message text-red-500 text-sm"
         >
-        <img
-          v-if="!showPasswordConfirmed"
-          src="../../assets/img/eye.svg"
-          alt="eye"
-          class="absolute cursor-pointer self-center flex right-4"
-          @click="showPasswordConfirmed = !showPasswordConfirmed"
-        >
-      </div>
-      <div
-        v-if="errors.confirmPassword !== ''"
-        class="error-message text-red-500 text-sm"
-      >
-        {{ errors.confirmPassword }}
-      </div>
+          {{ errors.email }}
+        </div>
 
-      <div class="mt-3">
-        <button
-          type="submit"
-          :disabled="disabled"
-          class="text-white p-3 w-full rounded-lg text-[18px]"
-          :class="{ 'bg-[#6C61E1]': !disabled, 'bg-gray-200': disabled }"
-        >
-          Daftar
-        </button>
+        <label for="password">Kata sandi</label>
+        <div class="password-input-wrapper flex relative border rounded-lg">
+          <input
+            id="password"
+            v-model="form.password"
+            class="px-2 py-3 w-[90%] text-[14px] outline-none"
+            name="password"
+            placeholder="Masukkan kata sandi"
+            :type="showPassword ? 'text' : 'password'"
+          >
+          <img
+            v-if="showPassword"
+            src="../../assets/img/eye-slash.svg"
+            alt="eye"
+            class="absolute cursor-pointer self-center flex right-4"
+            @click="showPassword = !showPassword"
+          >
+          <img
+            v-if="!showPassword"
+            src="../../assets/img/eye.svg"
+            alt="eye"
+            class="absolute cursor-pointer self-center flex right-4"
+            @click="showPassword = !showPassword"
+          >
+        </div>
 
-        <p class="text-center mt-3 mb-5">
-          <span class="text-[#8B8B8B]"> Sudah memiliki akun? </span>
-          <nuxt-link to="/login">
-            Masuk
-          </nuxt-link>
-        </p>
-      </div>
-    </form>
+        <div
+          v-if="errors.password !== ''"
+          class="error-message text-red-500 text-sm"
+        >
+          {{ errors.password }}
+        </div>
+
+        <label for="konfirmasiPassword">Konfirmasi kata sandi</label>
+        <div class="password-input-wrapper flex relative border rounded-lg">
+          <input
+            id="konfirmasiPassword"
+            v-model="form.confirmPassword"
+            class="px-2 py-3 w-[90%] text-[14px] outline-none"
+            name="password"
+            placeholder="Masukkan kata sandi"
+            :type="showPasswordConfirmed ? 'text' : 'password'"
+          >
+          <img
+            v-if="showPasswordConfirmed"
+            src="../../assets/img/eye-slash.svg"
+            alt="eye"
+            class="absolute cursor-pointer self-center flex right-4"
+            @click="showPasswordConfirmed = !showPasswordConfirmed"
+          >
+          <img
+            v-if="!showPasswordConfirmed"
+            src="../../assets/img/eye.svg"
+            alt="eye"
+            class="absolute cursor-pointer self-center flex right-4"
+            @click="showPasswordConfirmed = !showPasswordConfirmed"
+          >
+        </div>
+        <div
+          v-if="errors.confirmPassword !== ''"
+          class="error-message text-red-500 text-sm"
+        >
+          {{ errors.confirmPassword }}
+        </div>
+
+        <div class="mt-3">
+          <button
+            type="submit"
+            :disabled="disabled"
+            class="text-white p-3 w-full rounded-lg text-[18px]"
+            :class="{ 'bg-[#6C61E1]': !disabled, 'bg-gray-200': disabled }"
+          >
+            Daftar
+          </button>
+
+          <p class="text-center mt-3 mb-5">
+            <span class="text-[#8B8B8B]"> Sudah memiliki akun? </span>
+            <nuxt-link to="/login" class="text-[#6C61E1]">
+              Masuk
+            </nuxt-link>
+          </p>
+        </div>
+      </form>
+    </div>
+    <div v-if="secondSection" class="text-center h-[650px] items-center">
+      <h1 class="text-[40px] font-cabinet-grotesk font normal text-[#19191B]">
+        Verifikasi Email
+      </h1>
+      <p class="text-[14px] font-open-sans font-normal order-1 text-[#4A4A4F]">
+        Kami telah mengirim pesan ke email:<br>
+        <strong> {{ form.email }}</strong> <br>
+        Cukup ikuti petunjuk untuk melakukan verifikasi email.
+      </p>
+    </div>
   </div>
 </template>
 
@@ -143,9 +163,11 @@ export default {
         name: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        default: ''
       },
-      disabled: true
+      disabled: true,
+      secondSection: false
     }
   },
 
@@ -167,7 +189,11 @@ export default {
     },
     'form.name': {
       handler () {
-        this.errors.name = !this.validateUsername() ? 'Nama harus diisi' : ''
+        this.errors.name = !this.validateUsername()
+          ? 'Nama harus diisi'
+          : !this.validateFullName()
+              ? 'Nama hanya boleh berisi huruf saja'
+              : ''
       }
     },
     'form.email': {
@@ -203,13 +229,25 @@ export default {
     ...mapActions('authentication', ['registerUser']),
     async register () {
       // handle form submission
+      this.disabled = true
       const data = {
         name: this.form.name,
         email: this.form.email,
-        password: this.form.password
+        password: this.form.password,
+        password_confirmation: this.form.confirmPassword
       }
       const response = await this.registerUser(data)
-      console.log(response)
+      if (response?.status === 201) {
+        this.errors = {}
+        this.secondSection = true
+      } else if (Object.keys(response.data.message).length > 0) {
+        Object.keys(response.data.message).forEach((key) => {
+          this.errors[key] = response.data.message[key]
+        })
+      } else {
+        this.errors.default = response.data.message
+      }
+      this.disabled = false
     },
 
     validateUsername () {
@@ -228,6 +266,10 @@ export default {
 
     validateRetypePassword () {
       return this.form.confirmPassword === this.form.password
+    },
+    validateFullName () {
+      const fullNameRegex = /^[a-zA-Z\s]+$/
+      return fullNameRegex.test(this.form.name)
     },
     checkInput () {
       this.disabled = !Object.keys(this.form).every(e => this.form[e] !== '')
