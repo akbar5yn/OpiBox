@@ -49,6 +49,12 @@
               class="h-full border-dashed border-[#95959D] flex flex-col items-center justify-center"
             >
               <button
+                class="absolute top-5 left-5 rounded-full shadow-xl p-4"
+                @click="removeImage(currentImageIndex)"
+              >
+                <icon-galery-trash-icon />
+              </button>
+              <button
                 v-if="currentImageIndex !== 0"
                 class="slider-button absolute top-1/2 left-3 rounded-full shadow-xl p-4"
                 @click="prevImage"
@@ -139,7 +145,7 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'CreateProject',
-  layout: 'CreateProject',
+  layout: 'ProjectSession',
   data () {
     return {
       currentImageIndex: 0,
@@ -169,7 +175,8 @@ export default {
       'setShowPreview',
       'setShowModal',
       'setJudul',
-      'setDesc'
+      'setDesc',
+      'removeSelectedImage'
     ]),
     ...mapActions('project', ['postData']),
 
@@ -189,20 +196,18 @@ export default {
       }
     },
 
-    // displayImage (files) {
-    //   for (let i = 0; i < files.length; i++) {
-    //     const file = files[i]
-    //     const reader = new FileReader()
-    //     reader.onload = (event) => {
-    //       const imageUrl = URL.createObjectURL(file) // URL gambar menggunakan URL.createObjectURL
-    //       this.setSelectedImg(imageUrl)
-    //       if (i === files.length - 1) {
-    //         this.setShowPreview(true)
-    //       }
-    //     }
-    //     reader.readAsDataURL(file)
-    //   }
-    // },
+    removeImage (index) {
+      this.removeSelectedImage(index)
+      if (this.selectedImg.length === 0) {
+        // Jika tidak ada gambar yang tersisa, atur currentImageIndex ke 0 dan setShowPreview ke false
+        this.currentImageIndex = 0
+        this.setShowPreview(false)
+      } else if (this.currentImageIndex >= this.selectedImg.length) {
+        // Jika melebihi, atur currentImageIndex ke indeks terakhir (jumlah gambar - 1)
+        this.currentImageIndex = this.selectedImg.length - 1
+      }
+    },
+
     nextImage () {
       if (this.currentImageIndex < this.selectedImg.length - 1) {
         this.currentImageIndex++
@@ -223,8 +228,19 @@ export default {
         // ... Do any additional logic or API calls to save the data ...
       }
       try {
-        await this.postData() // Mengirimkan data form menggunakan action Vuex
+        // Mengirimkan data form menggunakan action Vuex
         // Handling jika posting data berhasil
+        const response = await this.postData()
+        if (!response.error) {
+          // Ganti 'TeamPage' dengan nama halaman tim yang sudah Anda buat
+          this.$router.push({
+            name: 'LihatProyek',
+            params: { id: response.data.id }
+          })
+        } else {
+          // Menangani error saat membuat tim
+          throw new Error('Gagal membuat tim baru')
+        }
       } catch (error) {
         // Handling jika terjadi kesalahan saat posting data
         console.error(error)

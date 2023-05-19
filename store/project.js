@@ -7,7 +7,8 @@ export const state = () => ({
     desc: '',
     projectType: '',
     selectedAkses: ''
-  }
+  },
+  projects: []
 })
 
 export const mutations = {
@@ -37,6 +38,14 @@ export const mutations = {
 
   setAkses (state, setAkses) {
     state.form.selectedAkses = setAkses
+  },
+
+  removeSelectedImage (state, index) {
+    state.selectedImg.splice(index, 1)
+  },
+
+  setMyProject (state, myProject) {
+    state.projects = myProject
   }
 }
 
@@ -47,10 +56,11 @@ export const actions = {
         title: state.form.judul,
         caption: state.form.desc,
         project_type: state.form.projectType,
-        team_id: state.form.selectedAkses,
-        images_attributes: [{ image: state.selectedImg[0] }]
+        // team_id: state.form.selectedAkses,
+        project_teams_attributes: [{ team_id: state.form.selectedAkses }],
+        images_attributes: [{ image: state.selectedImg }]
       }
-
+      console.log(postData)
       const response = await this.$axios.$post('projects', postData)
       console.log(response)
       return response
@@ -58,27 +68,25 @@ export const actions = {
       console.error(error)
       throw new Error('Failed to post data')
     }
+  },
+
+  removeSelectedImage ({ commit }, index) {
+    commit('removeSelectedImage', index)
+  },
+
+  async fetchMyProject ({ commit }) {
+    try {
+      const response = await this.$axios.$get('projects')
+      const myProject = response.data
+      commit('setMyProject', myProject)
+    } catch (error) {
+      console.error(error)
+    }
   }
-  // async postData ({ state }) {
-  //   try {
-  //     const formData = new FormData()
-  //     formData.append('images_attributes[0][image]', state.selectedImg)
-  //     formData.append('title', state.form.judul)
-  //     formData.append('caption', state.form.desc)
-  //     formData.append('project_type', state.form.projectType)
-  //     formData.append('team_id', state.form.selectedAkses)
+}
 
-  //     const response = await this.$axios.$post('projects', formData, {
-  //       headers: {
-  //         'Content-Type': 'multipart/form-data'
-  //       }
-  //     })
-
-  //     console.log('Gambar berhasil diunggah.', response.data)
-  //     return response.data
-  //   } catch (error) {
-  //     console.error('Terjadi kesalahan saat mengunggah gambar.', error)
-  //     throw new Error('Gagal mengunggah gambar')
-  //   }
-  // }
+export const getters = {
+  getMyProject: (state) => {
+    return state.projects
+  }
 }

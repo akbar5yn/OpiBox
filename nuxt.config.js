@@ -82,7 +82,7 @@ export default {
     redirect: {
       login: '/login',
       logout: '/',
-      home: '/beranda'
+      home: '/Beranda'
     }
   },
 
@@ -90,9 +90,14 @@ export default {
     extendRoutes (routes, resolve) {
       routes.push(
         {
-          name: 'Dibagikan ke Saya',
+          name: 'Proyek Saya',
           path: '/beranda/my-project',
           component: resolve(__dirname, 'pages/Beranda/MyProject')
+        },
+        {
+          name: 'LihatProyek',
+          path: '/project/:id',
+          component: resolve(__dirname, 'pages/project')
         },
         // {
         //   name: 'Notifikasi',
