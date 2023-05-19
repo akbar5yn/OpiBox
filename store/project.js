@@ -7,7 +7,8 @@ export const state = () => ({
     desc: '',
     projectType: '',
     selectedAkses: ''
-  }
+  },
+  projects: []
 })
 
 export const mutations = {
@@ -41,6 +42,10 @@ export const mutations = {
 
   removeSelectedImage (state, index) {
     state.selectedImg.splice(index, 1)
+  },
+
+  setMyProject (state, myProject) {
+    state.projects = myProject
   }
 }
 
@@ -67,5 +72,21 @@ export const actions = {
 
   removeSelectedImage ({ commit }, index) {
     commit('removeSelectedImage', index)
+  },
+
+  async fetchMyProject ({ commit }) {
+    try {
+      const response = await this.$axios.$get('projects')
+      const myProject = response.data
+      commit('setMyProject', myProject)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const getters = {
+  getMyProject: (state) => {
+    return state.projects
   }
 }
