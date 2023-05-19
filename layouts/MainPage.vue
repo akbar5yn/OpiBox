@@ -14,16 +14,37 @@
           v-if="deepLink"
           class="font-cabinet-grotesk text-3xl font-[600] py-9 px-5 flex items-center gap-4"
         >
-          <NuxtLink to="/beranda" class="text-[#95959D]">
+          <NuxtLink to="/Beranda" class="text-[#95959D]">
             Beranda
           </NuxtLink>
           <icon-galery-arrow-icon class="rotate-90" width="25" />
           <NuxtLink to="">
-            Dibagikan ke Saya
+            Proyek Saya
           </NuxtLink>
         </div>
         <!-- topbar -->
-        <mainpage-top-bar />
+        <div v-if="deepLink" class="flex px-5 mt-11">
+          <label
+            for="image"
+            class="bg-[#6C61E1] text-white font-cabinet grotesk flex min-w-max px-[13px] py-1 items-center justify-center gap-3 rounded-md cursor-pointer"
+          >
+            <icon-galery-add-project width="15" />
+            Buat Proyek
+          </label>
+          <input
+            id="image"
+            ref="inputImg"
+            type="file"
+            name="image"
+            accept="image/*"
+            class="hidden"
+            multiple
+            @change="displayImage"
+          >
+        </div>
+        <div v-if="isBeranda">
+          <mainpage-top-bar />
+        </div>
       </div>
 
       <Nuxt />
@@ -35,6 +56,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   name: 'MainPage',
   computed: {
@@ -43,6 +65,27 @@ export default {
     },
     deepLink () {
       return this.$route.path.startsWith('/beranda/my-project')
+    }
+  },
+  methods: {
+    ...mapMutations('project', ['setSelectedImg', 'setShowPreview']),
+    displayImage (event) {
+      const files = event.target.files
+
+      for (let i = 0; i < files.length; i++) {
+        const reader = new FileReader()
+        reader.onload = () => {
+          this.setSelectedImg(reader.result)
+          if (i === files.length - 1) {
+            this.setShowPreview(true)
+            this.$router.push({
+              name: 'CreateProject',
+              params: { selectedImg: reader.result }
+            })
+          }
+        }
+        reader.readAsDataURL(files[i])
+      }
     }
   }
 }

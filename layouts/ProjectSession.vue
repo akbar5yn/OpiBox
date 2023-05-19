@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'CreateProject'
+  name: 'ProjectSession'
 }
 </script>

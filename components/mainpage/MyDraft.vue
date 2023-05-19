@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-3 max-w-screen-2xl snap-x overflow-x-scroll">
+  <div class="my-draft flex gap-3 max-w-screen-2xl snap-x overflow-x-scroll">
     <!-- kondisi belum ada project -->
     <div
       v-if="noProject"
@@ -183,3 +183,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.my-draft::-webkit-scrollbar {
+  display: none;
+}
+</style>

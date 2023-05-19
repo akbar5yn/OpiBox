@@ -145,7 +145,7 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'CreateProject',
-  layout: 'CreateProject',
+  layout: 'ProjectSession',
   data () {
     return {
       currentImageIndex: 0,
@@ -228,8 +228,19 @@ export default {
         // ... Do any additional logic or API calls to save the data ...
       }
       try {
-        await this.postData() // Mengirimkan data form menggunakan action Vuex
+        // Mengirimkan data form menggunakan action Vuex
         // Handling jika posting data berhasil
+        const response = await this.postData()
+        if (!response.error) {
+          // Ganti 'TeamPage' dengan nama halaman tim yang sudah Anda buat
+          this.$router.push({
+            name: 'LihatProyek',
+            params: { id: response.data.id }
+          })
+        } else {
+          // Menangani error saat membuat tim
+          throw new Error('Gagal membuat tim baru')
+        }
       } catch (error) {
         // Handling jika terjadi kesalahan saat posting data
         console.error(error)
