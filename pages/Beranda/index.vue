@@ -6,7 +6,11 @@
         <h1 class="text-[20px] font-semibold">
           Proyek Saya
         </h1>
-        <nuxt-link class="text-[#62626A]" to="">
+        <nuxt-link
+          v-if="getMyProject.length > 3"
+          class="text-[#62626A]"
+          to="/beranda/my-project"
+        >
           Lihat semua
         </nuxt-link>
       </div>
@@ -19,7 +23,7 @@
         <h1 class="text-[20px] font-semibold">
           Dibagikan ke Saya
         </h1>
-        <nuxt-link class="text-[#62626A]" to="/beranda/my-project">
+        <nuxt-link class="text-[#62626A]" to="">
           Lihat semua
         </nuxt-link>
       </div>
@@ -31,9 +35,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Mainpage',
   layout: 'MainPage',
-  middleware: 'auth'
+  middleware: 'auth',
+
+  computed: {
+    ...mapGetters('project', ['getMyProject'])
+  }
 }
 </script>
