@@ -42,7 +42,7 @@
           <nuxt-link
             class="flex gap-3 pl-8 py-3 items-center"
             active-class="bg-[#EBEAFB]"
-            to="/mainpage/#myProfile"
+            to="/profile"
           >
             <icon-galery-my-profile />
             Profile
