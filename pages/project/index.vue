@@ -59,7 +59,7 @@
           </div>
           <div class="flex justify-between border-t-2 border-b-2 mt-5 py-5">
             <p class="font-cabinet-grotesk text-xl">
-              50
+              {{ likes }}
               <span class="text-[#95959D]">Suka</span>
             </p>
             <p class="font-cabinet-grotesk text-xl">
@@ -72,16 +72,36 @@
             </p>
           </div>
           <div class="flex justify-between border-b-2 mt-5 py-5">
-            <p class="font-cabinet-grotesk text-xl flex items-center gap-2">
-              <icon-galery-like-icon />
+            <p
+              v-if="isLiked"
+              class="font-cabinet-grotesk text-xl flex items-center gap-2"
+            >
+              <icon-galery-like-icon
+                class="cursor-pointer"
+                fill="red"
+                stroke="red"
+                @like-clicked="handleDissLikeProject"
+              />
+              <span class="text-[#95959D]">Suka</span>
+            </p>
+            <p
+              v-else
+              class="font-cabinet-grotesk text-xl flex items-center gap-2"
+            >
+              <icon-galery-like-icon
+                class="cursor-pointer"
+                :fill="fillColor"
+                :stroke="strokeColor"
+                @like-clicked="handleLikeProject"
+              />
               <span class="text-[#95959D]">Suka</span>
             </p>
             <p class="font-cabinet-grotesk text-xl flex items-center gap-2">
-              <icon-galery-comment-icon />
+              <icon-galery-comment-icon class="cursor-pointer" />
               <span class="text-[#95959D]">Komentar</span>
             </p>
             <p class="font-cabinet-grotesk text-xl flex items-center gap-2">
-              <icon-galery-retweet-icon />
+              <icon-galery-retweet-icon class="cursor-pointer" />
               <span class="text-[#95959D]">Modifikasi</span>
             </p>
           </div>
@@ -91,19 +111,23 @@
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'Project',
   layout: 'ProjectSession',
+  data () {
+    return {
+      fillColor: '#fff',
+      strokeColor: '#19191B'
+    }
+  },
 
   computed: {
-    // projectId () {
-    //   const params = this.$route.params.id
-    //   console.log(params)
-    //   return params
-    // }
+    // get project
     ...mapState('project', ['projects']),
+    ...mapState('likes', ['likes', 'isLiked']),
+
     projectTitle () {
       const projectId = parseInt(this.$route.params.id)
       const project = this.projects.find(project => project.id === projectId)
@@ -113,19 +137,43 @@ export default {
       const projectId = parseInt(this.$route.params.id)
       const project = this.projects.find(project => project.id === projectId)
       return project ? project.caption : ''
+    },
+    projectImage () {
+      const projectId = parseInt(this.$route.params.id)
+      const project = this.projects.find(project => project.id === projectId)
+      return project ? project.images : ''
     }
-    // projectImage () {
-    //   const projectId = parseInt(this.$route.params.id)
-    //   const project = this.projects.find(project => project.id === projectId)
-    //   return project ? project.images.id.image : ''
-    // }
   },
   mounted () {
+    const projectId = this.$route.params.id // Mengambil nilai parameter 'id' dari properti $route
     this.fetchMyProject()
+    this.fetchLike(projectId)
+
+    // Ambil nilai isLiked dari penyimpanan lokal saat komponen dibuat
+    const isLiked = localStorage.getItem('isLiked')
+    // Atur nilai isLiked ke state jika tersedia
+    if (isLiked !== null) {
+      this.setLike(isLiked === 'true')
+    }
   },
 
   methods: {
-    ...mapActions('project', ['fetchMyProject'])
+    ...mapActions('project', ['fetchMyProject']),
+    ...mapActions('likes', ['fetchLike', 'likeProject', 'disLike']),
+    ...mapMutations('likes', ['setLike']),
+
+    async handleLikeProject () {
+      const projectId = this.$route.params.id // Ganti dengan ID proyek yang sesuai
+      await this.likeProject(projectId)
+      this.setLike(true)
+    },
+
+    async handleDissLikeProject () {
+      const projectId = this.$route.params.id // Ganti dengan ID proyek yang sesuai
+      // const userId = this.$store.state.auth.user.id
+      await this.disLike(projectId)
+      this.setLike(false)
+    }
   }
 }
 </script>
