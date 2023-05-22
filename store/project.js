@@ -76,7 +76,7 @@ export const actions = {
 
   async fetchMyProject ({ commit }) {
     try {
-      const response = await this.$axios.$get('projects')
+      const response = await this.$axios.$get('projects/my_projects')
       const myProject = response.data
       commit('setMyProject', myProject)
     } catch (error) {
