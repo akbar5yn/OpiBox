@@ -215,14 +215,14 @@ export default {
                 ? 'Kata sandi minimal harus 6 karakter dan berisi kombinasi angka, huruf, dan karakter khusus (!$@%)'
                 : ''
         this.errors.confirmPassword = !this.validateRetypePassword()
-          ? 'Password tidak cocok'
+          ? 'Kata sandi tidak cocok'
           : ''
       }
     },
     'form.confirmPassword': {
       handler () {
         this.errors.confirmPassword = !this.validateRetypePassword()
-          ? 'Password tidak cocok'
+          ? 'Kata sandi tidak cocok'
           : ''
       }
     }
