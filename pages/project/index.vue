@@ -27,25 +27,32 @@
             id="image-preview"
             class="h-full border-dashed border-[#95959D] flex flex-col items-center justify-center"
           >
-            <!-- <button
+            <button
               v-if="currentImageIndex !== 0"
               class="slider-button absolute top-1/2 left-3 rounded-full shadow-xl p-4"
               @click="prevImage"
             >
               <icon-galery-slider-icon class="rotate-180" />
-            </button> -->
+            </button>
             <img
+              v-if="Array.isArray(projectImage) && projectImage.length > 0"
+              :src="projectImage[currentImageIndex]"
+              alt="Image preview"
+              class="object-contain w-full h-[100%]"
+            >
+            <img
+              v-else
               :src="projectImage"
               alt="Image preview"
               class="object-contain w-full h-[100%]"
             >
-            <!-- <button
-              v-if="selectedImg.length > 1"
+            <button
+              v-if="Array.isArray(projectImage) && projectImage.length > 1"
               class="slider-button absolute top-1/2 right-3 rounded-full shadow-xl p-4"
               @click="nextImage"
             >
               <icon-galery-slider-icon />
-            </button> -->
+            </button>
           </div>
         </div>
         <div class="p-9 mt-16 border-r w-1/2">
@@ -111,13 +118,14 @@
   </div>
 </template>
 <script>
-import { mapState, mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 
 export default {
   name: 'Project',
   layout: 'ProjectSession',
   data () {
     return {
+      currentImageIndex: 0,
       fillColor: '#fff',
       strokeColor: '#19191B'
     }
@@ -126,6 +134,7 @@ export default {
   computed: {
     // get project
     ...mapState('project', ['projects']),
+    ...mapGetters('project', ['getMyProject']),
     ...mapState('likes', ['likes', 'isLiked']),
 
     projectTitle () {
@@ -141,12 +150,16 @@ export default {
     projectImage () {
       const projectId = parseInt(this.$route.params.id)
       const project = this.projects.find(project => project.id === projectId)
-      return project ? project.images : ''
+      if (project && project.images && project.images.length > 0) {
+        return project.images.map(image => image.image.url)
+      }
+      return []
     }
   },
   mounted () {
     const projectId = this.$route.params.id // Mengambil nilai parameter 'id' dari properti $route
-    this.fetchMyProject()
+    const fetchMyProject = this.fetchMyProject()
+    console.log(fetchMyProject)
     this.fetchLike(projectId)
 
     // Ambil nilai isLiked dari penyimpanan lokal saat komponen dibuat
@@ -173,6 +186,17 @@ export default {
       // const userId = this.$store.state.auth.user.id
       await this.disLike(projectId)
       this.setLike(false)
+    },
+    prevImage () {
+      if (this.currentImageIndex > 0) {
+        this.currentImageIndex--
+      }
+    },
+
+    nextImage () {
+      if (this.currentImageIndex < this.projectImage.length - 1) {
+        this.currentImageIndex++
+      }
     }
   }
 }
