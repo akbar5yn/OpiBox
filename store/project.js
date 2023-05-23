@@ -50,6 +50,7 @@ export const mutations = {
 }
 
 export const actions = {
+  // post project
   async postData ({ state }) {
     try {
       const postData = {
@@ -60,12 +61,9 @@ export const actions = {
         project_teams_attributes: [{ team_id: state.form.selectedAkses }],
         images_attributes: [{ image: state.selectedImg }]
       }
-      console.log(postData)
       const response = await this.$axios.$post('projects', postData)
-      console.log(response)
       return response
     } catch (error) {
-      console.error(error)
       throw new Error('Failed to post data')
     }
   },
@@ -74,9 +72,10 @@ export const actions = {
     commit('removeSelectedImage', index)
   },
 
+  // get project
   async fetchMyProject ({ commit }) {
     try {
-      const response = await this.$axios.$get('projects')
+      const response = await this.$axios.$get('projects/my_projects')
       const myProject = response.data
       commit('setMyProject', myProject)
     } catch (error) {
@@ -86,6 +85,7 @@ export const actions = {
 }
 
 export const getters = {
+  // get project
   getMyProject: (state) => {
     return state.projects
   }
