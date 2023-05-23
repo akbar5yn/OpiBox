@@ -40,7 +40,7 @@
             >
               {{ project.title }} <br>
 
-              <span class="font-normal text-sm">{{ project.createdAgo }}</span>
+              <span class="font-normal text-sm">{{ project.created_at }}</span>
             </h2>
           </div>
           <button>
@@ -54,7 +54,6 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import moment from 'moment'
 
 export default {
   name: 'MyProject',
@@ -78,50 +77,7 @@ export default {
     showProject (projectId) {
       // Navigasi ke halaman detail proyek berdasarkan ID
       this.$router.push(`/project/${projectId}`)
-    },
-    updateProjectStatus () {
-      this.noProject = this.getMyProject.length === 0
-      this.projectExists = this.getMyProject.length > 0
-
-      this.getMyProject.forEach((project) => {
-        const createdTime = moment(project.created_at)
-        const currentTime = moment()
-        const duration = moment.duration(currentTime.diff(createdTime))
-        let createdAgo
-
-        if (duration.asMinutes() < 1) {
-          createdAgo = 'Baru saja dibuat'
-        } else if (duration.asMinutes() < 60) {
-          createdAgo =
-            Math.floor(duration.asMinutes()) === 1
-              ? '1 menit yang lalu'
-              : `${Math.floor(duration.asMinutes())} menit yang lalu`
-        } else if (duration.asHours() < 24) {
-          const hoursDiff = duration.asHours()
-          createdAgo =
-            hoursDiff === 1
-              ? '1 jam yang lalu'
-              : `${Math.floor(hoursDiff)} jam yang lalu`
-        } else {
-          const daysDiff = duration.asDays()
-          createdAgo =
-            daysDiff === 1
-              ? '1 hari yang lalu'
-              : `${Math.floor(daysDiff)} hari yang lalu`
-        }
-
-        project.createdAgo = createdAgo
-      })
     }
-  },
-  watch: {
-    getMyProject () {
-      this.updateProjectStatus()
-    }
-  },
-
-  created () {
-    this.updateProjectStatus()
   }
 }
 </script>
