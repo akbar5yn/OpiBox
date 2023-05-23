@@ -47,26 +47,48 @@ import { mapMutations } from 'vuex'
 
 export default {
   name: 'TopBar',
+  data () {
+    return {
+      dataFile: []
+    }
+  },
 
   methods: {
     ...mapMutations('project', ['setSelectedImg', 'setShowPreview']),
     displayImage (event) {
       const files = event.target.files
 
-      for (let i = 0; i < files.length; i++) {
-        const reader = new FileReader()
-        reader.onload = () => {
-          this.setSelectedImg(reader.result)
-          if (i === files.length - 1) {
+      Object.keys(files).forEach(async (key) => {
+        this.dataFile.push({
+          file: files[key],
+          base64: await this.readFromFile(files[key])
+        })
+        this.setSelectedImg({
+          file: files[key],
+          base64: await this.readFromFile(files[key])
+        })
+      })
+    },
+
+    readFromFile (file) {
+      return new Promise((resolve, reject) => {
+        const fr = new FileReader()
+        fr.onload = () => {
+          const base64 = fr.result
+
+          resolve(base64)
+
+          if (this.dataFile.length > 0 && base64) {
             this.setShowPreview(true)
             this.$router.push({
               name: 'CreateProject',
-              params: { selectedImg: reader.result }
+              params: { selectedImg: this.dataFile }
             })
           }
         }
-        reader.readAsDataURL(files[i])
-      }
+        fr.onerror = err => reject(err)
+        fr.readAsDataURL(file)
+      })
     }
   }
 }
