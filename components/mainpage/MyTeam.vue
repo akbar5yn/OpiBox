@@ -27,7 +27,7 @@
           </li> -->
           <li v-for="team in getTeamsByInv" :key="team.id">
             <NuxtLink
-              :to="`/teams/${team.team_name}`"
+              :to="`/teams/${team.id}`"
               active-class="bg-[#EBEAFB]"
               class="flex items-center gap-3 font-cabinet-grotesk"
             >
