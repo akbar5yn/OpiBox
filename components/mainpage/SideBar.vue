@@ -58,15 +58,6 @@
             Pengaturan
           </nuxt-link>
         </li>
-        <li class="">
-          <button
-            class="flex gap-3 pl-8 py-3 text-[#EB0700] items-center"
-            @click="logoutUser"
-          >
-            <icon-galery-exit-icon />
-            Keluar
-          </button>
-        </li>
       </ul>
     </div>
     <hr class="border-1 border-gray-300">
