@@ -62,7 +62,7 @@
                 <icon-galery-slider-icon class="rotate-180" />
               </button>
               <img
-                :src="selectedImg[currentImageIndex]"
+                :src="selectedImg[currentImageIndex]?.base64"
                 alt="Image preview"
                 class="object-contain w-full h-[100%]"
               >
@@ -152,7 +152,8 @@ export default {
       form: {
         judul: '',
         deskripsi: ''
-      }
+      },
+      dataFile: []
     }
   },
 
@@ -166,6 +167,11 @@ export default {
         this.form.deskripsi !== '' &&
         projectType !== ''
       )
+    }
+  },
+  watch: {
+    dataFile () {
+      this.setShowPreview(true)
     }
   },
 
@@ -184,16 +190,24 @@ export default {
 
     displayImage (event) {
       const files = event.target.files
-      for (let i = 0; i < files.length; i++) {
-        const reader = new FileReader()
-        reader.onload = () => {
-          this.setSelectedImg(reader.result)
-          if (i === files.length - 1) {
-            this.setShowPreview(true)
-          }
-        }
-        reader.readAsDataURL(files[i])
-      }
+      Object.keys(files).forEach(async (key) => {
+        this.dataFile.push({
+          file: files[key],
+          base64: await this.readFromFile(files[key])
+        })
+        this.setSelectedImg({
+          file: files[key],
+          base64: await this.readFromFile(files[key])
+        })
+      })
+    },
+    readFromFile (file) {
+      return new Promise((resolve, reject) => {
+        const fr = new FileReader()
+        fr.onload = () => resolve(fr.result)
+        fr.onerror = err => reject(err)
+        fr.readAsDataURL(file)
+      })
     },
 
     removeImage (index) {
@@ -230,7 +244,7 @@ export default {
       try {
         // Mengirimkan data form menggunakan action Vuex
         // Handling jika posting data berhasil
-        const response = await this.postData()
+        const response = await this.postData(this.form)
         if (!response.error) {
           // Ganti 'TeamPage' dengan nama halaman tim yang sudah Anda buat
           this.$router.push({
