@@ -1,11 +1,18 @@
 <template>
   <div class="flex flex-col py-8 px-4">
-    <h1 class="font-semibold text-2xl">
-      Aktivitas Saya
-    </h1>
+    <div class="flex justify-between">
+      <h1 class="font-semibold text-2xl font-cabinet-grotesk">
+        Aktivitas Saya
+      </h1>
+      <div class="flex text-[30px] font-cabinet-grotesk">
+        <h1>Profil</h1>
+      </div>
+    </div>
     <div class="flex item-center mt-6">
       <div class="flex-grow min-h-screen">
-        <div class="flex items-center justify-between text-center">
+        <div
+          class="flex items-center text-normal justify-between text-center text-[16px] font-open-sans"
+        >
           <h2 class="w-full py-2 border-b-2 border-gray-300">
             Riwayat Suka
           </h2>
@@ -24,18 +31,16 @@
             class="w-[55px] rounded-full"
             :src="detailUser.avatar.image.thumbnail.url"
           >
-          <img
-            class="cursor-pointer"
-            src="../../assets/img/editIcon.svg"
-            @click="editProfileVisibility = true"
-          >
+          <!-- <div class="flex text-[30px]">
+            <h1>Profil</h1>
+          </div> -->
         </div>
         <span class="font-semibold">{{ detailUser.name }}</span>
         <span class="text-sm font-[400] text-opacity-50">
           {{ detailUser.email }}
         </span>
         <p
-          class="outline outline-gray-300 text-sm p-2 rounded-lg italic text-gray-300"
+          class="outline outline-gray-300 text-sm p-2 rounded-lg italic text-gray-300 font-open-sans"
         >
           <span v-if="!detailUser.bio">Belum ada deskripsi</span>
           <span v-if="detailUser.bio">{{ detailUser.bio }}</span>
@@ -48,7 +53,7 @@
       width="800"
       @close-modal="editProfileVisibility = false"
     >
-      <h1 class="text-2xl font-semibold">
+      <h1 class="text-2xl font-semibold font-cabinet-grotesk">
         Ubah Profile
       </h1>
       <div class="flex items-center space-x-12 mt-10">
@@ -75,7 +80,7 @@
                 {{ errors.name }}
               </div>
             </div>
-            <div class="flex flex-col space-y-2">
+            <div class="flex flex-col space-y-2 font-open-sans">
               <label>Email</label>
               <input
                 class="border border-gray-300 p-2 rounded-lg bg-gray-200 text-gray-400"
