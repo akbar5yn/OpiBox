@@ -3,7 +3,7 @@
     class="flex flex-col cursor-pointer border-b-2 border-black border-opacity-10 gap-y-2"
   >
     <div
-      class="flex justify-between w-[300px] md:w-[500px] xl:text-[30px] xl:font-bold xl:w-[692px] xl:py-4"
+      class="flex justify-between w-full xl:text-[20px] xl:font-bold xl:py-4"
       @click="handleDesc"
     >
       <p class="w-[553px] break-words">

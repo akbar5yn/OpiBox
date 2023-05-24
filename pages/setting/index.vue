@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center">
+  <div class="flex">
     <div
       class="max-w-[300px] w-full min-h-screen py-6 border-r-2 border-gray-200"
     >
@@ -11,6 +11,7 @@
       <div class="mt-6 font-open-sans">
         <div
           class="flex items-center cursor-pointer pl-8 pr-4 py-3 group hover:bg-gray-200 hover:border-r-2 hover:border-[#6C61E1]"
+          @click="selectedMenu = 'profile'"
         >
           <svg
             class="fill-black stroke-black group-hover:fill-[#6C61E1] group-hover:stroke-[#6C61E1]"
@@ -43,6 +44,7 @@
         </div>
         <div
           class="flex items-center cursor-pointer pl-8 pr-4 py-3 group hover:bg-gray-200 hover:border-r-2 hover:border-[#6C61E1]"
+          @click="selectedMenu = 'password'"
         >
           <svg
             class="stroke-black group-hover:stroke-[#6C61E1]"
@@ -84,6 +86,7 @@
       <div class="font-open-sans">
         <div
           class="flex items-center cursor-pointer pl-8 pr-4 py-3 group hover:bg-gray-200 hover:border-r-2 hover:border-[#6C61E1]"
+          @click="selectedMenu = 'help'"
         >
           <svg
             class="stroke-gray-500 group-hover:stroke-[#6C61E1]"
@@ -131,9 +134,10 @@
         </div>
       </div>
     </div>
-    <div class="flex-grow min-h-screen p-6">
-      <!-- <UpdateProfile /> -->
-      <UpdatePassword />
+    <div class="flex-grow min-h-screen p-6 overflow-y-scroll">
+      <UpdateProfile v-if="selectedMenu == 'profile'" />
+      <UpdatePassword v-if="selectedMenu == 'password'" />
+      <Help v-if="selectedMenu == 'help'" />
     </div>
   </div>
 </template>
@@ -145,6 +149,11 @@ export default {
   middleware: 'auth',
   async asyncData ({ store }) {
     await store.dispatch('profile/getProfile')
+  },
+  data () {
+    return {
+      selectedMenu: 'profile'
+    }
   }
 }
 </script>
