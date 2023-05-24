@@ -53,7 +53,7 @@
       width="800"
       @close-modal="editProfileVisibility = false"
     >
-      <h1 class="text-2xl font-semibold">
+      <h1 class="text-2xl font-semibold font-cabinet-grotesk">
         Ubah Profile
       </h1>
       <div class="flex items-center space-x-12 mt-10">

@@ -3,12 +3,12 @@
     <div
       class="max-w-[300px] w-full min-h-screen py-6 border-r-2 border-gray-200"
     >
-      <h1 class="text-2xl font-semibold mx-4">
+      <h1 class="text-2xl font-semibold mx-4 font-cabinet-grotesk">
         Pengaturan
       </h1>
 
       <!-- Top Sidebar  -->
-      <div class="mt-6">
+      <div class="mt-6 font-open-sans">
         <div
           class="flex items-center cursor-pointer pl-8 pr-4 py-3 group hover:bg-gray-200 hover:border-r-2 hover:border-[#6C61E1]"
         >
@@ -81,7 +81,7 @@
       <hr class="w-full my-4">
 
       <!-- Bottom Sidebar  -->
-      <div class="">
+      <div class="font-open-sans">
         <div
           class="flex items-center cursor-pointer pl-8 pr-4 py-3 group hover:bg-gray-200 hover:border-r-2 hover:border-[#6C61E1]"
         >

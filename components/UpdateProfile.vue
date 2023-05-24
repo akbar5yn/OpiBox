@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1 class="text-2xl font-semibold">
-      Ubah Profile
+    <h1 class="text-2xl font-semibold font-cabinet-grotesk">
+      Ubah Profil
     </h1>
     <div class="flex space-x-12 mt-10">
       <div>
@@ -9,9 +9,11 @@
           class="max-w-[100px] w-full rounded-full"
           :src="detailUser.avatar.image.thumbnail.url"
         >
-        <button>Ubah foto profile</button>
+        <button class="font-open-sans font-normal text-[16px]">
+          Ubah foto profil
+        </button>
       </div>
-      <div class="w-full">
+      <div class="w-full font-open-sans text-[#19191B]">
         <form class="flex flex-col space-y-4" @submit.prevent="changeProfile">
           <div class="flex flex-col space-y-2">
             <label>Nama</label>
