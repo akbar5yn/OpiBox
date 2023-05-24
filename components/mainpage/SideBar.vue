@@ -52,7 +52,7 @@
           <nuxt-link
             class="flex gap-3 pl-8 py-3 items-center"
             active-class="bg-[#EBEAFB]"
-            to="#shared"
+            to="/setting"
           >
             <icon-galery-setting-icon />
             Pengaturan

@@ -7,33 +7,106 @@
       Kata sandi minimal harus enam karakter dan berisi kombinasi angka, huruf,
       dan karakter khusus (!$@%)
     </p>
-    <form class="flex flex-col space-y-4">
+    <form class="flex flex-col space-y-4" @submit.prevent="updatePassword">
       <div class="flex flex-col space-y-2">
         <label for="old-password">Kata sandi saat ini</label>
-        <input
-          id="old-password"
-          class="p-2 border border-gray-400 rounded-lg"
-          type="password"
-          placeholder="Masukkan kata sandi lama"
+        <div class="relative flex items-center">
+          <input
+            id="old-password"
+            v-model="form.oldPassword"
+            class="p-2 border border-gray-400 rounded-lg flex-grow w-full"
+            :type="oldPasswordVisibility ? 'text' : 'password'"
+            placeholder="Masukkan kata sandi lama"
+          >
+          <img
+            v-if="oldPasswordVisibility"
+            src="../assets/img/eye-slash.svg"
+            alt="eye"
+            class="absolute cursor-pointer right-4"
+            @click="oldPasswordVisibility = !oldPasswordVisibility"
+          >
+          <img
+            v-if="!oldPasswordVisibility"
+            src="../assets/img/eye.svg"
+            alt="eye"
+            class="absolute cursor-pointer right-4"
+            @click="oldPasswordVisibility = !oldPasswordVisibility"
+          >
+        </div>
+        <div
+          v-if="errors.oldPassword != ''"
+          class="error-message text-red-500 text-sm max-w-[500px] text-left"
         >
+          {{ errors.oldPassword }}
+        </div>
       </div>
       <div class="flex flex-col space-y-2">
         <label for="new-password">Kata sandi baru</label>
-        <input
-          id="new-password"
-          class="p-2 border border-gray-400 rounded-lg"
-          type="password"
-          placeholder="Masukkan kata sandi baru"
+        <div class="relative flex items-center">
+          <input
+            id="new-password"
+            v-model="form.newPassword"
+            class="p-2 border border-gray-400 rounded-lg flex-grow w-full"
+            :type="newPasswordVisibility ? 'text' : 'password'"
+            placeholder="Masukkan kata sandi baru"
+          >
+          <img
+            v-if="newPasswordVisibility"
+            src="../assets/img/eye-slash.svg"
+            alt="eye"
+            class="absolute cursor-pointer right-4"
+            @click="newPasswordVisibility = !newPasswordVisibility"
+          >
+          <img
+            v-if="!newPasswordVisibility"
+            src="../assets/img/eye.svg"
+            alt="eye"
+            class="absolute cursor-pointer right-4"
+            @click="newPasswordVisibility = !newPasswordVisibility"
+          >
+        </div>
+        <div
+          v-if="errors.newPassword != ''"
+          class="error-message text-red-500 text-sm max-w-[500px] text-left"
         >
+          {{ errors.newPassword }}
+        </div>
       </div>
       <div class="flex flex-col space-y-2">
         <label for="confirm-new-password">Ulangi kata sandi baru</label>
-        <input
-          id="confirm-new-password"
-          class="p-2 border border-gray-400 rounded-lg"
-          type="password"
-          placeholder="Ulangi kata sandi baru"
+        <div class="relative flex items-center">
+          <input
+            id="confirm-new-password"
+            v-model="form.confirmNewPassword"
+            class="p-2 border border-gray-400 rounded-lg flex-grow w-full"
+            :type="confirmNewPasswordVisibility ? 'text' : 'password'"
+            placeholder="Ulangi kata sandi baru"
+          >
+          <img
+            v-if="confirmNewPasswordVisibility"
+            src="../assets/img/eye-slash.svg"
+            alt="eye"
+            class="absolute cursor-pointer right-4"
+            @click="
+              confirmNewPasswordVisibility = !confirmNewPasswordVisibility
+            "
+          >
+          <img
+            v-if="!confirmNewPasswordVisibility"
+            src="../assets/img/eye.svg"
+            alt="eye"
+            class="absolute cursor-pointer right-4"
+            @click="
+              confirmNewPasswordVisibility = !confirmNewPasswordVisibility
+            "
+          >
+        </div>
+        <div
+          v-if="errors.confirmNewPassword != ''"
+          class="error-message text-red-500 text-sm max-w-[500px] text-left"
         >
+          {{ errors.confirmNewPassword }}
+        </div>
       </div>
       <button
         class="text-white p-3 w-full max-w-[200px] rounded-lg text-[18px] ml-auto"
@@ -51,6 +124,9 @@ export default {
   data () {
     return {
       disabled: true,
+      oldPasswordVisibility: false,
+      newPasswordVisibility: false,
+      confirmNewPasswordVisibility: false,
       form: {
         oldPassword: '',
         newPassword: '',
@@ -61,6 +137,59 @@ export default {
         newPassword: '',
         confirmNewPassword: ''
       }
+    }
+  },
+  watch: {
+    form: {
+      deep: true,
+      handler () {
+        if (this.passwordMatches() && this.validatePassword()) {
+          this.checkInput()
+        } else {
+          this.disabled = true
+        }
+      }
+    },
+    'form.newPassword': {
+      handler () {
+        this.errors.newPassword =
+          this.form.newPassword === ''
+            ? 'Password baru harus diisi'
+            : !this.validatePassword()
+                ? 'Kata sandi minimal harus 6 karakter dan berisi kombinasi angka, huruf, dan karakter khusus (!$@%)'
+                : ''
+        this.errors.confirmNewPassword = !this.passwordMatches()
+          ? 'Kata sandi tidak cocok'
+          : ''
+      }
+    },
+    'form.confirmNewPassword': {
+      handler () {
+        this.errors.confirmNewPassword = !this.passwordMatches()
+          ? 'Kata sandi tidak cocok'
+          : ''
+      }
+    }
+  },
+  methods: {
+    updatePassword () {
+      const data = {
+        current_password: this.form.oldPassword,
+        password: this.form.newPassword
+      }
+
+      console.log({ data })
+    },
+    checkInput () {
+      this.disabled = !Object.keys(this.form).every(e => this.form[e] !== '')
+    },
+    passwordMatches () {
+      return this.form.newPassword === this.form.confirmNewPassword
+    },
+    validatePassword () {
+      const passwordRegex =
+        /^(?=.*[A-Z])(?=.*[_\-!@#$%^&*()+=,./;'])(?=.*[0-9]).{6,}$/
+      return passwordRegex.test(this.form.newPassword)
     }
   }
 }

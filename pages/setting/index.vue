@@ -132,7 +132,8 @@
       </div>
     </div>
     <div class="flex-grow min-h-screen p-6">
-      <UpdateProfile />
+      <!-- <UpdateProfile /> -->
+      <UpdatePassword />
     </div>
   </div>
 </template>
