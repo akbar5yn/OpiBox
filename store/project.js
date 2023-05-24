@@ -12,8 +12,8 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setSelectedImg (state, selectedImg) {
-    state.selectedImg.push(selectedImg)
+  setSelectedImg (state, val) {
+    state.selectedImg = [...state.selectedImg, val]
   },
 
   setShowPreview (state, value) {
@@ -51,17 +51,23 @@ export const mutations = {
 
 export const actions = {
   // post project
-  async postData ({ state }) {
+  async postData (ctx) {
     try {
-      const postData = {
-        title: state.form.judul,
-        caption: state.form.desc,
-        project_type: state.form.projectType,
-        // team_id: state.form.selectedAkses,
-        project_teams_attributes: [{ team_id: state.form.selectedAkses }],
-        images_attributes: [{ image: state.selectedImg }]
-      }
-      const response = await this.$axios.$post('projects', postData)
+      const headers = { 'Content-Type': 'multipart/form-data' }
+      const formData = new FormData()
+      formData.append('title', ctx.state.form.judul)
+      formData.append('caption', ctx.state.form.desc)
+      formData.append('project_type', ctx.state.form.projectType)
+      formData.append(
+        'project_teams_attributes[0][team_id]',
+        ctx.state.form.selectedAkses
+      )
+      ctx.state.selectedImg.forEach((val, index) => {
+        formData.append(`images_attributes[${index}][image]`, val.file)
+      })
+      const response = await this.$axios.$post('projects', formData, {
+        headers
+      })
       return response
     } catch (error) {
       throw new Error('Failed to post data')
