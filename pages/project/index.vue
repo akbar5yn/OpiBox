@@ -64,6 +64,8 @@
               {{ projectDesc }}
             </p>
           </div>
+
+          <!-- to see detail like = comment = modification -->
           <div class="flex justify-between border-t-2 border-b-2 mt-5 py-5">
             <p class="font-cabinet-grotesk text-xl">
               {{ likes }}
@@ -78,6 +80,8 @@
               <span class="text-[#95959D]">Modifikasi</span>
             </p>
           </div>
+
+          <!-- give reaction to project -->
           <div class="flex justify-between border-b-2 mt-5 py-5">
             <p
               v-if="isLiked"
@@ -103,7 +107,11 @@
               />
               <span class="text-[#95959D]">Suka</span>
             </p>
-            <p class="font-cabinet-grotesk text-xl flex items-center gap-2">
+            <!-- :to="`/comments/${getMyProject[currentImageIndex].id}`" -->
+            <p
+              class="font-cabinet-grotesk text-xl flex items-center gap-2 cursor-pointer"
+              @click="sendComment(getMyProject[currentImageIndex].id)"
+            >
               <icon-galery-comment-icon class="cursor-pointer" />
               <span class="text-[#95959D]">Komentar</span>
             </p>
@@ -158,8 +166,7 @@ export default {
   },
   mounted () {
     const projectId = this.$route.params.id // Mengambil nilai parameter 'id' dari properti $route
-    const fetchMyProject = this.fetchMyProject()
-    console.log(fetchMyProject)
+    this.fetchMyProject()
     this.fetchLike(projectId)
 
     // Ambil nilai isLiked dari penyimpanan lokal saat komponen dibuat
@@ -174,6 +181,10 @@ export default {
     ...mapActions('project', ['fetchMyProject']),
     ...mapActions('likes', ['fetchLike', 'likeProject', 'disLike']),
     ...mapMutations('likes', ['setLike']),
+
+    sendComment (projectId) {
+      this.$router.push(`/comments/${projectId}`)
+    },
 
     async handleLikeProject () {
       const projectId = this.$route.params.id // Ganti dengan ID proyek yang sesuai

@@ -63,7 +63,7 @@
                   id="aksesTeam"
                   v-model="selectedAkses"
                   type="radio"
-                  name="aksesTim"
+                  name="aksesTeam"
                   :value="team.team_id"
                   @change="handleAksesTimChange"
                 >
