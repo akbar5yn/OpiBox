@@ -187,13 +187,13 @@ export default {
     }
   },
   methods: {
-    ...mapActions('password', ['updatePassword']),
+    ...mapActions('password', ['resetPassword']),
     async submitData () {
       const payload = {
         password: this.form.newPassword,
         token: this.$route.query.reset_password_token
       }
-      const response = await this.updatePassword(payload)
+      const response = await this.resetPassword(payload)
       if (response.status === 200) {
         this.secondSection = !this.secondSection
       } else {

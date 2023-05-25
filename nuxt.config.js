@@ -46,7 +46,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    '@nuxtjs/toast',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -117,6 +118,13 @@ export default {
       )
     }
   },
+
+  toast: {
+    position: 'top-center',
+    duration: 2000,
+    theme: 'bubble'
+  },
+
 
   scrollBehavior: '~/app/router.scrollBehavior.js',
 

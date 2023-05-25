@@ -1,43 +1,53 @@
 <template>
   <div class="flex flex-col space-y-6">
     <h1 class="text-2xl font-semibold">
-      Ubah Profile
+      Ubah Kata Sandi
     </h1>
     <p class="text-[#8B8B8B]">
       Kata sandi minimal harus enam karakter dan berisi kombinasi angka, huruf,
       dan karakter khusus (!$@%)
     </p>
-    <form class="flex flex-col space-y-4" @submit.prevent="updatePassword">
+    <div
+      v-if="response.status != ''"
+      class="error-message text-sm max-w-[500px] text-left"
+      :class="{
+        'text-red-500': response.status != '200',
+        'text-green-500': response.status == '200'
+      }"
+    >
+      {{ response.message }}
+    </div>
+    <form class="flex flex-col space-y-4" @submit.prevent="updateUserPassword">
       <div class="flex flex-col space-y-2">
         <label for="old-password">Kata sandi saat ini</label>
         <div class="relative flex items-center">
           <input
             id="old-password"
-            v-model="form.oldPassword"
+            v-model="form.current_password"
             class="p-2 border border-gray-400 rounded-lg flex-grow w-full"
-            :type="oldPasswordVisibility ? 'text' : 'password'"
+            :type="currentPasswordVisibility ? 'text' : 'password'"
             placeholder="Masukkan kata sandi lama"
           >
           <img
-            v-if="oldPasswordVisibility"
+            v-if="currentPasswordVisibility"
             src="../assets/img/eye-slash.svg"
             alt="eye"
             class="absolute cursor-pointer right-4"
-            @click="oldPasswordVisibility = !oldPasswordVisibility"
+            @click="currentPasswordVisibility = !currentPasswordVisibility"
           >
           <img
-            v-if="!oldPasswordVisibility"
+            v-if="!currentPasswordVisibility"
             src="../assets/img/eye.svg"
             alt="eye"
             class="absolute cursor-pointer right-4"
-            @click="oldPasswordVisibility = !oldPasswordVisibility"
+            @click="currentPasswordVisibility = !currentPasswordVisibility"
           >
         </div>
         <div
-          v-if="errors.oldPassword != ''"
+          v-if="errors.current_password != ''"
           class="error-message text-red-500 text-sm max-w-[500px] text-left"
         >
-          {{ errors.oldPassword }}
+          {{ errors.current_password }}
         </div>
       </div>
       <div class="flex flex-col space-y-2">
@@ -66,10 +76,10 @@
           >
         </div>
         <div
-          v-if="errors.newPassword != ''"
+          v-if="errors.password != ''"
           class="error-message text-red-500 text-sm max-w-[500px] text-left"
         >
-          {{ errors.newPassword }}
+          {{ errors.password }}
         </div>
       </div>
       <div class="flex flex-col space-y-2">
@@ -119,23 +129,28 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'UpdatePassword',
   data () {
     return {
       disabled: true,
-      oldPasswordVisibility: false,
+      currentPasswordVisibility: false,
       newPasswordVisibility: false,
       confirmNewPasswordVisibility: false,
       form: {
-        oldPassword: '',
+        current_password: '',
         newPassword: '',
         confirmNewPassword: ''
       },
       errors: {
-        oldPassword: '',
-        newPassword: '',
+        current_password: '',
+        password: '',
         confirmNewPassword: ''
+      },
+      response: {
+        status: '',
+        message: ''
       }
     }
   },
@@ -172,13 +187,36 @@ export default {
     }
   },
   methods: {
-    updatePassword () {
+    ...mapActions('password', ['updatePassword']),
+    async updateUserPassword () {
+      this.disabled = true
       const data = {
-        current_password: this.form.oldPassword,
+        current_password: this.form.current_password,
         password: this.form.newPassword
       }
+      const response = await this.updatePassword(data)
+      /* this.response.status =
+        response.status === 200 ? response.status : response.data.status
+      this.response.message =
+        response.status === 200 ? response.message : response.data.message */
 
-      console.log({ data })
+      console.log({ response })
+
+      if (response?.status === 200) {
+        this.$toast.success(response.message)
+        this.response.status = response.status
+        // this.response.message = response.message
+        this.errors = {}
+      } else if (Object.keys(response.data.message).length > 0) {
+        Object.keys(response.data.message).forEach((key) => {
+          this.errors[key] = response.data.message[key]
+        })
+      } else {
+        this.response.status = response.data.status
+        this.response.message = response.data.message
+      }
+
+      this.disabled = false
     },
     checkInput () {
       this.disabled = !Object.keys(this.form).every(e => this.form[e] !== '')
