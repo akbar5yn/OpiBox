@@ -55,7 +55,6 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import moment from 'moment'
-
 export default {
   name: 'MyProject',
   data () {
@@ -67,14 +66,11 @@ export default {
   computed: {
     ...mapGetters('project', ['getMyProject'])
   },
-
   mounted () {
     this.fetchMyProject()
   },
-
   methods: {
     ...mapActions('project', ['fetchMyProject']),
-
     showProject (projectId) {
       // Navigasi ke halaman detail proyek berdasarkan ID
       this.$router.push(`/project/${projectId}`)
@@ -84,7 +80,7 @@ export default {
       this.projectExists = this.getMyProject.length > 0
 
       this.getMyProject.forEach((project) => {
-        const createdTime = moment(project.created_at)
+        const createdTime = moment(project.created_at, 'DD/MM/YYYY HH:mm')
         const currentTime = moment()
         const duration = moment.duration(currentTime.diff(createdTime))
         let createdAgo
@@ -92,22 +88,11 @@ export default {
         if (duration.asMinutes() < 1) {
           createdAgo = 'Baru saja dibuat'
         } else if (duration.asMinutes() < 60) {
-          createdAgo =
-            Math.floor(duration.asMinutes()) === 1
-              ? '1 menit yang lalu'
-              : `${Math.floor(duration.asMinutes())} menit yang lalu`
+          createdAgo = `${Math.floor(duration.asMinutes())} menit yang lalu`
         } else if (duration.asHours() < 24) {
-          const hoursDiff = duration.asHours()
-          createdAgo =
-            hoursDiff === 1
-              ? '1 jam yang lalu'
-              : `${Math.floor(hoursDiff)} jam yang lalu`
+          createdAgo = `${Math.floor(duration.asHours())} jam yang lalu`
         } else {
-          const daysDiff = duration.asDays()
-          createdAgo =
-            daysDiff === 1
-              ? '1 hari yang lalu'
-              : `${Math.floor(daysDiff)} hari yang lalu`
+          createdAgo = `${Math.floor(duration.asDays())} hari yang lalu`
         }
 
         project.createdAgo = createdAgo
@@ -119,13 +104,11 @@ export default {
       this.updateProjectStatus()
     }
   },
-
   created () {
     this.updateProjectStatus()
   }
 }
 </script>
-
 <style scoped>
 .my-project::-webkit-scrollbar {
   display: none;

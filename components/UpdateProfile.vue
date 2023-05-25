@@ -3,18 +3,24 @@
     <h1 class="text-2xl font-semibold font-cabinet-grotesk">
       Ubah Profil
     </h1>
-    <div class="flex space-x-12 mt-10">
+    <form class="flex space-x-12 mt-10" @submit.prevent="changeProfile">
       <div>
         <img
-          class="max-w-[100px] w-full rounded-full"
-          :src="detailUser.avatar.image.thumbnail.url"
+          ref="avatar"
+          class="max-w-[100px] max-h-[100px] h-full w-full rounded-full"
+          :src="profileImage"
         >
         <button class="font-open-sans font-normal text-[16px]">
           Ubah foto profil
         </button>
+        <input
+          type="file"
+          accept="image/png, image/jpeg"
+          @change="handleImage($event)"
+        >
       </div>
       <div class="w-full font-open-sans text-[#19191B]">
-        <form class="flex flex-col space-y-4" @submit.prevent="changeProfile">
+        <div class="flex flex-col space-y-4">
           <div class="flex flex-col space-y-2">
             <label>Nama</label>
             <input
@@ -59,13 +65,13 @@
           >
             Simpan Perubahan
           </button>
-        </form>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -80,11 +86,17 @@ export default {
         name: '',
         bio: '',
         avatar: ''
-      }
+      },
+      previewAvatar: ''
     }
   },
   computed: {
-    ...mapState('profile', ['detailUser'])
+    ...mapState('profile', ['detailUser']),
+    profileImage () {
+      return this.detailUser.avatar.image.thumbnail.url !== null
+        ? this.detailUser.avatar.image.thumbnail.url
+        : require('../assets/img/defaultAvatar.png')
+    }
   },
   watch: {
     form: {
@@ -104,12 +116,19 @@ export default {
     }
   },
   methods: {
-    changeProfile () {
+    ...mapActions('profile', ['updateProfile']),
+    async changeProfile () {
       const data = {
         name: this.form.name,
-        bio: this.form.bio
+        bio: this.form.bio,
+        avatar: this.form.avatar
       }
-      console.log({ data })
+      const response = await this.updateProfile(data)
+      if (response.status === 200) {
+        this.$toast.success(response.message)
+      } else {
+        this.$toast.error(response.data.message)
+      }
     },
     validateUsername () {
       return this.form.name.length > 0
@@ -117,6 +136,19 @@ export default {
     validateFullName () {
       const fullNameRegex = /^[a-zA-Z\s]+$/
       return fullNameRegex.test(this.form.name)
+    },
+    readFile (file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.onload = e => resolve(e.target.result)
+        reader.onerror = err => reject(err)
+        reader.readAsDataURL(file)
+      })
+    },
+    async handleImage (e) {
+      this.form.avatar = e.target.files[0]
+      this.previewAvatar = await this.readFile(e.target.files[0])
+      this.$refs.avatar.src = this.previewAvatar
     }
   }
 }

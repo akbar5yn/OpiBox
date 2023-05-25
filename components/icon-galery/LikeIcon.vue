@@ -3,12 +3,13 @@
     width="20"
     height="18"
     viewBox="0 0 20 18"
-    fill="none"
+    :fill="fill"
     xmlns="http://www.w3.org/2000/svg"
+    @click="handleClick"
   >
     <path
       d="M2.31802 2.81802C0.56066 4.57538 0.56066 7.42462 2.31802 9.18198L10.0001 16.864L17.682 9.18198C19.4393 7.42462 19.4393 4.57538 17.682 2.81802C15.9246 1.06066 13.0754 1.06066 11.318 2.81802L10.0001 4.13609L8.68198 2.81802C6.92462 1.06066 4.07538 1.06066 2.31802 2.81802Z"
-      stroke="#19191B"
+      :stroke="stroke"
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -18,6 +19,20 @@
 
 <script>
 export default {
-  name: 'IconLike'
+  name: 'IconLike',
+  props: {
+    fill: {
+      type: String,
+      default: '#fff'
+    },
+    stroke: {
+      type: String
+    }
+  },
+  methods: {
+    handleClick () {
+      this.$emit('like-clicked')
+    }
+  }
 }
 </script>
