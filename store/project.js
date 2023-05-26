@@ -77,12 +77,17 @@ export const actions = {
       ctx.state.selectedImg.forEach((val, index) => {
         formData.append(`images_attributes[${index}][image]`, val.file)
       })
+      ctx.commit('setLoading', true)
       const response = await this.$axios.$post('projects', formData, {
         headers
       })
+
+      ctx.commit('setLoading', false)
       return response
     } catch (error) {
-      throw new Error('Failed to post data')
+      ctx.commit('setLoading', false)
+      return error.response
+      // throw new Error('Failed to post data')
     }
   },
 
