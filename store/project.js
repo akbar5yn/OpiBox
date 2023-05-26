@@ -8,7 +8,8 @@ export const state = () => ({
     projectType: '',
     selectedAkses: ''
   },
-  projects: []
+  projects: [],
+  loading: false
 })
 
 export const mutations = {
@@ -46,6 +47,17 @@ export const mutations = {
 
   setMyProject (state, myProject) {
     state.projects = myProject
+  },
+
+  setModalProject (state, { projectId, showModal }) {
+    const project = state.projects.find(project => project.id === projectId)
+    if (project) {
+      project.showModal = showModal
+    }
+  },
+
+  setLoading (state, value) {
+    state.loading = value
   }
 }
 
@@ -83,9 +95,37 @@ export const actions = {
     try {
       const response = await this.$axios.$get('projects/my_projects')
       const myProject = response.data
-      commit('setMyProject', myProject)
+      const projectsWithModal = myProject.map(project => ({
+        ...project,
+        showModal: false
+      }))
+      commit('setMyProject', projectsWithModal)
     } catch (error) {
       console.error(error)
+    }
+  },
+
+  setShowInfo ({ commit, state }, projectId) {
+    const project = state.projects.find(project => project.id === projectId)
+    if (project) {
+      const showModal = !project.showModal
+      commit('setModalProject', { projectId, showModal })
+    }
+  },
+
+  // delete project
+  async deleteProject ({ commit }, projectId) {
+    try {
+      commit('setLoading', true) // Set loading menjadi true sebelum melakukan permintaan
+
+      const response = await this.$axios.$delete(`projects/${projectId}`)
+      console.log(response)
+      commit('setLoading', false) // Set loading menjadi false setelah permintaan selesai
+
+      return response
+    } catch (err) {
+      commit('setLoading', false) // Set loading menjadi false jika terjadi kesalahan
+      return err.response
     }
   }
 }
