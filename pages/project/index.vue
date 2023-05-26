@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="project">
     <section
       class="py-[10px] px-[28px] border-b-2 border-[#CACACE] flex justify-between items-center fixed w-full bg-white z-50"
     >
@@ -67,12 +67,18 @@
 
           <!-- to see detail like = comment = modification -->
           <div class="flex justify-between border-t-2 border-b-2 mt-5 py-5">
-            <p class="font-cabinet-grotesk text-xl">
-              {{ likes }}
+            <p
+              class="font-cabinet-grotesk text-xl cursor-default"
+              @click="selectedMenu = 'like'"
+            >
+              {{ likeCount }}
               <span class="text-[#95959D]">Suka</span>
             </p>
-            <p class="font-cabinet-grotesk text-xl">
-              200
+            <p
+              class="font-cabinet-grotesk text-xl cursor-default"
+              @click="selectedMenu = 'comment'"
+            >
+              {{ commentCount }}
               <span class="text-[#95959D]">Komentar</span>
             </p>
             <p class="font-cabinet-grotesk text-xl">
@@ -110,7 +116,7 @@
             <!-- :to="`/comments/${getMyProject[currentImageIndex].id}`" -->
             <p
               class="font-cabinet-grotesk text-xl flex items-center gap-2 cursor-pointer"
-              @click="sendComment(getMyProject[currentImageIndex].id)"
+              @click="sendComment(getMyProject[projectIndex].id)"
             >
               <icon-galery-comment-icon class="cursor-pointer" />
               <span class="text-[#95959D]">Komentar</span>
@@ -119,6 +125,12 @@
               <icon-galery-retweet-icon class="cursor-pointer" />
               <span class="text-[#95959D]">Modifikasi</span>
             </p>
+          </div>
+
+          <!-- show comment and likes -->
+          <div class="h-[65%] overflow-hidden overflow-y-scroll">
+            <showLike v-if="selectedMenu == 'like'" />
+            <showComment v-if="selectedMenu == 'comment'" />
           </div>
         </div>
       </div>
@@ -135,7 +147,10 @@ export default {
     return {
       currentImageIndex: 0,
       fillColor: '#fff',
-      strokeColor: '#19191B'
+      strokeColor: '#19191B',
+      projectIndex: 0,
+
+      selectedMenu: 'like'
     }
   },
 
@@ -143,7 +158,10 @@ export default {
     // get project
     ...mapState('project', ['projects']),
     ...mapGetters('project', ['getMyProject']),
-    ...mapState('likes', ['likes', 'isLiked']),
+    ...mapGetters('comment', ['getAllComment']),
+    ...mapGetters('comment', ['commentCount']),
+    ...mapState('likes', ['likes', 'isLiked', 'likeCount']),
+    ...mapGetters('likes', ['getLike']),
 
     projectTitle () {
       const projectId = parseInt(this.$route.params.id)
@@ -166,8 +184,10 @@ export default {
   },
   mounted () {
     const projectId = this.$route.params.id // Mengambil nilai parameter 'id' dari properti $route
+    // console.log(projectId)
     this.fetchMyProject()
     this.fetchLike(projectId)
+    this.fetchComment(projectId)
 
     // Ambil nilai isLiked dari penyimpanan lokal saat komponen dibuat
     const isLiked = localStorage.getItem('isLiked')
@@ -181,6 +201,11 @@ export default {
     ...mapActions('project', ['fetchMyProject']),
     ...mapActions('likes', ['fetchLike', 'likeProject', 'disLike']),
     ...mapMutations('likes', ['setLike']),
+    ...mapActions('comment', ['fetchComment']),
+
+    setActiveProject (index) {
+      this.projectIndex = index
+    },
 
     sendComment (projectId) {
       this.$router.push(`/comments/${projectId}`)
@@ -203,7 +228,6 @@ export default {
         this.currentImageIndex--
       }
     },
-
     nextImage () {
       if (this.currentImageIndex < this.projectImage.length - 1) {
         this.currentImageIndex++
