@@ -1,7 +1,8 @@
 export const state = () => ({
   likes: [],
   isLiked: false,
-  userId: null
+  userId: null,
+  likeCount: 0
 })
 
 export const mutations = {
@@ -12,6 +13,10 @@ export const mutations = {
   setLike (state, value) {
     state.isLiked = value
     localStorage.setItem('isLiked', value.toString())
+  },
+
+  setLikeCount (state, count) {
+    state.likeCount = count
   },
 
   disLikeProject (state, disLike) {
@@ -29,12 +34,14 @@ export const actions = {
     try {
       // const projectId = this.$route.params.id // Mengambil ID proyek dari URL
       const response = await this.$axios.$get(`projects/${projectId}/likes`)
-      const likeProject = response.data.likes.length
+      const likeProject = response.data.likes
+      const likeCount = likeProject.length
 
       if (!state.userId && this.$auth.loggedIn) {
         commit('setUserId', this.$auth.user.id)
       }
       commit('getLike', likeProject)
+      commit('setLikeCount', likeCount)
     } catch (error) {
       console.error(error)
     }
@@ -105,5 +112,8 @@ export const getters = {
   // get like
   getLike: (state) => {
     return state.likes
+  },
+  likeCount (state) {
+    return state.likeCount
   }
 }
