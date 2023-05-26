@@ -107,6 +107,7 @@
         </div>
         <div
           class="flex items-center cursor-pointer pl-8 pr-4 py-3 group hover:bg-gray-200 hover:border-r-2 hover:border-[#6C61E1]"
+          @click="selectedMenu = 'about'"
         >
           <svg
             class="stroke-gray-500 group-hover:stroke-[#6C61E1]"
@@ -138,6 +139,7 @@
       <UpdateProfile v-if="selectedMenu == 'profile'" />
       <UpdatePassword v-if="selectedMenu == 'password'" />
       <Help v-if="selectedMenu == 'help'" />
+      <About v-if="selectedMenu == 'about'" />
     </div>
   </div>
 </template>
