@@ -115,8 +115,12 @@
             </NuxtLink>
             <button
               type="submit"
-              class="px-[68px] py-[16px] bg-[#E5E5E6] rounded-md font-cabinet-grotesk text-[#B0B0B5]"
-              @click="addComment"
+              class="px-[68px] py-[16px] rounded-md font-cabinet-grotesk text-[#B0B0B5]"
+              :disabled="disabled"
+              :class="{
+                'bg-[#6C61E1] text-white': !disabled,
+                'bg-gray-200': disabled
+              }"
             >
               Kirim
             </button>
@@ -134,6 +138,10 @@ export default {
   name: 'AddComment',
   layout: 'ProjectSession',
 
+  async asyncData ({ store }) {
+    await store.dispatch('profile/getProfile')
+  },
+
   data () {
     return {
       form: {
@@ -143,10 +151,12 @@ export default {
         yAxis: 0,
         getImgId: null
       },
-      isOpen: false
+      isOpen: false,
+      disabled: true
     }
   },
   computed: {
+    ...mapState('profile', ['detailUser']),
     ...mapState('project', ['projects']),
     ...mapState('comment', ['forms']),
     ...mapGetters('project', ['getMyProject']),
@@ -159,11 +169,18 @@ export default {
     isFormValid () {
       return (
         this.form.comment !== '' &&
-        this.form.projectId !== '' &&
         this.form.xAxis !== '' &&
         this.form.yAxis !== '' &&
-        this.form.getImgId !== ''
+        this.form.getImgId !== null
       )
+    }
+  },
+  watch: {
+    form: {
+      deep: true,
+      handler () {
+        this.disabled = !this.isFormValid
+      }
     }
   },
   mounted () {
@@ -186,7 +203,7 @@ export default {
         this.setImg(setImgId.id)
       }
     },
-    addComment () {
+    async addComment () {
       this.form.projectId = this.$route.params.id
       const selectedImgId = this.form.getImgId ? this.form.getImgId.id : null
       // this.setImg(selectedImgId)
@@ -198,19 +215,15 @@ export default {
         image_id: selectedImgId
       }
       this.setForm(formData)
-      this.postData(formData)
-        .then(() => {
-          // Form berhasil dikirim
-          this.resetForm()
-          // Tampilkan pesan sukses atau lakukan tindakan lanjutan
-          // Contoh: Menampilkan notifikasi, mengarahkan pengguna ke halaman lain, dll.
-        })
-        .catch((error) => {
-          // Penanganan kesalahan pengiriman form
-          console.error('Error submitting form:', error)
-          // Tampilkan pesan kesalahan atau lakukan tindakan lanjutan
-          // Contoh: Menampilkan notifikasi kesalahan, dll.
-        })
+      // this.postData(formData)
+      const response = await this.postData(formData)
+
+      if (response.status === 201) {
+        this.$toast.success(response.message)
+        this.$router.go(-1)
+      } else {
+        this.$toast.error(response.data.message)
+      }
     }
   }
 }

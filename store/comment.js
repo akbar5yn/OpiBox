@@ -5,7 +5,9 @@ export const state = () => ({
     xAxis: '',
     yAxis: '',
     selectIdImg: null
-  }
+  },
+  comments: [],
+  commentCount: 0
 })
 
 export const mutations = {
@@ -15,16 +17,54 @@ export const mutations = {
 
   setForm (state, formData) {
     state.forms = formData
+  },
+
+  getComments (state, setComments) {
+    state.comments = setComments
+  },
+  setCommentCount (state, count) {
+    state.commentCount = count
   }
 }
 
 export const actions = {
+  // post comment
   async postData ({ state }) {
     try {
       const response = await this.$axios.$post('comments', state.forms)
       console.log(response.data)
+      return response // Mengembalikan respons ke komponen Vue
     } catch (error) {
-      console.error(error)
+      return error.response
     }
+  },
+
+  // get comment
+  async fetchComment ({ commit }, projectId) {
+    try {
+      const response = await this.$axios.$get(
+        `comments?project_id=${projectId}`
+      )
+
+      const comments = response.data.comments
+      const commentCount = comments.length
+
+      commit('getComments', comments)
+      commit('setCommentCount', commentCount)
+
+      return response
+    } catch (err) {
+      return err.response
+    }
+  }
+}
+
+export const getters = {
+  // get comment
+  getAllComment: (state) => {
+    return state.comments
+  },
+  commentCount (state) {
+    return state.commentCount
   }
 }

@@ -106,7 +106,17 @@
             </div>
             <!-- judul proyek -->
             <div class="flex flex-col gap-y-3 mt-4">
-              <label for="judul" class="text-[20px]">Judul Proyek</label>
+              <div class="flex justify-between items-center">
+                <label for="judul" class="text-[20px]">Judul Proyek</label>
+                <div v-if="loading" class="text-center flex items-center gap-3">
+                  <div
+                    class="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-gray-900"
+                  />
+                  <p class="mt-2 text-base">
+                    Loading...
+                  </p>
+                </div>
+              </div>
               <input
                 id="judul"
                 v-model="form.judul"
@@ -158,7 +168,8 @@ export default {
   },
 
   computed: {
-    ...mapState('project', ['selectedImg', 'showPreview']),
+    ...mapState('project', ['selectedImg', 'showPreview', 'loading']),
+
     isFormValid () {
       const { projectType } = this.$store.state.project.form
       return (
@@ -239,13 +250,13 @@ export default {
       if (this.isFormValid) {
         this.setJudul(this.form.judul)
         this.setDesc(this.form.deskripsi)
-        // ... Do any additional logic or API calls to save the data ...
       }
       try {
         // Mengirimkan data form menggunakan action Vuex
         // Handling jika posting data berhasil
         const response = await this.postData(this.form)
-        if (!response.error) {
+        if (response.status === 201) {
+          this.$toast.success(response.message)
           // Ganti 'TeamPage' dengan nama halaman tim yang sudah Anda buat
           this.$router.push({
             name: 'LihatProyek',
@@ -253,7 +264,8 @@ export default {
           })
         } else {
           // Menangani error saat membuat tim
-          throw new Error('Gagal membuat tim baru')
+          this.$toast.error(response.data.message)
+          // throw new Error('Gagal membuat tim baru')
         }
       } catch (error) {
         // Handling jika terjadi kesalahan saat posting data
