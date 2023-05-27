@@ -16,37 +16,42 @@
 
     <!-- setelah ada project -->
     <section class="project-exist flex gap-3 scroll-ml-6 snap-start">
-      <div
-        v-for="project in getMyProject"
-        :key="project.id"
-        class="border rounded-lg bg-white drop-shadow-md w-fit snap-start"
-      >
-        <div class="h-[152px] w-[360px] relative overflow-clip">
-          <img
-            :src="project.images[0].image.thumbnail.url"
-            alt="cover-project"
-            class="object-contain w-full"
-          >
-        </div>
-        <div class="p-[10px] pr-3 flex items-center justify-between">
-          <div class="flex items-center gap-[10px]">
-            <!-- icon team -->
-            <div class="bg-[#E5E5E6] p-4 rounded-full w-fit">
-              <img src="../../assets/img/team.svg" alt="icon-team">
-            </div>
-            <h2
-              class="cursor-pointer font-cabinet-grotesk text-xl font-semibold"
-              @click="showProject(project.id)"
+      <div v-for="project in getMyProject" :key="project.id" class="relative">
+        <div class="border rounded-lg bg-white drop-shadow-md w-fit snap-start">
+          <div class="h-[152px] w-[360px] overflow-clip">
+            <img
+              :src="project.images[0].image.thumbnail.url"
+              alt="cover-project"
+              class="object-contain w-full"
             >
-              {{ project.title }} <br>
-
-              <span class="font-normal text-sm">{{ project.createdAgo }}</span>
-            </h2>
           </div>
-          <button>
-            <icon-galery-dots-icon />
-          </button>
+          <div class="p-[10px] pr-3 flex items-center justify-between">
+            <div class="flex items-center gap-[10px]">
+              <!-- icon team -->
+              <div class="bg-[#E5E5E6] p-4 rounded-full w-fit">
+                <img src="../../assets/img/team.svg" alt="icon-team">
+              </div>
+              <h2
+                class="cursor-pointer font-cabinet-grotesk text-xl font-semibold"
+                @click="showProject(project.id)"
+              >
+                {{ project.title }} <br>
+
+                <span class="font-normal text-sm">{{
+                  project.createdAgo
+                }}</span>
+              </h2>
+            </div>
+            <button @click="toggleInfo(project.id)">
+              <icon-galery-dots-icon />
+            </button>
+          </div>
         </div>
+        <modal-project-information
+          v-if="project.showModal"
+          :id-project="project.id"
+          class="showinfo absolute -right-36 top-9 w-fit p-5 pr-9 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+        />
       </div>
     </section>
   </div>
@@ -70,7 +75,9 @@ export default {
     this.fetchMyProject()
   },
   methods: {
-    ...mapActions('project', ['fetchMyProject']),
+    ...mapActions('project', ['fetchMyProject', 'setShowInfo']),
+    // ...mapMutations('project', ['setShowInfo']),
+
     showProject (projectId) {
       // Navigasi ke halaman detail proyek berdasarkan ID
       this.$router.push(`/project/${projectId}`)
@@ -97,6 +104,11 @@ export default {
 
         project.createdAgo = createdAgo
       })
+    },
+
+    toggleInfo (projectId) {
+      const setInfo = this.setShowInfo(projectId)
+      console.log(setInfo)
     }
   },
   watch: {
@@ -112,5 +124,9 @@ export default {
 <style scoped>
 .my-project::-webkit-scrollbar {
   display: none;
+}
+
+.showinfo {
+  z-index: 99999;
 }
 </style>

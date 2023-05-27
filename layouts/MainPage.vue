@@ -4,11 +4,19 @@
       <div>
         <div
           v-if="isBeranda"
-          class="font-cabinet-grotesk text-3xl font-[600] py-9 px-5 flex items-center gap-4"
+          class="font-cabinet-grotesk text-3xl font-[600] py-9 px-5 flex items-center gap-4 justify-between"
         >
           <NuxtLink to="">
             Beranda
           </NuxtLink>
+          <div v-if="loading" class="text-center flex items-center gap-3">
+            <div
+              class="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-gray-900"
+            />
+            <p class="mt-2 text-base">
+              Loading...
+            </p>
+          </div>
         </div>
         <div
           v-if="deepLink"
@@ -56,10 +64,11 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 export default {
   name: 'MainPage',
   computed: {
+    ...mapState('project', ['loading']),
     isBeranda () {
       return this.$route.name === 'Beranda'
     },
