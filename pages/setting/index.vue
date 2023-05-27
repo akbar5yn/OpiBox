@@ -129,6 +129,7 @@
         </div>
         <div
           class="flex items-center cursor-pointer pl-8 pr-4 py-3 group hover:bg-gray-200 hover:border-r-2 hover:border-[#6C61E1]"
+          @click="logout"
         >
           <icon-galery-exit-icon />
           <span class="text-[#EB0700] ml-4">Keluar</span>
@@ -155,6 +156,11 @@ export default {
   data () {
     return {
       selectedMenu: 'profile'
+    }
+  },
+  methods: {
+    async logout () {
+      await this.$auth.logout()
     }
   }
 }
