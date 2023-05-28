@@ -1,5 +1,5 @@
 <template>
-  <div class="px-5 pt-5 flex flex-col gap wf">
+  <div class="px-5 h-full flex flex-col justify-evenly">
     <!-- my project -->
     <section>
       <div class="flex justify-between items-center font-cabinet-grotesk">

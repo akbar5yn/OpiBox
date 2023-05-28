@@ -1,5 +1,5 @@
 <template>
-  <div class="px-7 py-9">
+  <div class="px-7 py-9 flex flex-col h-full">
     <!-- header -->
     <section class="flex items-center justify-between">
       <!-- Icon team -->
@@ -30,11 +30,11 @@
 
     <!-- main proyek -->
     <section class="flex justify-between h-full">
-      <div class="w-[75%] relative">
+      <div class="w-[75%] relative flex flex-col">
         <h1 class="border-b-2 pb-3 mt-[49px]">
           Proyek
         </h1>
-        <div class="flex flex-col items-center justify-center mt-48">
+        <div class="flex flex-col items-center justify-center h-full">
           <p>Team Belum Memiliki Proyek</p>
           <p>
             Klik
