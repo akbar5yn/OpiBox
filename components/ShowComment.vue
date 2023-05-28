@@ -65,7 +65,10 @@
               >
               <span>Hapus komentar</span>
             </div>
-            <div class="flex cursor-pointer items-center space-x-4">
+            <div
+              class="flex cursor-pointer items-center space-x-4"
+              @click="handlePostTodolist(comment.id)"
+            >
               <img
                 class="w-4"
                 src="../assets/img/addTaskIcon.svg"
@@ -124,6 +127,7 @@ export default {
     ...mapActions('likes', ['fetchLike', 'likeProject', 'disLike']),
     ...mapMutations('likes', ['setLike']),
     ...mapActions('comment', ['fetchComment', 'deleteComment']),
+    ...mapActions('todolist', ['postTodolist']),
 
     updateProjectStatus () {
       this.noComment = this.getAllComment.length === 0
@@ -136,6 +140,18 @@ export default {
       if (response.status === 200) {
         this.$router.go()
       }
+    },
+    async handlePostTodolist (id) {
+      const data = {
+        comment_id: id
+      }
+      const response = await this.postTodolist(data)
+      if (response.status === 201) {
+        this.$toast.success(response.message)
+      } else {
+        this.$toast.error(response.data.message.base)
+      }
+      console.log(response)
     }
   },
 
