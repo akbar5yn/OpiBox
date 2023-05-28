@@ -15,7 +15,7 @@
       <div
         v-for="(comment, index) in getAllComment"
         :key="index"
-        class="card border-b-2 py-5 w-full flex flex-col gap-2"
+        class="card border-b-2 py-5 w-full flex flex-col gap-2 relative"
       >
         <div class="header flex items-center justify-between">
           <div class="flex items-center gap-3">
@@ -44,7 +44,36 @@
               </div>
             </div>
           </div>
-          <icon-galery-dots-icon />
+          <!-- <icon-galery-dots-icon @click="selectCardOption(index)" /> -->
+          <img
+            src="../assets/img/tripleIcon.svg"
+            alt=""
+            @click="selectCardOption(index)"
+          >
+          <div
+            v-if="selectedCardOption === index"
+            class="absolute right-3 top-3 flex flex-col space-y-2 bg-white p-4 drop-shadow-lg font-light font-open-sans"
+          >
+            <div
+              class="flex cursor-pointer items-center space-x-4"
+              @click="handleDeleteComment(comment.id)"
+            >
+              <img
+                class="w-4"
+                src="../assets/img/deleteIcon.svg"
+                alt="Delete Icon"
+              >
+              <span>Hapus komentar</span>
+            </div>
+            <div class="flex cursor-pointer items-center space-x-4">
+              <img
+                class="w-4"
+                src="../assets/img/addTaskIcon.svg"
+                alt="Add Task"
+              >
+              <span>Tambahkan ke tugas</span>
+            </div>
+          </div>
         </div>
         <div>
           <p class="font-cabinet-grotesk">
@@ -75,7 +104,8 @@ export default {
       noLike: false,
       showComment: true,
       showLike: false,
-      selectedMenu: 'like'
+      selectedMenu: 'like',
+      selectedCardOption: ''
     }
   },
 
@@ -93,10 +123,19 @@ export default {
     ...mapActions('project', ['fetchMyProject']),
     ...mapActions('likes', ['fetchLike', 'likeProject', 'disLike']),
     ...mapMutations('likes', ['setLike']),
-    ...mapActions('comment', ['fetchComment']),
+    ...mapActions('comment', ['fetchComment', 'deleteComment']),
 
     updateProjectStatus () {
       this.noComment = this.getAllComment.length === 0
+    },
+    selectCardOption (value) {
+      this.selectedCardOption = this.selectedCardOption === value ? '' : value
+    },
+    async handleDeleteComment (id) {
+      const response = await this.deleteComment(id)
+      if (response.status === 200) {
+        this.$router.go()
+      }
     }
   },
 
