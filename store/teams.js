@@ -1,6 +1,15 @@
 export const state = () => ({
+  forms: {
+    teamId: '',
+    email: []
+  },
+  kolabolator: [],
   teams: new Map(),
-  teamByInv: []
+  modalTim: false,
+  modalInviter: false,
+  teamByInv: [],
+  getId: null,
+  teamKolab: []
 })
 
 export const mutations = {
@@ -14,10 +23,35 @@ export const mutations = {
 
   addTeam (state, team) {
     state.teams.push(team)
+  },
+
+  setModalTim (state, value) {
+    state.modalTim = value
+  },
+
+  setModalInvite (state, value) {
+    state.modalInviter = value
+  },
+
+  setKolaborator (state, setEmail) {
+    state.forms.email = setEmail
+  },
+
+  setTeamId (state, teamId) {
+    state.forms.teamId = teamId
+  },
+
+  setSelectedTeamId (state, teamId) {
+    state.getId = teamId
+  },
+
+  setSelectedTeamKolab (state, teamId) {
+    state.teamKolab = teamId
   }
 }
 
 export const actions = {
+  // create team
   async createTeam (state, data) {
     try {
       const response = await this.$axios.$post('teams', data)
@@ -26,7 +60,7 @@ export const actions = {
       return response
     } catch (err) {
       console.log(err.response.data)
-      throw new Error('Gagal membuat tim baru')
+      return err.response
     }
   },
 
@@ -37,84 +71,75 @@ export const actions = {
         params: { created_by: createdBy }
       })
       commit('setTeams', response.data)
-    } catch (error) {
-      console.error(error)
+    } catch (err) {
+      return err.response
     }
   },
+
   async invTeams ({ commit }) {
     try {
       const response = await this.$axios.$get('userteam/current_user')
       const teams = response.data
       commit('setTeamsByInv', teams)
-    } catch (error) {
-      console.error(error)
+    } catch (err) {
+      return err.response
+    }
+  },
+
+  // invite kolabolator
+  async invitations ({ commit, state }) {
+    const data = {
+      team_id: state.forms.teamId,
+      email: state.forms.email
+    }
+    try {
+      const response = await this.$axios.$post('userteam', data)
+      commit('setKolaborator', response)
+    } catch (err) {
+      return err.response
+    }
+  },
+
+  setTeamId ({ commit }, teamId) {
+    commit('setSelectedTeamId', teamId)
+  },
+
+  // delete team
+  async deleteTeam ({ commit }, timId) {
+    try {
+      commit('setLoading', true) // Set loading menjadi true sebelum melakukan permintaan
+
+      const response = await this.$axios.$delete(`teams/${timId}`)
+
+      return response
+    } catch (err) {
+      return err.response
+    }
+  },
+
+  async fetchKolab ({ commit }, teamId) {
+    try {
+      const response = await this.$axios.$get(`userteam?team_id=${teamId}`)
+      // const response = await this.$axios.$get('userteam?team_id=62')
+
+      commit('setSelectedTeamKolab', response)
+      return response
+    } catch (err) {
+      return err.response
     }
   }
-  // async fetchTeams ({ commit }) {
-  //   try {
-  //     const response = await this.$axios.$get('teams')
-
-  //     console.log(response, 'data nama tim')
-  //     const teamMap = new Map()
-  //     response.data.forEach((team) => {
-  //       teamMap.set(team.id, team)
-  //     })
-  //     commit('setTeams', teamMap)
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // },
-  // get tim by invitation user curent_user
-  // async invTeams ({ commit, state }, invMe) {
-  //   try {
-  //     const response = await this.$axios.$get('userteam', {
-  //       params: { curent_user: invMe }
-  //     })
-
-  //     const teamMap = state.teams
-  //     const teamsByInv = []
-
-  //     for (const team of response.data) {
-  //       const localTeam = teamMap.get(team.team_id)
-
-  //       let teamName = 'Nama Tim Tidak Diketahui'
-  //       if (localTeam) {
-  //         // Jika ada informasi tim dalam state.teams, gunakan nama tim tersebut
-  //         teamName = localTeam.name
-  //         console.log(teamName)
-  //       } else {
-  //         // Jika tidak ada informasi tim dalam state.teams, lakukan permintaan terpisah untuk mendapatkan nama tim
-  //         try {
-  //           const teamResponse = await this.$axios.$get(`teams/${team.team_id}`)
-  //           teamName = teamResponse.name
-  //           console.log(teamResponse)
-  //         } catch (error) {
-  //           console.error(
-  //             `Gagal mendapatkan informasi tim dengan ID ${team.team_id}:`,
-  //             error
-  //           )
-  //         }
-  //       }
-
-  //       teamsByInv.push({
-  //         ...team,
-  //         name: teamName
-  //       })
-  //     }
-
-  //     commit('setTeamsByInv', teamsByInv)
-  //   } catch (error) {
-  //     console.error(error)
-  //     throw error
-  //   }
-  // }
 }
 
 export const getters = {
   getTeams: (state) => {
     return state.teams
   },
+
   getTeamsByInv: (state) => {
     return state.teamByInv
+  },
+
+  getTeamKolab: (state) => {
+    return state.teamKolab
   }
 }
