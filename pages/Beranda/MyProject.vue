@@ -8,7 +8,7 @@
       >
         <div class="h-[152px] w-[360px] relative overflow-clip">
           <img
-            :src="project.images[0].image.thumbnail.url"
+            src="project.images[0].thumbnail_url"
             alt="cover-project"
             class="object-contain w-full"
           >
