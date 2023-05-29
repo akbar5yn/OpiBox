@@ -56,6 +56,14 @@ export const actions = {
     } catch (err) {
       return err.response
     }
+  },
+
+  async deleteComment (state, data) {
+    try {
+      return await this.$axios.$delete(`comments/${data}`)
+    } catch (err) {
+      return err.response
+    }
   }
 }
 
