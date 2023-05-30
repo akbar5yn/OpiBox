@@ -177,7 +177,7 @@ export default {
       const projectId = parseInt(this.$route.params.id)
       const project = this.projects.find(project => project.id === projectId)
       if (project && project.images && project.images.length > 0) {
-        return project.images.map(image => image.image.url)
+        return project.images.map(image => image.image_url)
       }
       return []
     }
