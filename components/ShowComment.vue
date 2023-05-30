@@ -48,11 +48,12 @@
           <img
             src="../assets/img/tripleIcon.svg"
             alt=""
+            class="pr-5"
             @click="selectCardOption(index)"
           >
           <div
             v-if="selectedCardOption === index"
-            class="absolute right-3 top-3 flex flex-col space-y-2 bg-white p-4 drop-shadow-lg font-light font-open-sans"
+            class="absolute right-8 top-3 flex flex-col space-y-2 bg-white p-4 drop-shadow-lg font-light font-open-sans"
           >
             <div
               class="flex cursor-pointer items-center space-x-4"
