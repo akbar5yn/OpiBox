@@ -1,5 +1,5 @@
 <template>
-  <div class="my-draft flex gap-3 max-w-screen-2xl snap-x overflow-x-scroll">
+  <div class="my-draft flex gap-3 w-full snap-x overflow-x-scroll">
     <!-- kondisi belum ada project -->
     <div
       v-if="noProject"

@@ -1,6 +1,7 @@
 <template>
-  <div class="flex">
-    <div class="order-2 flex flex-col w-full">
+  <div class="flex h-screen w-full">
+    <div class="order-2 flex flex-col w-full overflow-hidden overflow-y-scroll">
+      <!-- topbar -->
       <div>
         <div
           v-if="isBeranda"
@@ -30,7 +31,7 @@
             Proyek Saya
           </NuxtLink>
         </div>
-        <!-- topbar -->
+
         <div v-if="deepLink" class="flex px-5 mt-11">
           <label
             for="image"
