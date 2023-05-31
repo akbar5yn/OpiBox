@@ -57,7 +57,7 @@
                   :id="'selectImg' + index + imageIndex"
                   v-model="form.getImgId"
                   type="radio"
-                  :value="{ url: image.image.url, id: image.id }"
+                  :value="{ url: image.image_url, id: image.id }"
                   :name="'selectImg' + index"
                   @click="selectImg"
                 >
@@ -214,7 +214,8 @@ export default {
         y_axis: this.form.yAxis,
         image_id: selectedImgId
       }
-      this.setForm(formData)
+
+      // this.setForm(formData)
       // this.postData(formData)
       const response = await this.postData(formData)
 
