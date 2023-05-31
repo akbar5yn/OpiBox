@@ -212,7 +212,7 @@ export default {
           this.form.password === ''
             ? 'Password harus diisi'
             : !this.validatePassword()
-                ? 'Kata sandi minimal harus 6 karakter dan berisi kombinasi angka, huruf, dan karakter khusus (!$@%)'
+                ? 'Kata sandi minimal harus 8 karakter dan berisi kombinasi angka, huruf, dan karakter khusus (!$@%)'
                 : ''
         this.errors.confirmPassword = !this.validateRetypePassword()
           ? 'Kata sandi tidak cocok'
@@ -263,7 +263,7 @@ export default {
     },
     validatePassword () {
       const passwordRegex =
-        /^(?=.*[A-Z])(?=.*[_\-!@#$%^&*()+=,./;'])(?=.*[0-9]).{6,}$/
+        /^(?=.*[A-Z])(?=.*[_\-!@#$%^&*()+=,./;'])(?=.*[0-9]).{8,}$/
       return passwordRegex.test(this.form.password)
     },
 
