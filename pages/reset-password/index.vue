@@ -176,6 +176,10 @@ export default {
             : !this.validatePassword()
                 ? 'Kata sandi minimal harus 8 karakter dan berisi kombinasi angka, huruf, dan karakter khusus (!$@%)'
                 : ''
+
+        this.errors.confirmNewPassword = !this.passwordMatches()
+          ? 'Kata sandi tidak cocok'
+          : ''
       }
     },
     'form.confirmNewPassword': {
