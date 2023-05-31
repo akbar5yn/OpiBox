@@ -179,6 +179,7 @@ export default {
           this.validateEmail() &&
           this.validatePassword() &&
           this.validateUsername() &&
+          this.validateFullName() &&
           this.validateRetypePassword()
         ) {
           this.checkInput()
