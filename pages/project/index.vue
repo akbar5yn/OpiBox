@@ -34,18 +34,28 @@
             >
               <icon-galery-slider-icon class="rotate-180" />
             </button>
-            <img
-              v-if="Array.isArray(projectImage) && projectImage.length > 0"
-              :src="projectImage[currentImageIndex]"
-              alt="Image preview"
-              class="object-contain w-full h-[100%]"
-            >
-            <img
-              v-else
-              :src="projectImage"
-              alt="Image preview"
-              class="object-contain w-full h-[100%]"
-            >
+
+            <div ref="imageContainer" class="container-image h-fit relative">
+              <div
+                v-if="showMarker"
+                :style="{ left: markerX + 'px', top: markerY + 'px' }"
+                class="marker p-10 absolute transform -translate-x-1/2 -translate-y-1/2"
+              >
+                <icon-galery-comment-mark class="cursor-move" />
+              </div>
+              <img
+                v-if="Array.isArray(projectImage) && projectImage.length > 0"
+                :src="projectImage[currentImageIndex]"
+                alt="Image preview"
+                class="object-contain w-full h-[100%]"
+              >
+              <img
+                v-else
+                :src="projectImage"
+                alt="Image preview"
+                class="object-contain w-full h-[100%]"
+              >
+            </div>
             <button
               v-if="Array.isArray(projectImage) && projectImage.length > 1"
               class="slider-button absolute top-1/2 right-3 rounded-full shadow-xl p-4"
@@ -130,7 +140,11 @@
           <!-- show comment and likes -->
           <div class="h-[65%] overflow-hidden overflow-y-scroll">
             <showLike v-if="selectedMenu == 'like'" />
-            <showComment v-if="selectedMenu == 'comment'" />
+            <showComment
+              v-if="selectedMenu == 'comment'"
+              :show-marker="showMarker"
+              @displayMarker="markerOnOff"
+            />
           </div>
         </div>
       </div>
@@ -150,7 +164,10 @@ export default {
       strokeColor: '#19191B',
       projectIndex: 0,
 
-      selectedMenu: 'like'
+      selectedMenu: 'like',
+      showMarker: false,
+      markerX: 0,
+      markerY: 0
     }
   },
 
@@ -177,7 +194,7 @@ export default {
       const projectId = parseInt(this.$route.params.id)
       const project = this.projects.find(project => project.id === projectId)
       if (project && project.images && project.images.length > 0) {
-        return project.images.map(image => image.image.url)
+        return project.images.map(image => image.image_url)
       }
       return []
     }
@@ -231,6 +248,21 @@ export default {
     nextImage () {
       if (this.currentImageIndex < this.projectImage.length - 1) {
         this.currentImageIndex++
+      }
+    },
+
+    markerOnOff (showMarker) {
+      this.showMarker = showMarker
+
+      // Memperbarui posisi marker berdasarkan koordinat
+      if (showMarker) {
+        const comment = this.getAllComment[0] // Ambil data komentar pertama dari getAllComment
+        this.markerX = comment.x_axis
+        this.markerY = comment.y_axis
+      } else {
+        // Reset posisi marker jika tidak ditampilkan
+        this.markerX = 0
+        this.markerY = 0
       }
     }
   }

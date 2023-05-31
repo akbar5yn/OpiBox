@@ -17,25 +17,10 @@
               :to="`/teams/${team.id}`"
               active-class="bg-[#EBEAFB]"
               class="flex items-center gap-3 font-cabinet-grotesk px-8 py-2"
-              @click="getTeamId(team.id)"
             >
               <div class="bg-[#6C61E1] w-4 h-4 rounded-full" />
               {{ team.team_name }}
             </NuxtLink>
-            <!-- <button
-                class="absolute right-10 top-1/2 transform -translate-y-1/2 opacity-50"
-                @click="toggleInfo(team.id)"
-              >
-                <icon-galery-dots-icon />
-              </button> -->
-
-            <!-- modal edit tim -->
-            <!-- <modal-team-information
-              v-if="team.handleModal"
-              :id-team="team.id"
-              class="showinfo absolute -right-36 top-9 w-fit p-5 pr-9 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-            />
-          </li> -->
           </li>
         </ul>
       </div>

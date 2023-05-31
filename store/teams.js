@@ -120,7 +120,6 @@ export const actions = {
   async fetchKolab ({ commit }, teamId) {
     try {
       const response = await this.$axios.$get(`userteam?team_id=${teamId}`)
-      // const response = await this.$axios.$get('userteam?team_id=62')
 
       commit('setSelectedTeamKolab', response)
       return response

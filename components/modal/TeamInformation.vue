@@ -43,9 +43,7 @@ export default {
         // Penanganan respons setelah menghapus proyek
         if (response.status === 200) {
           this.$toast.success(response.message)
-          setTimeout(() => {
-            window.location.reload() // Refresh halaman setelah penundaan 1000ms (1 detik)
-          }, 1000)
+          this.$router.push('/Beranda')
         } else {
           this.$toast.error(response.message)
         }

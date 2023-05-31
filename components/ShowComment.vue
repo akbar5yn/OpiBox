@@ -15,8 +15,13 @@
       <div
         v-for="(comment, index) in getAllComment"
         :key="index"
-        class="card border-b-2 py-5 w-full flex flex-col gap-2 relative"
+        class="card border-b-2 p-5 w-full flex flex-col gap-2 relative"
+        :class="{
+          'bg-[#EBEAFB]': selectedCommentIndex === index
+        }"
+        @click="clickComment(index)"
       >
+        {{ showMarker ? 'Sembunyikan Marker' : 'Tampilkan Marker' }}
         <div class="header flex items-center justify-between">
           <div class="flex items-center gap-3">
             <icon-galery-avatar-icon />
@@ -48,11 +53,12 @@
           <img
             src="../assets/img/tripleIcon.svg"
             alt=""
-            @click="selectCardOption(index)"
+            class="p-5 absolute right-5 z-50"
+            @click.stop="selectCardOption(index)"
           >
           <div
             v-if="selectedCardOption === index"
-            class="absolute right-3 top-3 flex flex-col space-y-2 bg-white p-4 drop-shadow-lg font-light font-open-sans"
+            class="absolute right-8 top-3 flex flex-col space-y-2 bg-white p-4 drop-shadow-lg font-light font-open-sans"
           >
             <div
               class="flex cursor-pointer items-center space-x-4"
@@ -97,6 +103,9 @@ import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 export default {
   name: 'Project',
   layout: 'ProjectSession',
+
+  props: ['showMarker'],
+
   data () {
     return {
       currentImageIndex: 0,
@@ -108,7 +117,8 @@ export default {
       showComment: true,
       showLike: false,
       selectedMenu: 'like',
-      selectedCardOption: ''
+      selectedCardOption: '',
+      selectedCommentIndex: -1
     }
   },
 
@@ -152,6 +162,18 @@ export default {
         this.$toast.error(response.data.message.base)
       }
       console.log(response)
+    },
+
+    clickComment (index) {
+      if (this.selectedCommentIndex === index) {
+        // Card sudah dipilih, batalkan pemilihan
+        this.selectedCommentIndex = -1
+      } else {
+        // Pilih card yang baru diklik
+        this.selectedCommentIndex = index
+        const newShowMarker = !this.showMarker
+        this.$emit('displayMarker', newShowMarker)
+      }
     }
   },
 
