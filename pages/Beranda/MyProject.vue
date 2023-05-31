@@ -4,7 +4,7 @@
       <div
         v-for="project in getMyProject"
         :key="project.id"
-        class="border rounded-lg bg-white drop-shadow-md w-fit snap-start"
+        class="border rounded-lg bg-white drop-shadow-md w-fit snap-start cursor-pointer"
       >
         <div class="h-[152px] w-[360px] relative overflow-clip">
           <img
