@@ -29,9 +29,9 @@ export const mutations = {
 
 export const actions = {
   // post comment
-  async postData ({ state }) {
+  async postData ({ state }, data) {
     try {
-      const response = await this.$axios.$post('comments', state.forms)
+      const response = await this.$axios.$post('comments', data)
       console.log(response.data)
       return response // Mengembalikan respons ke komponen Vue
     } catch (error) {

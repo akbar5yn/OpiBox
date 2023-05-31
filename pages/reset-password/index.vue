@@ -8,8 +8,8 @@
         class="text-[14px] font-normal font-open-sans order-1 text-[#4A4A4F]"
         style="line-height: 2"
       >
-        Kata sandi minimal harus 6 karakter dan berisi kombinasi angka,<br>
-        huruf, dan karakter khusus (!$@%)
+        Kata sandi minimal harus 8 karakter dan berisi kombinasi angka,<br>
+        / huruf, dan karakter khusus (!$@%)
       </p>
       <form
         action=""
@@ -174,8 +174,12 @@ export default {
           this.form.newPassword === ''
             ? 'Password baru harus diisi'
             : !this.validatePassword()
-                ? 'Kata sandi minimal harus 6 karakter dan berisi kombinasi angka, huruf, dan karakter khusus (!$@%)'
+                ? 'Kata sandi minimal harus 8 karakter dan berisi kombinasi angka, huruf, dan karakter khusus (!$@%)'
                 : ''
+
+        this.errors.confirmNewPassword = !this.passwordMatches()
+          ? 'Kata sandi tidak cocok'
+          : ''
       }
     },
     'form.confirmNewPassword': {
@@ -208,7 +212,7 @@ export default {
     },
     validatePassword () {
       const passwordRegex =
-        /^(?=.*[A-Z])(?=.*[_\-!@#$%^&*()+=,./;'])(?=.*[0-9]).{6,}$/
+        /^(?=.*[A-Z])(?=.*[_\-!@#$%^&*()+=,./;'])(?=.*[0-9]).{8,}$/
       return passwordRegex.test(this.form.newPassword)
     }
   }

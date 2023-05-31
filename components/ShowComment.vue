@@ -158,6 +158,7 @@ export default {
       const response = await this.postTodolist(data)
       if (response.status === 201) {
         this.$toast.success(response.message)
+        this.$router.go()
       } else {
         this.$toast.error(response.data.message.base)
       }

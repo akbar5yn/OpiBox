@@ -10,9 +10,9 @@
           </button>
         </li>
         <li>
-          <button class="flex items-center gap-3">
+          <button class="flex items-center gap-3" @click="handleProjectReport">
             <img src="../../assets/img/laporan.png" alt="laporan">
-            Lihat proyek
+            Lihat laporan
           </button>
         </li>
         <li>
@@ -54,6 +54,10 @@ export default {
       } catch (error) {
         console.error(error)
       }
+    },
+    handleProjectReport () {
+      console.log(this.projectid)
+      this.$emit('show-project-report')
     }
   }
 }

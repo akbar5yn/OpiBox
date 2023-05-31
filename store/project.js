@@ -9,7 +9,8 @@ export const state = () => ({
     selectedAkses: ''
   },
   projects: [],
-  loading: false
+  loading: false,
+  detailProject: {}
 })
 
 export const mutations = {
@@ -58,6 +59,10 @@ export const mutations = {
 
   setLoading (state, value) {
     state.loading = value
+  },
+
+  setDetailProject (state, value) {
+    state.detailProject = value
   }
 }
 
@@ -131,6 +136,15 @@ export const actions = {
     } catch (err) {
       commit('setLoading', false) // Set loading menjadi false jika terjadi kesalahan
       return err.response
+    }
+  },
+
+  async getSingleProject ({ commit }, projectId) {
+    try {
+      const response = await this.$axios.$get(`projects/${projectId}`)
+      commit('setDetailProject', response.data)
+    } catch (err) {
+      if (err.response.status !== 200) { commit('setDetailProject', []) }
     }
   }
 }

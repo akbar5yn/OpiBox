@@ -48,28 +48,18 @@
             >
               <icon-galery-slider-icon class="rotate-180" />
             </button>
-
-            <div ref="imageContainer" class="container-image h-fit relative">
-              <div
-                v-if="showMarker"
-                :style="{ left: markerX + 'px', top: markerY + 'px' }"
-                class="marker p-10 absolute transform -translate-x-1/2 -translate-y-1/2"
-              >
-                <icon-galery-comment-mark class="cursor-move" />
-              </div>
-              <img
-                v-if="Array.isArray(projectImage) && projectImage.length > 0"
-                :src="projectImage[currentImageIndex]"
-                alt="Image preview"
-                class="object-contain w-full h-[100%]"
-              >
-              <img
-                v-else
-                :src="projectImage"
-                alt="Image preview"
-                class="object-contain w-full h-[100%]"
-              >
-            </div>
+            <img
+              v-if="Array.isArray(projectImage) && projectImage.length > 0"
+              :src="projectImage[currentImageIndex]"
+              alt="Image preview"
+              class="object-contain w-full h-[100%]"
+            >
+            <img
+              v-else
+              :src="projectImage"
+              alt="Image preview"
+              class="object-contain w-full h-[100%]"
+            >
             <button
               v-if="Array.isArray(projectImage) && projectImage.length > 1"
               class="slider-button absolute top-1/2 right-3 rounded-full shadow-xl p-4"
@@ -82,10 +72,10 @@
         <div class="p-9 mt-16 border-r w-1/2">
           <div class="">
             <h2 class="text-3xl font-cabinet-grotesk font-medium">
-              {{ projectTitle }}
+              {{ project.title }}
             </h2>
             <p class="font-cabinet-grotesk text-xl tracking-wide mt-5">
-              {{ projectDesc }}
+              {{ project.caption }}
             </p>
           </div>
 
@@ -140,7 +130,7 @@
             <!-- :to="`/comments/${getMyProject[currentImageIndex].id}`" -->
             <p
               class="font-cabinet-grotesk text-xl flex items-center gap-2 cursor-pointer"
-              @click="sendComment(getMyProject[projectIndex].id)"
+              @click="sendComment"
             >
               <icon-galery-comment-icon class="cursor-pointer" />
               <span class="text-[#95959D]">Komentar</span>
@@ -171,24 +161,27 @@ import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 export default {
   name: 'Project',
   layout: 'ProjectSession',
+  middleware: 'auth',
+
+  async asyncData ({ store, route }) {
+    await store.dispatch('project/getSingleProject', route.params.id)
+  },
   data () {
     return {
       currentImageIndex: 0,
       fillColor: '#fff',
       strokeColor: '#19191B',
       projectIndex: 0,
+      project: this.$store.state.project.detailProject,
 
-      selectedMenu: 'like',
-      showMarker: false,
-      markerX: 0,
-      markerY: 0
+      selectedMenu: 'like'
     }
   },
 
   computed: {
     // get project
     ...mapState('project', ['projects']),
-    ...mapGetters('project', ['getMyProject']),
+    // ...mapGetters('project', ['getMyProject']),
     ...mapGetters('comment', ['getAllComment']),
     ...mapGetters('comment', ['commentCount']),
     ...mapState('likes', ['likes', 'isLiked', 'likeCount']),
@@ -204,11 +197,21 @@ export default {
       const project = this.projects.find(project => project.id === projectId)
       return project ? project.caption : ''
     },
-    projectImage () {
+    /* projectImage () {
       const projectId = parseInt(this.$route.params.id)
       const project = this.projects.find(project => project.id === projectId)
       if (project && project.images && project.images.length > 0) {
         return project.images.map(image => image.image_url)
+      }
+      return []
+    }, */
+    projectImage () {
+      if (
+        this.project &&
+        this.project.images &&
+        this.project.images.length > 0
+      ) {
+        return this.project.images.map(image => image.image_url)
       }
       return []
     }
@@ -216,7 +219,7 @@ export default {
   mounted () {
     const projectId = this.$route.params.id // Mengambil nilai parameter 'id' dari properti $route
     // console.log(projectId)
-    this.fetchMyProject()
+    // this.fetchMyProject()
     this.fetchLike(projectId)
     this.fetchComment(projectId)
 
@@ -229,7 +232,7 @@ export default {
   },
 
   methods: {
-    ...mapActions('project', ['fetchMyProject']),
+    // ...mapActions('project', ['fetchMyProject']),
     ...mapActions('likes', ['fetchLike', 'likeProject', 'disLike']),
     ...mapMutations('likes', ['setLike']),
     ...mapActions('comment', ['fetchComment']),
@@ -239,7 +242,7 @@ export default {
     },
 
     sendComment (projectId) {
-      this.$router.push(`/comments/${projectId}`)
+      this.$router.push(`/project/${this.$route.params.id}/comment`)
     },
 
     async handleLikeProject () {
@@ -264,11 +267,9 @@ export default {
         this.currentImageIndex++
       }
     },
-
     navigateTo (path) {
       this.$router.push(path)
     },
-
     markerOnOff (showMarker) {
       this.showMarker = showMarker
 

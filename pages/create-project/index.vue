@@ -258,10 +258,7 @@ export default {
         if (response.status === 201) {
           this.$toast.success(response.message)
           // Ganti 'TeamPage' dengan nama halaman tim yang sudah Anda buat
-          this.$router.push({
-            name: 'LihatProyek',
-            params: { id: response.data.id }
-          })
+          this.$router.push(`/project/${response.data.id}`)
         } else {
           // Menangani error saat membuat tim
           this.$toast.error(response.data.message)

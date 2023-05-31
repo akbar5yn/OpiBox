@@ -105,11 +105,11 @@ export default {
         //   path: '/mainpage/notifikasi',
         //   component: resolve(__dirname, 'pages/mainpage/')
         // },
-        {
-          name: 'KirimKomentar',
-          path: '/comments/:id',
-          component: resolve(__dirname, 'pages/comments/AddComment')
-        },
+        // {
+        //   name: 'KirimKomentar',
+        //   path: '/comments/:id',
+        //   component: resolve(__dirname, 'pages/comments/AddComment')
+        // },
         {
           name: 'Tim',
           path: '/teams/:id',

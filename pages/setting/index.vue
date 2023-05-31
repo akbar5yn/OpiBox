@@ -129,7 +129,7 @@
         </div>
         <div
           class="flex items-center cursor-pointer pl-8 pr-4 py-3 group hover:bg-gray-200 hover:border-r-2 hover:border-[#6C61E1]"
-          @click="logout"
+          @click="logoutModalVisibility = true"
         >
           <icon-galery-exit-icon />
           <span class="text-[#EB0700] ml-4">Keluar</span>
@@ -142,6 +142,36 @@
       <Help v-if="selectedMenu == 'help'" />
       <About v-if="selectedMenu == 'about'" />
     </div>
+
+    <ModalBase
+      v-if="logoutModalVisibility"
+      width="500"
+      @close-modal="logoutModalVisibility = false"
+    >
+      <div class="text-center flex flex-col space-y-4">
+        <h1 class="text-xl font-bold font-cabinet-grotesk">
+          Keluar dari Akun
+        </h1>
+        <p class="font-extralight font-open-sans mt-5">
+          Jika Anda keluar dari akun, Anda tidak dapat mengakses seluruh proyek
+          Anda. Lanjutkan?
+        </p>
+        <div class="flex items-center space-x-4 w-full">
+          <button
+            class="font-normal font-cabinet-grotesk text-[#6C61E1] w-full border border-[#6C61E1] py-2 rounded-lg"
+            @click="logout"
+          >
+            Ya
+          </button>
+          <button
+            class="bg-[#6C61E1] text-white py-2 w-full border border-[#6C61E1] rounded-lg"
+            @click="logoutModalVisibility = false"
+          >
+            Tidak
+          </button>
+        </div>
+      </div>
+    </ModalBase>
   </div>
 </template>
 
@@ -155,7 +185,8 @@ export default {
   },
   data () {
     return {
-      selectedMenu: 'profile'
+      selectedMenu: 'profile',
+      logoutModalVisibility: false
     }
   },
   methods: {

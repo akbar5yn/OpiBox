@@ -16,9 +16,16 @@
 
     <!-- setelah ada project -->
     <section class="project-exist flex gap-3 scroll-ml-6 snap-start">
-      <div v-for="project in getMyProject" :key="project.id" class="relative">
+      <div
+        v-for="project in getMyProject"
+        :key="project.id"
+        class="relative cursor-pointer"
+      >
         <div class="border rounded-lg bg-white drop-shadow-md w-fit snap-start">
-          <div class="h-[152px] w-[360px] overflow-clip">
+          <div
+            class="h-[152px] w-[360px] overflow-clip"
+            @click="visitProject(project.id)"
+          >
             <img
               :src="project.images[0].thumbnail_url"
               alt="cover-project"
@@ -48,9 +55,10 @@
           </div>
         </div>
         <modal-project-information
-          v-if="project.showModal"
+          v-if="selectedProjectInfo === project.id"
           :id-project="project.id"
           class="showinfo absolute -right-36 top-9 w-fit p-5 pr-9 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+          @show-project-report="handleProjectReport"
         />
       </div>
     </section>
@@ -65,7 +73,8 @@ export default {
   data () {
     return {
       noProject: false,
-      projectExists: false
+      projectExists: false,
+      selectedProjectInfo: 0
     }
   },
   computed: {
@@ -107,8 +116,16 @@ export default {
     },
 
     toggleInfo (projectId) {
-      const setInfo = this.setShowInfo(projectId)
-      console.log(setInfo)
+      // const setInfo = this.setShowInfo(projectId)
+      this.selectedProjectInfo = projectId
+    },
+    visitProject (id) {
+      console.log(id)
+      this.$router.push(`/project/${id}`)
+    },
+    handleProjectReport () {
+      this.selectedProjectInfo = 0
+      this.$emit('show-project-report')
     }
   },
   watch: {

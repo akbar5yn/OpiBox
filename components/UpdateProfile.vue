@@ -79,8 +79,7 @@ export default {
       form: {
         name: this.$store.state.profile.detailUser.name ?? '',
         bio: this.$store.state.profile.detailUser.bio ?? '',
-        avatar:
-          this.$store.state.profile.detailUser.avatar.image.thumbnail.url ?? ''
+        avatar: this.$store.state.profile.detailUser.avatar.thumbnail_url ?? ''
       },
       errors: {
         name: '',
@@ -93,8 +92,8 @@ export default {
   computed: {
     ...mapState('profile', ['detailUser']),
     profileImage () {
-      return this.detailUser.avatar.image.thumbnail.url !== null
-        ? this.detailUser.avatar.image.thumbnail.url
+      return this.detailUser.avatar.thumbnail_url !== null
+        ? this.detailUser.avatar.thumbnail_url
         : require('../assets/img/defaultAvatar.png')
     }
   },
