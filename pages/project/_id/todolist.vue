@@ -68,7 +68,7 @@
         </div>
       </div>
       <!-- Todolist Section -->
-      <div class="flex flex-col mt-16">
+      <div class="flex flex-col mt-16 flex-grow">
         <div class="flex items-center justify-between mt-6 mx-6">
           <h1 class="text-2xl font-semibold">
             Daftar Tugas
@@ -90,10 +90,12 @@
         </div>
         <div class="mt-4">
           <TodoItem
-            v-for="(item, key) in 5"
+            v-for="(item, key) in todolist"
             :key="key"
             :item="item"
-            :key-item="key"
+            :key-item="key + 1"
+            :selected-todo="selectedTodo"
+            @select-todo="handleSelectTodo"
           />
         </div>
       </div>
@@ -104,12 +106,18 @@
 import { mapState, mapActions } from 'vuex'
 export default {
   layout: 'ProjectSession',
+  middleware: 'auth',
+  async asyncData ({ store, route }) {
+    await store.dispatch('todolist/getTodolist', route.params.id)
+  },
   data () {
     return {
       currentImageIndex: 0,
       fillColor: '#fff',
       strokeColor: '#19191B',
-      projectIndex: 0
+      projectIndex: 0,
+      todolist: this.$store.state.todolist.todolist,
+      selectedTodo: 0
     }
   },
   computed: {
@@ -140,6 +148,9 @@ export default {
     },
     navigateTo (path) {
       this.$router.push(path)
+    },
+    handleSelectTodo (val) {
+      this.selectedTodo = val
     }
   }
 }

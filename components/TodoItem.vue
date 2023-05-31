@@ -1,28 +1,30 @@
 <template>
-  <div class="flex space-x-4 border-t p-6">
+  <div class="flex space-x-4 border-t p-6 flex-1 relative">
     <h2 class="text-lg font-semibold mt-2">
       {{ numberItem }}.
     </h2>
-    <div class="flex flex-col space-y-2">
+    <div class="flex flex-col space-y-2 flex-grow">
       <div class="flex items-center justify-between">
         <div class="flex items-center space-x-2">
           <svg
-            class="w-4"
-            width="40"
-            height="40"
-            viewBox="0 0 40 40"
-            fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="22"
+            viewBox="0 0 18 22"
+            fill="none"
           >
             <path
-              d="M20.1887 39.6234C31.1303 39.6234 40.0003 30.7534 40.0003 19.8117C40.0003 8.87 31.1303 0 20.1887 0C9.24695 0 0.376953 8.87 0.376953 19.8117C0.376953 20.3651 0.399646 20.9133 0.444151 21.4552L0.381185 21.3973L0.381182 40.0002L20.1887 39.6234C20.1887 39.6234 20.1886 39.6234 20.1887 39.6234Z"
-              fill="#19191B"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M3.05991 3.36069C6.34032 0.0802898 11.6589 0.0802892 14.9393 3.36069C18.2197 6.6411 18.2197 11.9597 14.9393 15.2401L8.99961 21.1798L3.05991 15.2401C-0.220492 11.9597 -0.220492 6.6411 3.05991 3.36069ZM8.99961 11.7004C10.3251 11.7004 11.3996 10.6259 11.3996 9.30039C11.3996 7.97491 10.3251 6.90039 8.99961 6.90039C7.67413 6.90039 6.59961 7.97491 6.59961 9.30039C6.59961 10.6259 7.67413 11.7004 8.99961 11.7004Z"
+              fill="#111826"
             />
           </svg>
           <span>Gambar {{ keyItem }}</span>
         </div>
         <div class="flex items-center space-x-4">
           <svg
+            v-if="item.pinned"
             width="34"
             height="34"
             viewBox="0 0 34 34"
@@ -61,6 +63,7 @@
             viewBox="0 0 4 18"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            @click="handleSelectTodo(keyItem)"
           >
             <path
               d="M2 2L2 2.01M2 9L2 9.01M2 16L2 16.01M2 3C1.44772 3 1 2.55228 1 2C1 1.44772 1.44772 1 2 1C2.55228 1 3 1.44772 3 2C3 2.55228 2.55228 3 2 3ZM2 10C1.44771 10 1 9.55228 1 9C1 8.44772 1.44771 8 2 8C2.55228 8 3 8.44772 3 9C3 9.55228 2.55228 10 2 10ZM2 17C1.44771 17 0.999999 16.5523 0.999999 16C0.999999 15.4477 1.44771 15 2 15C2.55228 15 3 15.4477 3 16C3 16.5523 2.55228 17 2 17Z"
@@ -73,19 +76,52 @@
         </div>
       </div>
       <p>
-        Di area yang udah aku tandain, menurutku gradasi pewarnaan susunya masih
-        kurang kontras, mungkin bisa diubah menjadi lebih gelap 🧐
+        {{ item.comment_body }}
       </p>
       <p
         class="border border-gray-500 rounded-full p-2 text-sm w-fit text-gray-300"
       >
         Ditambahkan dari
-        <span class="text-black">Nama Pengguna</span>
+        <span class="text-black">{{ item.user_name }}</span>
       </p>
+    </div>
+
+    <!-- Option -->
+    <div
+      v-if="selectedTodo === keyItem"
+      class="absolute right-8 top-3 flex flex-col space-y-2 bg-white p-4 drop-shadow-lg font-light font-open-sans"
+    >
+      <div
+        class="flex cursor-pointer items-center space-x-4"
+        @click="handleDeleteTodolist(item.id)"
+      >
+        <img class="w-4" src="../assets/img/deleteIcon.svg" alt="Delete Icon">
+        <span>Hapus tugas</span>
+      </div>
+      <div
+        class="flex cursor-pointer items-center space-x-4"
+        @click="handlePinTodolist(item.id)"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="20"
+          viewBox="0 0 14 20"
+          fill="none"
+        >
+          <path
+            d="M9.5 2V1.5H9H5H4.5V2V7C4.5 7.99196 4.18503 8.92595 3.60112 9.69852L2.99534 10.5H4H10H11L10.4 9.7C9.83271 8.94361 9.5 8.0082 9.5 7V2ZM3.5 2V1.5H3H2C1.72614 1.5 1.5 1.27386 1.5 1C1.5 0.726142 1.72614 0.5 2 0.5H12C12.2739 0.5 12.5 0.726142 12.5 1C12.5 1.27386 12.2739 1.5 12 1.5H11H10.5V2V7C10.5 8.76634 11.8016 10.2228 13.5 10.4647V11.5H7.97H7.47V12V18.7929L6.97 19.2929L6.47 18.7929V12V11.5H5.97H0.5V10.4647C2.19841 10.2228 3.5 8.76634 3.5 7V2Z"
+            fill="#19191B"
+            stroke="#19191B"
+          />
+        </svg>
+        <span>Sematkan tugas</span>
+      </div>
     </div>
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'TodoItem',
   props: {
@@ -96,11 +132,39 @@ export default {
     keyItem: {
       type: Number,
       default: 0
+    },
+    selectedTodo: {
+      type: Number,
+      default: 0
     }
   },
   computed: {
     numberItem () {
-      return this.keyItem + 1
+      return this.keyItem
+    }
+  },
+  methods: {
+    ...mapActions('todolist', ['deleteTodolist', 'pinTodolist']),
+    handleSelectTodo (val) {
+      this.$emit('select-todo', val)
+    },
+    async handleDeleteTodolist (id) {
+      const response = await this.deleteTodolist(id)
+      if (response.status === 200) {
+        this.$toast.success(response.message)
+        this.$router.go()
+      } else {
+        this.$toast.error(response.data.message)
+      }
+    },
+    async handlePinTodolist (id) {
+      const response = await this.pinTodolist(id)
+      if (response.status === 201 || response.status === 200) {
+        this.$toast.success(response.message)
+        this.$router.go()
+      } else {
+        this.$toast.error(response.data.message)
+      }
     }
   }
 }
