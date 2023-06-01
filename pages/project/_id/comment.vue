@@ -7,9 +7,9 @@
         <h1 class="font-cabinet-grotesk font-bold text-2xl">
           Tandai Area (Opsional)
         </h1>
-        <div class="p-[10px] border-2 rounded-lg">
+        <button class="p-[10px] border-2 rounded-lg" @click="toggleMarker">
           <icon-galery-mark-icon />
-        </div>
+        </button>
       </div>
       <div
         class="py-[17px] px-[28px] border-b-2 border-r-2 flex items-center justify-between"
@@ -72,7 +72,22 @@
         class="left-section flex justify-center items-center p-5 border-r-2 mt-24"
       >
         <div class="flex justify-center items-center w-full h-full">
-          <div v-if="form.getImgId && form.getImgId.url" class="h-fit">
+          <div
+            v-if="form.getImgId && form.getImgId.url"
+            ref="imageContainer"
+            class="container-image h-fit relative"
+          >
+            <div
+              v-if="showMarker"
+              class="marker p-10 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+              :style="{ left: markerX + 'px', top: markerY + 'px' }"
+              @mousedown="startDrag"
+              @mousemove="drag"
+              @mouseup="endDrag"
+              @mouseleave="endDrag"
+            >
+              <icon-galery-comment-mark class="cursor-move" />
+            </div>
             <img
               :src="form.getImgId.url"
               alt="Image preview"
@@ -127,7 +142,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'AddComment',
@@ -140,6 +155,8 @@ export default {
 
   data () {
     return {
+      index: 0,
+      showMarker: false,
       form: {
         comment: '',
         projectId: '',
@@ -149,14 +166,19 @@ export default {
       },
       isOpen: false,
       disabled: true,
-      project: this.$store.state.project.detailProject
+      project: this.$store.state.project.detailProject,
+      markerX: 0,
+      markerY: 0,
+      isDragging: false,
+      startX: 0,
+      startY: 0
     }
   },
   computed: {
     ...mapState('profile', ['detailUser']),
     ...mapState('project', ['projects']),
     ...mapState('comment', ['forms']),
-    ...mapGetters('project', ['getMyProject']),
+    // ...mapGetters('project', ['getMyProject']),
     username () {
       return this.$auth.user ? this.$auth.user.name : 'Guest'
     },
@@ -226,6 +248,55 @@ export default {
         this.$toast.error(response.data.message)
       }
       this.disabled = false
+    },
+
+    toggleMarker (event) {
+      this.showMarker = !this.showMarker
+      const x = event.clientX
+      const y = event.clientY
+      console.log('koordinat klik', x, y)
+    },
+    startDrag (event) {
+      this.isDragging = true
+      this.startX = event.clientX
+      this.startY = event.clientY
+      event.preventDefault()
+    },
+    drag (event) {
+      if (this.isDragging) {
+        const offsetX = event.clientX - this.startX
+        const offsetY = event.clientY - this.startY
+        this.markerX += offsetX
+        this.markerY += offsetY
+        this.startX = event.clientX
+        this.startY = event.clientY
+
+        const containerImage = this.$refs.imageContainer
+        const containerRect = containerImage.getBoundingClientRect()
+
+        // Batasi pergeseran marker ke dalam batasan container-image
+        if (this.markerX < 0) {
+          this.markerX = 0
+        } else if (this.markerX > containerRect.width) {
+          this.markerX = containerRect.width
+        }
+
+        if (this.markerY < 0) {
+          this.markerY = 0
+        } else if (this.markerY > containerRect.height) {
+          this.markerY = containerRect.height
+        }
+        console.log('Koordinat X:', this.markerX)
+        console.log('Koordinat Y:', this.markerY)
+      }
+    },
+    updateCoordinates () {
+      this.form.xAxis = this.markerX
+      this.form.yAxis = this.markerY
+    },
+    endDrag () {
+      this.updateCoordinates()
+      this.isDragging = false
     }
   }
 }
