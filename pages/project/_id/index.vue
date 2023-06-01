@@ -48,18 +48,27 @@
             >
               <icon-galery-slider-icon class="rotate-180" />
             </button>
-            <img
-              v-if="Array.isArray(projectImage) && projectImage.length > 0"
-              :src="projectImage[currentImageIndex]"
-              alt="Image preview"
-              class="object-contain w-full h-[100%]"
-            >
-            <img
-              v-else
-              :src="projectImage"
-              alt="Image preview"
-              class="object-contain w-full h-[100%]"
-            >
+            <div ref="imageContainer" class="container-image h-fit relative">
+              <div
+                v-if="showMarker"
+                :style="{ left: markerX + 'px', top: markerY + 'px' }"
+                class="marker p-10 absolute transform -translate-x-1/2 -translate-y-1/2"
+              >
+                <icon-galery-comment-mark class="cursor-move" />
+              </div>
+              <img
+                v-if="Array.isArray(projectImage) && projectImage.length > 0"
+                :src="projectImage[currentImageIndex]"
+                alt="Image preview"
+                class="object-contain w-full h-[100%]"
+              >
+              <img
+                v-else
+                :src="projectImage"
+                alt="Image preview"
+                class="object-contain w-full h-[100%]"
+              >
+            </div>
             <button
               v-if="Array.isArray(projectImage) && projectImage.length > 1"
               class="slider-button absolute top-1/2 right-3 rounded-full shadow-xl p-4"
@@ -174,7 +183,10 @@ export default {
       projectIndex: 0,
       project: this.$store.state.project.detailProject,
 
-      selectedMenu: 'like'
+      selectedMenu: 'like',
+      showMarker: false,
+      markerX: 0,
+      markerY: 0
     }
   },
 
