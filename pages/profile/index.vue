@@ -27,10 +27,7 @@
       </div>
       <div class="max-w-[300px] w-full px-3 flex flex-col space-y-2">
         <div class="flex items-center justify-between">
-          <img
-            class="w-[55px] rounded-full"
-            :src="detailUser.avatar.image.thumbnail.url"
-          >
+          <img class="w-[55px] rounded-full" :src="profileImage">
           <!-- <div class="flex text-[30px]">
             <h1>Profil</h1>
           </div> -->
@@ -60,7 +57,7 @@
         <div>
           <img
             class="max-w-[120px] w-full rounded-full"
-            :src="detailUser.avatar.image.thumbnail.url"
+            :src="detailUser.avatar.thumbnail_url"
           >
           <button>Ubah foto profile</button>
         </div>
@@ -132,8 +129,7 @@ export default {
       form: {
         name: this.$store.state.profile.detailUser.name ?? '',
         bio: this.$store.state.profile.detailUser.bio ?? '',
-        avatar:
-          this.$store.state.profile.detailUser.avatar.image.thumbnail.url ?? ''
+        avatar: this.$store.state.profile.detailUser.avatar.thumbnail_url ?? ''
       },
       errors: {
         name: '',
@@ -144,7 +140,12 @@ export default {
     }
   },
   computed: {
-    ...mapState('profile', ['detailUser'])
+    ...mapState('profile', ['detailUser']),
+    profileImage () {
+      return this.detailUser.avatar.thumbnail_url !== null
+        ? this.detailUser.avatar.thumbnail_url
+        : require('../../assets/img/defaultAvatar.png')
+    }
   },
   watch: {
     form: {
