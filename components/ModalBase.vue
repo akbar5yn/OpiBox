@@ -11,6 +11,7 @@
       :style="containerCss"
     >
       <img
+        v-if="closeBtn"
         class="w-3 absolute right-4 top-4 cursor-pointer"
         src="../assets/img/close.svg"
         alt="Close Icon"
@@ -27,6 +28,10 @@ export default {
     width: {
       type: String,
       default: ''
+    },
+    closeBtn: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {

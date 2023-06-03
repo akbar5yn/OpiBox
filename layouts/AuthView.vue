@@ -15,6 +15,7 @@
     <div class="flex justify-center items-center mt-11">
       <nuxt />
     </div>
+    <DisconnectInternet v-show="$nuxt.isOffline" />
   </div>
 </template>
 
