@@ -46,6 +46,7 @@
 export default {
   name: 'NotiFication',
   layout: 'MainPage',
+  middleware: 'auth',
 
   data () {
     return {}
