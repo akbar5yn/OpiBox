@@ -5,7 +5,7 @@ export default {
     // false,
   },
 
-  ssr: true,
+  ssr: false,
 
   head: {
     title: 'opibox',
