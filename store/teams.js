@@ -3,7 +3,6 @@ export const state = () => ({
     teamId: '',
     email: []
   },
-  kolabolator: [],
   teams: new Map(),
   modalTim: false,
   modalInviter: false,
@@ -47,11 +46,15 @@ export const mutations = {
 
   setSelectedTeamKolab (state, teamId) {
     state.teamKolab = teamId
+  },
+
+  setSaveTeamId (state, teamId) {
+    state.saveTeamId = teamId
   }
 }
 
 export const actions = {
-  // create team
+  // SECTION -  create team
   async createTeam (state, data) {
     try {
       const response = await this.$axios.$post('teams', data)
@@ -64,7 +67,7 @@ export const actions = {
     }
   },
 
-  // get teams
+  // SECTION -  get teams
   async fetchTeams ({ commit }, createdBy) {
     try {
       const response = await this.$axios.$get('teams', {
@@ -86,7 +89,7 @@ export const actions = {
     }
   },
 
-  // invite kolabolator
+  // SECTION -  invite kolabolator
   async invitations ({ commit, state }) {
     const data = {
       team_id: state.forms.teamId,
@@ -104,7 +107,7 @@ export const actions = {
     commit('setSelectedTeamId', teamId)
   },
 
-  // delete team
+  // SECTION -  -  delete team
   async deleteTeam ({ commit }, timId) {
     try {
       commit('setLoading', true) // Set loading menjadi true sebelum melakukan permintaan
@@ -117,11 +120,19 @@ export const actions = {
     }
   },
 
-  async fetchKolab ({ commit }, teamId) {
+  // SECTION - get user colab
+  async fetchKolab (ctx, teamId) {
     try {
-      const response = await this.$axios.$get(`userteam?team_id=${teamId}`)
+      teamId !== '' && localStorage.setItem('teamId', teamId)
+      const response = await this.$axios.$get(
+        `userteam?team_id=${
+          teamId !== '' ? teamId : localStorage.getItem('teamId')
+        }`
+      )
+      // const response = await this.$axios.$get('userteam?team_id=27')
 
-      commit('setSelectedTeamKolab', response)
+      ctx.commit('setSelectedTeamKolab', response.data)
+
       return response
     } catch (err) {
       return err.response
