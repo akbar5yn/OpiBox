@@ -6,11 +6,11 @@
       </h1>
       <div class="grid grid-cols-2 text-center px-7">
         <nuxt-link
-          to="/notification/"
+          to="/notification"
           class="py-[20px] font-cabinet-grotesk text-2xl text-[#95959D]"
           :class="{
             'border-b-2 border-b-[#6C61E1] text-cabinet-grotesk text-black':
-              $route.path === '/notification/'
+              $route.path === '/notification'
           }"
         >
           Info
@@ -36,10 +36,6 @@
     </main>
 
     <!-- Notificatin -->
-    <main v-else>
-      <!-- <ShowInformation v-if="selectedNotification === 'info'" /> -->
-      <InviTation />
-    </main>
   </div>
 </template>
 <script>
