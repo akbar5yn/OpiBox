@@ -62,7 +62,7 @@
           >
             <div
               class="flex cursor-pointer items-center space-x-4"
-              @click="handleDeleteComment(comment.id)"
+              @click.stop="handleDeleteComment(comment.id)"
             >
               <img
                 class="w-4"
