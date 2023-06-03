@@ -47,7 +47,8 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
-    '@nuxtjs/toast'
+    '@nuxtjs/toast',
+    '@nuxtjs/netlify-files'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -78,6 +79,16 @@ export default {
           }
         }
       }
+    },
+
+    netlifyFiles: {
+      redirects: [
+        {
+          from: '/*',
+          to: '/index.html',
+          status: 200
+        }
+      ]
     },
 
     redirect: {
