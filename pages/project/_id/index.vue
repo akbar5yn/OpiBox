@@ -112,27 +112,22 @@
 
           <!-- give reaction to project -->
           <div class="flex justify-between border-b-2 mt-5 py-5">
-            <p
-              v-if="isLiked"
-              class="font-cabinet-grotesk text-xl flex items-center gap-2"
-            >
+            <p class="font-cabinet-grotesk text-xl flex items-center gap-2">
               <icon-galery-like-icon
                 class="cursor-pointer"
-                fill="red"
-                stroke="red"
-                @like-clicked="handleDissLikeProject"
-              />
-              <span class="text-[#95959D]">Suka</span>
-            </p>
-            <p
-              v-else
-              class="font-cabinet-grotesk text-xl flex items-center gap-2"
-            >
-              <icon-galery-like-icon
-                class="cursor-pointer"
-                :fill="fillColor"
-                :stroke="strokeColor"
-                @like-clicked="handleLikeProject"
+                :fill="
+                  likes.filter(data => data.user_id === $auth.user.id)
+                    .length !== 0
+                    ? 'red'
+                    : '#fff'
+                "
+                :stroke="
+                  likes.filter(data => data.user_id === $auth.user.id)
+                    .length !== 0
+                    ? 'red'
+                    : '#19191B'
+                "
+                @like-clicked="handleLike"
               />
               <span class="text-[#95959D]">Suka</span>
             </p>
@@ -178,8 +173,6 @@ export default {
   data () {
     return {
       currentImageIndex: 0,
-      fillColor: '#fff',
-      strokeColor: '#19191B',
       projectIndex: 0,
       project: this.$store.state.project.detailProject,
 
@@ -209,14 +202,7 @@ export default {
       const project = this.projects.find(project => project.id === projectId)
       return project ? project.caption : ''
     },
-    /* projectImage () {
-      const projectId = parseInt(this.$route.params.id)
-      const project = this.projects.find(project => project.id === projectId)
-      if (project && project.images && project.images.length > 0) {
-        return project.images.map(image => image.image_url)
-      }
-      return []
-    }, */
+
     projectImage () {
       if (
         this.project &&
@@ -230,17 +216,8 @@ export default {
   },
   mounted () {
     const projectId = this.$route.params.id // Mengambil nilai parameter 'id' dari properti $route
-    // console.log(projectId)
-    // this.fetchMyProject()
     this.fetchLike(projectId)
     this.fetchComment(projectId)
-
-    // Ambil nilai isLiked dari penyimpanan lokal saat komponen dibuat
-    const isLiked = localStorage.getItem('isLiked')
-    // Atur nilai isLiked ke state jika tersedia
-    if (isLiked !== null) {
-      this.setLike(isLiked === 'true')
-    }
   },
 
   methods: {
@@ -257,23 +234,21 @@ export default {
       this.$router.push(`/project/${this.$route.params.id}/comment`)
     },
 
-    async handleLikeProject () {
-      const projectId = this.$route.params.id // Ganti dengan ID proyek yang sesuai
-      await this.likeProject(projectId)
-      this.setLike(true)
+    async handleLike () {
+      const projectId = this.$route.params.id
+      const isLiked = this.likes.filter(
+        data => data.user_id === this.$auth.user.id
+      )
+      await this.likeProject({ projectId, isLiked })
+      await this.fetchLike(projectId)
     },
 
-    async handleDissLikeProject () {
-      const projectId = this.$route.params.id // Ganti dengan ID proyek yang sesuai
-      // const userId = this.$store.state.auth.user.id
-      await this.disLike(projectId)
-      this.setLike(false)
-    },
     prevImage () {
       if (this.currentImageIndex > 0) {
         this.currentImageIndex--
       }
     },
+
     nextImage () {
       if (this.currentImageIndex < this.projectImage.length - 1) {
         this.currentImageIndex++
