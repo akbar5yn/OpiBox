@@ -204,8 +204,7 @@ export default {
       }
 
       const response = await this.loginUser({ data })
-      console.log({ response })
-      if (response.status === 200) {
+      if (response.data.status === 200) {
         this.errors = {}
       } else if (this.patterCheckVerif.test(response.data.message)) {
         this.showVerificationModal = true
@@ -213,7 +212,7 @@ export default {
       } else {
         this.errors.default = response.data.message
       }
-      this.disabled = true
+      this.disabled = false
     },
     async resendEmailVerification () {
       const data = {
