@@ -14,7 +14,7 @@
         <ul class="flex w-full flex-col gap-2 h-80">
           <li v-for="team in getTeamsByInv" :key="team.id" class="relative">
             <NuxtLink
-              :to="`/teams/${team.id}`"
+              :to="`/teams/${team.team_id}`"
               active-class="bg-[#EBEAFB]"
               class="flex items-center gap-3 font-cabinet-grotesk px-8 py-2"
             >
