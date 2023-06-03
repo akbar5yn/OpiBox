@@ -93,10 +93,6 @@ export default {
       ]
     },
 
-    generate: {
-      fallback: true
-    },
-
     redirect: {
       login: '/login',
       logout: '/',
