@@ -61,6 +61,8 @@
 
     <!-- sidebar -->
     <mainpage-side-bar class="order-1" />
+
+    <DisconnectInternet v-show="$nuxt.isOffline" />
   </div>
 </template>
 

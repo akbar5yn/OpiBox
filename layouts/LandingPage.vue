@@ -379,6 +379,7 @@
       </p>
     </footer>
     <Nuxt />
+    <DisconnectInternet v-show="$nuxt.isOffline" />
   </div>
 </template>
 <script>
