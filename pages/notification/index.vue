@@ -28,14 +28,11 @@
       </div>
     </header>
 
-    <!-- Notification undangan -->
-    <main v-if="$route.params.slug">
-      <div>
-        <h1>Undangan</h1>
-      </div>
-    </main>
-
     <!-- Notificatin -->
+    <main>
+      <!-- <ShowInformation v-if="selectedNotification === 'info'" /> -->
+      <NotiFications />
+    </main>
   </div>
 </template>
 <script>

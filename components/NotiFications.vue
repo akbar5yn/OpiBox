@@ -36,7 +36,7 @@ import { mapGetters } from 'vuex'
 import moment from 'moment'
 
 export default {
-  name: 'InviTation',
+  name: 'NotiFications',
 
   data () {
     return {
