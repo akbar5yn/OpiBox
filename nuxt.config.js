@@ -5,7 +5,7 @@ export default {
     // false,
   },
 
-  ssr: false,
+  ssr: true,
 
   head: {
     title: 'opibox',
@@ -47,7 +47,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
-    '@nuxtjs/toast',
+    '@nuxtjs/toast'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -129,7 +129,6 @@ export default {
     duration: 2000,
     theme: 'bubble'
   },
-
 
   scrollBehavior: '~/app/router.scrollBehavior.js',
 
