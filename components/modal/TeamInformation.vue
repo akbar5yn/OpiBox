@@ -29,7 +29,7 @@ export default {
     ...mapGetters('teams', ['getTeams', 'getTeamsByInv']),
     teamId () {
       const team = this.getTeamsByInv.find(
-        team => team.id === parseInt(this.$route.params.id)
+        team => team.team_id === parseInt(this.$route.params.id)
       )
       return team ? team.team_id : ''
     }
