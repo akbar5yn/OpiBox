@@ -257,12 +257,12 @@ export default {
     navigateTo (path) {
       this.$router.push(path)
     },
-    markerOnOff (showMarker) {
+    markerOnOff ({ showMarker, selectedIndex }) {
       this.showMarker = showMarker
 
       // Memperbarui posisi marker berdasarkan koordinat
       if (showMarker) {
-        const comment = this.getAllComment[0] // Ambil data komentar pertama dari getAllComment
+        const comment = this.getAllComment[selectedIndex] // Ambil data komentar pertama dari getAllComment
         this.markerX = comment.x_axis
         this.markerY = comment.y_axis
       } else {

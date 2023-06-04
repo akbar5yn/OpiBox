@@ -7,6 +7,16 @@
       <p>Baca semua</p>
     </div>
     <div>
+      <notification-card
+        v-for="(notif, index) in notifiCations"
+        :id="notif.id"
+        :key="index"
+        :action="notif.action"
+        :is_read="notif.is_read"
+        :send_at="notif.send_at"
+        :sender="notif.sender"
+      />
+
       <div class="px-7 flex gap-6 items-center">
         <svg
           width="32"
@@ -32,7 +42,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import moment from 'moment'
 
 export default {
@@ -43,17 +53,15 @@ export default {
       // TODO - notif login success
       loginTime: moment(), // Waktu saat login
       currentTime: moment() // Waktu saat ini
-
-      // TODO - notif get point
-      // TODO - redem point
-      // TODO - notif join team
-      // TODO - notif like project
-      // TODO - notif comment project
-      // TODO - notif modification project
     }
   },
 
+  mounted () {
+    this.fetchNotifications()
+  },
+
   computed: {
+    ...mapState('notifications', ['notifiCations']),
     ...mapGetters('authentication', ['getLoginTime']),
     loginTimeAgo () {
       if (this.getLoginTime) {
@@ -75,6 +83,9 @@ export default {
 
       return ''
     }
+  },
+  methods: {
+    ...mapActions('notifications', ['fetchNotifications'])
   }
 }
 </script>

@@ -30,15 +30,22 @@
 
     <!-- Notification undangan -->
     <main v-if="$route.params.slug">
-      <div>
-        <h1>Undangan</h1>
-      </div>
+      <InvitationCards
+        v-for="(notif, index) in notifiCations"
+        :id="notif.id"
+        :key="index"
+        :action="notif.action"
+        :is_read="notif.is_read"
+        :send_at="notif.send_at"
+        :sender="notif.sender"
+      />
     </main>
 
     <!-- Notificatin -->
   </div>
 </template>
 <script>
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'NotiFication',
   layout: 'MainPage',
@@ -48,6 +55,16 @@ export default {
     return {}
   },
 
-  methods: {}
+  mounted () {
+    this.fetchNotifications()
+  },
+
+  computed: {
+    ...mapState('notifications', ['notifiCations'])
+  },
+
+  methods: {
+    ...mapActions('notifications', ['fetchNotifications'])
+  }
 }
 </script>

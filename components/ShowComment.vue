@@ -21,7 +21,7 @@
         }"
         @click="clickComment(index)"
       >
-        {{ showMarker ? 'Sembunyikan Marker' : 'Tampilkan Marker' }}
+        <!-- {{ showMarker ? 'Sembunyikan Marker' : 'Tampilkan Marker' }} -->
         <div class="header flex items-center justify-between">
           <div class="flex items-center gap-3">
             <icon-galery-avatar-icon />
@@ -167,13 +167,17 @@ export default {
 
     clickComment (index) {
       if (this.selectedCommentIndex === index) {
-        // Card sudah dipilih, batalkan pemilihan
         this.selectedCommentIndex = -1
+        this.$emit('displayMarker', !this.showMarker)
       } else {
         // Pilih card yang baru diklik
         this.selectedCommentIndex = index
         const newShowMarker = !this.showMarker
-        this.$emit('displayMarker', newShowMarker)
+        this.$emit('displayMarker', {
+          showMarker: newShowMarker,
+          selectedIndex: index
+        })
+        // this.$emit('')
       }
     }
   },
