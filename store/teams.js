@@ -8,7 +8,8 @@ export const state = () => ({
   modalInviter: false,
   teamByInv: [],
   getId: null,
-  teamKolab: []
+  teamKolab: [],
+  projectTeam: []
 })
 
 export const mutations = {
@@ -50,9 +51,14 @@ export const mutations = {
 
   setSaveTeamId (state, teamId) {
     state.saveTeamId = teamId
+  },
+
+  setProjectTeam (state, projectTeam) {
+    state.projectTeam = projectTeam
   }
 }
 
+// NOTE - actions
 export const actions = {
   // SECTION -  create team
   async createTeam (state, data) {
@@ -103,10 +109,6 @@ export const actions = {
     }
   },
 
-  setTeamId ({ commit }, teamId) {
-    commit('setSelectedTeamId', teamId)
-  },
-
   // SECTION -  -  delete team
   async deleteTeam ({ commit }, timId) {
     try {
@@ -137,6 +139,19 @@ export const actions = {
     } catch (err) {
       return err.response
     }
+  },
+
+  // SECTION - get project team
+  async fetchPorojectTeam (ctx, teamId) {
+    try {
+      const response = await this.$axios.$get(
+        `projects/${teamId}/team_projects`
+      )
+      console.log(response)
+      ctx.commit('setProjectTeam', response.data)
+    } catch (err) {
+      return err.response
+    }
   }
 }
 
@@ -151,5 +166,9 @@ export const getters = {
 
   getTeamKolab: (state) => {
     return state.teamKolab
+  },
+
+  getTeamProject: (state) => {
+    return state.projectTeam
   }
 }
