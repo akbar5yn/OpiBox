@@ -167,13 +167,10 @@ export default {
 
     clickComment (index) {
       if (this.selectedCommentIndex === index) {
-        // Card sudah dipilih, batalkan pemilihan
-        console.log('Comment ini dimatikan')
         this.selectedCommentIndex = -1
         this.$emit('displayMarker', !this.showMarker)
       } else {
         // Pilih card yang baru diklik
-        console.log('Comment ini di klik')
         this.selectedCommentIndex = index
         const newShowMarker = !this.showMarker
         this.$emit('displayMarker', {
