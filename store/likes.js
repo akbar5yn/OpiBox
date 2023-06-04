@@ -48,59 +48,16 @@ export const actions = {
   },
 
   // post like
-  async likeProject ({ commit }, projectId) {
+  async likeProject ({ commit }, { projectId, isLiked }) {
     try {
       // Kirim permintaan untuk menyukai proyek
-      const response = await this.$axios.$post(`projects/${projectId}/likes`)
-      // Perbarui data proyek yang disukai di state
-      // const likeProject = response.data.likes.map(like => like.project_id)
-      // const likeProject = response.data.likes.length
-      if (response.data && response.data.likes) {
-        const likeProject = response.data.likes.length
-        commit('setLike', likeProject)
-      } else {
-        // Handle jika response.data.likes tidak ditemukan
-        return 'data tidak ditemukan'
-      }
-
-      // commit('setLike', likeProject)
-    } catch (error) {
-      console.error(error)
-    }
-  },
-
-  // dislike
-
-  async disLike ({ commit, state }, projectId) {
-    try {
-      const response = await this.$axios.$get(`projects/${projectId}/likes`)
-
-      if (response && response.data && response.data.likes) {
-        const likes = response.data.likes
-        const currentUserLike = likes.find(
-          like => like.user_id === state.userId
+      console.log(isLiked, 'Likedata on likes')
+      if (isLiked.length !== 0) {
+        await this.$axios.$delete(
+          `projects/${projectId}/likes/${isLiked[0].id}`
         )
-
-        if (currentUserLike) {
-          const likeId = currentUserLike.id
-          const deleteResponse = await this.$axios.$delete(
-            `projects/${projectId}/likes/${likeId}`
-          )
-
-          if (
-            deleteResponse &&
-            deleteResponse.data &&
-            deleteResponse.data.likes
-          ) {
-            const updatedLikes = deleteResponse.data.likes
-            const disLike = updatedLikes.length
-            commit('disLikeProject', disLike)
-          } else {
-            // Handle jika respons penghapusan like tidak sesuai
-          }
-        }
       } else {
-        // Handle jika respons tidak sesuai atau properti likes tidak ditemukan
+        await this.$axios.$post(`projects/${projectId}/likes`)
       }
     } catch (error) {
       console.error(error)

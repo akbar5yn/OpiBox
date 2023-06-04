@@ -114,8 +114,9 @@ export default {
     }
   },
 
-  created () {
+  mounted () {
     const teamId = localStorage.getItem('teamId')
+
     this.fetchTeamKolab(teamId)
   },
 
@@ -125,20 +126,20 @@ export default {
 
     teamName () {
       const team = this.getTeamsByInv.find(
-        team => team.id === parseInt(this.$route.params.id)
+        team => team.team_id === parseInt(this.$route.params.id)
       )
       return team ? team.team_name : ''
     },
     teamId () {
       const team = this.getTeamsByInv.find(
-        team => team.id === parseInt(this.$route.params.id)
+        team => team.team_id === parseInt(this.$route.params.id)
       )
       return team ? team.team_id : ''
     },
 
     teamKolabData () {
-      if (this.getTeamKolab && this.getTeamKolab.data) {
-        return this.getTeamKolab.data
+      if (this.getTeamKolab && this.getTeamKolab) {
+        return this.getTeamKolab
       } else {
         return []
       }
