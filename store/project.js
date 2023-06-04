@@ -10,7 +10,8 @@ export const state = () => ({
   },
   projects: [],
   loading: false,
-  detailProject: {}
+  detailProject: {},
+  projectShared: []
 })
 
 export const mutations = {
@@ -63,9 +64,14 @@ export const mutations = {
 
   setDetailProject (state, value) {
     state.detailProject = value
+  },
+
+  setProjectShared (state, projectShared) {
+    state.projectShared = projectShared
   }
 }
 
+// SECTION - actions
 export const actions = {
   // post project
   async postData (ctx) {
@@ -144,7 +150,19 @@ export const actions = {
       const response = await this.$axios.$get(`projects/${projectId}`)
       commit('setDetailProject', response.data)
     } catch (err) {
-      if (err.response.status !== 200) { commit('setDetailProject', []) }
+      if (err.response.status !== 200) {
+        commit('setDetailProject', [])
+      }
+    }
+  },
+
+  // SECTION - get share project
+  async getSharedProject ({ commit }) {
+    try {
+      const response = await this.$axios.$get('projects/shared')
+      commit('setProjectShared', response.data)
+    } catch (err) {
+      return err.response
     }
   }
 }
