@@ -175,6 +175,7 @@
           </ul>
         </div>
         <button
+          v-if="accessiBility($auth.user.id)"
           class="px-[20px] py-[10px] font-cabinet-grotesk border-2 rounded-md mt-5 w-full"
           @click="inviteUser($route.params.id)"
         >
@@ -257,7 +258,7 @@ export default {
       if (role === 'Owner') {
         return 'Pemilik'
       } else {
-        return role
+        return ''
       }
     },
 
@@ -295,7 +296,7 @@ export default {
       this.$store.commit('teams/setModalInvite', true)
     },
 
-    // cek akses
+    // SECTION -  cek akses
     accessiBility (userId) {
       const myData = this.getTeamKolab.filter(
         data => data.user_id === userId && data.role === 'Owner'
