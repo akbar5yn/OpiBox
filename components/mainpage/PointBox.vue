@@ -7,7 +7,7 @@
       <img src="../../assets/img/Poin.svg" alt="point">
       <span>0 XP</span>
     </div>
-    <nuxt-link to="">
+    <nuxt-link to="/point">
       Lihat Detailnya >
     </nuxt-link>
   </div>

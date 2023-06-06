@@ -152,6 +152,18 @@ export const actions = {
     } catch (err) {
       return err.response
     }
+  },
+
+  async kickMemberTeam (ctx, { teamId, idMember }) {
+    try {
+      const response = await this.$axios.$delete(
+        `teams/${idMember}/kick/${teamId}`
+      )
+      console.log(response)
+      return response
+    } catch (err) {
+      return err.response
+    }
   }
 }
 
