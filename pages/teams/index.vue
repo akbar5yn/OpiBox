@@ -120,7 +120,7 @@
           <h1 class="">
             Anggota
           </h1>
-          <button>
+          <button v-if="accessiBility($auth.user.id)" @click="handleKickMember">
             <svg
               width="20"
               height="21"
@@ -170,6 +170,12 @@
                 <span class="italic text-[#B0B0B5]">
                   {{ formatedRole(member.role) }}
                 </span>
+                <button
+                  v-if="kickMember && member.role === 'Member'"
+                  @click="kickThisMember(member.user_id, member.team_id)"
+                >
+                  <icon-galery-trash-icon color="red" />
+                </button>
               </div>
             </li>
           </ul>
@@ -196,7 +202,8 @@ export default {
 
   data () {
     return {
-      isOpen: false
+      isOpen: false,
+      kickMember: false
     }
   },
 
@@ -237,7 +244,12 @@ export default {
 
   methods: {
     ...mapMutations('teams', ['setTeamId']),
-    ...mapActions('teams', ['fetchKolab', 'fetchPorojectTeam', 'deleteTeam']),
+    ...mapActions('teams', [
+      'fetchKolab',
+      'fetchPorojectTeam',
+      'deleteTeam',
+      'kickMemberTeam'
+    ]),
     toggleInfo () {
       // const timId = this.$route.params.id
       // this.setTeamId(timId)
@@ -309,10 +321,30 @@ export default {
       return false
     },
 
+    handleKickMember () {
+      this.kickMember = !this.kickMember
+    },
+
     // SECTION - visit project
     visitProject (id) {
       console.log(id)
       this.$router.push(`/project/${id}`)
+    },
+
+    // ANCHOR - Kick member
+    async kickThisMember (teamId, idMember) {
+      try {
+        const response = await this.kickMemberTeam({ teamId, idMember }) // Mengirimkan ID proyek ke metode deleteProject
+        // Penanganan respons setelah menghapus proyek
+        if (response.status === 200) {
+          this.$toast.success(response.message)
+          this.fetchTeamKolab()
+        } else {
+          this.$toast.error(response.message)
+        }
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 }
