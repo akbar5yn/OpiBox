@@ -56,6 +56,9 @@ export default {
         case 'invitation':
           return `Anda diundang untuk menjadi collaborator di tim ${this.sender.name} ayo segera join !`
 
+        case 'success_invitation':
+          return `Anda berhasil bergabung dengan tim ${this.sender.name}`
+
         default:
           return 'Notif ini belum di atur'
       }
