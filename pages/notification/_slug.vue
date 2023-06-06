@@ -30,41 +30,17 @@
 
     <!-- Notification undangan -->
     <main v-if="$route.params.slug">
-      <InvitationCards
-        v-for="(notif, index) in notifiCations"
-        :id="notif.id"
-        :key="index"
-        :action="notif.action"
-        :is_read="notif.is_read"
-        :send_at="notif.send_at"
-        :sender="notif.sender"
-      />
+      <InvitationCards />
     </main>
 
     <!-- Notificatin -->
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
+// import { mapState, mapActions } from 'vuex'
 export default {
   name: 'NotiFication',
   layout: 'MainPage',
-  middleware: 'auth',
-
-  data () {
-    return {}
-  },
-
-  mounted () {
-    this.fetchNotifications()
-  },
-
-  computed: {
-    ...mapState('notifications', ['notifiCations'])
-  },
-
-  methods: {
-    ...mapActions('notifications', ['fetchNotifications'])
-  }
+  middleware: 'auth'
 }
 </script>
