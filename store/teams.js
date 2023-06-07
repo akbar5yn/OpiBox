@@ -3,9 +3,11 @@ export const state = () => ({
     teamId: '',
     email: []
   },
+  newTeamName: '',
   teams: new Map(),
   modalTim: false,
   modalInviter: false,
+  modalEditTeam: false,
   teamByInv: [],
   getId: null,
   teamKolab: [],
@@ -55,6 +57,10 @@ export const mutations = {
 
   setProjectTeam (state, projectTeam) {
     state.projectTeam = projectTeam
+  },
+
+  setModalEdit (state, value) {
+    state.modalEditTeam = value
   }
 }
 
@@ -160,6 +166,16 @@ export const actions = {
         `teams/${idMember}/kick/${teamId}`
       )
       console.log(response)
+      return response
+    } catch (err) {
+      return err.response
+    }
+  },
+
+  async renameTeam (ctx, { timId, data }) {
+    try {
+      const response = await this.$axios.$put(`teams/${timId}`, data)
+
       return response
     } catch (err) {
       return err.response
