@@ -30,7 +30,7 @@
           Lihat semua
         </nuxt-link>
       </div>
-      <mainpage-my-draft class="mt-[14px]" />
+      <mainpage-shared-with-me class="mt-[14px]" />
     </section>
 
     <!-- show modal lihat laporan -->
