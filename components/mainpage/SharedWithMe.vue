@@ -24,7 +24,7 @@
         <div class="border rounded-lg bg-white drop-shadow-md w-fit snap-start">
           <div
             class="h-[152px] w-[360px] overflow-clip"
-            @click="visitProject(project.id)"
+            @click="visitProject(project.shareable_link)"
           >
             <img
               :src="project.images[0].thumbnail_url"
@@ -40,7 +40,7 @@
               </div>
               <h2
                 class="cursor-pointer font-cabinet-grotesk text-xl font-semibold"
-                @click="showProject(project.id)"
+                @click="showProject(project.shareable_link)"
               >
                 {{ project.title }} <br>
 
@@ -84,7 +84,11 @@ export default {
     this.getSharedProject()
   },
   methods: {
-    ...mapActions('project', ['setShowInfo', 'getSharedProject']),
+    ...mapActions('project', [
+      'setShowInfo',
+      'getSharedProject',
+      'getLinkShareableProject'
+    ]),
     // ...mapMutations('project', ['setShowInfo']),
 
     showProject (projectId) {
@@ -119,9 +123,10 @@ export default {
       // const setInfo = this.setShowInfo(projectId)
       this.selectedProjectInfo = projectId
     },
-    visitProject (id) {
-      console.log(id)
-      this.$router.push(`/project/${id}`)
+    visitProject (link) {
+      console.log(link)
+      this.$router.push(`/project/shared/${link}`)
+      this.getLinkShareableProject(link)
     },
     handleProjectReport () {
       this.selectedProjectInfo = 0
