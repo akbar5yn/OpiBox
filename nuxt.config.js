@@ -1,6 +1,8 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
 
+  serverMiddleware: [{ path: '/.well-known', handler: '~/static/.well-known' }],
+
   target: 'static',
 
   server: {
@@ -112,6 +114,11 @@ export default {
           name: 'LihatProyek',
           path: '/project/:id',
           component: resolve(__dirname, 'pages/project')
+        },
+        {
+          name: 'project-shared',
+          path: '/project/shared/:link',
+          component: resolve(__dirname, 'pages/project/shared/index.vue')
         },
         // {
         //   name: 'Notifikasi',
