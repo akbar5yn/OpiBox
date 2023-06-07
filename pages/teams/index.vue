@@ -8,6 +8,23 @@
         <h1 class="font-cabinet-grotesk text-3xl font-medium">
           Tim {{ teamName }}
         </h1>
+        <button @click="toggleEdit">
+          <svg
+            width="17"
+            height="16"
+            viewBox="0 0 17 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.0588 2.64218L13.8578 5.44115M12.2463 1.45468C13.0192 0.681772 14.2724 0.681772 15.0453 1.45468C15.8182 2.2276 15.8182 3.48074 15.0453 4.25365L4.14583 15.1531H1.375V12.326L12.2463 1.45468Z"
+              stroke="#111826"
+              stroke-width="1.58333"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
       </div>
 
       <!-- button edit tim -->
@@ -188,9 +205,10 @@
           Undang
         </button>
       </div>
-    </section>
 
-    <!-- Tampilkan detail tim berdasarkan teamId -->
+      <!-- modal here -->
+      <modal-edit-team />
+    </section>
   </div>
 </template>
 
@@ -243,7 +261,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations('teams', ['setTeamId']),
+    ...mapMutations('teams', ['setTeamId', 'setModalEdit']),
     ...mapActions('teams', [
       'fetchKolab',
       'fetchPorojectTeam',
@@ -345,6 +363,11 @@ export default {
       } catch (error) {
         console.error(error)
       }
+    },
+
+    // SECTION - Set modal edit tim
+    toggleEdit () {
+      this.setModalEdit(true)
     }
   }
 }

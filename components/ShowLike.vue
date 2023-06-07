@@ -1,7 +1,7 @@
 <template>
   <div class="h-[100%]">
     <section
-      v-if="noLike"
+      v-if="getLike.length === 0"
       class="h-[100%] flex flex-col items-center text-center justify-center gap-2"
     >
       <p class="font-cabinet-grotesk text-xl font-bold">
@@ -31,9 +31,7 @@ export default {
   name: 'ShowLike',
 
   data () {
-    return {
-      noLike: false
-    }
+    return {}
   },
 
   computed: {
