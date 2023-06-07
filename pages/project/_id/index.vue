@@ -25,6 +25,7 @@
         </svg>
         <button
           class="flex items-center px-6 py-3 gap-4 bg-[#6C61E1] text-white rounded-lg"
+          @click="getShareableLink"
         >
           <icon-galery-shared-with-me color="white" />
           Bagikan
@@ -104,7 +105,10 @@
               {{ commentCount }}
               <span class="text-[#95959D]">Komentar</span>
             </p>
-            <p class="font-cabinet-grotesk text-xl">
+            <p
+              class="font-cabinet-grotesk text-xl cursor-default"
+              @click="selectedMenu = 'modification'"
+            >
               120
               <span class="text-[#95959D]">Modifikasi</span>
             </p>
@@ -145,7 +149,7 @@
             </p>
           </div>
 
-          <!-- show comment and likes -->
+          <!-- show comment, likes, and modification -->
           <div class="h-[65%] overflow-hidden overflow-y-scroll">
             <showLike v-if="selectedMenu == 'like'" />
             <showComment
@@ -153,6 +157,7 @@
               :show-marker="showMarker"
               @displayMarker="markerOnOff"
             />
+            <ShowModification v-if="selectedMenu == 'modification'" />
           </div>
         </div>
       </div>
@@ -161,12 +166,12 @@
 </template>
 <script>
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
+import ShowModification from '~/components/ShowModification.vue'
 
 export default {
   name: 'Project',
   layout: 'ProjectSession',
   middleware: 'auth',
-
   async asyncData ({ store, route }) {
     await store.dispatch('project/getSingleProject', route.params.id)
   },
@@ -175,17 +180,15 @@ export default {
       currentImageIndex: 0,
       projectIndex: 0,
       project: this.$store.state.project.detailProject,
-
       selectedMenu: 'like',
       showMarker: false,
       markerX: 0,
       markerY: 0
     }
   },
-
   computed: {
     // get project
-    ...mapState('project', ['projects']),
+    ...mapState('project', ['projects', 'detailProject']),
     // ...mapGetters('project', ['getMyProject']),
     ...mapGetters('comment', ['getAllComment']),
     ...mapGetters('comment', ['commentCount']),
@@ -202,7 +205,6 @@ export default {
       const project = this.projects.find(project => project.id === projectId)
       return project ? project.caption : ''
     },
-
     projectImage () {
       if (
         this.project &&
@@ -214,6 +216,7 @@ export default {
       return []
     }
   },
+
   mounted () {
     const projectId = this.$route.params.id // Mengambil nilai parameter 'id' dari properti $route
     this.fetchLike(projectId)
@@ -225,15 +228,12 @@ export default {
     ...mapActions('likes', ['fetchLike', 'likeProject', 'disLike']),
     ...mapMutations('likes', ['setLike']),
     ...mapActions('comment', ['fetchComment']),
-
     setActiveProject (index) {
       this.projectIndex = index
     },
-
     sendComment (projectId) {
       this.$router.push(`/project/${this.$route.params.id}/comment`)
     },
-
     async handleLike () {
       const projectId = this.$route.params.id
       const isLiked = this.likes.filter(
@@ -242,13 +242,11 @@ export default {
       await this.likeProject({ projectId, isLiked })
       await this.fetchLike(projectId)
     },
-
     prevImage () {
       if (this.currentImageIndex > 0) {
         this.currentImageIndex--
       }
     },
-
     nextImage () {
       if (this.currentImageIndex < this.projectImage.length - 1) {
         this.currentImageIndex++
@@ -259,7 +257,6 @@ export default {
     },
     markerOnOff ({ showMarker, selectedIndex }) {
       this.showMarker = showMarker
-
       // Memperbarui posisi marker berdasarkan koordinat
       if (showMarker) {
         const comment = this.getAllComment[selectedIndex] // Ambil data komentar pertama dari getAllComment
@@ -270,7 +267,34 @@ export default {
         this.markerX = 0
         this.markerY = 0
       }
+    },
+
+    // SECTION - getLink
+    getBaseUrl () {
+      const baseUrl = this.$axios.defaults.baseURL
+      return baseUrl
+    },
+
+    getShareableLink () {
+      const link = this.detailProject.shareable_link
+      // const baseUrl = this.getBaseUrl()
+      const baseUrl = 'http://localhost:3000/'
+
+      // Membuat tautan yang dapat diklik
+      const clickableLink = `${baseUrl}project/shared/${link}`
+
+      // Menyalin tautan ke clipboard
+      navigator.clipboard
+        .writeText(clickableLink)
+        .then(() => {
+          this.$toast.success('Tautan berhasil disalin!')
+        })
+        .catch((error) => {
+          console.error('Gagal menyalin tautan:', error)
+          this.$toast.error('Gagal menyalin tautan')
+        })
     }
-  }
+  },
+  components: { ShowModification }
 }
 </script>
