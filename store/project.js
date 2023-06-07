@@ -11,7 +11,8 @@ export const state = () => ({
   projects: [],
   loading: false,
   detailProject: {},
-  projectShared: []
+  projectShared: [],
+  projectShareable: {}
 })
 
 export const mutations = {
@@ -68,6 +69,10 @@ export const mutations = {
 
   setProjectShared (state, projectShared) {
     state.projectShared = projectShared
+  },
+
+  setLinkShareableProject (state, shareableProject) {
+    state.projectShareable = shareableProject
   }
 }
 
@@ -164,6 +169,20 @@ export const actions = {
     } catch (err) {
       return err.response
     }
+  },
+
+  async getLinkShareableProject ({ commit }, linkShareableProject) {
+    // projects/link_open/49b281bc-b09e-4fac-b9e2-615727f2af2d
+    try {
+      const response = await this.$axios.$get(
+        `projects/link_open/${linkShareableProject}`
+      )
+      console.log(response)
+      commit('setLinkShareableProject', response.data)
+      return response.data
+    } catch (err) {
+      return err.response
+    }
   }
 }
 
@@ -171,5 +190,9 @@ export const getters = {
   // get project
   getMyProject: (state) => {
     return state.projects
+  },
+
+  getProjectSahred: (state) => {
+    return state.projectShared
   }
 }
