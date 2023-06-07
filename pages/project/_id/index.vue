@@ -270,15 +270,12 @@ export default {
     },
 
     // SECTION - getLink
-    getBaseUrl () {
-      const baseUrl = this.$axios.defaults.baseURL
-      return baseUrl
-    },
 
     getShareableLink () {
       const link = this.detailProject.shareable_link
       // const baseUrl = this.getBaseUrl()
-      const baseUrl = 'http://localhost:3000/'
+      // const baseUrl = 'http://localhost:3000/'
+      const baseUrl = 'https://opibox.netlify.app/'
 
       // Membuat tautan yang dapat diklik
       const clickableLink = `${baseUrl}project/shared/${link}`
