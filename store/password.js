@@ -22,5 +22,14 @@ export const actions = {
     } catch (err) {
       return err.response
     }
+  },
+  async checkResetToken (state, token) {
+    try {
+      return await this.$axios.$get(
+        `check_reset_token?reset_password_token=${token}`
+      )
+    } catch (err) {
+      return err.response
+    }
   }
 }

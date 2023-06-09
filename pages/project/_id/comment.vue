@@ -116,7 +116,7 @@
             <p
               class="text-end absolute bottom-5 right-5 font-cabinet-grotesk text-gray-400"
             >
-              {{ characterCount }}/50
+              {{ characterCount }}/250
             </p>
           </div>
           <div class="flex justify-between items-center h-[100%] px-5">
@@ -211,8 +211,8 @@ export default {
     ...mapActions('comment', ['postData']),
 
     limitCharacterCount () {
-      if (this.form.comment.length > 50) {
-        this.form.comment = this.form.comment.slice(0, 50) // Memotong komentar menjadi 50 karakter
+      if (this.form.comment.length > 250) {
+        this.form.comment = this.form.comment.slice(0, 250) // Memotong komentar menjadi 250 karakter
       }
     },
     selectImg () {

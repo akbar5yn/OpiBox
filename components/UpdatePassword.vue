@@ -4,8 +4,8 @@
       Ubah Kata Sandi
     </h1>
     <p class="text-[#8B8B8B]">
-      Kata sandi minimal harus enam karakter dan berisi kombinasi angka, huruf,
-      dan karakter khusus (!$@%)
+      Kata sandi minimal harus delapan karakter dan berisi kombinasi angka,
+      huruf, dan karakter khusus (!$@%)
     </p>
     <div
       v-if="response.status != ''"
@@ -207,10 +207,6 @@ export default {
         this.response.status = response.status
         // this.response.message = response.message
         this.errors = {}
-      } else if (Object.keys(response.data.message).length > 0) {
-        Object.keys(response.data.message).forEach((key) => {
-          this.errors[key] = response.data.message[key]
-        })
       } else {
         this.response.status = response.data.status
         this.response.message = response.data.message
