@@ -1,6 +1,6 @@
 <template>
   <div class="h-[650px] items-center">
-    <div v-if="!secondSection" class="text-center">
+    <div v-if="formResetPassword" class="text-center">
       <h1 class="text-[50px] font-cabinet-grotesk font-normal text-[#19191B]">
         Ubah Kata Sandi
       </h1>
@@ -113,7 +113,7 @@
         </button>
       </form>
     </div>
-    <div v-if="secondSection" class="h-[650px] items-center">
+    <div v-if="resetPasswordSucess" class="h-[650px] items-center">
       <div class="text-center">
         <h1 class="text-[40px] font-cabinet-grotesk font-normal text-[#19191B]">
           Kata Sandi<br>
@@ -134,6 +134,27 @@
         </button>
       </nuxt-link>
     </div>
+
+    <div v-if="expiredLink" class="w-[500px]">
+      <h1
+        class="text-[40px] font-cabinet-grotesk font normal text-[#19191B] text-center"
+      >
+        Link Telah Kadaluarsa
+      </h1>
+      <p
+        class="text-[14px] font-open-sans font-normal order-1 text-[#62626A] text-center"
+      >
+        Maaf, link reset password telah kadaluarsa. Masukkan email untuk
+        pengiriman ulang link reset password anda.
+      </p>
+      <nuxt-link to="/forgot-password">
+        <button
+          class="text-white bg-[#6C61E1] p-3 w-full rounded-lg text-[18px] font-normal font-cabinet-grotesk mt-8"
+        >
+          Kembali ke halaman lupa password
+        </button>
+      </nuxt-link>
+    </div>
   </div>
 </template>
 
@@ -151,10 +172,12 @@ export default {
         newPassword: '',
         confirmNewPassword: ''
       },
-      secondSection: false,
       disabled: true,
       showNewPassword: false,
-      showConfirmNewPassword: false
+      showConfirmNewPassword: false,
+      expiredLink: false,
+      resetPasswordSucess: false,
+      formResetPassword: false
     }
   },
   watch: {
@@ -190,8 +213,18 @@ export default {
       }
     }
   },
+  async created () {
+    const response = await this.checkResetToken(
+      this.$route.query.reset_password_token
+    )
+    if (response.status === 200) {
+      this.formResetPassword = true
+    } else {
+      this.expiredLink = true
+    }
+  },
   methods: {
-    ...mapActions('password', ['resetPassword']),
+    ...mapActions('password', ['resetPassword', 'checkResetToken']),
     async submitData () {
       const payload = {
         password: this.form.newPassword,
@@ -199,7 +232,8 @@ export default {
       }
       const response = await this.resetPassword(payload)
       if (response.status === 200) {
-        this.secondSection = !this.secondSection
+        this.formResetPassword = false
+        this.resetPasswordSucess = true
       } else {
         this.errors.message = response.data.message
       }
