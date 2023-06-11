@@ -109,7 +109,7 @@
               class="font-cabinet-grotesk text-xl cursor-default"
               @click="selectedMenu = 'modification'"
             >
-              120
+              {{ getCountRedesign }}
               <span class="text-[#95959D]">Modifikasi</span>
             </p>
           </div>
@@ -143,7 +143,10 @@
               <icon-galery-comment-icon class="cursor-pointer" />
               <span class="text-[#95959D]">Komentar</span>
             </p>
-            <p class="font-cabinet-grotesk text-xl flex items-center gap-2">
+            <p
+              class="font-cabinet-grotesk text-xl flex items-center gap-2 cursor-pointer"
+              @click="sendModification"
+            >
               <icon-galery-retweet-icon class="cursor-pointer" />
               <span class="text-[#95959D]">Modifikasi</span>
             </p>
@@ -194,6 +197,7 @@ export default {
     ...mapGetters('comment', ['commentCount']),
     ...mapState('likes', ['likes', 'isLiked', 'likeCount']),
     ...mapGetters('likes', ['getLike']),
+    ...mapGetters('modification', ['getCountRedesign']),
 
     projectTitle () {
       const projectId = parseInt(this.$route.params.id)
@@ -221,6 +225,7 @@ export default {
     const projectId = this.$route.params.id // Mengambil nilai parameter 'id' dari properti $route
     this.fetchLike(projectId)
     this.fetchComment(projectId)
+    this.fetchRedesign(projectId)
   },
 
   methods: {
@@ -228,12 +233,22 @@ export default {
     ...mapActions('likes', ['fetchLike', 'likeProject', 'disLike']),
     ...mapMutations('likes', ['setLike']),
     ...mapActions('comment', ['fetchComment']),
+    ...mapActions('modification', ['fetchRedesign']),
+
     setActiveProject (index) {
       this.projectIndex = index
     },
+
+    // NOTE - send comments
     sendComment (projectId) {
       this.$router.push(`/project/${this.$route.params.id}/comment`)
     },
+
+    // NOTE - send modifications
+    sendModification () {
+      this.$router.push(`/project/${this.$route.params.id}/modification`)
+    },
+
     async handleLike () {
       const projectId = this.$route.params.id
       const isLiked = this.likes.filter(
