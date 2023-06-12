@@ -59,6 +59,9 @@ export default {
         case 'success_invitation':
           return `Anda berhasil bergabung dengan tim ${this.sender.name}`
 
+        case 'redesign':
+          return `${this.sender.name} memodifikasi proyek milik Anda`
+
         default:
           return 'Notif ini belum di atur'
       }
