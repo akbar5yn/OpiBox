@@ -85,6 +85,7 @@
       <!-- Bottom Sidebar  -->
       <div class="font-open-sans">
         <div
+          id="help"
           class="flex items-center cursor-pointer pl-8 pr-4 py-3 group hover:bg-gray-200 hover:border-r-2 hover:border-[#6C61E1]"
           @click="selectedMenu = 'help'"
         >
@@ -106,6 +107,7 @@
           <span class="group-hover:text-[#6C61E1] ml-4">Bantuan</span>
         </div>
         <div
+          id="about"
           class="flex items-center cursor-pointer pl-8 pr-4 py-3 group hover:bg-gray-200 hover:border-r-2 hover:border-[#6C61E1]"
           @click="selectedMenu = 'about'"
         >
@@ -128,6 +130,7 @@
           <span class="group-hover:text-[#6C61E1] ml-4">Tentang</span>
         </div>
         <div
+          id="logout"
           class="flex items-center cursor-pointer pl-8 pr-4 py-3 group hover:bg-gray-200 hover:border-r-2 hover:border-[#6C61E1]"
           @click="logoutModalVisibility = true"
         >
