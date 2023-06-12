@@ -1,31 +1,65 @@
 <template>
-  <div class="flex flex-col py-8 px-4">
-    <div class="flex justify-between">
-      <h1 class="font-semibold text-2xl font-cabinet-grotesk">
-        Aktivitas Saya
-      </h1>
-      <div class="flex text-[30px] font-cabinet-grotesk">
-        <h1>Profil</h1>
-      </div>
-    </div>
-    <div class="flex item-center mt-6">
-      <div class="flex-grow min-h-screen">
+  <div class="flex flex-col py-8 px-4 h-full">
+    <div class="flex item-center h-full">
+      <div class="flex-grow">
+        <h1 class="font-semibold text-2xl font-cabinet-grotesk">
+          Aktivitas Saya
+        </h1>
         <div
-          class="flex items-center text-normal justify-between text-center text-[16px] font-open-sans"
+          class="flex items-center text-normal justify-between text-center text-[16px] font-cabinet-grotesk pt-6"
         >
-          <h2 class="w-full py-2 border-b-2 border-gray-300">
+          <button
+            class="w-full py-2 border-b-2 border-gray-300 transition-all duration-300"
+            :class="{
+              'border-b-[#6C61E1] font-bold': activity === 'like',
+              'font-normal': activity !== 'like'
+            }"
+            @click="activity = 'like'"
+          >
             Riwayat Suka
-          </h2>
-          <h2 class="w-full py-2 border-b-2 border-gray-300">
+          </button>
+          <button
+            class="w-full py-2 border-b-2 border-gray-300 transition-all duration-300"
+            :class="{
+              'border-b-[#6C61E1] font-bold': activity === 'comment',
+              'font-normal': activity !== 'comment'
+            }"
+            @click="activity = 'comment'"
+          >
             Riwayat Komentar
-          </h2>
-          <h2 class="w-full py-2 border-b-2 border-gray-300">
+          </button>
+          <button
+            class="w-full py-2 border-b-2 border-gray-300 transition-all duration-300"
+            :class="{
+              'border-b-[#6C61E1] font-bold': activity === 'modification',
+              'font-normal': activity !== 'modification'
+            }"
+            @click="activity = 'modification'"
+          >
             Riwayat Modifikasi
-          </h2>
+          </button>
         </div>
-        <div><!-- card project --></div>
+        <div>
+          <!-- history like -->
+          <div v-if="activity === 'like'">
+            <history-like-history />
+          </div>
+
+          <!-- history comment -->
+          <div v-if="activity === 'comment'">
+            <history-comment-history />
+          </div>
+
+          <!-- history modification -->
+          <div v-if="activity === 'modification'">
+            <history-modification-history />
+          </div>
+        </div>
       </div>
       <div class="max-w-[300px] w-full px-3 flex flex-col space-y-2">
+        <div class="flex text-[30px] font-cabinet-grotesk font-semibold">
+          <h1>Profil</h1>
+        </div>
         <div class="flex items-center justify-between">
           <img class="w-[55px] rounded-full" :src="profileImage">
           <!-- <div class="flex text-[30px]">
@@ -118,11 +152,12 @@
 import { mapState } from 'vuex'
 export default {
   name: 'Profile',
-  layout: 'MainPage',
+
   middleware: 'auth',
   async asyncData ({ store }) {
     await store.dispatch('profile/getProfile')
   },
+
   data () {
     return {
       disabled: true,
@@ -136,11 +171,15 @@ export default {
         bio: '',
         avatar: ''
       },
-      editProfileVisibility: false
+      editProfileVisibility: false,
+      activity: 'like',
+      showElement: false
     }
   },
+
   computed: {
     ...mapState('profile', ['detailUser']),
+
     profileImage () {
       return this.detailUser.avatar.thumbnail_url !== null
         ? this.detailUser.avatar.thumbnail_url
