@@ -320,7 +320,6 @@ export default {
     },
 
     inviteUser (idTeam) {
-      console.log(idTeam, 'ini id team')
       // const teamId = this.$route.params.id
       this.setTeamId(idTeam)
       this.$store.commit('teams/setModalInvite', true)
@@ -331,8 +330,6 @@ export default {
       const myData = this.getTeamKolab.filter(
         data => data.user_id === userId && data.role === 'Owner'
       )
-      console.log(myData)
-
       if (myData.length !== 0) {
         return true
       }

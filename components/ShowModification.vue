@@ -13,6 +13,8 @@
     </section>
     <section v-else class="like-commenth-[100%] mt-5">
       <div
+        v-for="(dataRedesign, index) in getDataRedesign"
+        :key="index"
         class="card p-5 w-full flex flex-col gap-2 relative font-cabinet-grotesk"
       >
         <div class="header flex items-center justify-between">
@@ -55,7 +57,7 @@
             </svg>
             <div>
               <p class="font-cabinet-grotesk">
-                Nama pengguna
+                {{ dataRedesign.user.name }}
               </p>
               <div class="mark flex items-center gap-2">
                 <svg
@@ -84,19 +86,17 @@
         >
           <div class="bg-[#6C61E1] w-[10px] h-full rounded-full" />
           <img
-            src="../assets/img/image3.svg"
+            :src="dataRedesign.image.image_url"
             alt="modifikasi"
             class="object-cover w-full h-full"
           >
         </div>
         <div class="card-footer mt-2 flex flex-col gap-2">
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
-            quos commodi corrupti dolorum voluptatibus quisquam voluptatem
-            soluta, adipisci ea beatae.
+            {{ dataRedesign.caption }}
           </p>
           <p class="text-[#B0B0B5] text-[12px]">
-            3 menit yang lalu
+            {{ dataRedesign.updated }}
           </p>
         </div>
       </div>
@@ -105,6 +105,8 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'ShowModification',
 
@@ -112,6 +114,23 @@ export default {
     return {
       noModification: false
     }
+  },
+
+  computed: {
+    ...mapGetters('modification', ['getDataRedesign']),
+
+    username () {
+      return this.$auth.user ? this.$auth.user.name : 'Guest'
+    }
+  },
+
+  mounted () {
+    const projectId = this.$route.params.id
+    this.fetchRedesign(projectId)
+  },
+
+  methods: {
+    ...mapActions('modification', ['fetchRedesign'])
   }
 }
 </script>
