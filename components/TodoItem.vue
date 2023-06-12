@@ -5,23 +5,9 @@
     </h2>
     <div class="flex flex-col space-y-2 flex-grow">
       <div class="flex items-center justify-between">
-        <div class="flex items-center space-x-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="22"
-            viewBox="0 0 18 22"
-            fill="none"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M3.05991 3.36069C6.34032 0.0802898 11.6589 0.0802892 14.9393 3.36069C18.2197 6.6411 18.2197 11.9597 14.9393 15.2401L8.99961 21.1798L3.05991 15.2401C-0.220492 11.9597 -0.220492 6.6411 3.05991 3.36069ZM8.99961 11.7004C10.3251 11.7004 11.3996 10.6259 11.3996 9.30039C11.3996 7.97491 10.3251 6.90039 8.99961 6.90039C7.67413 6.90039 6.59961 7.97491 6.59961 9.30039C6.59961 10.6259 7.67413 11.7004 8.99961 11.7004Z"
-              fill="#111826"
-            />
-          </svg>
-          <span>Gambar {{ keyItem }}</span>
-        </div>
+        <p>
+          {{ item.comment_body }}
+        </p>
         <div class="flex items-center space-x-4">
           <svg
             v-if="item.pinned"
@@ -75,15 +61,30 @@
           </svg>
         </div>
       </div>
-      <p>
-        {{ item.comment_body }}
-      </p>
-      <p
-        class="border border-gray-500 rounded-full p-2 text-sm w-fit text-gray-300"
-      >
-        Ditambahkan dari
-        <span class="text-black">{{ item.user_name }}</span>
-      </p>
+      <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="22"
+            viewBox="0 0 18 22"
+            fill="none"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M3.05991 3.36069C6.34032 0.0802898 11.6589 0.0802892 14.9393 3.36069C18.2197 6.6411 18.2197 11.9597 14.9393 15.2401L8.99961 21.1798L3.05991 15.2401C-0.220492 11.9597 -0.220492 6.6411 3.05991 3.36069ZM8.99961 11.7004C10.3251 11.7004 11.3996 10.6259 11.3996 9.30039C11.3996 7.97491 10.3251 6.90039 8.99961 6.90039C7.67413 6.90039 6.59961 7.97491 6.59961 9.30039C6.59961 10.6259 7.67413 11.7004 8.99961 11.7004Z"
+              fill="#111826"
+            />
+          </svg>
+          <span>Gambar {{ keyItem }}</span>
+        </div>
+        <div class="h-[40px] border-l" />
+        <p class="p-2 text-sm w-fit text-gray-300">
+          Ditambahkan dari
+          <span class="text-black">{{ item.user_name }}</span>
+        </p>
+      </div>
     </div>
 
     <!-- Option -->
@@ -99,6 +100,7 @@
         <span>Hapus tugas</span>
       </div>
       <div
+        v-if="!item.pinned"
         class="flex cursor-pointer items-center space-x-4"
         @click="handlePinTodolist(item.id)"
       >
@@ -116,6 +118,31 @@
           />
         </svg>
         <span>Sematkan tugas</span>
+      </div>
+      <div
+        v-if="item.pinned"
+        class="flex cursor-pointer items-center space-x-4"
+        @click="handleUnpinTodolist(item.id)"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M14 4V9C14 10.12 14.37 11.16 15 12H9C9.65 11.14 10 10.1 10 9V4H14ZM17 2H7C6.45 2 6 2.45 6 3C6 3.55 6.45 4 7 4H8V9C8 10.66 6.66 12 5 12V14H10.97V21L11.97 22L12.97 21V14H19V12C17.34 12 16 10.66 16 9V4H17C17.55 4 18 3.55 18 3C18 2.45 17.55 2 17 2Z"
+            fill="#19191B"
+          />
+          <path
+            d="M4 3L11.736 12.2194L19.4719 21.4387"
+            stroke="#19191B"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+        <span>Lepas sematan</span>
       </div>
     </div>
   </div>
@@ -144,7 +171,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions('todolist', ['deleteTodolist', 'pinTodolist']),
+    ...mapActions('todolist', [
+      'deleteTodolist',
+      'pinTodolist',
+      'unpinTodolist'
+    ]),
     handleSelectTodo (val) {
       this.$emit('select-todo', val)
     },
@@ -159,6 +190,15 @@ export default {
     },
     async handlePinTodolist (id) {
       const response = await this.pinTodolist(id)
+      if (response.status === 201 || response.status === 200) {
+        this.$toast.success(response.message)
+        this.$router.go()
+      } else {
+        this.$toast.error(response.data.message)
+      }
+    },
+    async handleUnpinTodolist (id) {
+      const response = await this.unpinTodolist(id)
       if (response.status === 201 || response.status === 200) {
         this.$toast.success(response.message)
         this.$router.go()
