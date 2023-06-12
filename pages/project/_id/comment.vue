@@ -85,13 +85,13 @@
     </nav>
     <main class="grid grid-cols-2 w-full h-full">
       <section
-        class="left-section flex justify-center items-center p-5 border-r-2 mt-24"
+        class="left-section flex justify-center items-center px-5 py-5 border-r-2 pt-24 max-h-screen"
       >
         <div class="flex justify-center items-center w-full h-full">
           <div
             v-if="form.getImgId && form.getImgId.url"
             ref="imageContainer"
-            class="container-image h-fit relative"
+            class="container-image h-full relative"
           >
             <div
               v-if="showMarker"
