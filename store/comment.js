@@ -66,7 +66,9 @@ export const actions = {
 
   async deleteComment (state, data) {
     try {
-      return await this.$axios.$delete(`comments/${data}`)
+      const formData = new FormData()
+      formData.append('project_id', data.project_id)
+      return await this.$axios.$delete(`comments/${data.id}?project_id=${data.project_id}`)
     } catch (err) {
       return err.response
     }

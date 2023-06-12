@@ -34,6 +34,14 @@ export const actions = {
     } catch (err) {
       return err.response
     }
+  },
+  async unpinTodolist ({ commit }, params) {
+    try {
+      console.log({ params })
+      return await this.$axios.$put(`todolist/${params}`, { pinned: false })
+    } catch (err) {
+      return err.response
+    }
   }
 }
 

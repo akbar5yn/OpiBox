@@ -58,20 +58,10 @@
           >
           <div
             v-if="selectedCardOption === index"
-            class="absolute right-8 top-3 flex flex-col space-y-2 bg-white p-4 drop-shadow-lg font-light font-open-sans"
+            class="absolute right-7 top-12 flex flex-col space-y-2 bg-white p-4 drop-shadow-lg font-light font-open-sans"
           >
             <div
-              class="flex cursor-pointer items-center space-x-4"
-              @click.stop="handleDeleteComment(comment.id)"
-            >
-              <img
-                class="w-4"
-                src="../assets/img/deleteIcon.svg"
-                alt="Delete Icon"
-              >
-              <span>Hapus komentar</span>
-            </div>
-            <div
+              v-if="!isOwnerComment(comment.user_id)"
               class="flex cursor-pointer items-center space-x-4"
               @click="handlePostTodolist(comment.id)"
             >
@@ -81,6 +71,39 @@
                 alt="Add Task"
               >
               <span>Tambahkan ke tugas</span>
+            </div>
+            <div
+              v-if="isOwnerComment(comment.user_id)"
+              class="flex cursor-pointer items-center space-x-4"
+            >
+              <svg
+                width="19"
+                height="20"
+                viewBox="0 0 19 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 3.5H3C1.89543 3.5 1 4.39543 1 5.5V16.5C1 17.6046 1.89543 18.5 3 18.5H14C15.1046 18.5 16 17.6046 16 16.5V11.5M14.5858 2.08579C15.3668 1.30474 16.6332 1.30474 17.4142 2.08579C18.1953 2.86683 18.1953 4.13316 17.4142 4.91421L8.82842 13.5H6L6 10.6716L14.5858 2.08579Z"
+                  stroke="#19191B"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span>Edit komentar</span>
+            </div>
+            <div
+              v-if="isOwnerComment(comment.user_id)"
+              class="flex cursor-pointer items-center space-x-4"
+              @click.stop="handleDeleteComment(comment.id, comment.project_id)"
+            >
+              <img
+                class="w-4"
+                src="../assets/img/deleteIcon.svg"
+                alt="Delete Icon"
+              >
+              <span>Hapus komentar</span>
             </div>
           </div>
         </div>
@@ -128,7 +151,7 @@ export default {
     ...mapGetters('project', ['getMyProject']),
     ...mapGetters('comment', ['getAllComment']),
     ...mapGetters('comment', ['commentCount']),
-    ...mapState('likes', ['likes', 'isLiked', 'likeCount']),
+    ...mapState('likes', ['likes', 'isL,iked', 'likeCount']),
     ...mapGetters('likes', ['getLike'])
   },
 
@@ -145,8 +168,13 @@ export default {
     selectCardOption (value) {
       this.selectedCardOption = this.selectedCardOption === value ? '' : value
     },
-    async handleDeleteComment (id) {
-      const response = await this.deleteComment(id)
+    async handleDeleteComment (id, projectId) {
+      const data = {
+        id,
+        project_id: projectId
+      }
+      const response = await this.deleteComment(data)
+      console.log({ response })
       if (response.status === 200) {
         this.$router.go()
       }
@@ -179,6 +207,10 @@ export default {
         })
         // this.$emit('')
       }
+    },
+
+    isOwnerComment (userId) {
+      return userId === this.$auth.user.id
     }
   },
 
