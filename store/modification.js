@@ -5,7 +5,8 @@ export const state = () => ({
     dataImage: {}
   },
   countRedesign: 0,
-  redesignData: []
+  redesignData: [],
+  modifiedHistory: []
 })
 
 export const mutations = {
@@ -26,6 +27,11 @@ export const mutations = {
   },
   setCountRedesign (state, countRedesign) {
     state.countRedesign = countRedesign
+  },
+
+  // NOTE - modified history state
+  setModifiedHistory (state, history) {
+    state.modifiedHistory = history
   }
 }
 
@@ -74,6 +80,17 @@ export const actions = {
         commit('setCountRedesign', res.data.length)
       })
       .catch(err => console.log(err))
+  },
+
+  // NOTE - get Modified history
+  async fetchModifiedHistory ({ commit }) {
+    try {
+      const response = await this.$axios.$get('projects/history_redesigns')
+      const history = response.data
+      commit('setModifiedHistory', history)
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 
@@ -89,5 +106,8 @@ export const getters = {
 
   getCountRedesign: (state) => {
     return state.countRedesign
+  },
+  getModifiedHistory (state) {
+    return state.modifiedHistory
   }
 }

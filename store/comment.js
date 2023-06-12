@@ -7,7 +7,8 @@ export const state = () => ({
     selectIdImg: null
   },
   comments: [],
-  commentCount: 0
+  commentCount: 0,
+  commentHistory: []
 })
 
 export const mutations = {
@@ -24,6 +25,11 @@ export const mutations = {
   },
   setCommentCount (state, count) {
     state.commentCount = count
+  },
+
+  // NOTE - comments history state
+  setCommentHistory (state, history) {
+    state.commentHistory = history
   }
 }
 
@@ -66,6 +72,17 @@ export const actions = {
     } catch (err) {
       return err.response
     }
+  },
+
+  // NOTE - get comments history
+  async fetchCommentHistory ({ commit }) {
+    try {
+      const response = await this.$axios.$get('comments/history_comments')
+      const history = response.data
+      commit('setCommentHistory', history)
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 
@@ -76,5 +93,8 @@ export const getters = {
   },
   commentCount (state) {
     return state.commentCount
+  },
+  getCommentHistory (state) {
+    return state.commentHistory
   }
 }

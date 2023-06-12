@@ -2,7 +2,8 @@ export const state = () => ({
   likes: [],
   isLiked: false,
   userId: null,
-  likeCount: 0
+  likeCount: 0,
+  likeHistory: []
 })
 
 export const mutations = {
@@ -25,6 +26,11 @@ export const mutations = {
 
   setUserId (state, userId) {
     state.userId = userId
+  },
+
+  // NOTE - like history state
+  setLikeHistory (state, history) {
+    state.likeHistory = history
   }
 }
 
@@ -62,6 +68,17 @@ export const actions = {
     } catch (error) {
       console.error(error)
     }
+  },
+
+  // NOTE - get like history
+  async fetchLikeHistory ({ commit }) {
+    try {
+      const response = await this.$axios.$get('likes/history_likes')
+      const history = response.data
+      commit('setLikeHistory', history)
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 
@@ -72,5 +89,8 @@ export const getters = {
   },
   likeCount (state) {
     return state.likeCount
+  },
+  getLikeHistory (state) {
+    return state.likeHistory
   }
 }

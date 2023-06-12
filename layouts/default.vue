@@ -5,7 +5,7 @@
     </div>
 
     <!-- sidebar -->
-    <mainpage-side-bar class="order-1" />
+    <mainpage-side-bar class="order-1 sticky top-0" />
   </div>
 </template>
 

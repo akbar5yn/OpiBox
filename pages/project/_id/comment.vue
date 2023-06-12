@@ -7,8 +7,24 @@
         <h1 class="font-cabinet-grotesk font-bold text-2xl">
           Tandai Area (Opsional)
         </h1>
-        <button class="p-[10px] border-2 rounded-lg" @click="toggleMarker">
-          <icon-galery-mark-icon />
+        <button
+          ref="toggleMarker"
+          class="p-[10px] border-2 rounded-lg text-white font-cabinet-grotesk flex items-center gap-2"
+          :disabled="disableMarker"
+          :class="[
+            disableMarker
+              ? 'bg-slate-400'
+              : 'shadow-lg shadow-indigo-500/50 bg-[#6C61E1] duration-300',
+            showMarker
+              ? 'bg-white text-red-600 shadow-none duration-300'
+              : '  bg-[#6C61E1]'
+          ]"
+          @click="toggleMarker"
+        >
+          <span v-if="showMarker" class="ml-2">
+            <icon-galery-trash-icon />
+          </span>
+          {{ showMarker ? 'Hapus Area' : 'Pilih Area' }}
         </button>
       </div>
       <div
@@ -69,13 +85,13 @@
     </nav>
     <main class="grid grid-cols-2 w-full h-full">
       <section
-        class="left-section flex justify-center items-center p-5 border-r-2 mt-24"
+        class="left-section flex justify-center items-center px-5 py-5 border-r-2 pt-24 max-h-screen"
       >
         <div class="flex justify-center items-center w-full h-full">
           <div
             v-if="form.getImgId && form.getImgId.url"
             ref="imageContainer"
-            class="container-image h-fit relative"
+            class="container-image h-full relative"
           >
             <div
               v-if="showMarker"
@@ -171,7 +187,8 @@ export default {
       markerY: 0,
       isDragging: false,
       startX: 0,
-      startY: 0
+      startY: 0,
+      disableMarker: true
     }
   },
   computed: {
@@ -192,6 +209,9 @@ export default {
         this.form.yAxis !== '' &&
         this.form.getImgId !== null
       )
+    },
+    markerActive () {
+      return this.form.getImgId !== null
     }
   },
   watch: {
@@ -199,6 +219,7 @@ export default {
       deep: true,
       handler () {
         this.disabled = !this.isFormValid
+        this.disableMarker = !this.markerActive
       }
     }
   },
@@ -254,7 +275,6 @@ export default {
       this.showMarker = !this.showMarker
       const x = event.clientX
       const y = event.clientY
-      console.log('koordinat klik', x, y)
     },
     startDrag (event) {
       this.isDragging = true

@@ -77,7 +77,7 @@
           </div>
 
           <!-- form section -->
-          <div class="p-9 mt-16 border-r w-1/2">
+          <div class="px-9 py-9 pt-[100px] border-r w-1/2 h-full relative">
             <!-- btn akses & add gambar -->
             <div class="flex justify-between">
               <button
@@ -128,15 +128,14 @@
             </div>
 
             <!-- desc proyek -->
-            <div class="flex flex-col mt-4">
+            <div class="flex flex-col mt-4 max-h-max object-cover h-[50%]">
               <label for="desc" class="text-[20px]">Deskripsi</label>
               <textarea
                 id="desc"
                 v-model="form.deskripsi"
                 name="desc"
                 placeholder="Masukan Deskripsi"
-                class="px-2 py-3 text-[14px] outline-none border rounded-lg"
-                rows="28"
+                class="px-2 py-3 text-[14px] outline-none border rounded-lg h-[100%]"
                 cols="30"
               />
             </div>
