@@ -119,7 +119,7 @@ export default {
   },
 
   computed: {
-    ...mapState('project', ['showModal']),
+    ...mapState('project', ['showModal', 'form']),
     ...mapGetters('teams', ['getTeamsByInv'])
   },
 
@@ -143,13 +143,23 @@ export default {
         this.isAksesSelected = this.showTeamOptions
       }
     },
-    closeModal () {
-      const confirmed = confirm(
-        'Apakah anda yakin ingin keluar ? Jika ya,  maka postingan tidak akan disimpan.'
-      )
-      if (confirmed) {
+    closeModal (event) {
+      if (this.form.projectType === 'open') {
         this.$store.commit('project/setShowModal', false)
+        this.selectedAkses = ''
+        this.projectType = 'open'
+        this.showTeamOptions = false
+      } else if (this.form.selectedAkses !== '') {
+        this.$store.commit('project/setShowModal', false)
+        this.projectType = 'team'
+
+        this.showTeamOptions = true
+      } else {
+        this.selectedAkses = ''
+        this.projectType = ''
         this.isAksesSelected = false
+        this.showTeamOptions = false
+        this.$store.commit('project/setShowModal', false)
       }
     },
     simpanAkses () {
