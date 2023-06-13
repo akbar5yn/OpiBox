@@ -7,7 +7,7 @@
       @click="$emit('close-modal')"
     />
     <div
-      class="modal-base w-full h-fit rounded-xl p-8 relative bg-white self-center transition duration-150 ease-in-out"
+      class="modal-base w-[600px] h-fit rounded-xl p-8 relative bg-white self-center transition duration-150 ease-in-out"
       :style="containerCss"
     >
       <img
