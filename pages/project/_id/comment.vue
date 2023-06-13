@@ -138,9 +138,13 @@
             </p>
           </div>
           <div class="flex justify-between items-center h-[100%] px-5">
-            <NuxtLink class="text-[#6C61E1] font-cabinet-grostek" to="/Beranda">
+            <button
+              class="text-[#6C61E1] font-cabinet-grostek"
+              type="button"
+              @click="back(`/project/${$route.params.id}`)"
+            >
               Batalkan
-            </NuxtLink>
+            </button>
             <button
               type="submit"
               class="px-[68px] py-[16px] rounded-md font-cabinet-grotesk text-[#B0B0B5]"
@@ -319,6 +323,11 @@ export default {
     endDrag () {
       this.updateCoordinates()
       this.isDragging = false
+    },
+
+    // NOTE - navigasi
+    back (path) {
+      this.$router.push(path)
     }
   }
 }

@@ -142,12 +142,13 @@
                 </p>
               </div>
               <div class="flex justify-between items-center h-full p-5">
-                <NuxtLink
+                <button
                   class="text-[#6C61E1] font-cabinet-grostek"
-                  to="/Beranda"
+                  type="button"
+                  @click="back(`/project/${$route.params.id}`)"
                 >
                   Batalkan
-                </NuxtLink>
+                </button>
                 <button
                   type="submit"
                   class="px-[68px] py-[16px] rounded-md font-cabinet-grotesk text-[#B0B0B5]"
@@ -262,6 +263,11 @@ export default {
 
     selectImg (imgId) {
       this.setImgIdState(imgId)
+    },
+
+    // NOTE - navigasi
+    back (path) {
+      this.$router.push(path)
     }
   }
 }
