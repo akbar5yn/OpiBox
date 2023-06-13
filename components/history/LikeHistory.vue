@@ -8,7 +8,7 @@
       <div class="border rounded-lg bg-white drop-shadow-md w-fit snap-start">
         <div
           class="h-[152px] w-[360px] overflow-clip"
-          @click="visitProject(like.id)"
+          @click="visitProject(like.project_id)"
         >
           <img
             :src="like.image_project.image.thumbnail.url"
@@ -61,7 +61,13 @@ export default {
   },
 
   methods: {
-    ...mapActions('likes', ['fetchLikeHistory'])
+    ...mapActions('likes', ['fetchLikeHistory']),
+
+    // NOTE - route to project detail
+    visitProject (id) {
+      console.log(id)
+      this.$router.push(`/project/${id}`)
+    }
   }
 }
 </script>

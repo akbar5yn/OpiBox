@@ -9,22 +9,24 @@
         </h1>
         <button
           ref="toggleMarker"
-          class="p-[10px] border-2 rounded-lg text-white font-cabinet-grotesk flex items-center gap-2"
+          class="p-[10px] border-2 rounded-lg font-cabinet-grotesk flex items-center gap-2"
           :disabled="disableMarker"
           :class="[
             disableMarker
-              ? 'bg-slate-400'
+              ? 'bg-slate-400 '
               : 'shadow-lg shadow-indigo-500/50 bg-[#6C61E1] duration-300',
-            showMarker
-              ? 'bg-white text-red-600 shadow-none duration-300'
-              : '  bg-[#6C61E1]'
+            showMarker ? 'bg-white shadow-none duration-300' : '  bg-[#6C61E1] '
           ]"
           @click="toggleMarker"
         >
-          <span v-if="showMarker" class="ml-2">
+          <span v-if="showMarker" class="ml-2 text-white">
             <icon-galery-trash-icon />
           </span>
-          {{ showMarker ? 'Hapus Area' : 'Pilih Area' }}
+          <span
+            :class="{ 'text-white': !showMarker, 'text-red-600': showMarker }"
+          >
+            {{ showMarker ? 'Hapus Area ' : 'Pilih Area' }}
+          </span>
         </button>
       </div>
       <div
