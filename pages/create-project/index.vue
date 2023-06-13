@@ -17,7 +17,7 @@
               'bg-[#E5E5E6] cursor-not-allowed text-[#B0B0B5]': !isFormValid
             }"
             type="submit"
-            :disabled="!isFormValid"
+            :disabled="!isFormValid || isSubmitting"
             @click="simpan"
           >
             <icon-galery-checklist-icon />
@@ -162,7 +162,8 @@ export default {
         judul: '',
         deskripsi: ''
       },
-      dataFile: []
+      dataFile: [],
+      isSubmitting: false
     }
   },
 
@@ -251,6 +252,7 @@ export default {
         this.setDesc(this.form.deskripsi)
       }
       try {
+        this.isSubmitting = true
         // Mengirimkan data form menggunakan action Vuex
         // Handling jika posting data berhasil
         const response = await this.postData(this.form)
@@ -266,6 +268,8 @@ export default {
       } catch (error) {
         // Handling jika terjadi kesalahan saat posting data
         console.error(error)
+      } finally {
+        this.isSubmitting = false // Mengatur isSubmitting menjadi false setelah pengiriman data selesai
       }
     },
 
