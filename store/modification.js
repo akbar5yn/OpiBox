@@ -32,6 +32,13 @@ export const mutations = {
   // NOTE - modified history state
   setModifiedHistory (state, history) {
     state.modifiedHistory = history
+  },
+
+  // NOTE - clear form create project
+  clearFormData (state) {
+    state.form.dataImage = {}
+    state.form.imageId = ''
+    state.showPreview = false
   }
 }
 
@@ -63,6 +70,7 @@ export const actions = {
       )
 
       // ctx.commit('setLoading', false)
+      ctx.commit('clearFormData')
       return response
     } catch (error) {
       ctx.commit('setLoading', false)
