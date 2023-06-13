@@ -221,6 +221,8 @@ export default {
       const response = await this.resendVerification(data)
       if (response.status === 201) {
         this.secondSection = true
+        this.showVerificationModal = false
+        this.$toast.success(response.message)
       } else {
         this.showVerificationModal = false
         this.errors.default = response.data.message
