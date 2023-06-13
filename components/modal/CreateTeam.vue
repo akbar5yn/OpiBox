@@ -109,10 +109,10 @@ export default {
           this.setTeamId(teamId)
         } else {
           // Menangani error saat membuat tim
-          throw new Error('Gagal membuat tim baru')
+          this.$toast.error(response.data.message.name[0])
         }
       } catch (error) {
-        console.log(error)
+       return error
         // Menangani error saat membuat tim
         // Tambahkan logika atau tindakan lain yang diperlukan untuk penanganan error
       }

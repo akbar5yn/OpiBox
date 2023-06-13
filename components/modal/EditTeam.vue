@@ -106,13 +106,10 @@ export default {
           }, 1000)
           this.fetchTeamName()
         } else {
-          // Menangani error saat membuat tim
-          throw new Error('Gagal membuat tim baru')
+          this.$toast.error(response.data.message)
         }
       } catch (error) {
         console.log(error)
-        // Menangani error saat membuat tim
-        // Tambahkan logika atau tindakan lain yang diperlukan untuk penanganan error
       }
     }
   }

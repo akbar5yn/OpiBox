@@ -44,6 +44,7 @@
           </div>
           <div
             class="cursor-pointer border p-[10px] rounded-xl border-black w-fit"
+            :class="{ hidden: !showAddTim }"
             @click="addEmail"
           >
             Tambahkan Email
@@ -56,6 +57,7 @@
             <!-- button simpan inviter -->
             <button
               class="bg-[#6C61E1] text-white font-cabinet-grotesk rounded-lg px-[50px] py-[10px] border-2 text-lg"
+              type="submit"
               :class="{
                 'bg-[#E5E5E6] cursor-not-allowed text-[#B0B0B5]': !isFormValid
               }"
@@ -89,7 +91,8 @@ export default {
         emails: ['', '', '']
       },
       isMaxCollaboratorsReached: false,
-      isEmailTouched: [false, false, false]
+      isEmailTouched: [false, false, false],
+      showAddTim: true
     }
   },
 
@@ -118,6 +121,7 @@ export default {
         this.form.emails.push('')
       } else {
         this.isMaxCollaboratorsReached = true
+        this.showAddTim = !this.showAddTim
       }
     },
 
@@ -131,14 +135,25 @@ export default {
     },
 
     // simpan tim with invite user
-    inviteTeam () {
+    async inviteTeam () {
       const inviterEmails = this.form.emails.filter(email =>
         this.isEmailValid(email)
       )
       this.setKolaborator(inviterEmails)
-      this.invitations(inviterEmails)
-      this.$store.commit('teams/setModalInvite', false)
-      // ... tambahkan logika lain yang Anda perlukan
+
+      try {
+        const response = await this.invitations(inviterEmails)
+        console.log(response.status)
+        if (response.status === 201) {
+          this.$toast.success(response.message)
+          this.$store.commit('teams/setModalInvite', false)
+        } else {
+          this.$store.commit('teams/setModalInvite', true)
+          this.$toast.error(response.data.message)
+        }
+      } catch (error) {
+        console.error(error)
+      }
     },
 
     // lewati tanpa invite user

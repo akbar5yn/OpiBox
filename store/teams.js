@@ -110,6 +110,7 @@ export const actions = {
     try {
       const response = await this.$axios.$post('userteam', data)
       commit('setKolaborator', response)
+      return response
     } catch (err) {
       return err.response
     }

@@ -60,6 +60,18 @@ export const actions = {
     const invitations = [...state.inviteNotif]
     invitations.splice(index, 1)
     commit('setNotificationInvitations', invitations)
+  },
+
+  // NOTE - /inv/decline_invitation?invitation_token=0fdaaced8699dd489e32a6e104517b1b82b7a8c6
+  async declineInvtation (state, token) {
+    try {
+      const response = await this.$axios.$get(
+        `inv/decline_invitation?invitation_token=${token}`
+      )
+      return response
+    } catch (err) {
+      return err.response
+    }
   }
 }
 export const getters = {

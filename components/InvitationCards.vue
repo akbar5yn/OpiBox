@@ -55,6 +55,7 @@
             >
               <button
                 class="rounded-lg border px-[184px] py-[10px] border-[#B0B0B5]"
+                @click="declineInvitations(notif, index)"
               >
                 Tolak Undangan
               </button>
@@ -95,7 +96,8 @@ export default {
       'fetchNotifications',
       'getNotificationInvitations',
       'acceptNotification',
-      'clearInviteNotif'
+      'clearInviteNotif',
+      'declineInvtation'
     ]),
 
     async toggleAccept (notif, index) {
@@ -105,6 +107,25 @@ export default {
 
       try {
         const response = await this.acceptNotification(getToken)
+        console.log(response)
+        if (response.status === 200) {
+          this.$toast.success(response.message)
+          this.clearInviteNotif(indexOf)
+        } else {
+          this.$toast.error(response.message)
+        }
+      } catch (err) {
+        return err
+      }
+    },
+
+    async declineInvitations (notif, index) {
+      const getToken = notif.invitations[0].invitation_token
+
+      const indexOf = index
+
+      try {
+        const response = await this.declineInvtation(getToken)
         console.log(response)
         if (response.status === 200) {
           this.$toast.success(response.message)
