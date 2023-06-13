@@ -73,6 +73,15 @@ export const mutations = {
 
   setLinkShareableProject (state, shareableProject) {
     state.projectShareable = shareableProject
+  },
+
+  // NOTE - clear form create project
+  clearFormData (state) {
+    state.form.judul = ''
+    state.form.desc = ''
+    state.form.projectType = ''
+    state.form.selectedAkses = ''
+    state.selectedImg = []
   }
 }
 
@@ -99,6 +108,7 @@ export const actions = {
       })
 
       ctx.commit('setLoading', false)
+      ctx.commit('clearFormData')
       return response
     } catch (error) {
       ctx.commit('setLoading', false)
