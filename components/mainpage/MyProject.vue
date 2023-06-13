@@ -1,18 +1,5 @@
 <template>
   <div class="my-project max-w-screen-2xl snap-x overflow-x-scroll">
-    <!-- kondisi belum ada project -->
-    <section
-      v-if="noProject"
-      class="no-project w-full rounded-lg bg-[#6C61E1] py-[59px] flex justify-center items-center"
-    >
-      <div class="flex items-center gap-5">
-        <icon-galery-img-folder />
-        <p class="text-white font-cabinet-grotesk text-2xl font-medium">
-          Proyekmu masih kosong <br>
-          <span class="text-xl font-normal">Yuk, buat proyekmu sekarang</span>
-        </p>
-      </div>
-    </section>
 
     <!-- setelah ada project -->
     <section class="project-exist flex gap-3 scroll-ml-6 snap-start">
