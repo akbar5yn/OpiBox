@@ -5,7 +5,7 @@
         <h1 class="text-[20px] font-[590] font-cabinet-grotesk">
           Tim Saya
         </h1>
-        <button class="" @click="createTeam">
+        <button class="add-team" @click="createTeam">
           <icon-galery-add-team />
         </button>
       </div>
