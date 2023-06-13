@@ -13,9 +13,12 @@
         Silakan periksa koneksi internet Anda dan coba lagi
       </p>
       <button
-        class="border rounded-lg py-3 text-[14px] outline-none flex w-full bg-[#6C61E1] text-white justify-center mt-4"
+        type="button"
+        class="border rounded-lg py-3 text-[14px] outline-none w-full bg-[#6C61E1] text-white justify-center mt-4 flex items-center"
+        disabled
       >
-        Oke
+        <img src="../assets/img/reload.png" alt="" class="animate-spin w-10">
+        Menghubungkan Ulang...
       </button>
     </ModalBase>
   </div>

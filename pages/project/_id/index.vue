@@ -7,9 +7,18 @@
         <icon-galery-opi-box />
       </NuxtLink>
       <div class="flex items-center gap-11">
-        <icon-galery-create-icon />
+        <!-- edit proyek -->
+        <button
+          type="button"
+          @click="toggleEdit(`/project/${$route.params.id}/edit`)"
+        >
+          <icon-galery-create-icon />
+        </button>
+
+        <!-- add todolist -->
         <svg
           width="16"
+          class="cursor-pointer"
           height="21"
           viewBox="0 0 16 21"
           fill="none"
@@ -23,12 +32,29 @@
             stroke-linecap="round"
           />
         </svg>
+
+        <!-- button share project -->
         <button
-          class="flex items-center px-6 py-3 gap-4 bg-[#6C61E1] text-white rounded-lg"
+          class="flex items-center px-[22px] py-3 gap-4 bg-[#6C61E1] text-white rounded-lg font-cabinet-grotesk"
           @click="getShareableLink"
         >
-          <icon-galery-shared-with-me color="white" />
-          Bagikan
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.28 9.87911C12.4685 8.06761 9.53145 8.06761 7.71994 9.87911L3.08129 14.5178C1.26978 16.3293 1.26978 19.2663 3.08129 21.0778C4.89279 22.8893 7.82983 22.8893 9.64134 21.0778L10.9188 19.8004M10.0393 14.1198C11.8508 15.9313 14.7878 15.9313 16.5993 14.1198L21.238 9.48118C23.0495 7.66967 23.0495 4.73264 21.238 2.92113C19.4265 1.10962 16.4894 1.10962 14.6779 2.92113L13.4027 4.19631"
+              stroke="#EBEAFB"
+              stroke-width="1.54622"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+          Salin link
         </button>
       </div>
     </section>
@@ -270,6 +296,10 @@ export default {
     navigateTo (path) {
       this.$router.push(path)
     },
+    toggleEdit (path) {
+      this.$router.push(path)
+    },
+
     markerOnOff ({ showMarker, selectedIndex }) {
       this.showMarker = showMarker
       // Memperbarui posisi marker berdasarkan koordinat
