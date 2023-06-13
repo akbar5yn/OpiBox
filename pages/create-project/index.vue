@@ -3,7 +3,7 @@
     <form class="w-full" @submit.prevent="">
       <!-- topbar -->
       <section
-        class="py-[10px] px-[28px] border-b-2 border-[#CACACE] flex justify-between items-center fixed w-full"
+        class="py-[10px] px-[28px] border-b-2 border-[#CACACE] flex justify-between items-center fixed w-full z-50"
       >
         <!-- icon opibox -->
         <NuxtLink to="/beranda">
