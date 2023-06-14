@@ -6,9 +6,9 @@
         class="py-[10px] px-[28px] border-b-2 border-[#CACACE] flex justify-between items-center fixed w-full z-50"
       >
         <!-- icon opibox -->
-        <NuxtLink to="/beranda">
+        <button @click="closeCreate">
           <icon-galery-opi-box />
-        </NuxtLink>
+        </button>
         <!-- icon else -->
         <div class="flex items-center">
           <button
@@ -145,6 +145,7 @@
 
       <!-- show modal for access -->
       <modal-kelola-akses />
+      <modal-close-create />
     </form>
   </div>
 </template>
@@ -193,7 +194,8 @@ export default {
       'setShowModal',
       'setJudul',
       'setDesc',
-      'removeSelectedImage'
+      'removeSelectedImage',
+      'setCloseModal'
     ]),
     ...mapActions('project', ['postData']),
 
@@ -275,6 +277,11 @@ export default {
 
     showAkses () {
       this.setShowModal(true)
+    },
+
+    // NOTE - cloese create
+    closeCreate () {
+      this.setCloseModal(true)
     }
   }
   // Fungsi untuk mengonversi gambar ke format PNG

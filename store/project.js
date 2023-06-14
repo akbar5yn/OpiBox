@@ -12,10 +12,14 @@ export const state = () => ({
   loading: false,
   detailProject: {},
   projectShared: [],
-  projectShareable: {}
+  projectShareable: {},
+  closeModal: false
 })
 
 export const mutations = {
+  setCloseModal (state, value) {
+    state.closeModal = value
+  },
   setSelectedImg (state, val) {
     state.selectedImg = [...state.selectedImg, val]
   },
