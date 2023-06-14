@@ -73,43 +73,45 @@
           </button>
         </div>
 
-        <div
-          v-for="project in getTeamProject"
-          :key="project.id"
-          class="relative cursor-pointer mt-5"
-        >
+        <div class="daftar-project flex flex-wrap gap-3">
           <div
-            class="border rounded-lg bg-white drop-shadow-md w-fit snap-start"
+            v-for="project in getTeamProject"
+            :key="project.id"
+            class="relative cursor-pointer mt-5"
           >
             <div
-              class="h-[152px] w-[360px] overflow-clip"
-              @click="visitProject(project.id)"
+              class="border rounded-lg bg-white drop-shadow-md w-fit snap-start"
             >
-              <img
-                :src="project.images[0].thumbnail_url"
-                alt="cover-project"
-                class="object-contain w-full"
+              <div
+                class="h-[152px] w-[360px] overflow-clip"
+                @click="visitProject(project.id)"
               >
-            </div>
-            <div class="p-[10px] pr-3 flex items-center justify-between">
-              <div class="flex items-center gap-[10px]">
-                <!-- icon team -->
-                <div class="bg-[#E5E5E6] p-4 rounded-full w-fit">
-                  <img src="../../assets/img/team.svg" alt="icon-team">
-                </div>
-                <h2
-                  class="cursor-pointer font-cabinet-grotesk text-xl font-semibold"
+                <img
+                  :src="project.images[0].thumbnail_url"
+                  alt="cover-project"
+                  class="object-contain w-full"
                 >
-                  {{ project.title }} <br>
-
-                  <span class="font-normal text-sm">{{
-                    project.createdAgo
-                  }}</span>
-                </h2>
               </div>
-              <button @click="toggleInfo(project.id)">
-                <icon-galery-dots-icon />
-              </button>
+              <div class="p-[10px] pr-3 flex items-center justify-between">
+                <div class="flex items-center gap-[10px]">
+                  <!-- icon team -->
+                  <div class="bg-[#E5E5E6] p-4 rounded-full w-fit">
+                    <img src="../../assets/img/team.svg" alt="icon-team">
+                  </div>
+                  <h2
+                    class="cursor-pointer font-cabinet-grotesk text-xl font-semibold"
+                  >
+                    {{ project.title }} <br>
+
+                    <span class="font-normal text-sm">{{
+                      project.createdAgo
+                    }}</span>
+                  </h2>
+                </div>
+                <button @click="toggleInfo(project.id)">
+                  <icon-galery-dots-icon />
+                </button>
+              </div>
             </div>
           </div>
         </div>
