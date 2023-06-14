@@ -4,9 +4,9 @@
       class="py-[10px] px-[28px] border-b-2 border-[#CACACE] flex justify-between items-center fixed w-full bg-white"
     >
       <!-- icon opibox -->
-      <NuxtLink to="/Beranda">
+      <button @click="closeCreate">
         <icon-galery-opi-box />
-      </NuxtLink>
+      </button>
     </section>
 
     <!-- main form -->
@@ -145,7 +145,7 @@
                 <button
                   class="text-[#6C61E1] font-cabinet-grostek"
                   type="button"
-                  @click="back(`/project/${$route.params.id}`)"
+                  @click="closeCreate"
                 >
                   Batalkan
                 </button>
@@ -166,6 +166,7 @@
         </div>
       </div>
     </form>
+    <modal-close-modification />
   </div>
 </template>
 
@@ -221,13 +222,18 @@ export default {
   },
 
   methods: {
-    ...mapMutations('modification', ['setShowPreview', 'setImgIdState']),
+    ...mapMutations('modification', [
+      'setShowPreview',
+      'setImgIdState',
+      'clearFormData'
+    ]),
     ...mapActions('project', ['fetchMyProject']),
     ...mapActions('modification', [
       'setDataImage',
       'clearImageUrl',
       'createModification'
     ]),
+    ...mapMutations('project', ['setCloseModal']),
 
     limitCharacterCount () {
       if (this.form.caption.length > 250) {
@@ -268,6 +274,11 @@ export default {
     // NOTE - navigasi
     back (path) {
       this.$router.push(path)
+      this.clearFormData()
+    },
+
+    closeCreate () {
+      this.setCloseModal(true)
     }
   }
 }

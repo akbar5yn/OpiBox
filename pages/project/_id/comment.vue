@@ -141,7 +141,7 @@
             <button
               class="text-[#6C61E1] font-cabinet-grostek"
               type="button"
-              @click="back(`/project/${$route.params.id}`)"
+              @click="closeComment"
             >
               Batalkan
             </button>
@@ -158,6 +158,7 @@
             </button>
           </div>
         </form>
+        <modal-close-comment />
       </section>
     </main>
   </div>
@@ -236,6 +237,7 @@ export default {
     ...mapActions('project', ['fetchMyProject']),
     ...mapMutations('comment', ['setImg', 'setForm']),
     ...mapActions('comment', ['postData']),
+    ...mapMutations('project', ['setCloseModal']),
 
     limitCharacterCount () {
       if (this.form.comment.length > 250) {
@@ -326,8 +328,12 @@ export default {
     },
 
     // NOTE - navigasi
-    back (path) {
-      this.$router.push(path)
+    // back (path) {
+    //   this.$router.push(path)
+    // }
+    closeComment () {
+      // @click="back(`/project/${$route.params.id}`)"
+      this.setCloseModal(true)
     }
   }
 }

@@ -30,6 +30,15 @@ export const mutations = {
   // NOTE - comments history state
   setCommentHistory (state, history) {
     state.commentHistory = history
+  },
+
+  // NOTE - clear form create project
+  clearFormData (state) {
+    state.forms.comment = ''
+    state.forms.projectId = ''
+    state.forms.xAxis = ''
+    state.forms.yAxis = ''
+    state.forms.selectIdImg = null
   }
 }
 
@@ -68,7 +77,9 @@ export const actions = {
     try {
       const formData = new FormData()
       formData.append('project_id', data.project_id)
-      return await this.$axios.$delete(`comments/${data.id}?project_id=${data.project_id}`)
+      return await this.$axios.$delete(
+        `comments/${data.id}?project_id=${data.project_id}`
+      )
     } catch (err) {
       return err.response
     }
