@@ -70,7 +70,7 @@
             mask="url(#path-7-inside-3_3458_388)"
           />
         </svg>
-        <span>1000 XP</span>
+        <span>{{ getTotalPoint }}</span>
       </p>
     </header>
     <main class="mt-6 font-cabinet-grotesk">
@@ -98,7 +98,22 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapState } from 'vuex'
 export default {
-  name: 'PointBox'
+  name: 'PointBox',
+
+  computed: {
+    ...mapState('point', ['points']),
+    ...mapGetters('point', ['getTotalPoint'])
+  },
+
+  mounted () {
+    this.fetchPoints()
+    console.log(this.points, 'point')
+  },
+
+  methods: {
+    ...mapActions('point', ['fetchPoints'])
+  }
 }
 </script>
