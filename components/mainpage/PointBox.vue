@@ -5,7 +5,7 @@
     <p>Poin Opibox</p>
     <div class="flex gap-2">
       <img src="../../assets/img/Poin.svg" alt="point">
-      <span>0 XP</span>
+      <span>{{ getTotalPoint }}</span>
     </div>
     <nuxt-link to="/point">
       Lihat Detailnya >
@@ -14,8 +14,24 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapState } from 'vuex'
+
 export default {
-  name: 'PointBox'
+  name: 'PointBox',
+
+  computed: {
+    ...mapState('point', ['points']),
+    ...mapGetters('point', ['getTotalPoint'])
+  },
+
+  mounted () {
+    this.fetchPoints()
+    console.log(this.points, 'point')
+  },
+
+  methods: {
+    ...mapActions('point', ['fetchPoints'])
+  }
 }
 </script>
 
