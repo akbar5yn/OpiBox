@@ -126,6 +126,14 @@
               Masuk
             </nuxt-link>
           </p>
+          <p class="text-[#8B8B8B] text-center">
+            Dengan mendaftar, anda menyetuji dengan
+            <span
+              class="cursor-pointer text-[#6C61E1]"
+              @click="switchPrivacyPolicy"
+            >kebijakan privasi</span>
+            yang ada
+          </p>
         </div>
       </form>
     </div>
@@ -139,6 +147,12 @@
         Cukup ikuti petunjuk untuk melakukan verifikasi email.
       </p>
     </div>
+
+    <!-- privacy policy -->
+    <modal-privacy-policy
+      :privacy="showPrivacyModal"
+      @close-privacy="closeModal"
+    />
   </div>
 </template>
 
@@ -167,7 +181,8 @@ export default {
         default: ''
       },
       disabled: true,
-      secondSection: false
+      secondSection: false,
+      showPrivacyModal: false
     }
   },
 
@@ -277,6 +292,15 @@ export default {
     },
     checkInput () {
       this.disabled = !Object.keys(this.form).every(e => this.form[e] !== '')
+    },
+
+    // NOTE - Privacy Policy
+    switchPrivacyPolicy () {
+      this.showPrivacyModal = true
+    },
+
+    closeModal (value) {
+      this.showPrivacyModal = value
     }
   }
 }

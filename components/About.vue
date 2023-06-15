@@ -42,7 +42,7 @@
             Quality Assurance :
           </li>
           <ul class="list-disc pl-[20px]">
-            <li>Rio Adistya Saputra</li>
+            <li>An Syafarino Armawahyudi</li>
             <li>Maritza Ahna Damara</li>
           </ul>
         </ol>
