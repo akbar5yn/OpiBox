@@ -3,17 +3,17 @@
     class="w-[18rem] h-full border fixed border-[#CACACE] overflow-y-auto top-0 sm:w-[20rem] xl:h-[100vh] xl:sticky xl:w-[25rem] bg-white"
     :class="{ 'hidden xl:block': sideBar }"
   > -->
-  <div class="bg-white sidebar h-screen fixed xl:sticky">
+  <div class="bg-white sidebar h-screen fixed laptop:sticky">
     <div
       class="w-[264px] flex flex-col h-full border border-[#CACACE]"
-      :class="{ 'hidden xl:flex': sideBar }"
+      :class="{ 'hidden laptop:flex': sideBar }"
     >
       <div class="top-sidebar flex flex-col">
         <div class="mt-3 pl-7 pt-2 flex justify-between items-center">
           <!-- logo -->
           <icon-galery-opi-box />
 
-          <icon-galery-close-bar class="xl:hidden pr-5" />
+          <icon-galery-close-bar class="laptop:hidden pr-5" />
         </div>
 
         <!-- point -->

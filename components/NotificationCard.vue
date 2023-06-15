@@ -19,7 +19,7 @@
     </svg>
     <div class="flex flex-col gap-[10px] w-full border-b-2 py-7 border-b-white">
       <ul>
-        <li>
+        <li class="text-sm mobile:text-sm tablet:text-lg">
           <p>{{ ketNotif }}</p>
           <span class="text-[#62626A]">{{ send_at }}</span>
         </li>

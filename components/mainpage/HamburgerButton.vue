@@ -15,7 +15,7 @@
       <svg
         class="w-6 h-6 text-white"
         aria-hidden="true"
-        fill="currentColor"
+        :fill="color"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -33,10 +33,16 @@
 import { mapMutations } from 'vuex'
 export default {
   name: 'HamburgerButton',
+  props: {
+    color: {
+      type: String,
+      default: 'white'
+    }
 
-  // props: {
-  //   isClose: Boolean
-  // }
+    // props: {
+    //   isClose: Boolean
+    // }
+  },
 
   data () {
     return {}

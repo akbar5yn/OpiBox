@@ -2,12 +2,12 @@
   <div class="flex h-screen w-full">
     <div class="order-2 flex flex-col w-full overflow-hidden overflow-y-scroll">
       <!-- topbar -->
-      <div>
+      <div class="flex flex-col">
         <div
           v-if="isBeranda"
-          class="font-cabinet-grotesk text-3xl font-[600] py-9 px-5 flex items-center gap-4 justify-between"
+          class="font-cabinet-grotesk text-3xl font-[600] py-9 px-5 flex items-center gap-4 justify-between mobile:order-2 mobile:absolute laptop:static"
         >
-          <NuxtLink to="">
+          <NuxtLink class="mobile:hidden tablet:block" to="">
             Beranda
           </NuxtLink>
           <div v-if="loading" class="text-center flex items-center gap-3">
@@ -51,7 +51,7 @@
             @change="displayImage"
           >
         </div>
-        <div v-if="isBeranda">
+        <div v-if="isBeranda" class="tablet:order-2">
           <mainpage-top-bar />
         </div>
       </div>

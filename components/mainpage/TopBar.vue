@@ -2,10 +2,10 @@
   <div class="w-full sticky">
     <!-- topbar on mobile -->
     <div
-      class="topbar flex items-center justify-between p-7 rounded-b-[10px] gap-7 xl:hidden"
+      class="topbar flex items-center justify-between p-7 rounded-b-[10px] gap-7 laptop:hidden"
     >
       <!-- hamburger -->
-      <mainpage-hamburger-button />
+      <mainpage-hamburger-button color="white" />
 
       <!-- search column -->
       <mainpage-search-column />
@@ -16,7 +16,7 @@
 
     <!-- top bar on desktop-->
     <div class="px-5 justify-between">
-      <div class="hidden xl:flex gap-7">
+      <div class="hidden laptop:flex gap-7">
         <!-- search column -->
         <mainpage-search-column />
 

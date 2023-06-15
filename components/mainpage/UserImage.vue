@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center min-w-max gap-3">
+  <div class="hidden tablet:flex items-center min-w-max gap-3">
     <button
       id="user-menu-button"
       type="button"
@@ -18,18 +18,17 @@
 
     <!-- user name on mobile -->
     <span class="text-white xl:hidden">Selamat datang, <br>
-      User1 !</span>
-
-    <!-- user name on mobile ++ -->
-    <p class="hidden xl:block">
-      Akbar Pratama Suryamin <br>
-      <span>example@gmail.com</span>
-    </p>
+      {{ username }} !</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'UserImage'
+  name: 'UserImage',
+  computed: {
+    username () {
+      return this.$auth.user ? this.$auth.user.name : 'Guest'
+    }
+  }
 }
 </script>
