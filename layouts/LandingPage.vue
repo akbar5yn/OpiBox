@@ -236,7 +236,7 @@
     <!-- loyalty programme -->
     <section
       id="loyality"
-      class="bg-[#6C61E1] text-white px-5 pt-7 md:mt-20 xl:px-[120px] xl:pb-[75px] xl:mt-20"
+      class="bg-[#6C61E1] text-white px-5 pt-7 md:mt-20 xl:px-[120px] xl:mt-20"
     >
       <div
         class="text-center flex-col flex items-center justify-center md:flex lg:flex xl:flex-row xl:text-start 2xl:flex 2xl:gap-[73px] 3xl:flex 3xl:text-start"
@@ -262,7 +262,7 @@
     </section>
 
     <footer
-      class="bg-[#313135] text-white md:flex md:flex-col md:justify-center xl:flex xl:flex-col xl:justify-center xl:items-center xl:px-40 xl:mt-28 2xl:px-0"
+      class="bg-[#313135] text-white md:flex md:flex-col md:justify-center xl:flex xl:flex-col xl:justify-center xl:items-center xl:px-40 2xl:px-0"
     >
       <div
         class="py-10 px-10 justify-center border-b-2 xl:flex xl:py-14 xl:px-0 xl:gap-20 2xl:px-10 2xl:gap-40"
