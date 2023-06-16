@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="h-full relative">
     <h1 class="text-2xl font-semibold font-cabinet-grotesk">
       Ubah Profil
     </h1>
-    <form class="flex space-x-12 mt-10" @submit.prevent="changeProfile">
+    <form class="flex space-x-12 pt-10" @submit.prevent="changeProfile">
       <div>
         <img
           ref="avatar"
@@ -68,10 +68,20 @@
         </div>
       </div>
     </form>
+    <button
+      class="flex absolute bottom-0 gap-4 item-center"
+      @click="delAccount"
+    >
+      <icon-galery-trash-icon color="red" />
+      <span class="text-red-600">Hapus akun</span>
+    </button>
+
+    <!-- modal delete -->
+    <modal-delete-account />
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -115,7 +125,8 @@ export default {
     }
   },
   methods: {
-    ...mapActions('profile', ['updateProfile']),
+    ...mapMutations('profile', ['setModalDelete']),
+    ...mapActions('profile', ['updateProfile', 'deleteAccount']),
     async changeProfile () {
       const data = {
         name: this.form.name,
@@ -148,6 +159,10 @@ export default {
       this.form.avatar = e.target.files[0]
       this.previewAvatar = await this.readFile(e.target.files[0])
       this.$refs.avatar.src = this.previewAvatar
+    },
+
+    delAccount () {
+      this.setModalDelete(true)
     }
   }
 }

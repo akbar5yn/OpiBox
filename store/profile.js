@@ -1,5 +1,6 @@
 export const state = () => ({
-  detailUser: {}
+  detailUser: {},
+  modalDelete: false
 })
 
 export const actions = {
@@ -27,11 +28,29 @@ export const actions = {
     } catch (err) {
       return err.response
     }
+  },
+
+  // NOTE - delete account
+  async deleteAccount (state, data) {
+    try {
+      const response = await this.$axios.$delete('users/destroy')
+      console.log(response.data, 'response')
+      return response
+    } catch (err) {
+      return err.response
+    }
   }
 }
 
 export const mutations = {
   setDetailUser (state, value) {
     state.detailUser = value
+  },
+
+  setModalDelete (state, value) {
+    state.modalDelete = value
+  },
+  setCloseModal (state, value) {
+    state.modalDelete = value
   }
 }
