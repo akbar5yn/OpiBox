@@ -119,7 +119,7 @@
 
 <script>
 export default {
-  layout: 'AuthView'
+  layout: 'PrivacyPolicy'
 }
 </script>
 
