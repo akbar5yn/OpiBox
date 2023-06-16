@@ -119,7 +119,7 @@
 
 <script>
 export default {
-  middleware: 'auth'
+  layout: 'AuthView'
 }
 </script>
 
