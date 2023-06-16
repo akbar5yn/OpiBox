@@ -1,5 +1,6 @@
 export const state = () => ({
-  loginTime: null
+  loginTime: null,
+  tokenUser: null
 })
 
 export const mutations = {
@@ -10,6 +11,10 @@ export const mutations = {
   clearLoginTime (state) {
     state.loginTime = null
     localStorage.removeItem('loginTime') // Menghapus loginTime dari localStorage
+  },
+  setTokenUser (state, token) {
+    state.tokenUser = token
+    localStorage.setItem('tokenUser', token)
   }
 }
 
@@ -29,6 +34,7 @@ export const actions = {
       const response = await this.$auth.loginWith('local', data)
       const loginTime = new Date()
       commit('setLoginTime', loginTime)
+      commit('setTokenUser', response.data.data.token)
       return response
     } catch (err) {
       return err.response
@@ -68,5 +74,6 @@ export const actions = {
 }
 
 export const getters = {
-  getLoginTime: state => state.loginTime || localStorage.getItem('loginTime') // Mengambil loginTime dari localStorage saat getter dipanggil
+  getLoginTime: state => state.loginTime || localStorage.getItem('loginTime'), // Mengambil loginTime dari localStorage saat getter dipanggil
+  getToken: state => state.tokenUser || localStorage.getItem('tokenUser')
 }
