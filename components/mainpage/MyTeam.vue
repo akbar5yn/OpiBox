@@ -1,7 +1,7 @@
 <template>
   <div class="MyTeam h-full">
     <div class="flex flex-col gap-7 h-full">
-      <div class="flex justify-between px-8 mt-8">
+      <div class="flex justify-between px-8 mt-2">
         <h1 class="text-[20px] font-[590] font-cabinet-grotesk">
           Tim Saya
         </h1>
@@ -10,8 +10,10 @@
         </button>
       </div>
 
-      <div class="w-full h-full overflow-y-scroll">
-        <ul class="flex w-full flex-col gap-2 h-80">
+      <div
+        class="list-team w-full h-full overflow-y-scroll border shadow-inner"
+      >
+        <ul class="flex w-full flex-col gap-2 h-full">
           <li v-for="team in getTeamsByInv" :key="team.id" class="relative">
             <NuxtLink
               :to="`/teams/${team.team_id}`"
@@ -68,3 +70,18 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.list-team::-webkit-scrollbar {
+  width: 5px;
+}
+
+.list-team::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 20px;
+}
+
+.list-team::-webkit-scrollbar-track {
+  background-color: none;
+}
+</style>

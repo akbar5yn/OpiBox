@@ -129,10 +129,10 @@
 
           <span class="group-hover:text-[#6C61E1] ml-4">Tentang</span>
         </div>
-        <div
+        <NuxtLink
           id="about"
+          to="/privacy"
           class="flex items-center cursor-pointer pl-8 pr-4 py-3 group hover:bg-gray-200 hover:border-r-2 hover:border-[#6C61E1]"
-          @click="selectedMenu = 'privacy'"
         >
           <svg
             class="stroke-gray-500 group-hover:stroke-[#6C61E1]"
@@ -149,7 +149,7 @@
           </svg>
 
           <span class="group-hover:text-[#6C61E1] ml-4">Kebijakan Privasi</span>
-        </div>
+        </NuxtLink>
         <div
           id="logout"
           class="flex items-center cursor-pointer pl-8 pr-4 py-3 group hover:bg-gray-200 hover:border-r-2 hover:border-[#6C61E1]"
@@ -165,7 +165,6 @@
       <UpdatePassword v-if="selectedMenu == 'password'" />
       <Help v-if="selectedMenu == 'help'" />
       <About v-if="selectedMenu == 'about'" />
-      <Privacy v-if="selectedMenu == 'privacy'" />
     </div>
 
     <ModalBase

@@ -66,7 +66,7 @@
         </ul>
       </div>
       <!-- tim saya -->
-      <div class="buttom-sidebar h-full">
+      <div class="bottom-sidebar h-full overflow-y-scroll">
         <mainpage-my-team />
       </div>
     </div>
@@ -96,3 +96,18 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.bottom-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.bottom-sidebar::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 20px;
+}
+
+.bottom-sidebar::-webkit-scrollbar-track {
+  background-color: none;
+}
+</style>
