@@ -5,8 +5,8 @@
         Hapus Permanen Akun Opibox?
       </h1>
       <p>
-        Jika anda menghapus akun secara permane, semua data proyke yang pernah
-        Anda buat akan hilang. Lanjutjan ?
+        Jika anda menghapus akun secara permane, semua data proyek yang pernah
+        Anda buat akan hilang. Lanjutkan ?
       </p>
 
       <div class="flex gap-4 items-center justify-center">
