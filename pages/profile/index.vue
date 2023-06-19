@@ -1,12 +1,14 @@
 <template>
   <div class="flex flex-col py-8 px-4 h-full">
-    <div class="flex item-center h-full">
-      <div class="flex-grow">
-        <h1 class="font-semibold text-2xl font-cabinet-grotesk">
-          Aktivitas Saya
-        </h1>
+    <div class="flex item-center tablet:h-full flex-wrap">
+      <div class="flex-grow mobile:order-2 tablet:order-1 mobile: mt-10">
+        <div class="flex items-center gap-2">
+          <h1 class="font-semibold text-2xl font-cabinet-grotesk">
+            Aktivitas Saya
+          </h1>
+        </div>
         <div
-          class="flex items-center text-normal justify-between text-center text-[16px] font-cabinet-grotesk pt-6"
+          class="flex items-center text-normal justify-between text-center text-xs tablet:text-[16px] font-cabinet-grotesk pt-6"
         >
           <button
             class="w-full py-2 border-b-2 border-gray-300 transition-all duration-300"
@@ -56,8 +58,13 @@
           </div>
         </div>
       </div>
-      <div class="max-w-[300px] w-full px-3 flex flex-col space-y-2">
-        <div class="flex text-[30px] font-cabinet-grotesk font-semibold">
+      <div
+        class="max-w-[300px] w-full mobile:h-fit px-3 flex flex-col space-y-2 order-1"
+      >
+        <div
+          class="flex text-2xl font-cabinet-grotesk font-semibold items-center"
+        >
+          <mainpage-hamburger-button class="laptop:hidden" color="black" />
           <h1>Profil</h1>
         </div>
         <div class="flex items-center justify-between">
@@ -152,6 +159,7 @@
 import { mapState } from 'vuex'
 export default {
   name: 'Profile',
+  layout: 'MainPage',
 
   middleware: 'auth',
   async asyncData ({ store }) {
