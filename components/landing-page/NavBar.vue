@@ -79,15 +79,7 @@
                 Program Loyaliti
               </nuxt-link>
             </li>
-            <li>
-              <nuxt-link
-                to="#bantuan"
-                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0"
-                active-class="border-b-2 border-[#6C61E1]"
-              >
-                Bantuan
-              </nuxt-link>
-            </li>
+            <li />
           </ul>
         </div>
       </div>

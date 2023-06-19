@@ -87,7 +87,7 @@
           class="flex justify-center items-center md:gap-[50px] md:px-12 lg:gap-[150px] lg:px-10 xl:gap-[100px] 2xl:gap-[200px] 3xl:px-52"
         >
           <div class="relative xl:w-[350px] lg:w-auto">
-            <img src="../assets/img/image_service1.svg" alt="service1">
+            <img src="../assets/img/Ilustrasi_1.svg" alt="service1">
             <img
               src="../assets/img/ellips1_service.svg"
               alt="elipse"
@@ -128,7 +128,7 @@
             </p>
           </div>
           <div class="relative xl:w-[350px] lg:w-auto">
-            <img src="../assets/img/image_service2.svg" alt="service2">
+            <img src="../assets/img/Ilustrasi_2.svg" alt="service2">
             <img
               src="../assets/img/ellips2_service.svg"
               alt="elipse"
@@ -143,7 +143,7 @@
         >
           <div class="relative xl:w-[350px] lg:w-auto">
             <img
-              src="../assets/img/icon-3d-3.svg"
+              src="../assets/img/Ilustrasi_3.svg"
               alt="service3"
               class="w-[500px]"
             >
@@ -287,17 +287,17 @@
             </h3>
             <ul class="flex flex-col gap-y-3 font-open-sans">
               <li>
-                <NuxtLink to="">
+                <NuxtLink to="#beranda">
                   Beranda
                 </NuxtLink>
               </li>
               <li>
-                <NuxtLink to="">
+                <NuxtLink to="#layanan">
                   Layanan
                 </NuxtLink>
               </li>
               <li>
-                <NuxtLink to="">
+                <NuxtLink to="#loyality">
                   Program Loyalti
                 </NuxtLink>
               </li>
@@ -314,18 +314,8 @@
                 </NuxtLink>
               </li>
               <li>
-                <NuxtLink to="">
-                  Bantuan
-                </NuxtLink>
-              </li>
-              <li>
-                <NuxtLink to="">
-                  Syarat dan Ketentuan
-                </NuxtLink>
-              </li>
-              <li>
-                <NuxtLink to="">
-                  Pengaturan Cookie
+                <NuxtLink to="/privacy">
+                  Kebijakan privasi
                 </NuxtLink>
               </li>
             </ul>
