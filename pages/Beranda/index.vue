@@ -106,6 +106,27 @@
         Yuk, buat proyek sekarang!
       </p>
     </section>
+
+    <!-- create proyek -->
+    <div class="absolute bottom-5 right-5 laptop:hidden">
+      <label
+        for="image"
+        class="bg-[#6C61E1] text-white font-cabinet grotesk flex min-w-max px-[13px] py-1 items-center justify-center gap-3 rounded-md cursor-pointer"
+      >
+        <icon-galery-add-project width="15" />
+        Buat Proyek
+      </label>
+      <input
+        id="image"
+        ref="inputImg"
+        type="file"
+        name="image"
+        accept="image/*"
+        class="hidden"
+        multiple
+        @change="displayImage"
+      >
+    </div>
   </main>
 </template>
 
@@ -126,7 +147,12 @@ export default {
     this.getSharedProject()
   },
   computed: {
-    ...mapGetters('project', ['getMyProject', 'getProjectSahred']),
+    ...mapGetters('project', [
+      'getMyProject',
+      'getProjectSahred',
+      'setSelectedImg',
+      'setShowPreview'
+    ]),
     profileImage () {
       return require('../../assets/img/defaultAvatar.png')
     }
@@ -135,6 +161,41 @@ export default {
     ...mapActions('project', ['fetchMyProject', 'getSharedProject']),
     handleProjectReport () {
       this.projectReportVisibility = true
+    },
+    displayImage (event) {
+      const files = event.target.files
+
+      Object.keys(files).forEach(async (key) => {
+        this.dataFile.push({
+          file: files[key],
+          base64: await this.readFromFile(files[key])
+        })
+        this.setSelectedImg({
+          file: files[key],
+          base64: await this.readFromFile(files[key])
+        })
+      })
+    },
+
+    readFromFile (file) {
+      return new Promise((resolve, reject) => {
+        const fr = new FileReader()
+        fr.onload = () => {
+          const base64 = fr.result
+
+          resolve(base64)
+
+          if (this.dataFile.length > 0 && base64) {
+            this.setShowPreview(true)
+            this.$router.push({
+              name: 'CreateProject',
+              params: { selectedImg: this.dataFile }
+            })
+          }
+        }
+        fr.onerror = err => reject(err)
+        fr.readAsDataURL(file)
+      })
     }
   }
 }
