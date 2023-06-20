@@ -6,6 +6,7 @@
     >
       <!-- Icon team -->
       <div class="flex items-center gap-5">
+        <mainpage-hamburger-button class="laptop:hidden" color="black" />
         <icon-galery-team-icon />
         <h1
           class="font-cabinet-grotesk text-[24px] laptop:text-3xl font-medium"
@@ -232,6 +233,7 @@ import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'Teams',
+  layout: 'MainPage',
 
   data () {
     return {
