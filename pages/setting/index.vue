@@ -3,9 +3,12 @@
     <div
       class="w-full laptop:max-w-[300px] laptop:min-h-screen py-6 border-r-2 border-gray-200"
     >
-      <h1 class="text-2xl font-semibold mx-4 font-cabinet-grotesk">
-        Pengaturan
-      </h1>
+      <div class="flex items-center gap-2">
+        <mainpage-hamburger-button class="laptop:hidden" color="black" />
+        <h1 class="text-2xl font-semibold mx-4 font-cabinet-grotesk">
+          Pengaturan
+        </h1>
+      </div>
 
       <!-- Top Sidebar  -->
       <div class="mt-6 font-open-sans">
