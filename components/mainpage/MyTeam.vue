@@ -29,8 +29,6 @@
     </div>
 
     <!-- show modal create team -->
-    <modal-create-team />
-    <modal-invite-team />
   </div>
 </template>
 

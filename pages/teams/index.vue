@@ -224,6 +224,8 @@
 
       <!-- modal here -->
       <modal-edit-team />
+      <modal-create-team />
+      <modal-invite-team />
     </section>
   </div>
 </template>
