@@ -3,17 +3,26 @@
     <h1 class="text-2xl font-semibold font-cabinet-grotesk">
       Ubah Profil
     </h1>
-    <form class="flex space-x-12 pt-10" @submit.prevent="changeProfile">
-      <div>
+    <form
+      class="mobile:flex mobile:flex-col gap-y-4 xl:flex xl:flex-row xl:gap-4 pt-10"
+      @submit.prevent="changeProfile"
+    >
+      <div class="mobile:w-full xl:w-[20%]">
         <img
           ref="avatar"
           class="max-w-[100px] max-h-[100px] h-full w-full rounded-full"
           :src="profileImage"
         >
-        <button class="font-open-sans font-normal text-[16px]">
+        <label
+          for="avatar"
+          class="font-open-sans font-normal text-[16px] bg-[#6C61E1] p-[10px] text-white rounded-md cursor-pointer"
+        >
           Ubah foto profil
-        </button>
+        </label>
         <input
+          id="avatar"
+          class="hidden"
+          name="avatar"
           type="file"
           accept="image/png, image/jpeg"
           @change="handleImage($event)"

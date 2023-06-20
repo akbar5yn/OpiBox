@@ -1,7 +1,7 @@
 <template>
-  <div class="flex">
+  <div class="flex mobile:flex-col laptop:flex-row">
     <div
-      class="max-w-[300px] w-full min-h-screen py-6 border-r-2 border-gray-200"
+      class="w-full laptop:max-w-[300px] laptop:min-h-screen py-6 border-r-2 border-gray-200"
     >
       <h1 class="text-2xl font-semibold mx-4 font-cabinet-grotesk">
         Pengaturan
