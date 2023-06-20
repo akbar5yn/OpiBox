@@ -108,7 +108,7 @@
     </section>
 
     <!-- create proyek -->
-    <div class="absolute bottom-5 right-5 laptop:hidden">
+    <div class="fixed bottom-5 right-5 laptop:hidden">
       <label
         for="image"
         class="bg-[#6C61E1] text-white font-cabinet grotesk flex min-w-max px-[13px] py-1 items-center justify-center gap-3 rounded-md cursor-pointer"
