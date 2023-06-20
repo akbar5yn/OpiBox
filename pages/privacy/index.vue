@@ -2,7 +2,7 @@
   <div
     class="privacy-policy h-full w-full flex flex-col items-center justify-center"
   >
-    <main class="w-[70%] overflow-y-scroll h-[80%] screen-info">
+    <main class="laptop:w-[70%] overflow-y-scroll h-[80%] screen-info">
       <!-- modal header -->
       <section class="font-cabinet-grotesk">
         <h1 class="text-start text-xl font-semibold">
