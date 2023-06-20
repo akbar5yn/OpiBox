@@ -1,11 +1,15 @@
 <template>
   <div class="px-7 py-9 flex flex-col h-full">
     <!-- header -->
-    <section class="flex items-center justify-between">
+    <section
+      class="flex flex-col gap-y-4 tablet:flex tablet:flex-row tablet:items-center justify-between"
+    >
       <!-- Icon team -->
       <div class="flex items-center gap-5">
         <icon-galery-team-icon />
-        <h1 class="font-cabinet-grotesk text-3xl font-medium">
+        <h1
+          class="font-cabinet-grotesk text-[24px] laptop:text-3xl font-medium"
+        >
           Tim {{ teamName }}
         </h1>
         <button @click="toggleEdit">
@@ -28,7 +32,7 @@
       </div>
 
       <!-- button edit tim -->
-      <div class="relative">
+      <div class="flex items-end justify-end">
         <button
           v-if="accessiBility($auth.user.id)"
           class="flex items-center gap-3 text-red-500"
@@ -41,8 +45,12 @@
     </section>
 
     <!-- main proyek -->
-    <section class="flex justify-between h-full">
-      <div class="w-[75%] relative flex flex-col">
+    <section
+      class="flex flex-col laptop:flex laptop:flex-row gap-5 laptop:justify-between h-full"
+    >
+      <div
+        class="w-[100%] h-full order-2 laptop:order-1 relative flex flex-col"
+      >
         <h1 class="border-b-2 pb-3 mt-[49px]">
           Proyek
         </h1>
@@ -73,7 +81,9 @@
           </button>
         </div>
 
-        <div class="daftar-project flex flex-wrap gap-3">
+        <div
+          class="daftar-project flex justify-center tablet:justify-normal flex-wrap gap-3"
+        >
           <div
             v-for="project in getTeamProject"
             :key="project.id"
@@ -83,7 +93,7 @@
               class="border rounded-lg bg-white drop-shadow-md w-fit snap-start"
             >
               <div
-                class="h-[152px] w-[360px] overflow-clip"
+                class="h-32 tablet:h-[152px] tablet:w-[360px] overflow-clip"
                 @click="visitProject(project.id)"
               >
                 <img
@@ -95,17 +105,19 @@
               <div class="p-[10px] pr-3 flex items-center justify-between">
                 <div class="flex items-center gap-[10px]">
                   <!-- icon team -->
-                  <div class="bg-[#E5E5E6] p-4 rounded-full w-fit">
-                    <img src="../../assets/img/team.svg" alt="icon-team">
+                  <div class="bg-[#E5E5E6] p-2 tablet:p-3 rounded-full w-fit">
+                    <img
+                      src="../../assets/img/team.svg"
+                      alt="icon-team"
+                      class="w-4 tablet:w-6"
+                    >
                   </div>
                   <h2
-                    class="cursor-pointer font-cabinet-grotesk text-xl font-semibold"
+                    class="cursor-pointer font-cabinet-grotesk tablet:text-xl font-semibold"
                   >
                     {{ project.title }} <br>
 
-                    <span class="font-normal text-sm">{{
-                      project.createdAgo
-                    }}</span>
+                    <span class="font-normal text-sm">Terakhir dilihat {{ project.last_seen }}</span>
                   </h2>
                 </div>
                 <button @click="toggleInfo(project.id)">
@@ -132,7 +144,7 @@
           </p>
         </div>
       </div>
-      <div class="w-[20%]">
+      <div class="order-1 relative">
         <div
           class="flex items-center justify-between border-b-2 pb-3 mt-[49px] pr-5"
         >
@@ -146,6 +158,7 @@
               viewBox="0 0 20 21"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              class=""
             >
               <path
                 d="M8.32463 2.48528C8.75103 0.728865 11.249 0.728866 11.6754 2.48528C11.9508 3.6199 13.2507 4.15834 14.2478 3.55082C15.7913 2.61036 17.5576 4.37667 16.6172 5.92015C16.0096 6.91722 16.5481 8.21715 17.6827 8.4926C19.4391 8.919 19.4391 11.4169 17.6827 11.8433C16.5481 12.1188 16.0096 13.4187 16.6172 14.4158C17.5576 15.9593 15.7913 17.7256 14.2478 16.7851C13.2507 16.1776 11.9508 16.716 11.6754 17.8507C11.249 19.6071 8.75103 19.6071 8.32463 17.8507C8.04918 16.716 6.74926 16.1776 5.75219 16.7851C4.2087 17.7256 2.44239 15.9593 3.38285 14.4158C3.99038 13.4187 3.45193 12.1188 2.31731 11.8433C0.560897 11.4169 0.560897 8.919 2.31731 8.4926C3.45193 8.21715 3.99037 6.91722 3.38285 5.92015C2.44239 4.37667 4.2087 2.61036 5.75219 3.55082C6.74926 4.15834 8.04918 3.6199 8.32463 2.48528Z"
@@ -201,7 +214,7 @@
         </div>
         <button
           v-if="accessiBility($auth.user.id)"
-          class="px-[20px] py-[10px] font-cabinet-grotesk border-2 rounded-md mt-5 w-full"
+          class="px-[20px] py-[10px] font-cabinet-grotesk border-2 rounded-md mt-5 mobile:absolute mobile:right-0 laptop:w-full"
           @click="inviteUser($route.params.id)"
         >
           Undang
