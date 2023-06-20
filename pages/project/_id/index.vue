@@ -6,7 +6,7 @@
       <NuxtLink to="/Beranda">
         <icon-galery-opi-box />
       </NuxtLink>
-      <div class="flex items-center gap-11">
+      <div class="flex items-center gap-4 tablet:gap-11">
         <!-- edit proyek -->
         <button
           type="button"
@@ -35,7 +35,7 @@
 
         <!-- button share project -->
         <button
-          class="flex items-center px-[22px] py-3 gap-4 bg-[#6C61E1] text-white rounded-lg font-cabinet-grotesk"
+          class="flex items-center tablet:px-[22px] tablet:py-3 gap-4 tablet:bg-[#6C61E1] text-white rounded-lg font-cabinet-grotesk"
           @click="getShareableLink"
         >
           <svg
@@ -46,23 +46,26 @@
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
+              class="stroke-black tablet:stroke-[#EBEAFB]"
               d="M14.28 9.87911C12.4685 8.06761 9.53145 8.06761 7.71994 9.87911L3.08129 14.5178C1.26978 16.3293 1.26978 19.2663 3.08129 21.0778C4.89279 22.8893 7.82983 22.8893 9.64134 21.0778L10.9188 19.8004M10.0393 14.1198C11.8508 15.9313 14.7878 15.9313 16.5993 14.1198L21.238 9.48118C23.0495 7.66967 23.0495 4.73264 21.238 2.92113C19.4265 1.10962 16.4894 1.10962 14.6779 2.92113L13.4027 4.19631"
-              stroke="#EBEAFB"
               stroke-width="1.54622"
               stroke-linecap="round"
               stroke-linejoin="round"
             />
           </svg>
-
-          Salin link
+          <p class="hidden tablet:block">
+            Salin link
+          </p>
         </button>
       </div>
     </section>
 
     <section>
-      <div class="flex h-screen">
+      <div class="tablet:flex h-screen">
         <!-- image section -->
-        <div class="p-9 px-20 mt-16 border-r w-1/2 relative">
+        <div
+          class="tablet:p-9 tablet:px-20 pt-16 border-r tablet:w-1/2 relative"
+        >
           <!-- image preview muncul-->
           <div
             id="image-preview"
@@ -105,12 +108,18 @@
             </button>
           </div>
         </div>
-        <div class="p-9 mt-16 border-r w-1/2">
+
+        <!-- project description -->
+        <div class="p-9 tablet:pt-16 border-r tablet:w-1/2">
           <div class="">
-            <h2 class="text-3xl font-cabinet-grotesk font-medium">
+            <h2
+              class="text-2xl laptop:text-3xl font-cabinet-grotesk font-medium"
+            >
               {{ project.title }}
             </h2>
-            <p class="font-cabinet-grotesk text-xl tracking-wide mt-5">
+            <p
+              class="font-cabinet-grotesk text-lg laptop:text-xl tracking-wide mt-5"
+            >
               {{ project.caption }}
             </p>
           </div>
@@ -118,25 +127,31 @@
           <!-- to see detail like = comment = modification -->
           <div class="flex justify-between border-t-2 border-b-2 mt-5 py-5">
             <p
-              class="font-cabinet-grotesk text-xl cursor-default"
+              class="font-cabinet-grotesk text-base tablet:text-base laptop:text-xl cursor-default"
               @click="selectedMenu = 'like'"
             >
               {{ likeCount }}
-              <span class="text-[#95959D]">Suka</span>
+              <span
+                class="text-[#95959D] text-base tablet:text-base laptop:text-xl"
+              >Suka</span>
             </p>
             <p
-              class="font-cabinet-grotesk text-xl cursor-default"
+              class="font-cabinet-grotesk text-base tablet:text-base laptop:text-xl cursor-default"
               @click="selectedMenu = 'comment'"
             >
               {{ commentCount }}
-              <span class="text-[#95959D]">Komentar</span>
+              <span
+                class="text-[#95959D] text-base tablet:text-base laptop:text-xl"
+              >Komentar</span>
             </p>
             <p
-              class="font-cabinet-grotesk text-xl cursor-default"
+              class="font-cabinet-grotesk text-base tablet:text-base laptop:text-xl cursor-default"
               @click="selectedMenu = 'modification'"
             >
               {{ getCountRedesign }}
-              <span class="text-[#95959D]">Modifikasi</span>
+              <span
+                class="text-[#95959D] text-base tablet:text-base laptop:text-xl"
+              >Modifikasi</span>
             </p>
           </div>
 
@@ -144,7 +159,7 @@
           <div class="flex justify-between border-b-2 mt-5 py-5">
             <p class="font-cabinet-grotesk text-xl flex items-center gap-2">
               <icon-galery-like-icon
-                class="cursor-pointer"
+                class="cursor-pointer w-4 laptop:w-auto"
                 :fill="
                   likes.filter(data => data.user_id === $auth.user.id)
                     .length !== 0
@@ -159,27 +174,39 @@
                 "
                 @like-clicked="handleLike"
               />
-              <span class="text-[#95959D]">Suka</span>
+              <span
+                class="text-[#95959D] text-base tablet:text-base laptop:text-xl"
+              >Suka</span>
             </p>
             <!-- :to="`/comments/${getMyProject[currentImageIndex].id}`" -->
             <p
               class="font-cabinet-grotesk text-xl flex items-center gap-2 cursor-pointer"
               @click="sendComment"
             >
-              <icon-galery-comment-icon class="cursor-pointer" />
-              <span class="text-[#95959D]">Komentar</span>
+              <icon-galery-comment-icon
+                class="cursor-pointer w-4 laptop:w-auto"
+              />
+              <span
+                class="text-[#95959D] text-base tablet:text-base laptop:text-xl"
+              >Komentar</span>
             </p>
             <p
               class="font-cabinet-grotesk text-xl flex items-center gap-2 cursor-pointer"
               @click="sendModification"
             >
-              <icon-galery-retweet-icon class="cursor-pointer" />
-              <span class="text-[#95959D]">Modifikasi</span>
+              <icon-galery-retweet-icon
+                class="cursor-pointer w-4 laptop:w-auto"
+              />
+              <span
+                class="text-[#95959D] text-base tablet:text-base laptop:text-xl"
+              >Modifikasi</span>
             </p>
           </div>
 
           <!-- show comment, likes, and modification -->
-          <div class="h-[65%] overflow-hidden overflow-y-scroll">
+          <div
+            class="h-[350px] tablet:h-[65%] overflow-hidden overflow-y-scroll project-data"
+          >
             <showLike v-if="selectedMenu == 'like'" />
             <showComment
               v-if="selectedMenu == 'comment'"
@@ -340,3 +367,18 @@ export default {
   components: { ShowModification }
 }
 </script>
+
+<style scoped>
+.project-data::-webkit-scrollbar {
+  width: 5px;
+}
+
+.project-data::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 20px;
+}
+
+.project-data::-webkit-scrollbar-track {
+  background-color: none;
+}
+</style>
