@@ -7,16 +7,28 @@
           Buat Tim Baru
         </h1>
         <button @click="closeModal">
-          <icon-galery-close-bar />
+          <svg
+            class="w-4 laptop:w-5"
+            viewBox="0 0 14 14"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1 13L13 1M1 1L13 13"
+              stroke="#151B1E"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
         </button>
       </div>
 
-      <form @submit.prevent="buatTim">
+      <form class="w-full laptop:w-auto" @submit.prevent="buatTim">
         <!-- modal body -->
         <div class="modal-body mt-12">
           <!-- Nama Tim -->
           <div
-            class="flex gap-3 font-cabinet-grotesk items-center justify-center"
+            class="flex flex-col laptop:flex gap-3 font-cabinet-grotesk laptop:items-center justify-center"
           >
             <label for="name" class="text-[16px]">Nama Tim</label>
             <input
@@ -24,12 +36,12 @@
               v-model="form.namaTim"
               name="name"
               type="text"
-              class="border-2 rounded-md w-[433px] h-[40px] px-[10px] py-[6px] outline-none"
+              class="border-2 rounded-md laptop:w-[433px] h-[40px] px-[10px] py-[6px] outline-none"
               placeholder="Masukan nama tim"
             >
           </div>
 
-          <p class="mt-4">
+          <p class="mt-4 text-base text-center">
             Setelah memasukkan nama tim, kamu bisa mengundang siapapun untuk
             bergabung
           </p>
@@ -37,12 +49,12 @@
         </div>
 
         <!-- modal footer -->
-        <div class="modal-footer mt-44">
+        <div class="modal-footer mt-7 laptop:mt-44">
           <div>
             <!-- button simpan tim -->
             <button
               type="submit"
-              class="bg-[#6C61E1] text-white font-cabinet-grotesk rounded-lg px-[50px] py-[10px] border-2 text-lg"
+              class="bg-[#6C61E1] text-white font-cabinet-grotesk rounded-lg px-10 py-1 laptop:px-[50px] laptop:py-[10px] border-2 text-lg"
               :class="{
                 'bg-[#E5E5E6] cursor-not-allowed text-[#B0B0B5]': !isFormValid
               }"
@@ -112,7 +124,7 @@ export default {
           this.$toast.error(response.data.message.name[0])
         }
       } catch (error) {
-       return error
+        return error
         // Menangani error saat membuat tim
         // Tambahkan logika atau tindakan lain yang diperlukan untuk penanganan error
       }
