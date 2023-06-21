@@ -3,7 +3,7 @@
     <form class="w-full" @submit.prevent="">
       <!-- topbar -->
       <section
-        class="py-[10px] px-[28px] border-b-2 border-[#CACACE] flex justify-between items-center fixed w-full z-50"
+        class="py-[10px] px-[28px] border-b-2 border-[#CACACE] flex justify-between items-center fixed w-full z-50 bg-white"
       >
         <!-- icon opibox -->
         <button @click="closeCreate">
@@ -28,9 +28,13 @@
 
       <!-- main form -->
       <section>
-        <div class="flex h-screen">
+        <div
+          class="flex flex-col w-full laptop:w-auto laptop:flex laptop:flex-row h-screen"
+        >
           <!-- image section -->
-          <div class="p-9 px-20 mt-16 border-r w-1/2 relative">
+          <div
+            class="py-9 px-10 laptop:p-9 laptop:px-20 mt-16 border-r w-full laptop:w-1/2 h-[100%] laptop:h-auto relative"
+          >
             <!-- image preview hidden -->
             <div
               v-if="!showPreview"
@@ -77,22 +81,28 @@
           </div>
 
           <!-- form section -->
-          <div class="px-9 py-9 pt-[100px] border-r w-1/2 h-full relative">
+          <div
+            class="px-5 pt-[20px] laptop:px-9 laptop:py-9 laptop:pt-[100px] border-r w-full laptop-1/2 h-full relative"
+          >
             <!-- btn akses & add gambar -->
             <div class="flex justify-between">
               <button
-                class="flex items-center bg-[#6C61E1] px-5 py-3 gap-3 rounded-lg"
+                class="flex items-center bg-[#6C61E1] py-1 px-2 laptop:px-5 laptop:py-3 gap-3 rounded-lg"
                 @click="showAkses"
               >
                 <icon-galery-setting-icon color="white" />
-                <span class="text-white font-cabinet-grotesk text-lg">Kelola Akses</span>
+                <span
+                  class="text-white font-cabinet-grotesk text-sm laptop:text-lg"
+                >Kelola Akses</span>
               </button>
               <label
                 for="addImg"
-                class="flex items-center bg-[#6C61E1] px-5 py-3 gap-3 rounded-lg cursor-pointer"
+                class="flex items-center bg-[#6C61E1] py-1 px-2 laptop:px-5 laptop:py-3 gap-3 rounded-lg cursor-pointer"
               >
                 <icon-galery-add-team width="30" />
-                <span class="text-white font-cabinet-grotesk text-lg">Tambah gambar</span>
+                <span
+                  class="text-white font-cabinet-grotesk text-sm laptop:text-lg"
+                >Tambah gambar</span>
               </label>
               <input
                 id="addImg"
@@ -107,7 +117,10 @@
             <!-- judul proyek -->
             <div class="flex flex-col gap-y-3 mt-4">
               <div class="flex justify-between items-center">
-                <label for="judul" class="text-[20px]">Judul Proyek</label>
+                <label
+                  for="judul"
+                  class="text-[16px] laptop:text-[20px] font-cabinet-grotesk"
+                >Judul Proyek</label>
                 <div v-if="loading" class="text-center flex items-center gap-3">
                   <div
                     class="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-gray-900"
@@ -123,19 +136,22 @@
                 name="judul"
                 type="text"
                 placeholder="Masukan Judul"
-                class="px-2 py-3 text-[14px] outline-none border rounded-lg tracking-wider font-light"
+                class="px-2 py-3 text-[14px] outline-none border rounded-lg tracking-wider font-cabinet-grotesk font-light"
               >
             </div>
 
             <!-- desc proyek -->
             <div class="flex flex-col mt-4 max-h-max object-cover h-[50%]">
-              <label for="desc" class="text-[20px]">Deskripsi</label>
+              <label
+                for="desc"
+                class="text-[16px] laptop:text-[20px] font-cabinet-grotesk"
+              >Deskripsi</label>
               <textarea
                 id="desc"
                 v-model="form.deskripsi"
                 name="desc"
                 placeholder="Masukan Deskripsi"
-                class="px-2 py-3 text-[14px] outline-none border rounded-lg h-[100%]"
+                class="px-2 py-3 text-[14px] outline-none border tracking-wider font-light rounded-lg h-[100%] font-cabinet-grotesk"
                 cols="30"
               />
             </div>
