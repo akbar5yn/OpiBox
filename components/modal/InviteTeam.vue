@@ -1,24 +1,24 @@
 <template>
   <div v-if="modalInviter" class="modal-overlay px-5">
-    <form class="w-[800px]" @submit.prevent="inviteTeam">
+    <form class="w-full laptop:w-[800px]" @submit.prevent="inviteTeam">
       <div class="modal px-20">
         <!-- modal header -->
         <div class="modal-header">
           <div class="flex flex-col justify-center w-full">
             <h1
-              class="w-full text-center font-cabinet-grotesk font-medium text-xl"
+              class="w-full text-center font-cabinet-grotesk font-medium laptop:text-xl"
             >
               Tambahkan kolaborator
             </h1>
             <p
-              class="w-full text-center font-cabinet-grotesk font-medium text-xl"
+              class="w-full text-center font-cabinet-grotesk font-medium laptop:text-xl"
             >
               Masukkan email anggota tim untuk mengirimkan undangan bergabung
             </p>
           </div>
-          <button class="absolute right-5" @click="closeInviter">
+          <button class="absolute top-5 right-5" @click="closeInviter">
             <svg
-              class="w-5"
+              class="w-3 laptop:w-5"
               viewBox="0 0 14 14"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -34,7 +34,9 @@
         </div>
 
         <!-- modal body -->
-        <div class="modal-body mt-12 flex flex-col gap-3 w-[400px]">
+        <div
+          class="modal-body mt-12 flex flex-col gap-3 w-full laptop:w-[400px]"
+        >
           <p v-if="isMaxCollaboratorsReached" class="text-red-500 text-center">
             Anda hanya dapat menambahkan maksimal 5 kolaborator di awal.
           </p>
@@ -44,7 +46,7 @@
               v-model="form.emails[index]"
               type="email"
               placeholder="Email"
-              class="border w-[100%] px-[10px] py-[13px] rounded-lg"
+              class="border w-[100%] px-[10px] py-[13px] rounded-lg text-sm laptop:text-base"
               @input="handleEmailInput(index)"
             >
             <p
@@ -68,7 +70,7 @@
           <div class="flex flex-col gap-4">
             <!-- button simpan inviter -->
             <button
-              class="bg-[#6C61E1] text-white font-cabinet-grotesk rounded-lg px-[50px] py-[10px] border-2 text-lg"
+              class="bg-[#6C61E1] text-white font-cabinet-grotesk rounded-lg px-10 py-1 laptop:px-[50px] laptop:py-[10px] border-2 text-lg"
               type="submit"
               :class="{
                 'bg-[#E5E5E6] cursor-not-allowed text-[#B0B0B5]': !isFormValid
