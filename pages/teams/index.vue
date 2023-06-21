@@ -1,15 +1,13 @@
 <template>
   <div class="px-7 py-9 flex flex-col h-full">
     <!-- header -->
-    <section
-      class="flex flex-col gap-y-4 tablet:flex tablet:flex-row tablet:items-center justify-between"
-    >
+    <section class="gap-y-4 flex items-center justify-between">
       <!-- Icon team -->
-      <div class="flex items-center gap-5">
+      <div class="flex items-center gap-2 laptop:gap-5">
         <mainpage-hamburger-button class="laptop:hidden" color="black" />
         <icon-galery-team-icon />
         <h1
-          class="font-cabinet-grotesk text-[24px] laptop:text-3xl font-medium"
+          class="font-cabinet-grotesk text-[20px] laptop:text-3xl font-medium"
         >
           Tim {{ teamName }}
         </h1>
@@ -17,6 +15,7 @@
           <svg
             width="17"
             height="16"
+            class="w-[17px] laptop:w-4"
             viewBox="0 0 17 16"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +39,9 @@
           @click="onDeleteTeam"
         >
           <icon-galery-trash-icon color="red" />
-          Hapus tim
+          <p class="hidden laptop:block">
+            Hapus tim
+          </p>
         </button>
       </div>
     </section>
@@ -58,7 +59,7 @@
 
         <div class="flex justify-between items-center mt-5">
           <button
-            class="w-[151px] px-[20px] py-[10px] font-cabinet-grotesk border-2 rounded-md"
+            class="px-5 py-1 laptop:px-[20px] laptop:py-[10px] font-cabinet-grotesk border-2 rounded-md"
           >
             Proyek Baru
           </button>
@@ -131,7 +132,7 @@
 
         <div
           v-if="getTeamProject.length === 0"
-          class="flex flex-col items-center justify-center h-full"
+          class="flex flex-col items-center justify-center h-full text-center text-sm laptop:text-base"
         >
           <p>Team Belum Memiliki Proyek</p>
           <p>
@@ -215,7 +216,7 @@
         </div>
         <button
           v-if="accessiBility($auth.user.id)"
-          class="px-[20px] py-[10px] font-cabinet-grotesk border-2 rounded-md mt-5 mobile:absolute mobile:right-0 laptop:w-full"
+          class="px-5 py-1 laptop:px-[20px] laptop:py-[10px] font-cabinet-grotesk border-2 rounded-md mt-5 mobile:absolute mobile:right-0 laptop:w-full"
           @click="inviteUser($route.params.id)"
         >
           Undang
