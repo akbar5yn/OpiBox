@@ -13,20 +13,22 @@
           class="max-w-[100px] max-h-[100px] h-full w-full rounded-full"
           :src="profileImage"
         >
-        <label
-          for="avatar"
-          class="font-open-sans font-normal text-[16px] bg-[#6C61E1] p-[10px] text-white rounded-md cursor-pointer"
-        >
-          Ubah foto profil
-        </label>
-        <input
-          id="avatar"
-          class="hidden"
-          name="avatar"
-          type="file"
-          accept="image/png, image/jpeg"
-          @change="handleImage($event)"
-        >
+        <div class="mt-7">
+          <label
+            for="avatar"
+            class="font-open-sans font-normal text-[16px] bg-[#6C61E1] p-[10px] text-white rounded-md cursor-pointer"
+          >
+            Ubah foto profil
+          </label>
+          <input
+            id="avatar"
+            class="hidden"
+            name="avatar"
+            type="file"
+            accept="image/png, image/jpeg"
+            @change="handleImage($event)"
+          >
+        </div>
       </div>
       <div class="w-full font-open-sans text-[#19191B]">
         <div class="flex flex-col space-y-4">
