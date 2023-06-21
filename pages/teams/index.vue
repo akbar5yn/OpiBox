@@ -204,6 +204,11 @@
                 <span class="italic text-[#B0B0B5]">
                   {{ formatedRole(member.role) }}
                 </span>
+                <span
+                  v-if="member.invitation_status === 'Pending'"
+                  class="italic text-[#B0B0B5]"
+                >Pending</span>
+
                 <button
                   v-if="kickMember && member.role === 'Member'"
                   @click="kickThisMember(member.user_id, member.team_id)"
