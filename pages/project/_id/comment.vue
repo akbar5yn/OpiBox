@@ -4,12 +4,14 @@
       <div
         class="py-[17px] px-[28px] border-b-2 border-r-2 flex items-center justify-between"
       >
-        <h1 class="font-cabinet-grotesk font-bold text-2xl">
+        <h1
+          class="font-cabinet-grotesk hidden tablet:block font-bold text-lg laptop:text-2xl"
+        >
           Tandai Area (Opsional)
         </h1>
         <button
           ref="toggleMarker"
-          class="p-[10px] border-2 rounded-lg font-cabinet-grotesk flex items-center gap-2"
+          class="px-3 py-2 laptop:p-[10px] text-sm laptop:text-lg border-2 rounded-lg font-cabinet-grotesk flex items-center gap-2"
           :disabled="disableMarker"
           :class="[
             disableMarker
@@ -30,18 +32,18 @@
         </button>
       </div>
       <div
-        class="py-[17px] px-[28px] border-b-2 border-r-2 flex items-center justify-between"
+        class="py-[17px] px-[28px] border-b-2 border-r-2 flex items-center laptop:justify-between justify-end"
       >
-        <div class="flex items-center gap-5">
+        <div class="hidden items-center gap-3 laptop:gap-5 laptop:flex">
           <icon-galery-avatar-icon />
-          <h3 class="font-cabinet-grotesk text-lg font-medium">
+          <h3 class="font-cabinet-grotesk text-sm laptop:text-lg font-medium">
             {{ username }}
           </h3>
         </div>
 
         <div class="relative">
           <button
-            class="flex items-center gap-3 border-2 rounded-lg px-6 py-3"
+            class="flex items-center text-sm laptop:text-base laptop:gap-3 border-2 rounded-lg px-3 py-2 laptop:px-6 laptop:py-3"
             @click="isOpen = !isOpen"
           >
             <span class="font-cabinet-grotesk">Gambar 1</span>
@@ -85,9 +87,9 @@
         </div>
       </div>
     </nav>
-    <main class="grid grid-cols-2 w-full h-full">
+    <main class="flex flex-col laptop:grid laptop:grid-cols-2 w-full h-full">
       <section
-        class="left-section flex justify-center items-center px-5 py-5 border-r-2 pt-24 max-h-screen"
+        class="left-section flex justify-center items-center px-5 py-5 border-r-2 pt-24 h-[60%] laptop:h-screen laptop:max-h-screen"
       >
         <div class="flex justify-center items-center w-full h-full">
           <div
@@ -120,26 +122,28 @@
           </div>
         </div>
       </section>
-      <section class="mt-24">
+      <section class="laptop:pt-24 h-[50%] laptop:h-auto">
         <form class="flex flex-col h-full" @submit.prevent="addComment">
-          <div class="relative border-b-2">
+          <div class="relative laptop:border-b-2 h-[100%] px-5">
             <textarea
               id="comment"
               v-model="form.comment"
               name="comment"
               placeholder="Ketikan sesuatu..."
-              class="p-5 text-[14px] outline-none w-full h-[75vh] relative font-cabinet-grotesk"
+              class="p-5 text-[14px] outline-none w-full h-full border rounded-md laptop:border-none laptop:h-[75vh] relative font-cabinet-grotesk"
               @input="limitCharacterCount"
             />
             <p
-              class="text-end absolute bottom-5 right-5 font-cabinet-grotesk text-gray-400"
+              class="text-end absolute bottom-0 right-6 laptop:bottom-5 laptop:right-5 font-cabinet-grotesk text-gray-400"
             >
               {{ characterCount }}/250
             </p>
           </div>
-          <div class="flex justify-between items-center h-[100%] px-5">
+          <div
+            class="flex justify-between items-center h-[30%] laptop:h-[100%] px-5"
+          >
             <button
-              class="text-[#6C61E1] font-cabinet-grostek"
+              class="text-[#6C61E1] font-cabinet-grotesk"
               type="button"
               @click="closeComment"
             >
@@ -147,7 +151,7 @@
             </button>
             <button
               type="submit"
-              class="px-[68px] py-[16px] rounded-md font-cabinet-grotesk text-[#B0B0B5]"
+              class="px-10 py-2 laptop:px-[68px] laptop:py-[16px] rounded-md font-cabinet-grotesk text-[#B0B0B5]"
               :disabled="disabled"
               :class="{
                 'bg-[#6C61E1] text-white': !disabled,
