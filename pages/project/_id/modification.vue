@@ -1,7 +1,7 @@
 <template>
   <div id="modification">
     <section
-      class="py-[10px] px-[28px] border-b-2 border-[#CACACE] flex justify-between items-center fixed w-full bg-white"
+      class="py-[10px] px-[28px] border-b-2 border-[#CACACE] flex justify-between items-center fixed w-full bg-white z-50"
     >
       <!-- icon opibox -->
       <button @click="closeCreate">
@@ -11,23 +11,25 @@
 
     <!-- main form -->
     <form @submit.prevent="simpan">
-      <div class="flex h-screen">
+      <div class="laptop:flex h-screen">
         <!-- image section -->
-        <div class="p-9 px-20 mt-16 border-r w-1/2 relative">
+        <div
+          class="px-5 laptop:p-9 laptop:px-20 pt-[80px] w-full h-[50%] laptop:h-auto laptop:mt-16 border-r laptop:w-1/2 relative"
+        >
           <!-- image preview hidden -->
           <div
             v-if="!showPreview"
             class="border-2 h-full border-dashed border-[#95959D] py-4 flex flex-col items-center justify-center gap-y-4 font-cabinet-grotesk"
           >
             <icon-galery-image-icon />
-            <p class="text-[#95959D] text-base xl:text-2xl text-center">
+            <p class="text-[#95959D] text-base laptop:text-2xl text-center">
               Anda belum mengunggah gambar
             </p>
             <label
               for="addImg"
-              class="flex items-center bg-[#6C61E1] px-5 py-3 gap-3 rounded-lg cursor-pointer"
+              class="flex items-center bg-[#6C61E1] px-3 py-1 laptop:px-5 laptop:py-3 gap-3 rounded-lg cursor-pointer"
             >
-              <span class="text-white font-cabinet-grotesk text-lg">Unggah Gambar</span>
+              <span class="text-white font-cabinet-grotesk laptop:text-lg">Unggah Gambar</span>
             </label>
             <input
               id="addImg"
@@ -46,7 +48,7 @@
             class="h-full border-dashed border-[#95959D] flex flex-col items-center justify-center"
           >
             <button
-              class="absolute top-5 left-5 rounded-full shadow-xl p-4"
+              class="absolute top-20 left-5 laptop:top-5 laptop:left-5 rounded-full shadow-xl p-4"
               @click="removeImage"
             >
               <icon-galery-trash-icon />
@@ -60,11 +62,13 @@
         </div>
 
         <!-- form section -->
-        <div class="pt-16 border-r w-1/2 h-full">
-          <div class="p-5 h-[10%] my-auto">
+        <div
+          class="pt-2 laptop:pt-16 laptop:border-r h-[50%] w-full laptop:w-1/2 laptop:h-full"
+        >
+          <div class="p-5 laptop:h-[10%] my-auto flex flex-col">
             <div class="flex items-center justify-between">
               <h3
-                class="font-cabinet-grotesk text-lg font-medium flex items-center gap-5"
+                class="font-cabinet-grotesk laptop:text-lg font-medium flex items-center gap-2 laptop:gap-5"
               >
                 <icon-galery-avatar-icon />
                 {{ username }}
@@ -72,7 +76,7 @@
               <div class="relative">
                 <button
                   id="choose-img"
-                  class="flex items-center gap-3 border-2 rounded-lg px-6 py-3"
+                  class="flex items-center laptop:gap-3 border-2 rounded-lg px-3 py-1 laptop:px-6 laptop:py-3"
                   type="button"
                   @click="isOpen = !isOpen"
                 >
@@ -124,15 +128,15 @@
             <hr class="w-full">
           </div>
           <!-- desc modification -->
-          <div id="decs-modification" class="h-[89%]">
+          <div id="decs-modification" class="h-[80%] laptop:h-[89%]">
             <div class="flex flex-col h-full">
-              <div class="relative border-b-2">
+              <div class="relative border-b-2 h-full">
                 <textarea
                   id="comment"
                   v-model="form.caption"
                   name="comment"
                   placeholder="Ketikan sesuatu..."
-                  class="p-5 text-[14px] outline-none w-full h-[70vh] relative font-cabinet-grotesk"
+                  class="p-5 text-[14px] outline-none w-full h-full laptop:h-[70vh] relative font-cabinet-grotesk"
                   @input="limitCharacterCount"
                 />
                 <p
@@ -141,9 +145,9 @@
                   {{ characterCount }}/250
                 </p>
               </div>
-              <div class="flex justify-between items-center h-full p-5">
+              <div class="flex justify-between items-center laptop:h-full p-5">
                 <button
-                  class="text-[#6C61E1] font-cabinet-grostek"
+                  class="text-[#6C61E1] font-cabinet-grotesk"
                   type="button"
                   @click="closeCreate"
                 >
@@ -151,7 +155,7 @@
                 </button>
                 <button
                   type="submit"
-                  class="px-[68px] py-[16px] rounded-md font-cabinet-grotesk text-[#B0B0B5]"
+                  class="px-10 py-2 laptop:px-[68px] laptop:py-[16px] rounded-md font-cabinet-grotesk text-[#B0B0B5]"
                   :disabled="!isFormValid"
                   :class="{
                     'bg-[#6C61E1] text-white': isFormValid,
