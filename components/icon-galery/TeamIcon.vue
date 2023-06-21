@@ -3,6 +3,7 @@
     :width="width"
     viewBox="0 0 34 28"
     fill="none"
+    class="w-[25px]"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
