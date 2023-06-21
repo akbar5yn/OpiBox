@@ -29,6 +29,7 @@
     </div>
 
     <!-- show modal create team -->
+    <modal-create-team />
   </div>
 </template>
 
