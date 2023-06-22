@@ -17,7 +17,7 @@
           <nuxt-link
             v-if="getMyProject.length > 3"
             class="text-[#62626A]"
-            to="/beranda/my-project"
+            to="/Beranda/my-project"
           >
             Lihat semua
           </nuxt-link>
