@@ -3,14 +3,14 @@
     <form class="w-full" @submit.prevent="simpan">
       <!-- topbar -->
       <section
-        class="py-[10px] px-[28px] border-b-2 border-[#CACACE] flex justify-between items-center fixed w-full z-50"
+        class="py-[10px] px-[28px] border-b-2 border-[#CACACE] flex justify-between items-center fixed w-full z-50 bg-white"
       >
         <!-- icon opibox -->
         <div>
           <icon-galery-opi-box />
         </div>
         <!-- icon else -->
-        <div class="flex gap-3 items-center">
+        <div class="hidden tablet:flex gap-3 items-center">
           <button
             class="border border-[#6C61E1] text-[#6C61E1] px-[30px] py-[8px] rounded-lg flex items-center gap-[18px]"
             type="button"
@@ -34,9 +34,11 @@
 
       <!-- main form -->
       <section>
-        <div class="flex h-screen">
+        <div class="tablet:flex h-screen">
           <!-- image section -->
-          <div class="p-9 px-20 mt-16 border-r w-1/2 relative">
+          <div
+            class="pt-16 w-full tablet:p-9 tablet:px-20 tablet:mt-16 border-r laptop:w-1/2 relative"
+          >
             <!-- image preview hidden -->
             <div
               v-if="edit.images.length === 0"
@@ -56,7 +58,7 @@
             >
               <button
                 type="button"
-                class="absolute top-5 left-5 rounded-full shadow-xl p-4"
+                class="absolute top-16 left-5 rounded-full shadow-xl p-4"
                 @click="
                   removeImage(
                     currentImageIndex,
@@ -72,7 +74,7 @@
                 type="button"
                 @click="prevImage"
               >
-                <icon-galery-slider-icon class="rotate-180" />
+                <icon-galery-slider-icon class="rotate-180 text-white" />
               </button>
               <img
                 v-if="edit.images[currentImageIndex]?.image_url"
@@ -99,25 +101,27 @@
           </div>
 
           <!-- form section -->
-          <div class="px-9 py-9 pt-[100px] border-r w-1/2 h-full relative">
+          <div
+            class="w-full px-5 py-9 tablet:px-9 tablet:py-9 tablet:pt-[100px] border-r tablet:w-1/2 tablet:h-full relative"
+          >
             <!-- btn akses & add gambar -->
             <div class="flex justify-between">
               <div
-                class="flex items-center bg-[#6C61E1] px-5 py-3 gap-3 rounded-lg"
+                class="flex items-center bg-[#6C61E1] px-3 py-1 tablet:px-5 tablet:py-3 gap-3 rounded-lg"
               >
                 <icon-galery-setting-icon color="white" />
                 <span
                   v-if="edit.project_type === 'team'"
-                  class="text-white font-cabinet-grotesk text-lg"
+                  class="text-white font-cabinet-grotesk text-base tablet:text-lg"
                 >Team</span>
                 <span
                   v-if="edit.project_type === 'open'"
-                  class="text-white font-cabinet-grotesk text-lg"
+                  class="text-white font-cabinet-grotesk text-base tablet:text-lg"
                 >Umum</span>
               </div>
               <label
                 for="addImg"
-                class="flex items-center bg-[#6C61E1] px-5 py-3 gap-3 rounded-lg cursor-pointer"
+                class="flex items-center bg-[#6C61E1] px-3 py-1 tablet:px-5 tablet:py-3 gap-3 rounded-lg cursor-pointer"
               >
                 <icon-galery-add-team width="30" />
                 <span class="text-white font-cabinet-grotesk text-lg">Tambah gambar</span>
@@ -156,17 +160,40 @@
             </div>
 
             <!-- desc proyek -->
-            <div class="flex flex-col mt-4 max-h-max object-cover h-[50%]">
+            <div
+              class="flex flex-col mt-4 tablet:max-h-max object-cover tablet:h-[50%]"
+            >
               <label for="desc" class="text-[20px]">Deskripsi</label>
               <textarea
                 id="desc"
                 v-model="form.deskripsi"
                 name="desc"
                 :placeholder="edit.caption"
-                class="px-2 py-3 text-[14px] outline-none border rounded-lg h-[100%]"
+                class="px-2 py-3 text-[14px] outline-none border rounded-lg h-[100px] tablet:h-[100%]"
                 cols="30"
               />
             </div>
+          </div>
+          <div class="tablet:hidden flex gap-3 items-center justify-end px-5">
+            <button
+              class="border border-[#6C61E1] text-[#6C61E1] px-[30px] py-[8px] rounded-lg flex items-center gap-[18px]"
+              type="button"
+              @click="closeEdit(`/project/${$route.params.id}`)"
+            >
+              Batal
+            </button>
+            <button
+              class="bg-[#6C61E1] border border-[#6C61E1] text-white px-[18px] py-[8px] rounded-lg flex items-center gap-[18px]"
+              :class="{
+                'bg-[#E5E5E6] border border-[#B0B0B5] cursor-not-allowed text-[#B0B0B5]':
+                  !isFormValid
+              }"
+              type="submit"
+              :disabled="!isFormValid"
+            >
+              <icon-galery-checklist-icon />
+              Simpan
+            </button>
           </div>
         </div>
       </section>
