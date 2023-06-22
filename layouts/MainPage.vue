@@ -76,7 +76,7 @@ export default {
       return this.$route.name === 'Beranda'
     },
     deepLink () {
-      return this.$route.path.startsWith('/beranda/my-project')
+      return this.$route.path.startsWith('/Beranda/my-project')
     }
   },
   methods: {
