@@ -64,7 +64,7 @@
       <div class="tablet:flex h-screen">
         <!-- image section -->
         <div
-          class="tablet:p-9 tablet:px-20 pt-16 border-r tablet:w-1/2 relative"
+          class="tablet:pb-9 tablet:pt-28 tablet:px-20 pt-16 border-r tablet:w-1/2 relative"
         >
           <!-- image preview muncul-->
           <div
@@ -78,7 +78,7 @@
             >
               <icon-galery-slider-icon class="rotate-180" />
             </button>
-            <div ref="imageContainer" class="container-image h-fit relative">
+            <div ref="imageContainer" class="container-image h-full relative">
               <div
                 v-if="showMarker"
                 :style="{ left: markerX + 'px', top: markerY + 'px' }"
@@ -90,7 +90,7 @@
                 v-if="Array.isArray(projectImage) && projectImage.length > 0"
                 :src="projectImage[currentImageIndex]"
                 alt="Image preview"
-                class="object-contain w-full h-[100%]"
+                class="object-contain w-full h-full"
               >
               <img
                 v-else
@@ -110,7 +110,7 @@
         </div>
 
         <!-- project description -->
-        <div class="p-9 tablet:pt-16 border-r tablet:w-1/2">
+        <div class="p-9 tablet:pt-28 border-r tablet:w-1/2">
           <div class="">
             <h2
               class="text-2xl laptop:text-3xl font-cabinet-grotesk font-medium"
