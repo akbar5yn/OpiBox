@@ -32,7 +32,7 @@
           <div class="p-9 px-20 mt-16 border-r w-1/2 relative">
             <!-- image preview hidden -->
             <div
-              v-if="imagePreview"
+              v-if="edit.images.length === 0"
               class="border-2 h-full border-dashed border-[#95959D] py-4 flex flex-col items-center justify-center gap-y-2"
             >
               <icon-galery-image-icon />
@@ -48,25 +48,41 @@
               class="h-full border-dashed border-[#95959D] flex flex-col items-center justify-center"
             >
               <button
+                type="button"
                 class="absolute top-5 left-5 rounded-full shadow-xl p-4"
-                @click="removeImage(currentImageIndex)"
+                @click="
+                  removeImage(
+                    currentImageIndex,
+                    edit.images[currentImageIndex].id
+                  )
+                "
               >
                 <icon-galery-trash-icon />
               </button>
               <button
                 v-if="currentImageIndex !== 0"
                 class="slider-button absolute top-1/2 left-3 rounded-full shadow-xl p-4"
+                type="button"
                 @click="prevImage"
               >
                 <icon-galery-slider-icon class="rotate-180" />
               </button>
               <img
+                v-if="edit.images[currentImageIndex]?.image_url"
                 :src="edit.images[currentImageIndex].image_url"
                 alt="Image preview"
                 class="object-contain w-full h-[100%]"
               >
+              <img
+                v-if="edit.images[currentImageIndex]?.base64"
+                :src="edit.images[currentImageIndex].base64"
+                alt="Image preview"
+                class="object-contain w-full h-[100%]"
+              >
+
               <button
                 v-if="edit.images.length > 1"
+                type="button"
                 class="slider-button absolute top-1/2 right-3 rounded-full shadow-xl p-4"
                 @click="nextImage"
               >
@@ -79,13 +95,19 @@
           <div class="px-9 py-9 pt-[100px] border-r w-1/2 h-full relative">
             <!-- btn akses & add gambar -->
             <div class="flex justify-between">
-              <button
+              <div
                 class="flex items-center bg-[#6C61E1] px-5 py-3 gap-3 rounded-lg"
-                @click="showAkses"
               >
                 <icon-galery-setting-icon color="white" />
-                <span class="text-white font-cabinet-grotesk text-lg">Kelola Akses</span>
-              </button>
+                <span
+                  v-if="edit.project_type === 'team'"
+                  class="text-white font-cabinet-grotesk text-lg"
+                >Team</span>
+                <span
+                  v-if="edit.project_type === 'open'"
+                  class="text-white font-cabinet-grotesk text-lg"
+                >Umum</span>
+              </div>
               <label
                 for="addImg"
                 class="flex items-center bg-[#6C61E1] px-5 py-3 gap-3 rounded-lg cursor-pointer"
@@ -100,7 +122,7 @@
                 accept="image/*"
                 multiple
                 class="hidden"
-                @change="inputImage"
+                @change="displayImage"
               >
             </div>
             <!-- judul proyek -->
@@ -163,7 +185,7 @@ export default {
     return {
       edit: this.$store.state.edit.detailProject.data,
       currentImageIndex: 0,
-      imagePreview: false,
+
       form: {
         judul: '',
         deskripsi: ''
@@ -188,50 +210,62 @@ export default {
   },
 
   methods: {
-    ...mapMutations('project', ['setShowModal']),
-    ...mapMutations('edit', ['removeSelectedImage', 'setTitle', 'setCaption']),
+    ...mapMutations('edit', [
+      'removeSelectedImage',
+      'setTitle',
+      'setCaption',
+      'setSelectedImg',
+      'addImage',
+      'deleteImage'
+    ]),
     ...mapActions('edit', [
       'getSelectedDetailPorjects',
       'setDataImage',
       'editProject'
     ]),
 
-    // ...mapActions('project', ['postData']),
-
-    // displayImage (event) {
-    //   const files = event.target.files
-    //   Object.keys(files).forEach(async (key) => {
-    //     this.dataFile.push({
-    //       file: files[key],
-    //       base64: await this.readFromFile(files[key])
-    //     })
-    //     this.setDetailProject({
-    //       file: files[key],
-    //       base64: await this.readFromFile(files[key])
-    //     })
-    //   })
-    // },
-    // readFromFile (file) {
-    //   return new Promise((resolve, reject) => {
-    //     const fr = new FileReader()
-    //     fr.onload = () => resolve(fr.result)
-    //     fr.onerror = err => reject(err)
-    //     fr.readAsDataURL(file)
-    //   })
-    // },
+    // NOTE - added image
     inputImage (event) {
       const files = event.target.files[0]
       console.log(files)
-      this.setDataImage(files)
+      this.setSelectedImg(files)
       // this.setShowPreview(true)
     },
 
-    removeImage (index) {
+    displayImage (event) {
+      const files = event.target.files
+      Object.keys(files).forEach(async (key) => {
+        this.dataFile.push({
+          file: files[key],
+          base64: await this.readFromFile(files[key])
+        })
+        this.setSelectedImg({
+          file: files[key],
+          base64: await this.readFromFile(files[key])
+        })
+        this.addImage({
+          file: files[key],
+          base64: await this.readFromFile(files[key])
+        })
+      })
+    },
+    readFromFile (file) {
+      return new Promise((resolve, reject) => {
+        const fr = new FileReader()
+        fr.onload = () => resolve(fr.result)
+        fr.onerror = err => reject(err)
+        fr.readAsDataURL(file)
+      })
+    },
+
+    removeImage (index, idImage) {
       this.removeSelectedImage(index)
+      this.deleteImage({
+        idImage
+      })
       if (this.edit.images.length === 0) {
         // Jika tidak ada gambar yang tersisa, atur currentImageIndex ke 0 dan setShowPreview ke false
         this.currentImageIndex = 0
-        this.imagePreview = true
       } else if (this.currentImageIndex >= this.edit.images.length) {
         // Jika melebihi, atur currentImageIndex ke indeks terakhir (jumlah gambar - 1)
         this.currentImageIndex = this.edit.images.length - 1
@@ -271,10 +305,6 @@ export default {
       } catch (error) {
         console.error(error)
       }
-    },
-
-    showAkses () {
-      this.setShowModal(true)
     }
   }
   // Fungsi untuk mengonversi gambar ke format PNG
