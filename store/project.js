@@ -13,7 +13,8 @@ export const state = () => ({
   detailProject: {},
   projectShared: [],
   projectShareable: {},
-  closeModal: false
+  closeModal: false,
+  dataResult: {}
 })
 
 export const mutations = {
@@ -86,6 +87,11 @@ export const mutations = {
     state.form.projectType = ''
     state.form.selectedAkses = ''
     state.selectedImg = []
+  },
+
+  // NOTE - result searching
+  setResultSearch (state, result) {
+    state.dataResult = result
   }
 }
 
@@ -197,6 +203,20 @@ export const actions = {
     } catch (err) {
       return err.response
     }
+  },
+
+  // NOTE - search projects/search?keyword=janjuk
+
+  async searchProject ({ commit }, keywords) {
+    try {
+      const response = await this.$axios.$get(
+        `projects/search?keyword=${keywords}`
+      )
+      commit('setResultSearch', response)
+      return response
+    } catch (e) {
+      return e.response
+    }
   }
 }
 
@@ -208,5 +228,9 @@ export const getters = {
 
   getProjectSahred: (state) => {
     return state.projectShared
+  },
+
+  getResult: (state) => {
+    return state.dataResult.data
   }
 }
