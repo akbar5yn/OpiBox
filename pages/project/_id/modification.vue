@@ -1,5 +1,5 @@
 <template>
-  <div id="modification">
+  <div id="modification" class="h-screen">
     <section
       class="py-[10px] px-[28px] border-b-2 border-[#CACACE] flex justify-between items-center fixed w-full bg-white z-50"
     >
@@ -65,7 +65,7 @@
         <div
           class="pt-2 laptop:pt-16 laptop:border-r h-[50%] w-full laptop:w-1/2 laptop:h-full"
         >
-          <div class="p-5 laptop:h-[10%] my-auto flex flex-col">
+          <div class="p-5 laptop:h-fit my-auto flex flex-col">
             <div class="flex items-center justify-between">
               <h3
                 class="font-cabinet-grotesk laptop:text-lg font-medium flex items-center gap-2 laptop:gap-5"
@@ -136,7 +136,7 @@
                   v-model="form.caption"
                   name="comment"
                   placeholder="Ketikan sesuatu..."
-                  class="p-5 text-[14px] outline-none w-full h-full laptop:h-[70vh] relative font-cabinet-grotesk"
+                  class="p-5 text-[14px] outline-none w-full h-full laptop:h-full relative font-cabinet-grotesk"
                   @input="limitCharacterCount"
                 />
                 <p
@@ -145,7 +145,7 @@
                   {{ characterCount }}/250
                 </p>
               </div>
-              <div class="flex justify-between items-center laptop:h-full p-5">
+              <div class="flex justify-between items-center laptop:h-fit p-5">
                 <button
                   class="text-[#6C61E1] font-cabinet-grotesk"
                   type="button"
