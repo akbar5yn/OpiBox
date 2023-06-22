@@ -73,7 +73,7 @@
           >
             <button
               v-if="currentImageIndex !== 0"
-              class="slider-button absolute top-1/2 left-3 rounded-full shadow-xl p-4"
+              class="slider-button absolute top-1/2 left-3 rounded-full shadow-xl p-4 z-50"
               @click="prevImage"
             >
               <icon-galery-slider-icon class="rotate-180" />
