@@ -5,7 +5,8 @@
     <p>Poin Opibox</p>
     <div class="flex gap-2">
       <img src="../../assets/img/Poin.svg" alt="point">
-      <span>{{ getTotalPoint }}</span>
+      <span v-if="hasPoint">{{ getTotalPoint }}</span>
+      <span v-else>0</span>
     </div>
     <nuxt-link to="/point">
       Lihat Detailnya >
@@ -21,7 +22,11 @@ export default {
 
   computed: {
     ...mapState('point', ['points']),
-    ...mapGetters('point', ['getTotalPoint'])
+    ...mapGetters('point', ['getTotalPoint']),
+
+    hasPoint () {
+      return this.getTotalPoint !== ''
+    }
   },
 
   mounted () {
