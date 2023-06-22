@@ -6,11 +6,18 @@
         class="py-[10px] px-[28px] border-b-2 border-[#CACACE] flex justify-between items-center fixed w-full z-50"
       >
         <!-- icon opibox -->
-        <NuxtLink to="/beranda">
+        <div>
           <icon-galery-opi-box />
-        </NuxtLink>
+        </div>
         <!-- icon else -->
-        <div class="flex items-center">
+        <div class="flex gap-3 items-center">
+          <button
+            class="border border-[#6C61E1] text-[#6C61E1] px-[30px] py-[8px] rounded-lg flex items-center gap-[18px]"
+            type="button"
+            @click="closeEdit(`/project/${$route.params.id}`)"
+          >
+            Batal
+          </button>
           <button
             class="bg-[#6C61E1] text-white px-[18px] py-[8px] rounded-lg flex items-center gap-[18px]"
             :class="{
@@ -216,7 +223,8 @@ export default {
       'setCaption',
       'setSelectedImg',
       'addImage',
-      'deleteImage'
+      'deleteImage',
+      'clearFormData'
     ]),
     ...mapActions('edit', [
       'getSelectedDetailPorjects',
@@ -305,6 +313,12 @@ export default {
       } catch (error) {
         console.error(error)
       }
+    },
+
+    closeEdit (path) {
+      this.$router.push(path)
+      this.clearFormData()
+      this.$store.commit('project/setCloseModal', false)
     }
   }
   // Fungsi untuk mengonversi gambar ke format PNG
