@@ -69,10 +69,6 @@
                 >
                 <label for="aksesTeam" class="font-cabinet-grotesk text-lg">
                   {{ team.team_name }} <br>
-                  <span class="text-lg text-[#62626A]">
-                    Anda, Salsa, Akbar, Bintang, Maritza, Raihan, Rino, Rinta.
-                    Rita, Rizki, Tangguh,...
-                  </span>
                 </label>
               </div>
             </ul>
