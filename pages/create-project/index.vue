@@ -192,7 +192,6 @@ export default {
       return (
         this.selectedImg.length > 0 &&
         this.form.judul !== '' &&
-        this.form.deskripsi !== '' &&
         projectType !== ''
       )
     }
