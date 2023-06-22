@@ -332,6 +332,9 @@ export default {
         if (response.status === 200) {
           this.$toast.success(response.message)
           this.$router.push('/Beranda')
+          setTimeout(() => {
+            window.location.reload() // Refresh halaman setelah penundaan 1000ms (1 detik)
+          }, 1000)
         } else {
           this.$toast.error(response.message)
         }
