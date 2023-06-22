@@ -77,16 +77,36 @@
       <h3 class="text-[20px]">
         Tukarkan Poinmu Sekarang!
       </h3>
-      <section class="card mt-[20px]">
+      <section class="card mt-[20px] flex gap-5 flex-wrap">
         <div class="max-w-fit border-2 rounded-lg">
-          <point-card-point-5x class="w-full" />
+          <img src="../../assets/img/Point5.png" class="w-[362px]" alt="">
           <div class="w-full p-4">
-            <h2 class="text-[20px]">
+            <h2 class="text-base laptop:text-[20px]">
               Kesempatan Buat 5 Proyek
             </h2>
-            <p>50 Poin</p>
+            <p class="text-sm laptop:text-base">
+              50 Poin
+            </p>
             <button
               class="mt-2 bg-[#6C61E1] py-[10px] w-full text-white rounded-[7px]"
+              @click="redeemPoints(1)"
+            >
+              Tukar
+            </button>
+          </div>
+        </div>
+        <div class="max-w-fit border-2 rounded-lg">
+          <img src="../../assets/img/Point10.png" alt="">
+          <div class="w-full p-4">
+            <h2 class="text-base laptop:text-[20px]">
+              Kesempatan Buat 10 Proyek
+            </h2>
+            <p class="text-sm laptop:text-base">
+              80 Poin
+            </p>
+            <button
+              class="mt-2 bg-[#6C61E1] py-[10px] w-full text-white rounded-[7px]"
+              @click="redeemPoints(2)"
             >
               Tukar
             </button>
@@ -113,7 +133,19 @@ export default {
   },
 
   methods: {
-    ...mapActions('point', ['fetchPoints'])
+    ...mapActions('point', ['fetchPoints', 'redeemPoint']),
+    async redeemPoints (idPoint) {
+      const response = await this.redeemPoint(idPoint)
+      console.log(response)
+      if (response.status === 200) {
+        this.$toast.success(response.message)
+        setTimeout(() => {
+          window.location.reload() // Refresh halaman setelah penundaan 1000ms (1 detik)
+        }, 1000)
+      } else {
+        this.$toast.error(response.message)
+      }
+    }
   }
 }
 </script>
