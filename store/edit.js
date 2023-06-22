@@ -1,20 +1,23 @@
 export const state = () => ({
   detailProject: {
     data: {
-      images: []
+      images: {}
     }
   },
   form: {
     title: '',
     caption: '',
-    projectType: '',
-    team_id: '',
-    addImage: {},
-    delImage: ''
+
+    selectedImg: [],
+    delImage: []
   }
 })
 
 export const mutations = {
+  setSelectedImg (state, image) {
+    state.detailProject.data.images.push(image)
+  },
+
   // NOTE - detail project
   setSelectedDetailPorjects (state, data) {
     state.detailProject = data
@@ -23,11 +26,16 @@ export const mutations = {
   // NOTE - remove image
   removeSelectedImage (state, index) {
     state.detailProject.data.images.splice(index, 1)
+    state.form.selectedImg.splice(index, 1)
   },
 
   // NOTE - add image
-  setImageState (state, image) {
-    state.form.addImage = image
+  addImage (state, val) {
+    state.form.selectedImg = [...state.form.selectedImg, val]
+  },
+
+  deleteImage (state, idImg) {
+    state.form.delImage = [...state.form.delImage, idImg]
   },
 
   // NOTE - set judul
@@ -69,11 +77,16 @@ export const actions = {
       //   'project_teams_attributes[0][team_id]',
       //   ctx.state.form.team_id
       // )
-      // ctx.state.form.addImage.forEach((val, index) => {
-      //   formData.append(`images_attributes[${index}][image]`, val.file)
-      // })
+      ctx.state.form.selectedImg.forEach((val, index) => {
+        formData.append(`images_attributes[${index}][image]`, val.file)
+      })
 
-      return await this.$axios.$patch(`projects/${projectId}`)
+      ctx.state.form.delImage.forEach((idImg, index) => {
+        formData.append(`images_attributes[${index}][id]`, idImg.idImage)
+        formData.append(`images_attributes[${index}][_destroy]="1"`)
+      })
+
+      return await this.$axios.$patch(`projects/${projectId}`, formData)
     } catch (error) {
       return error.response
       // throw new Error('Failed to post data')
