@@ -21,11 +21,12 @@
           </p>
         </div>
 
-        <button
+        <NuxtLink
+          to="/login"
           class="bg-[#6C61E1] text-white py-3 px-10 w-auto my-10 font-medium xl:text-[24px] rounded-md font-cabinet-grotesk"
         >
           Mulai Berkolaborasi
-        </button>
+        </NuxtLink>
         <div>
           <img
             src="../assets/img/Ilustrasi.webp"
