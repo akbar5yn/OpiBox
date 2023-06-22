@@ -8,7 +8,7 @@
       >
         <div class="h-[152px] w-[360px] relative overflow-clip">
           <img
-            src="project.images[0].thumbnail_url"
+            :src="project.images[0].thumbnail_url"
             alt="cover-project"
             class="object-contain w-full"
           >
@@ -21,7 +21,7 @@
             </div>
             <h2 class="font-cabinet-grotesk text-xl font-semibold">
               {{ project.title }} <br>
-              <span class="font-normal text-sm">{{ project.createdAgo }}</span>
+              <span class="font-normal text-sm">{{ project.updated_at }}</span>
             </h2>
           </div>
           <button>
