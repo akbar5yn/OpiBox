@@ -17,6 +17,19 @@ export const actions = {
     } catch (err) {
       return err.res
     }
+  },
+
+  // NOTE - redem point
+  async redeemPoint ({ commit }, idPoint) {
+    try {
+      const response = await this.$axios.$post(
+        `/transactions/redeem_product/${idPoint}`
+      )
+
+      return response
+    } catch (err) {
+      return err
+    }
   }
 }
 
