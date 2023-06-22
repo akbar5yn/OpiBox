@@ -46,6 +46,13 @@ export const mutations = {
   // NOTE - set desc projects/5
   setCaption (state, caption) {
     state.form.caption = caption
+  },
+
+  clearFormData (state) {
+    state.form.title = ''
+    state.form.caption = ''
+    state.form.selectedImg = []
+    state.form.delImage = []
   }
 }
 
@@ -86,6 +93,7 @@ export const actions = {
         formData.append(`images_attributes[${index}][_destroy]="1"`)
       })
 
+      ctx.commit('clearFormData')
       return await this.$axios.$patch(`projects/${projectId}`, formData)
     } catch (error) {
       return error.response
