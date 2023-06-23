@@ -299,13 +299,14 @@ export default {
   },
 
   methods: {
-    ...mapMutations('teams', { setModalFilter: 'setModalFilter' }, [
-      'setTeamId',
-      'setModalEdit',
-      'setModalDeleteTeam',
-      'setModalDeleteUserTeam',
-      'setDataDeleteTeam'
-    ]),
+    ...mapMutations('teams', {
+      setModalFilter: 'setModalFilter',
+      setTeamId: 'setTeamId',
+      setModalEdit: 'setModalEdit',
+      setModalDeleteTeam: 'setModalDeleteTeam',
+      setModalDeleteUserTeam: 'setModalDeleteUserTeam',
+      setDataDeleteTeam: 'setDataDeleteTeam'
+    }),
     ...mapActions('teams', [
       'fetchKolab',
       'fetchPorojectTeam',
