@@ -64,28 +64,36 @@
             Proyek Baru
           </button>
 
-          <button>
-            <svg
-              width="27"
-              height="27"
-              viewBox="0 0 27 27"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M13.5007 4.7487V1.83203M13.5007 4.7487C11.8898 4.7487 10.584 6.05453 10.584 7.66536C10.584 9.2762 11.8898 10.582 13.5007 10.582M13.5007 4.7487C15.1115 4.7487 16.4173 6.05453 16.4173 7.66536C16.4173 9.2762 15.1115 10.582 13.5007 10.582M4.75065 22.2487C6.36148 22.2487 7.66732 20.9429 7.66732 19.332C7.66732 17.7212 6.36148 16.4154 4.75065 16.4154M4.75065 22.2487C3.13982 22.2487 1.83398 20.9429 1.83398 19.332C1.83398 17.7212 3.13982 16.4154 4.75065 16.4154M4.75065 22.2487V25.1654M4.75065 16.4154V1.83203M13.5007 10.582V25.1654M22.2507 22.2487C23.8615 22.2487 25.1673 20.9429 25.1673 19.332C25.1673 17.7212 23.8615 16.4154 22.2507 16.4154M22.2507 22.2487C20.6398 22.2487 19.334 20.9429 19.334 19.332C19.334 17.7212 20.6398 16.4154 22.2507 16.4154M22.2507 22.2487V25.1654M22.2507 16.4154V1.83203"
-                stroke="#111826"
-                stroke-width="2.91667"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
+          <!-- Button filter -->
+          <div v-if="getTeamProject.length !== 0">
+            <button @click="setModalFilter">
+              <svg
+                width="27"
+                height="27"
+                viewBox="0 0 27 27"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.5007 4.7487V1.83203M13.5007 4.7487C11.8898 4.7487 10.584 6.05453 10.584 7.66536C10.584 9.2762 11.8898 10.582 13.5007 10.582M13.5007 4.7487C15.1115 4.7487 16.4173 6.05453 16.4173 7.66536C16.4173 9.2762 15.1115 10.582 13.5007 10.582M4.75065 22.2487C6.36148 22.2487 7.66732 20.9429 7.66732 19.332C7.66732 17.7212 6.36148 16.4154 4.75065 16.4154M4.75065 22.2487C3.13982 22.2487 1.83398 20.9429 1.83398 19.332C1.83398 17.7212 3.13982 16.4154 4.75065 16.4154M4.75065 22.2487V25.1654M4.75065 16.4154V1.83203M13.5007 10.582V25.1654M22.2507 22.2487C23.8615 22.2487 25.1673 20.9429 25.1673 19.332C25.1673 17.7212 23.8615 16.4154 22.2507 16.4154M22.2507 22.2487C20.6398 22.2487 19.334 20.9429 19.334 19.332C19.334 17.7212 20.6398 16.4154 22.2507 16.4154M22.2507 22.2487V25.1654M22.2507 16.4154V1.83203"
+                  stroke="#111826"
+                  stroke-width="2.91667"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
 
         <div
           class="daftar-project flex justify-center tablet:justify-normal flex-wrap gap-3"
         >
+          <!-- Modal filter -->
+          <modal-filter-modal
+            class="absolute right-0 z-50 bg-white shadow-md px-3 py-2"
+          />
+
           <div
             v-for="project in getTeamProject"
             :key="project.id"
@@ -239,7 +247,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapMutations } from 'vuex'
+import { mapGetters, mapActions, mapMutations, mapState } from 'vuex'
 
 export default {
   name: 'Teams',
@@ -264,6 +272,7 @@ export default {
 
   computed: {
     ...mapGetters('teams', ['getTeamsByInv', 'getTeamKolab', 'getTeamProject']),
+    ...mapState('teams', 'modalFilter'),
     // ...mapMutations('teams', ['setSelectedTeamId']),
 
     teamName () {
@@ -290,7 +299,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations('teams', [
+    ...mapMutations('teams', { setModalFilter: 'setModalFilter' }, [
       'setTeamId',
       'setModalEdit',
       'setModalDeleteTeam',
@@ -303,6 +312,7 @@ export default {
       'deleteTeam',
       'kickMemberTeam'
     ]),
+
     toggleInfo () {
       // const timId = this.$route.params.id
       // this.setTeamId(timId)
