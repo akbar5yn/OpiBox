@@ -45,28 +45,30 @@
           <div
             class="flex flex-col gap-[10px] font-cabinet-grotesk w-full border-b-2 py-7 border-b-gray-300"
           >
-            <p>
+            <p class="text-sm laptop:text-lg">
               {{ notif.sender.name }} mengundang Anda untuk bergabung ke dalam
               tim
               {{ notif.invitations[0].team_name }}
             </p>
             <div
-              class="w-full grid grid-cols-2 gap-[10px] font-cabinet-grotesk text-[20px]"
+              class="w-full grid grid-cols-1 gap-y-2 laptop:grid laptop:grid-cols-2 laptop:gap-[10px] font-cabinet-grotesk laptop:text-[20px]"
             >
               <button
-                class="rounded-lg border px-[184px] py-[10px] border-[#B0B0B5]"
+                class="text-sm laptop:text-lg rounded-lg border py-2 laptop:py-[10px] border-[#B0B0B5]"
                 @click="declineInvitations(notif, index)"
               >
                 Tolak Undangan
               </button>
               <button
-                class="rounded-lg px-[184px] py-[10px] bg-[#6C61E1] text-white"
+                class="text-sm laptop:text-lg rounded-lg py-2 laptop:py-[10px] bg-[#6C61E1] text-white"
                 @click="toggleAccept(notif, index)"
               >
                 Terima Undangan
               </button>
             </div>
-            <span class="text-[#62626A]">{{ notif.send_at }}</span>
+            <span class="text-sm laptop:text-base text-[#62626A]">{{
+              notif.send_at
+            }}</span>
           </div>
         </li>
       </ul>
