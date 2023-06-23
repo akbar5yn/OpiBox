@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col gap-5 pt-5 px-[51px]">
+  <div class="flex flex-col gap-5 pt-5 laptop:px-[51px]">
     <div
       v-for="modification in getModifiedHistory"
       :key="modification.id"
-      class="relative cursor-pointer border-b p-5 flex flex-col gap-[10px]"
+      class="relative cursor-pointer border-b laptop:p-5 flex flex-col gap-[10px]"
     >
       <div class="flex justify-between items-center font-cabinet-grotesk">
         <h1 class="text-xl font-medium">

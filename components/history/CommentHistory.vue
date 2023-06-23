@@ -1,12 +1,12 @@
 <template>
-  <div class="flex flex-col gap-5 pt-5 px-[51px]">
+  <div class="flex flex-col gap-5 pt-5 laptop:px-[51px]">
     <div
       v-for="comment in getCommentHistory"
       :key="comment.id"
-      class="relative cursor-pointer border-b p-5"
+      class="relative cursor-pointer border-b laptop:p-5"
     >
       <div class="flex justify-between items-center font-cabinet-grotesk">
-        <h1 class="text-xl font-medium">
+        <h1 class="text-lg laptop:text-xl font-medium">
           {{ comment.project_name }}
         </h1>
         <p class="text-[#B0B0B5] text-sm">
