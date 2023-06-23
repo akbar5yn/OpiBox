@@ -1,14 +1,16 @@
 <template>
   <div class="flex flex-col py-8 px-4 h-full">
-    <div class="flex item-center tablet:h-full flex-wrap">
-      <div class="flex-grow mobile:order-2 tablet:order-1 mobile: mt-10">
+    <div
+      class="flex flex-col laptop:flex laptop:flex-row item-center tablet:h-full"
+    >
+      <div class="flex-grow mobile:order-2 laptop:order-1 mobile: mt-10">
         <div class="flex items-center gap-2">
           <h1 class="font-semibold text-2xl font-cabinet-grotesk">
             Aktivitas Saya
           </h1>
         </div>
         <div
-          class="flex items-center text-normal justify-between text-center text-xs tablet:text-[16px] font-cabinet-grotesk pt-6"
+          class="flex-col w-full laptop:flex laptop:flex-row items-center justify-between text-center text-sm tablet:text-[16px] font-cabinet-grotesk pt-6"
         >
           <button
             class="w-full py-2 border-b-2 border-gray-300 transition-all duration-300"
