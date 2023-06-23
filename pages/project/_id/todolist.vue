@@ -68,38 +68,50 @@
         </div>
       </div>
       <!-- Todolist Section -->
-      <div class="flex flex-col mt-16 flex-grow">
-        <div class="flex items-center justify-between mt-6 mx-6">
-          <h1 class="text-2xl font-semibold">
-            Daftar Tugas
-          </h1>
-          <svg
-            class="w-3 cursor-pointer"
-            viewBox="0 0 14 14"
-            xmlns="http://www.w3.org/2000/svg"
-            @click="navigateTo(`/project/${$route.params.id}`)"
-          >
-            <path
-              d="M1 13L13 1M1 1L13 13"
-              stroke="#151B1E"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+      <div class="flex flex-col flex-grow">
+        <div class="flex flex-col mt-16 flex-grow">
+          <div class="flex items-center justify-between mt-6 mx-6">
+            <h1 class="text-2xl font-semibold">
+              Daftar Tugas
+            </h1>
+            <svg
+              class="w-3 cursor-pointer"
+              viewBox="0 0 14 14"
+              xmlns="http://www.w3.org/2000/svg"
+              @click="navigateTo(`/project/${$route.params.id}`)"
+            >
+              <path
+                d="M1 13L13 1M1 1L13 13"
+                stroke="#151B1E"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="mt-4">
+            <TodoItem
+              v-for="(item, key) in todolist"
+              :key="key"
+              :item="item"
+              :key-item="key + 1"
+              :selected-todo="selectedTodo"
+              @select-todo="handleSelectTodo"
             />
-          </svg>
+          </div>
         </div>
-        <div class="mt-4">
-          <TodoItem
-            v-for="(item, key) in todolist"
-            :key="key"
-            :item="item"
-            :key-item="key + 1"
-            :selected-todo="selectedTodo"
-            @select-todo="handleSelectTodo"
-          />
+        <div class="p-5 w-full">
+          <button
+            v-if="accessibility(detailProject.email)"
+            class="bg-[#6C61E1] px-10 py-2 w-full text-white font-cabinet-grotesk rounded-sm"
+            @click="addTodo"
+          >
+            Tambah Tugas
+          </button>
         </div>
       </div>
     </div>
+    <modal-add-todo />
   </div>
 </template>
 <script>
@@ -109,7 +121,9 @@ export default {
   middleware: 'auth',
   async asyncData ({ store, route }) {
     await store.dispatch('todolist/getTodolist', route.params.id)
+    await store.dispatch('project/getSingleProject', route.params.id)
   },
+
   data () {
     return {
       currentImageIndex: 0,
@@ -121,7 +135,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('project', ['projects']),
+    ...mapState('project', ['projects', 'detailProject']),
     projectImage () {
       const projectId = parseInt(this.$route.params.id)
       const project = this.projects.find(project => project.id === projectId)
@@ -151,6 +165,16 @@ export default {
     },
     handleSelectTodo (val) {
       this.selectedTodo = val
+    },
+
+    accessibility (createdByEmail) {
+      const currentUserEmail = this.$auth.user.email
+      return currentUserEmail === createdByEmail
+    },
+
+    // NOTE - add todo
+    addTodo () {
+      this.$store.commit('project/setAddTodo', true)
     }
   }
 }
