@@ -232,6 +232,8 @@
       <modal-edit-team />
       <modal-create-team />
       <modal-invite-team />
+      <modal-delete-team />
+      <modal-delete-user-team />
     </section>
   </div>
 </template>
@@ -252,10 +254,12 @@ export default {
 
   mounted () {
     const teamId = localStorage.getItem('teamId')
+    const timIdWithParams = this.$route.params.id
 
-    this.fetchTeamKolab(teamId)
+    // this.fetchTeamKolab(teamId)
 
     this.projectTeam(teamId)
+    this.fetchKolab(timIdWithParams)
   },
 
   computed: {
@@ -286,7 +290,13 @@ export default {
   },
 
   methods: {
-    ...mapMutations('teams', ['setTeamId', 'setModalEdit']),
+    ...mapMutations('teams', [
+      'setTeamId',
+      'setModalEdit',
+      'setModalDeleteTeam',
+      'setModalDeleteUserTeam',
+      'setDataDeleteTeam'
+    ]),
     ...mapActions('teams', [
       'fetchKolab',
       'fetchPorojectTeam',
@@ -297,10 +307,6 @@ export default {
       // const timId = this.$route.params.id
       // this.setTeamId(timId)
       this.isOpen = !this.isOpen
-    },
-
-    async fetchTeamKolab () {
-      await this.fetchKolab(this.teamId)
     },
 
     async projectTeam () {
@@ -324,28 +330,15 @@ export default {
     },
 
     // SECTION - del team
-    async onDeleteTeam () {
-      const timId = this.$route.params.id
-      try {
-        const response = await this.deleteTeam(timId) // Mengirimkan ID proyek ke metode deleteProject
-        // Penanganan respons setelah menghapus proyek
-        if (response.status === 200) {
-          this.$toast.success(response.message)
-          this.$router.push('/Beranda')
-          setTimeout(() => {
-            window.location.reload() // Refresh halaman setelah penundaan 1000ms (1 detik)
-          }, 1000)
-        } else {
-          this.$toast.error(response.message)
-        }
-      } catch (error) {
-        console.error(error)
-      }
+    onDeleteTeam () {
+      this.setModalDeleteTeam(true)
     },
 
     closeModal () {
       this.$store.commit('teams/handleModal', false)
     },
+
+    // SECTION - invite user
 
     inviteUser (idTeam) {
       // const teamId = this.$route.params.id
@@ -374,20 +367,9 @@ export default {
       this.$router.push(`/project/${id}`)
     },
 
-    // ANCHOR - Kick member
-    async kickThisMember (teamId, idMember) {
-      try {
-        const response = await this.kickMemberTeam({ teamId, idMember }) // Mengirimkan ID proyek ke metode deleteProject
-        // Penanganan respons setelah menghapus proyek
-        if (response.status === 200) {
-          this.$toast.success(response.message)
-          this.fetchTeamKolab()
-        } else {
-          this.$toast.error(response.message)
-        }
-      } catch (error) {
-        console.error(error)
-      }
+    kickThisMember (teamId, memberId) {
+      this.setDataDeleteTeam({ idMember: memberId, timId: teamId }),
+      this.setModalDeleteUserTeam(true)
     },
 
     // SECTION - Set modal edit tim
