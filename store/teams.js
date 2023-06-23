@@ -1,6 +1,7 @@
 export const state = () => ({
   modalDelTeam: false,
   modalDelUserTeam: false,
+  modalFilter: false,
   forms: {
     teamId: '',
     email: []
@@ -21,6 +22,11 @@ export const state = () => ({
 })
 
 export const mutations = {
+  // NOTE - set modal filter
+  setModalFilter (state) {
+    state.modalFilter = !state.modalFilter
+  },
+
   setDataDeleteTeam (state, { idMember, timId }) {
     state.idMember = idMember
     state.timId = timId
