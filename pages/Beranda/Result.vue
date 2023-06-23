@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-full">
-    <main class="p-5">
+    <main class="">
       <mainpage-top-bar />
       <h1
         class="px-5 pt-5 text-base font-semibold laptop:text-xl font-cabinet-grotesk"
