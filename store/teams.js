@@ -1,4 +1,6 @@
 export const state = () => ({
+  modalDelTeam: false,
+  modalDelUserTeam: false,
   forms: {
     teamId: '',
     email: []
@@ -11,10 +13,35 @@ export const state = () => ({
   teamByInv: [],
   getId: null,
   teamKolab: [],
-  projectTeam: []
+  projectTeam: [],
+
+  // NOTE - menampung data delete user team
+  idMember: null,
+  timId: null
 })
 
 export const mutations = {
+  setDataDeleteTeam (state, { idMember, timId }) {
+    state.idMember = idMember
+    state.timId = timId
+  },
+
+  setModalDeleteTeam (state, value) {
+    state.modalDelTeam = value
+  },
+
+  setCloseModal (state, value) {
+    state.modalDelTeam = value
+  },
+
+  setModalDeleteUserTeam (state, value) {
+    state.modalDelUserTeam = value
+  },
+
+  closeModalDeleteUserTeam (state, value) {
+    state.modalDelUserTeam = value
+  },
+
   setTeams (state, teams) {
     state.teams = teams
   },
