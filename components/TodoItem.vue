@@ -3,10 +3,101 @@
     <h2 class="text-lg font-semibold mt-2">
       {{ numberItem }}.
     </h2>
-    <div class="flex flex-col space-y-2 flex-grow">
+    <div
+      v-if="item.user_name_comment !== null"
+      class="flex flex-col space-y-2 flex-grow"
+    >
       <div class="flex items-center justify-between">
         <p>
           {{ item.comment_body }}
+        </p>
+        <div class="flex items-center space-x-4">
+          <svg
+            v-if="item.pinned"
+            width="34"
+            height="34"
+            viewBox="0 0 34 34"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_7301_44734)">
+              <path
+                d="M24.2198 13.1936L20.3896 16.4076C19.5316 17.1275 18.9727 18.0794 18.7342 19.102L14.8775 14.5057C15.9541 14.4509 16.9758 14.0505 17.8184 13.3434L21.6486 10.1295L24.2198 13.1936ZM27.6802 14.2062L21.2524 6.54576C20.8988 6.12444 20.2649 6.06897 19.8435 6.4225C19.4222 6.77604 19.3668 7.41001 19.7203 7.83134L20.3631 8.59738L16.5328 11.8113C15.2612 12.8783 13.3734 12.7132 12.3064 11.4415L10.7743 12.7271L14.6117 17.3004L9.24939 21.7999L9.12614 23.2088L10.535 23.332L15.8973 18.8325L19.7733 23.4517L21.3054 22.1662C20.2384 20.8945 20.4035 19.0067 21.6751 17.9397L25.5054 14.7257L26.1482 15.4918C26.5017 15.9131 27.1357 15.9686 27.557 15.615C27.9783 15.2615 28.0338 14.6275 27.6802 14.2062Z"
+                fill="#19191B"
+              />
+            </g>
+            <rect
+              x="21.0059"
+              y="9.36328"
+              width="6"
+              height="8"
+              transform="rotate(50 21.0059 9.36328)"
+              fill="#19191B"
+            />
+            <defs>
+              <clipPath id="clip0_7301_44734">
+                <rect
+                  width="24"
+                  height="24"
+                  fill="white"
+                  transform="translate(18.2852 -0.101562) rotate(50)"
+                />
+              </clipPath>
+            </defs>
+          </svg>
+
+          <svg
+            width="4"
+            height="18"
+            viewBox="0 0 4 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            @click="handleSelectTodo(keyItem)"
+          >
+            <path
+              d="M2 2L2 2.01M2 9L2 9.01M2 16L2 16.01M2 3C1.44772 3 1 2.55228 1 2C1 1.44772 1.44772 1 2 1C2.55228 1 3 1.44772 3 2C3 2.55228 2.55228 3 2 3ZM2 10C1.44771 10 1 9.55228 1 9C1 8.44772 1.44771 8 2 8C2.55228 8 3 8.44772 3 9C3 9.55228 2.55228 10 2 10ZM2 17C1.44771 17 0.999999 16.5523 0.999999 16C0.999999 15.4477 1.44771 15 2 15C2.55228 15 3 15.4477 3 16C3 16.5523 2.55228 17 2 17Z"
+              stroke="#19191B"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="22"
+            viewBox="0 0 18 22"
+            fill="none"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M3.05991 3.36069C6.34032 0.0802898 11.6589 0.0802892 14.9393 3.36069C18.2197 6.6411 18.2197 11.9597 14.9393 15.2401L8.99961 21.1798L3.05991 15.2401C-0.220492 11.9597 -0.220492 6.6411 3.05991 3.36069ZM8.99961 11.7004C10.3251 11.7004 11.3996 10.6259 11.3996 9.30039C11.3996 7.97491 10.3251 6.90039 8.99961 6.90039C7.67413 6.90039 6.59961 7.97491 6.59961 9.30039C6.59961 10.6259 7.67413 11.7004 8.99961 11.7004Z"
+              fill="#111826"
+            />
+          </svg>
+          <span>Gambar {{ keyItem }}</span>
+        </div>
+        <div class="h-[40px] border-l" />
+        <p class="p-2 text-sm w-fit text-gray-300">
+          Ditambahkan dari
+          <span class="text-black">{{ item.user_name }}</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- komen by owner -->
+    <div
+      v-if="item.user_name_comment === null"
+      class="flex flex-col space-y-2 flex-grow"
+    >
+      <div class="flex items-center justify-between">
+        <p>
+          {{ item.body }}
         </p>
         <div class="flex items-center space-x-4">
           <svg
