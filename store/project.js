@@ -14,10 +14,19 @@ export const state = () => ({
   projectShared: [],
   projectShareable: {},
   closeModal: false,
-  dataResult: {}
+  dataResult: {},
+  modalAddTodo: false
 })
 
 export const mutations = {
+  setAddTodo (state, value) {
+    state.modalAddTodo = value
+  },
+
+  setCloseTodo (state, value) {
+    state.modalAddTodo = value
+  },
+
   setCloseModal (state, value) {
     state.closeModal = value
   },
@@ -216,6 +225,24 @@ export const actions = {
       return response
     } catch (e) {
       return e.response
+    }
+  },
+
+  // NOTE - add todo
+  async addTodo ({ commit }, data) {
+    try {
+      const headers = { 'Content-Type': 'multipart/form-data' }
+      const formData = new FormData()
+      formData.append('body', data.body)
+      formData.append('image_id', data.image_id)
+
+      const response = await this.$axios.$post('todolist', formData, {
+        headers
+      })
+
+      return response
+    } catch (err) {
+      return err
     }
   }
 }
