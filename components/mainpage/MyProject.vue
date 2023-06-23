@@ -1,6 +1,5 @@
 <template>
   <div class="my-project max-w-screen-2xl snap-x overflow-x-scroll">
-
     <!-- setelah ada project -->
     <section class="project-exist flex gap-3 scroll-ml-6 snap-start">
       <div
@@ -36,7 +35,10 @@
                 }}</span>
               </h2>
             </div>
-            <button @click="toggleInfo(project.id)">
+            <button
+              class="w-5 flex justify-end"
+              @click="toggleInfo(project.id)"
+            >
               <icon-galery-dots-icon />
             </button>
           </div>
@@ -44,8 +46,9 @@
         <modal-project-information
           v-if="selectedProjectInfo === project.id"
           :id-project="project.id"
-          class="showinfo absolute -right-36 top-9 w-fit p-5 pr-9 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+          class="showinfo absolute right-0 top-9 w-fit p-5 pr-9 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
           @show-project-report="handleProjectReport"
+          @close-modal="toggleInfo(project.id)"
         />
       </div>
     </section>
@@ -102,9 +105,16 @@ export default {
       })
     },
 
+    // toggleInfo (projectId) {
+    //   // const setInfo = this.setShowInfo(projectId)
+    //   this.selectedProjectInfo = projectId
+    // },
     toggleInfo (projectId) {
-      // const setInfo = this.setShowInfo(projectId)
-      this.selectedProjectInfo = projectId
+      if (this.selectedProjectInfo === projectId) {
+        this.selectedProjectInfo = null // Jika projectId sama dengan selectedProjectInfo, maka set selectedProjectInfo menjadi null untuk menyembunyikan modal
+      } else {
+        this.selectedProjectInfo = projectId // Jika projectId berbeda dengan selectedProjectInfo, maka set selectedProjectInfo menjadi projectId untuk menampilkan modal
+      }
     },
     visitProject (id) {
       console.log(id)
