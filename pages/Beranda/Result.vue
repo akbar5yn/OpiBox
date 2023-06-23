@@ -35,7 +35,7 @@
                 </div>
                 <h2
                   class="cursor-pointer font-cabinet-grotesk text-xl font-semibold"
-                  @click="showProject(result.id)"
+                  @click="visitProject(result.id)"
                 >
                   {{ result.title }} <br>
 
@@ -77,6 +77,12 @@ export default {
     ...mapGetters('project', ['getResult']),
     hasResult () {
       return this.getResult !== undefined && this.getResult.length !== 0
+    }
+  },
+
+  methods: {
+    visitProject (id) {
+      this.$router.push(`/project/${id}`)
     }
   }
 }
